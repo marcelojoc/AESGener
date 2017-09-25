@@ -462,6 +462,15 @@ pre.prettyprint {
 .light-grey {
   color: #bbbbbb !important;
 }
+.greenAES {
+  color: #A2BD32 !important;
+}
+.blueAES {
+  color: #4176AC !important;
+}
+.dark-blueAES {
+  color: #213F5B !important;
+}
 .bigger-110 {
   font-size: 110% !important;
 }
@@ -1059,8 +1068,17 @@ pre.prettyprint {
 .header.blue {
   border-bottom-color: #d5e3ef;
 }
+.header.blueAES {
+  border-bottom-color: #A2BD32;
+}
+.header.dark-blueAES {
+  border-bottom-color: #A2BD32;
+}
 .header.green {
   border-bottom-color: #cce2c1;
+}
+.header.greenAES {
+  border-bottom-color: #A2BD32;
 }
 .header.purple {
   border-bottom-color: #e0d1ea;
@@ -5483,8 +5501,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary,
 .btn-primary:focus {
-  background-color: #428bca !important;
-  border-color: #428bca;
+  background-color: #4176AC !important;
+  border-color: #4176AC;
 }
 .btn-primary:hover,
 .btn-primary:active,
@@ -9025,7 +9043,7 @@ input[type=radio].ace + .lbl::before {
   font-family: fontAwesome;
   font-weight: normal;
   font-size: 12px;
-  color: #32a3ce;
+  color: #A2BD32;
   content: "\a0";
   background-color: #FAFAFA;
   border: 1px solid #c8c8c8;
@@ -9046,14 +9064,14 @@ input[type=radio].ace:checked + .lbl::before {
   display: inline-block;
   content: '\f00c';
   background-color: #F5F8FC;
-  border-color: #adb8c0;
+  border-color: #4176AC;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
 }
 input[type=checkbox].ace:hover + .lbl::before,
 input[type=radio].ace:hover + .lbl::before,
 input[type=checkbox].ace + .lbl:hover::before,
 input[type=radio].ace + .lbl:hover::before {
-  border-color: #ff893c;
+  border-color: #A2BD32;
 }
 input[type=checkbox].ace:active + .lbl::before,
 input[type=radio].ace:active + .lbl::before,
@@ -12460,7 +12478,7 @@ td .lbl:only-child {
   margin: 0 auto;
 }
 .login-layout {
-  background-color: #1D2024;
+  background-color: #FFF;
 }
 .login-layout .main-container:before {
   display: none;
@@ -12482,7 +12500,7 @@ td .lbl:only-child {
   border-bottom: none;
   box-shadow: none;
   padding: 6px;
-  background-color: #394557;
+  background-color: #A2BD32;
   -moz-transform: scale(0,1) translate(-150px);
   -webkit-transform: scale(0,1) translate(-150px);
   -o-transform: scale(0,1) translate(-150px);
