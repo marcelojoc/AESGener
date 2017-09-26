@@ -33,7 +33,7 @@ class Login extends CI_Controller {
           $this->load->view('login_view');
     	}else{    		
           //Go to private area
-        	redirect('bienvenidaC', 'refresh');
+        	redirect('Bienvenida', 'refresh');
     	}
 
     }
@@ -80,7 +80,7 @@ class Login extends CI_Controller {
           $this->session->set_flashdata('nombreR', $data);
           $this->session->set_flashdata('nivel', $data);
            // redirect('some_controller');
-          redirect('bienvenidaC', 'refresh');
+          redirect('Bienvenida', 'refresh');
       }else{
           //If no session, redirect to login page
           redirect('login', 'refresh');

@@ -7,12 +7,12 @@ class My_Controller extends Ci_Controller {
     	parent::__construct();
 
       //Cargar todos los model del sistema
-    	$this->load->model('Bienvenida_model');
-    	$this->load->model('abms/AbmEmpleados_model');
-      $this->load->model('relevamiento/Relevamiento_model');
-      $this->load->model('seguridad/AbmNiveles_model');
-      $this->load->model('seguridad/AbmUsuarios_model');
-      $this->load->model('abms/AbmVisitas_model');
+    	// $this->load->model('Bienvenida_model');
+    	// $this->load->model('abms/AbmEmpleados_model');
+     //  $this->load->model('relevamiento/Relevamiento_model');
+     //  $this->load->model('seguridad/AbmNiveles_model');
+     //  $this->load->model('seguridad/AbmUsuarios_model');
+     //  $this->load->model('abms/AbmVisitas_model');
    
   	}
 
