@@ -56,135 +56,6 @@
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
       						if ($niv->descripNivel == "Administrador de Usuarios" || 
-      							$niv->descripNivel == "Administrador" || 
-      							$niv->descripNivel == "Referente" || 
-      							$niv->descripNivel == "Coordinador"){
-				?>
-
-				<li class="">
-					<a href="<?php echo base_url()?>auditoria/auditoriaC">
-						<i class="menu-icon fa fa-search-plus"></i>
-						<span class="menu-text">Auditoria</span>
-					</a>
-
-					<b class="arrow"></b>
-				</li>
-
-				<?php 		}
-						}	
-					}
-				?>
-
-				<?php 
-					if ($nivel){							
-						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador de Usuarios" || 
-      							$niv->descripNivel == "Facilitador" || 
-      							$niv->descripNivel == "Administrador" || 
-      							$niv->descripNivel == "Referente" ||  
-      							$niv->descripNivel == "Coordinador"){
-				?>
-
-				<li class="">
-					<a href="#" class="dropdown-toggle">
-						<i class="menu-icon fa fa-pencil-square-o"></i> 
-
-							<span class="menu-text">Encuestas</span>
-						<b class="arrow fa fa-angle-down"></b>
-					</a>
-
-						<b class="arrow"></b>
-							<ul class="submenu">
-
-								<?php 	if ($niv->descripNivel == "Administrador de Usuarios" || 
-											$niv->descripNivel == "Facilitador" || 
-											$niv->descripNivel == "Administrador" || 
-											$niv->descripNivel == "Referente" || 
-											$niv->descripNivel == "Coordinador"){
-								?>
-								<li class="">
-									<a href="<?php echo base_url()?>encuesta/cargarEncuesta/">
-										<i class="menu-icon fa fa-caret-right"></i>
-										Cargar Relevamiento Realizado
-									</a>
-									<b class="arrow"></b>
-								</li>
-								<?php 	}	
-								?>
-
-								<?php 	if ($niv->descripNivel == "Administrador de Usuarios" || 
-											$niv->descripNivel == "Administrador" ||  
-											$niv->descripNivel == "Coordinador"){
-								?>
-
-								<li class="">
-									<a href="#" class="btn disabled">
-										<i class="menu-icon fa fa-caret-right"></i>
-										Crear Encuesta
-									</a>
-									<b class="arrow"></b>
-								</li>
-								<?php 	}	
-								?>
-
-								<?php 	if ($niv->descripNivel == "Administrador de Usuarios" || 
-											$niv->descripNivel == "Facilitador" || 
-											$niv->descripNivel == "Administrador" || 
-											$niv->descripNivel == "Referente" || 
-											$niv->descripNivel == "Coordinador"){
-								?>
-								<li class="">
-									<a  class="btn disabled" href="<?php echo base_url()?>abms/abmVisitasC/">
-										<i class="menu-icon fa fa-caret-right"></i>
-										Pactar Visita 
-									</a>
-
-									<b class="arrow"></b>
-								</li>
-								<?php 	}	
-								?>
-
-								<?php 	if ($niv->descripNivel == "Administrador de Usuarios" || 
-											$niv->descripNivel == "Administrador" || 
-											$niv->descripNivel == "Referente" || 
-											$niv->descripNivel == "Coordinador"){
-								?>
-								<li class="">
-									<a href="<?php echo base_url()?>encuesta/abmencuesta">
-										<i class="menu-icon fa fa-caret-right"></i>
-										Ver Encuestas
-									</a>
-									<b class="arrow"></b>
-								</li>
-								<?php 	}	
-								?>
-								<?php 	if ($niv->descripNivel == "Administrador de Usuarios" || 
-											$niv->descripNivel == "Facilitador" || 
-											$niv->descripNivel == "Administrador" || 
-											$niv->descripNivel == "Referente" || 
-											$niv->descripNivel == "Coordinador"){
-								?>	
-								<li class="">
-									<a href="<?php echo base_url()?>relevamiento/relevamientoC">
-										<i class="menu-icon fa fa-caret-right"></i>
-										Ver Relevamientos
-									</a>
-									<b class="arrow"></b>
-								</li>
-								<?php 	}	
-								?>									
-							</ul>
-				</li>
-
-				<?php 		}
-						}	
-					}
-				?>
-
-				<?php 
-					if ($nivel){							
-						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador de Usuarios" || 
       							$niv->descripNivel == "Administrador"){
 				?>
 
@@ -219,6 +90,29 @@
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
       						if ($niv->descripNivel == "Administrador de Usuarios" || 
+      							$niv->descripNivel == "Administrador" || 
+      							$niv->descripNivel == "Referente" || 
+      							$niv->descripNivel == "Coordinador"){
+				?>
+
+				<li class="">
+					<a href="<?php echo base_url()?>auditoria/auditoriaC">
+						<i class="menu-icon fa fa-upload"></i>
+						<span class="menu-text">Planillas</span>
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+
+				<?php 		}
+						}	
+					}
+				?>
+
+				<?php 
+					if ($nivel){							
+						foreach($nivel->result() as $niv){
+      						if ($niv->descripNivel == "Administrador de Usuarios" || 
       							$niv->descripNivel == "Facilitador" || 
       							$niv->descripNivel == "Administrador" || 
       							$niv->descripNivel == "Referente" || 
@@ -226,24 +120,9 @@
 				?>
 
 				<li class="">
-					<a href="<?php echo base_url()?>reportes/reportesC">
-						<i class="menu-icon fa fa-list-alt"></i>
-						<span class="menu-text"> Reportes</span>
-					</a>
-					<b class="arrow"></b>
-				</li>
-				<li class="">
-					<a href="<?php echo base_url('bienvenidaC') ?>">
-						<i class="menu-icon fa fa-reply-all"></i>
-						<span class="menu-text"> Inicio</span>
-					</a>
-					<b class="arrow"></b>
-				</li>
-
-				<li class="">
-					<a href="<?php echo base_url('login/logout') ?>">
-						<i class="menu-icon fa fa-power-off"></i>
-						<span class="menu-text"> Salir</span>
+					<a href="<?php echo base_url()?>tableros/Tableros">
+						<i class="menu-icon fa fa-tachometer"></i>
+						<span class="menu-text"> Tableros</span>
 					</a>
 					<b class="arrow"></b>
 				</li>				
@@ -259,7 +138,7 @@
 				?>
 				<li class="">
 					<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-user"></i>
+							<i class="menu-icon fa fa-users"></i>
 							<span class="menu-text"> Usuarios </span>
 							<b class="arrow fa fa-angle-down"></b>
 					</a>
@@ -288,7 +167,22 @@
 				<?php 		}
 						}	
 					}
-				?>		
+				?>
+				<li class="">
+					<a href="<?php echo base_url('bienvenidaC') ?>">
+						<i class="menu-icon fa fa-reply-all"></i>
+						<span class="menu-text"> Inicio</span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+
+				<li class="">
+					<a href="<?php echo base_url('login/logout') ?>">
+						<i class="menu-icon fa fa-power-off"></i>
+						<span class="menu-text"> Salir</span>
+					</a>
+					<b class="arrow"></b>
+				</li>		
 
 			</ul><!-- /.nav-list -->
 

@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="<?php echo base_url() ?>assets/images/favicon2.png" />
+		<link rel="shortcut icon" href="<?php echo base_url() ?>assets/images/favicon.png" />
 
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.css" />
@@ -19,8 +19,6 @@
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace-fonts.css" />
-		<!--estilos propios de osep-->
-		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/styleOsep.css" />
 		<!-- ace styles -->
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
 
@@ -68,12 +66,12 @@
 				<!-- /section:basics/sidebar.mobile.toggle -->
 				<div class="navbar-header pull-left">
 					<!-- #section:basics/navbar.layout.brand -->
-					<a href="<?php echo base_url('bienvenidaC') ?>" class="navbar-brand">	
-							<small>
-							<!--<i class="fa fa-stethoscope"></i>-->
-							<img src="<?php echo base_url() ?>assets/images/Logo.png" width="60%" heigth="50%">
-							<!--S.S.I.-->
-							</small>		
+					<a href="<?php echo base_url('Bienvenida') ?>" class="navbar-brand">	
+						<small style="font-size: 32px;">
+						<i class="fa fa-bolt"></i>
+						<!-- <img src="<?php echo base_url() ?>assets/images/logo.png" width="50%" heigth="40%"> -->
+						AES Gener
+						</small>		
 					</a>
 
 				</div>

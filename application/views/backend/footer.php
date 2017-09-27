@@ -4,7 +4,7 @@
 					<!-- #section:basics/footer -->
 					<div class="footer-content">
 						<span class="bigger-150">
-							<span class="blue bolder">AES Gener</span>
+							<span class="dark-blueAES bolder">AES Gener</span>
 							 &copy; 2017
 						</span>
 
@@ -118,8 +118,8 @@
 		<script type="text/javascript"> ace.vars['base'] = '..'; </script>
 		<script src="<?php echo base_url() ?>assets/js/ace/elements.onpage-help.js"></script>
 		<script src="<?php echo base_url() ?>assets/js/ace/ace.onpage-help.js"></script>
-		<script src="<?php echo base_url() ?>assets/docs/assets/js/rainbow.js"></script>
-		<!--<script src="<?php echo base_url() ?>assets/js/language/generic.js"></script>
+		<!--<script src="<?php echo base_url() ?>assets/docs/assets/js/rainbow.js"></script>
+		<script src="<?php echo base_url() ?>assets/js/language/generic.js"></script>
 		<script src="<?php echo base_url() ?>assets/js/language/html.js"></script>
 		<script src="<?php echo base_url() ?>assets/js/language/css.js"></script>
 		<script src="<?php echo base_url() ?>assets/js/language/javascript.js"></script>-->

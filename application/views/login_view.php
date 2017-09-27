@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="<?php echo base_url() ?>assets/images/favicon2.png" />
+		<link rel="shortcut icon" href="<?php echo base_url() ?>assets/images/favicon.png" />
 
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/bootstrap.css" />
@@ -48,7 +48,7 @@
 
 								<h1><![LOGO]-->
 								</br><!-- Espacio arriba del logo -->
-									<img src="<?php echo base_url() ?>assets/images/Logo.png" width="300px" heigth="500px" />
+									<img src="<?php echo base_url() ?>assets/images/Login.png" width="300px" heigth="500px" />
 							</div>
 								</br><!-- Espacio abajo del logo -->
 
