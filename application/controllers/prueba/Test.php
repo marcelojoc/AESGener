@@ -78,10 +78,10 @@ class Test extends My_Controller{
     
 	public function subir(){
 		//Ruta donde se guardan los ficheros
-			$config['upload_path'] = './subidas/';
+			$config['upload_path'] = './uploads/';
 			
 		//Tipos de ficheros permitidos
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = 'xlsx';
 			
 		//Se pueden configurar aun mas parámetros.
 		//Cargamos la librería de subida y le pasamos la configuración 
@@ -89,8 +89,15 @@ class Test extends My_Controller{
 	
 			if(!$this->upload->do_upload()){
 				/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
+
+				var_dump($_POST);
 					$error=array('error' => $this->upload->display_errors());
-					$this->load->view('subir_view', $error);
+					$data="";
+					$nombreVista="backend/prueba/subir_view";
+					$this->cargarVista($nombreVista,$data);
+
+
+
 			}else{
 				//Datos del fichero subido
 				$datos["img"]=$this->upload->data();
