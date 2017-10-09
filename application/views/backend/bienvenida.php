@@ -1,7 +1,7 @@
 </br>
 </br>
 
-<div class="main-content" align="center"><img src="<?php echo base_url() ?>assets/images/Logo.png" width="50%" heigth="30%"  ></div>
+<div class="main-content" align="center"><img src="<?php echo base_url() ?>assets/images/Login.png" width="50%" heigth="30%"  ></div>
 
 </br>
 

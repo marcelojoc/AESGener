@@ -2069,7 +2069,7 @@ pre.prettyprint {
   width: 3px;
   max-width: 3px;
   overflow: hidden;
-  background-color: #629cc9;
+  background-color: #A2BD32;
 }
 @media only screen and (min-width: 992px) {
   .main-container.container .sidebar:not(.h-sidebar) .nav-list > li:before {
@@ -19123,7 +19123,7 @@ input.typeahead.scrollable ~ .tt-dropdown-menu {
 }
 .no-skin .nav-list > li:hover > a {
   background-color: #ffffff;
-  color: #266cad;
+  color: #4176AC;
 }
 .no-skin .nav-list > li.open > a {
   background-color: #fafafa;
@@ -19149,7 +19149,7 @@ input.typeahead.scrollable ~ .tt-dropdown-menu {
 }
 .no-skin .nav-list > li .submenu > li > a:hover {
   color: #4b88b7;
-  background-color: #f1f5f9;
+  background-color: #ecf1f6;
 }
 .no-skin .nav-list > li .submenu > li.active > a {
   color: #2b7dbc;
