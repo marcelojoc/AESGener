@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class HelperE
+class MiExcel
 {
 
     private $CI;
@@ -13,7 +13,6 @@ class HelperE
 
     } 
     
-
     public function truncateFloat($number, $digitos)
     {
         $raiz = 10;

@@ -7,7 +7,7 @@ class Test extends My_Controller{
       	parent::__construct(); //Ejecuta el controlador del padre
 		$this->load->model('Bienvenida_model');
 		$this->load->helper('url');
-		$this->load->library('HelperE');		
+		$this->load->library('miexcel');				
 		$this->load->library('/Excel/PHPExcel');
 		$this->load->library('/Excel/PHPExcel/IOFactory');		
   	}
@@ -16,11 +16,9 @@ class Test extends My_Controller{
         $data="";
         // $nombreVista="backend/bienvenida";
 		  // $this->cargarVista($nombreVista,$data);
-		  
-	
 
 
-		  $nombrefile = "C:\wamp\www\AESGener\application\controllers\prueba\KPI_operacionales_Julio_2017.xlsx";
+		  $nombrefile = "C:\wamp\www\AESGener\uploads\KPI_operacionales_Julio_2017.xlsx";
 		  $objexcel= IOFactory::load($nombrefile);
 		  
 		  
@@ -30,7 +28,7 @@ class Test extends My_Controller{
 		  $numRows = $objexcel->setActiveSheetIndex(0)->getHighestRow();
 		  
 		  
-		  var_dump($this->HelperE);
+		  
 		  //echo($this->helperExcel->test());
 		  
 			  echo '<table border=1><tr><td>Producto</td><td>Precio</td><td>Existencia</td></tr>';
@@ -45,14 +43,13 @@ class Test extends My_Controller{
 				  
 				  echo '<tr>';
 				  echo '<td>'. $nombre.'</td>';
-				  echo '<td>'. 'sssssssssss'.'</td>';
-				  echo '<td>'.($existencia* 100).'</td>';
+				  echo '<td>'. $this->miexcel->truncateFloat(($precio*100),2).'</td>';
+				  echo '<td>'. $this->miexcel->truncateFloat(($existencia*100),2).'</td>';
 				  echo '</tr>';
 		  
 			  }
 			  
 			  echo '<table>';
-
 
 
 
@@ -75,11 +72,29 @@ class Test extends My_Controller{
 
 
    }
-    
+	
+   
+public function panel (){
+
+
+
+	$data="";
+	$nombreVista="backend/prueba/panel_view";
+	$this->cargarVista($nombreVista,$data);
+
+
+
+
+}
+
+
+
+
+
 	public function subir(){
 		//Ruta donde se guardan los ficheros
 			$config['upload_path'] = './uploads/';
-			
+			$config['file_name'] = 'tuvieja.xlsx';
 		//Tipos de ficheros permitidos
 			$config['allowed_types'] = 'xlsx';
 			
@@ -90,7 +105,7 @@ class Test extends My_Controller{
 			if(!$this->upload->do_upload()){
 				/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
 
-				var_dump($_POST);
+				
 					$error=array('error' => $this->upload->display_errors());
 					$data="";
 					$nombreVista="backend/prueba/subir_view";
@@ -100,11 +115,11 @@ class Test extends My_Controller{
 
 			}else{
 				//Datos del fichero subido
-				$datos["img"]=$this->upload->data();
+				$datos["xls"]=$this->upload->data();
 	
 				// Podemos acceder a todas las propiedades del fichero subido 
 				// $datos["img"]["file_name"]);
-	
+				var_dump($datos);
 				//Cargamos la vista y le pasamos los datos
 				$data="";
 				$nombreVista="backend/prueba/subir_view";

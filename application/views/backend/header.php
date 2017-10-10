@@ -30,6 +30,10 @@
 		  <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace-ie.css" />
 		<![endif]-->
 
+
+				<!-- text fonts -->
+				<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/aesg/style.css" />
+
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
