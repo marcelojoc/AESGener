@@ -16,6 +16,12 @@
       background: #4875b4; }
     .social-widget .soc-header.box-esmerald {
       background: #2ecc71; }
+    .social-widget .soc-header.box-red {
+      background: #E74C3C; }
+    .social-widget .soc-header.box-green {
+      background: #27AE60; }
+    .social-widget .soc-header.box-yellow {
+      background: #F1C40F; }
   
   .social-widget .soc-content {
     display: -webkit-box;
