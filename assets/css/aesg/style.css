@@ -2,9 +2,9 @@
 /*social-widgets*/
 /*******************/
 .social-widget .soc-header {
-    padding: 15px;
+    padding: 10px;
     text-align: center;
-    font-size: 36px;
+    font-size: 20px;
     color: #fff; }
     .social-widget .soc-header.box-facebook {
       background: #3b5998; }
@@ -12,8 +12,8 @@
       background: #00aced; }
     .social-widget .soc-header.box-google {
       background: #f86c6b; }
-    .social-widget .soc-header.box-linkedin {
-      background: #4875b4; }
+    .social-widget .soc-header.box-corporativo {
+      background: #4176AC; }
     .social-widget .soc-header.box-esmerald {
       background: #2ecc71; }
     .social-widget .soc-header.box-red {
@@ -30,7 +30,7 @@
     display: flex;
     text-align: center; }
     .social-widget .soc-content div {
-      padding: 10px; }
+      padding: 5px; }
       .social-widget .soc-content div h3 {
         margin-bottom: 0px; }
   
@@ -67,4 +67,51 @@
     border: 1px solid rgba(120, 130, 140, 0.13) !important; }
 
     .text-muted {
-        color: #99abb4 !important; }
+    color: #99abb4 !important; }
+
+    html body .font-medium {
+    font-weight: 500; }
+
+                  
+
+    /*    de prueba */
+
+
+
+    .content-progres {
+      
+      font-size:0.9em ;
+    
+    }
+
+
+    .limite{
+
+      background: #F5F5F5;
+
+
+    }
+
+    .indicador-kpi{
+
+      height: 2em;
+      text-align: center;
+      border-bottom: 1px solid #FFFFFF;
+      color:  #FFFFFF;
+      padding: 5% 0;
+
+    }
+
+    .borde {
+
+      border-top: 5px solid rgb(45, 27, 206);
+      border-right: 1px solid rgba(120, 130, 140, 0.13);
+
+    }
+
+  .borde p {
+        
+    text-align: right;
+    padding: 1em;
+        
+  }
