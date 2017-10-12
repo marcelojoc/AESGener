@@ -96,7 +96,7 @@
 				?>
 
 				<li class="">
-					<a href="<?php echo base_url()?>auditoria/auditoriaC">
+					<a href="<?php echo base_url()?>planilla/Planilla">
 						<i class="menu-icon fa fa-upload"></i>
 						<span class="menu-text">Planillas</span>
 					</a>
