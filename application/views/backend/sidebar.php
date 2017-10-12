@@ -62,23 +62,20 @@
 				<li class="">
 					<a href="#" class="dropdown-toggle">
 						<i class="menu-icon fa fa-cogs"></i> 
-
 							<span class="menu-text">Gestiones Internas</span>
-
 						<b class="arrow fa fa-angle-down"></b>
 					</a>
 
-						<b class="arrow"></b>
-							<ul class="submenu">
-
-								<li class="">
-									<a href="<?php echo base_url()?>abms/abmEmpleadosC">
-										<i class="menu-icon fa fa-caret-right"></i>
-										Empleados
-									</a>
-									<b class="arrow"></b>
-								</li>
-							</ul>
+					<b class="arrow"></b>
+						<ul class="submenu">
+							<li class="">
+								<a href="<?php echo base_url()?>abms/abmEmpleadosC">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Empleados
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
 				</li>
 
 				<?php 		}
@@ -120,11 +117,39 @@
 				?>
 
 				<li class="">
-					<a href="<?php echo base_url()?>tableros/Tableros">
+					<a href="#" class="dropdown-toggle">
 						<i class="menu-icon fa fa-tachometer"></i>
 						<span class="menu-text"> Tableros</span>
+						<b class="arrow fa fa-angle-down"></b>
 					</a>
+					
 					<b class="arrow"></b>
+						<ul class="submenu">
+
+							<li class="">
+								<a href="<?php echo base_url()?>seguridad/abmUsuariosC">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Estratégicos
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="<?php echo base_url()?>seguridad/abmNivelesC">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Tácticos
+								</a>
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="<?php echo base_url()?>seguridad/abmNivelesC">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Operativos
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
 				</li>				
 				<?php 		}
 						}	
@@ -168,6 +193,7 @@
 						}	
 					}
 				?>
+				
 				<li class="">
 					<a href="<?php echo base_url('bienvenidaC') ?>">
 						<i class="menu-icon fa fa-reply-all"></i>
