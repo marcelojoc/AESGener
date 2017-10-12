@@ -18,7 +18,7 @@ class Test extends My_Controller{
 		  // $this->cargarVista($nombreVista,$data);
 
 
-		  $nombrefile = 'C:\xampp\htdocs\AESGener\uploads\KPI_operacionales_Julio_2017.xlsx';
+		  $nombrefile = 'C:\wamp\www\AESGener\uploads\KPI_operacionales_Julio_2017.xlsx';
 		  $objexcel= IOFactory::load($nombrefile);
 		  
 		  
