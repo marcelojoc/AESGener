@@ -2,14 +2,53 @@
     <div class="main-content-inner">
         <div class="page-content">
             
-            <div class="page-header text-center blueAES">
+<div class="row">
+
+
+            <div class="page-header col-sm-4 text-center blueAES b-r">
                 <h1 class="blueAES">
                     Tablero Estratégico
                 </h1>
             </div>  
+            <div class=" col-sm-8 blueAES form-inline ">
+
+
+                    <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    
+                            <div class="form-group">
+
+                                    <select class="form-control" name="category">
+                                            <option value=""></option>
+                                            <option value="0">select1</option>
+                                            <option value="1">select2</option>
+                                            <option value="2">select3</option>
+                                        </select>   
+                            </div>
+                   
+                            <div class="form-group text-right">
+                                <select class="form-control" name="category">
+                                    <option value=""></option>
+                                    <option value="0">select1</option>
+                                    <option value="1">select2</option>
+                                    <option value="2">select3</option>
+                                </select>           
+                            </div>
+                        </div>
+                
+
+
+
+            </div>  
+
+
+
+
+</div>
+
 
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 ">
                     <div class="page-header center greenAES">
                         <h4>
                             Confiabilidad
@@ -17,75 +56,67 @@
                     </div>  
                    
                     <div class="social-widget col-sm-12 b-l b-r">
-                        <div class="soc-header box-corporativo">
-                            <i><h2>EAF (%)</h2></i>
-                        </div>
-
-                        <div class="soc-content">
-                            <div class="col-xs-6 b-r b-b">
-                                <h4 class="font-medium">92,62 %</h4>
-                                <h5 class="text-muted">Bud Mon</h5>
+                            <div class="soc-header box-corporativo">
+                                <i><h4>EAF (%)</h4></i>
                             </div>
-                           
-                            <div class="col-xs-6 b-b">
-                                <h4 class="font-medium">92,62 %</h4>
-                                <h5 class="text-muted">Real Mon</h5>
-                            </div>
-                        </div> 
 
-                        <br>
-
-
-
-                    <div class="row">
-
-                        <div class="col-xs-12">
-
-                            <!-- contenedor general de la progress bar -->
-                            <div class="content-progres social-widget"> 
-
-                                <!-- este marca el 100% del progres bar -->
-                                <div class="progres-full limite " >
-
-                                    <div class="indicador-kpi" style="height: 3.9em; background: #2ecc71; width: 90%;" >
-
-                                        <p><strong>valor real 90%</strong></p>
-                                    </div>
-
+                            <div class="soc-content">
+                                <div class="col-xs-6 b-r b-b">
+                                    <h5 class="font-medium">92,62 %</h5>
+                                    <h6 class="text-muted">Bud Mon</h6>
                                 </div>
-                                <div class="progres-full">
+                            
+                                <div class="col-xs-6 b-b">
+                                    <h5 class="font-medium">92,62 %</h5>
+                                    <h6 class="text-muted">Real Mon</h6>
+                                </div>
+                            </div> 
 
-                                    <div class="borde box-green" style="height: 3em; width: 88%;" >
-
-                                        <p><strong>Valor Esperado 88,7%</strong></p>
-
-                                    </div>
-
-                                </div><br>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="soc-content">
-                        <div class="col-xs-6 b-r b-b b-t">
-                            <h3 class="font-medium">92,62 %</h3>
-                            <h5 class="text-muted">Bud Mon</h5>
-                        </div>                          
-                        <div class="col-xs-6 b-b b-t">
-                            <h3 class="font-medium">92,62 %</h3>
-                            <h5 class="text-muted">Real Mon</h5>
-                        </div>
-                    </div><br>
                     
 
+                            <div class="row">
 
+                                <div class="col-xs-12">
 
+                                    <!-- contenedor general de la progress bar -->
+                                    <div class="content-progres social-widget"> 
 
+                                        <!-- este marca el 100% del progres bar -->
+                                        <div class="progres-full limite " >
 
+                                            <div class="indicador-kpi" style="height: 3.9em; background: #2ecc71; width: 90%;" >
 
+                                                <p><strong>Valor Mensual</strong></p>
+                                            </div>
+
+                                        </div>
+                                        <div class="progres-full">
+
+                                            <div class="borde box-green" style="height: 3em; width: 88%;" >
+
+                                                <p><strong>Valor Esperado Mensual 88,7%</strong></p>
+
+                                            </div>
+
+                                        </div><br>
+
+                                    </div><br>
+
+                                </div>
+
+                            </div>
+
+                            <div class="soc-content">
+                                <div class="col-xs-6 b-r b-b b-t">
+                                    <h5 class="font-medium">92,62 %</h5>
+                                    <h6 class="text-muted">Bud YTD</h6>
+                                </div>                          
+                                <div class="col-xs-6 b-b b-t">
+                                    <h5 class="font-medium">92,62 %</h5>
+                                    <h6 class="text-muted">Real YTD</h6>
+                                </div>
+                            </div>
+                    
 
                             <div class="row">
                                 
@@ -121,140 +152,243 @@
 
 
 
-                        <div class="tabbable">
-                                <ul class="nav nav-tabs" id="myTab">
-                                    <li class="active">
-                                        <a data-toggle="tab" href="#home">
-                                            <i class="greenAES ace-icon fa fa-key bigger-120"></i>
-                                            Comentarios
-                                        </a>
-                                    </li>
-    
-                                    <li>
-                                        <a data-toggle="tab" href="#messages">
-                                            <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                                            Aañadir Comentario
-                                            <!-- <span class="badge badge-danger">Nuevo</span> -->
-                                        </a>
-                                    </li>
-                                </ul>
-    
-                                <div class="tab-content">
-                                    <div id="home" class="tab-pane fade in active">
-                                        <table class="table">
-                                            <thead>
-                                              <tr>
-                                                <th>#</th>
-                                                <th>Contenido</th>
-                                                <th>Autor</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                <th scope="row">1</th>
-                                                <td>Cambios de prefiltros en compresor</td>
-                                                <td>pepito h</td>
-                                              </tr>
+                            <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                                Comentarios
+                                            </a>
+                                        </li>
 
-                                              <tr>
-                                                <th scope="row">2</th>
-                                                <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
-                                                <td>Thornton</td>
-                                              </tr>
+                                        <li>
+                                            <a data-toggle="tab" href="#messages">
+                                                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                                Aañadir Comentario
+                                                <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
 
-                                            </tbody>
-                                          </table>
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>Contenido</th>
+                                                    <th>Autor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Cambios de prefiltros en compresor</td>
+                                                    <td>pepito h</td>
+                                                    </tr>
 
-                                          <ul class="pagination pagination-sm">
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
+                                                    <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                    <td>Thornton</td>
+                                                    </tr>
 
-                                          </ul>
+                                                </tbody>
+                                                </table>
+
+                                                <ul class="pagination pagination-sm">
+                                                    <li class="active"><a href="#">1</a></li>
+                                                    <li><a href="#">2</a></li>
+
+                                                </ul>
+                                        </div>
+
+                                        <div id="messages" class="tab-pane fade">
+                                            
+                                            <form action="">
+
+                                                <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+
+                                            </form>
+
+                                        </div>
                                     </div>
-    
-                                    <div id="messages" class="tab-pane fade">
-                                        
-                                        <form action="">
+                            </div><br>
 
-                                            <div class="form-group">
-                                                    <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+                    </div><br>
 
-                                        </form>
-
-                                    </div>
-                                </div>
-                        </div>
-                        
-                        <br>
-
-                    </div>
+                    <!-- aqui comienza el otro indicador EFOF -->
 
                     <div class="social-widget col-sm-12 b-l b-r">
-                        <div class="soc-header box-red">
-                            <i><h1>EFOF (%)</h1></i>
+                        <div class="soc-header box-corporativo">
+                            <i><h3>EFOF (%)</h3></i>
                         </div>
 
                         <div class="soc-content">
                             <div class="col-xs-6 b-r b-b">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Bud Mon</h5>
+                                <h5 class="font-medium">92,62 %</h5>
+                                <h6 class="text-muted">Bud Mon</h6>
                             </div>
                             <div class="col-xs-6 b-b">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Real Mon</h5>
+                                <h5 class="font-medium">92,62 %</h5>
+                                <h6 class="text-muted">Real Mon</h6>
                             </div>
                         </div>
 
-                        <br>
+                            <div class="row">
 
-                        <div class="tabbable">
-                            <ul class="nav nav-tabs" id="myTab">
-                                <li class="active">
-                                    <a data-toggle="tab" href="#home">
-                                        <i class="greenAES ace-icon fa fa-key bigger-120"></i>
-                                        KPI
-                                    </a>
-                                </li>
+                                <div class="col-xs-12">
 
-                                <li>
-                                    <a data-toggle="tab" href="#messages">
-                                        <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                                        Comentarios
-                                        <!-- <span class="badge badge-danger">Nuevo</span> -->
-                                    </a>
-                                </li>
-                            </ul>
+                                    <!-- contenedor general de la progress bar -->
+                                    <div class="content-progres social-widget"> 
 
-                            <div class="tab-content">
-                                <div id="home" class="tab-pane fade in active">
-                                    <p>Este KPI significa....</p>
-                                </div>
+                                        <!-- este marca el 100% del progres bar -->
+                                        <div class="progres-full limite " >
 
-                                <div id="messages" class="tab-pane fade">
-                                    
-                                    <form action="">
+                                            <div class="indicador-kpi" style="height: 3.9em; background: #2ecc71; width: 90%;" >
 
-                                        <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <p><strong>Valor Mensual</strong></p>
+                                            </div>
+
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+                                        <div class="progres-full">
 
-                                    </form>
+                                            <div class="borde box-green" style="height: 3em; width: 88%;" >
+
+                                                <p><strong>Valor Esperado Mensual 88,7%</strong></p>
+
+                                            </div>
+
+                                        </div><br>
+
+                                    </div><br>
 
                                 </div>
-                            </div>
-                        </div>
 
-                        <br>
+                            </div>
+
+                            <div class="soc-content">
+                                <div class="col-xs-6 b-r b-b b-t">
+                                    <h5 class="font-medium">92,62 %</h5>
+                                    <h6 class="text-muted">Bud YTD</h6>
+                                </div>                          
+                                <div class="col-xs-6 b-b b-t">
+                                    <h5 class="font-medium">92,62 %</h5>
+                                    <h6 class="text-muted">Real YTD</h6>
+                                </div>
+                            </div>
+                    
+
+                            <div class="row">
+                                
+                                    <div class="col-xs-12">
+            
+                                        <!-- contenedor general de la progress bar -->
+                                        <div class="content-progres social-widget"> 
+            
+                                            <!-- este marca el 100% del progres bar -->
+                                            <div class="progres-full limite " >
+            
+                                                <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width: 78%;" >
+            
+                                                    <p><strong>valor real 78%</strong></p>
+                                                </div>
+            
+                                            </div>
+                                            <div class="progres-full">
+            
+                                                <div class="borde box-green" style="height: 3em; width: 89.7%;" >
+            
+                                                    <p><strong>Valor Esperado 99,7%</strong></p>
+            
+                                                </div>
+            
+                                            </div><br>
+            
+                                        </div>
+            
+                                    </div>
+                                
+                            </div>                    
+
+
+
+                            <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                                Comentarios
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#messages">
+                                                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                                Aañadir Comentario
+                                                <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>Contenido</th>
+                                                    <th>Autor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Cambios de prefiltros en compresor</td>
+                                                    <td>pepito h</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                    <td>Thornton</td>
+                                                    </tr>
+
+                                                </tbody>
+                                                </table>
+
+                                                <ul class="pagination pagination-sm">
+                                                    <li class="active"><a href="#">1</a></li>
+                                                    <li><a href="#">2</a></li>
+
+                                                </ul>
+                                        </div>
+
+                                        <div id="messages" class="tab-pane fade">
+                                            
+                                            <form action="">
+
+                                                <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                            </div><br>
+
+
 
                     </div>
 
                 </div>
-
 
                 <div class="col-sm-4">
                         <div class="page-header center greenAES">
@@ -265,25 +399,9 @@
                        
                         <div class="social-widget col-sm-12 b-l b-r">
                             <div class="soc-header box-corporativo">
-                                <i><h2>EAF (%)</h2></i>
+                                <i><h4>EAF (%)</h4></i>
                             </div>
-    
-                            <div class="soc-content">
-                                <div class="col-xs-6 b-r b-b">
-                                    <h4 class="font-medium">92,62 %</h4>
-                                    <h5 class="text-muted">Bud Mon</h5>
-                                </div>
-                               
-                                <div class="col-xs-6 b-b">
-                                    <h4 class="font-medium">92,62 %</h4>
-                                    <h5 class="text-muted">Real Mon</h5>
-                                </div>
-                            </div> 
-    
-                            <br>
-    
-    
-    
+
                         <div class="row">
     
                             <div class="col-xs-12">
@@ -294,9 +412,9 @@
                                     <!-- este marca el 100% del progres bar -->
                                     <div class="progres-full limite " >
     
-                                        <div class="indicador-kpi" style="height: 3.9em; background: #2ecc71; width: 90%;" >
+                                        <div class="indicador-kpi " style="height: 3.9em; background: #F1C40F; width: 90%;" >
     
-                                            <p><strong>valor real 90%</strong></p>
+                                            <p><strong>Valor Mensual</strong></p>
                                         </div>
     
                                     </div>
@@ -304,7 +422,7 @@
     
                                         <div class="borde box-green" style="height: 3em; width: 88%;" >
     
-                                            <p><strong>Valor Esperado 88,7%</strong></p>
+                                            <p><strong>Valor Esperado Mensual 88,7%</strong></p>
     
                                         </div>
     
@@ -315,23 +433,6 @@
                             </div>
     
                         </div>
-    
-                        <div class="soc-content">
-                            <div class="col-xs-6 b-r b-b b-t">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Bud Mon</h5>
-                            </div>                          
-                            <div class="col-xs-6 b-b b-t">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Real Mon</h5>
-                            </div>
-                        </div><br>
-                        
-    
-    
-    
-    
-    
     
     
                                 <div class="row">
@@ -440,8 +541,8 @@
                         </div>
     
                         <div class="social-widget col-sm-12 b-l b-r">
-                            <div class="soc-header box-corporativo">
-                                <i><h2>EFOF (%)</h2></i>
+                            <div class="soc-header box-red">
+                                <i><h1>EFOF (%)</h1></i>
                             </div>
     
                             <div class="soc-content">
@@ -501,198 +602,187 @@
                         </div>
     
                     </div>
-
-
+                
+                
                 <div class="col-sm-4">
-                    <div class="page-header center greenAES">
-                        <h4>
-                            Costos
-                        </h4>
-                    </div>
-
-                    <div class="social-widget col-sm-12">
-                        <div class="soc-header box-corporativo">
-                            <i><h2>CTM OPEX (ThuUSD$)</h2></i>
+                        <div class="page-header center greenAES">
+                            <h4>
+                                Costos
+                            </h4>
                         </div>
 
-                        <div class="soc-content">
-                            <div class="col-xs-6 b-r b-b">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Bud Mon</h5>
-                            </div>
-                            <div class="col-xs-6 b-b">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Real Mon</h5>
-                            </div>
-                        </div>
-
-                        <br>
-
-                        <div class="tabbable">
-                            <ul class="nav nav-tabs" id="myTab">
-                                <li class="active">
-                                    <a data-toggle="tab" href="#home">
-                                        <i class="greenAES ace-icon fa fa-key bigger-120"></i>
-                                        KPI
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a data-toggle="tab" href="#messages">
-                                        <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                                        Comentarios
-                                        <!-- <span class="badge badge-danger">Nuevo</span> -->
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div id="home" class="tab-pane fade in active">
-                                    <p>Este KPI significa....</p>
+                        <div class="social-widget col-sm-12 b-l b-r">
+                                <div class="soc-header box-corporativo">
+                                    <i><h4>EAF (%)</h4></i>
                                 </div>
-
-                                <div id="messages" class="tab-pane fade">
-                                    
-                                    <form action="">
-
-                                        <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        
+                                <div class="soc-content">
+                                    <div class="col-xs-6 b-r b-b">
+                                        <h5 class="font-medium">92,62 %</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
+                                    </div>
+                                   
+                                    <div class="col-xs-6 b-b">
+                                        <h5 class="font-medium">92,62 %</h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+                                    </div>
+                                </div> 
+        
+                            
+        
+                            <div class="row">
+        
+                                <div class="col-xs-12">
+        
+                                    <!-- contenedor general de la progress bar -->
+                                    <div class="content-progres social-widget"> 
+        
+                                        <!-- este marca el 100% del progres bar -->
+                                        <div class="progres-full limite " >
+        
+                                            <div class="indicador-kpi" style="height: 3.9em; background: #2ecc71; width: 90%;" >
+        
+                                                <p><strong>Valor Mensual</strong></p>
+                                            </div>
+        
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Guardar Comentario</button>
-
-                                    </form>
-
+                                        <div class="progres-full">
+        
+                                            <div class="borde box-green" style="height: 3em; width: 88%;" >
+        
+                                                <p><strong>Valor Esperado Mensual 88,7%</strong></p>
+        
+                                            </div>
+        
+                                        </div><br>
+        
+                                    </div><br>
+        
+                                </div>
+        
+                            </div>
+        
+                            <div class="soc-content">
+                                <div class="col-xs-6 b-r b-b b-t">
+                                    <h5 class="font-medium">92,62 %</h5>
+                                    <h6 class="text-muted">Bud Mon</h6>
+                                </div>                          
+                                <div class="col-xs-6 b-b b-t">
+                                    <h5 class="font-medium">92,62 %</h5>
+                                    <h6 class="text-muted">Real Mon</h6>
                                 </div>
                             </div>
-                        </div>
-
-                        <br>
-
-                    </div>
-
-                    <div class="social-widget col-sm-12">
-                        <div class="soc-header box-yellow">
-                            <i><h1>CAPEX (ThuUSD$)</h1></i>
-                        </div>
-
-                        <div class="soc-content">
-                            <div class="col-xs-6 b-r b-b">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Bud Mon</h5>
-                            </div>
-                            <div class="col-xs-6 b-b">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Real Mon</h5>
-                            </div>
-                        </div>
-
-                        <br>
-
-                        <div class="tabbable">
-                            <ul class="nav nav-tabs" id="myTab">
-                                <li class="active">
-                                    <a data-toggle="tab" href="#home">
-                                        <i class="greenAES ace-icon fa fa-key bigger-120"></i>
-                                        KPI
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a data-toggle="tab" href="#messages">
-                                        <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                                        Comentarios
-                                        <!-- <span class="badge badge-danger">Nuevo</span> -->
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div id="home" class="tab-pane fade in active">
-                                    <p>Este KPI significa....</p>
-                                </div>
-
-                                <div id="messages" class="tab-pane fade">
-                                    
-                                    <form action="">
-
-                                        <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            
+        
+                                    <div class="row">
+                                        
+                                            <div class="col-xs-12">
+                    
+                                                <!-- contenedor general de la progress bar -->
+                                                <div class="content-progres social-widget"> 
+                    
+                                                    <!-- este marca el 100% del progres bar -->
+                                                    <div class="progres-full limite " >
+                    
+                                                        <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width: 78%;" >
+                    
+                                                            <p><strong>valor real 78%</strong></p>
+                                                        </div>
+                    
+                                                    </div>
+                                                    <div class="progres-full">
+                    
+                                                        <div class="borde box-green" style="height: 3em; width: 89.7%;" >
+                    
+                                                            <p><strong>Valor Esperado 99,7%</strong></p>
+                    
+                                                        </div>
+                    
+                                                    </div><br>
+                    
+                                                </div>
+                    
+                                            </div>
+                                        
+                                    </div>                    
+        
+        
+        
+                                <div class="tabbable">
+                                        <ul class="nav nav-tabs" id="myTab">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#home">
+                                                    <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                                    Comentarios
+                                                </a>
+                                            </li>
+            
+                                            <li>
+                                                <a data-toggle="tab" href="#messages">
+                                                    <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                                    Aañadir Comentario
+                                                    <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                                </a>
+                                            </li>
+                                        </ul>
+            
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane fade in active">
+                                                <table class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th>#</th>
+                                                        <th>Contenido</th>
+                                                        <th>Autor</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>Cambios de prefiltros en compresor</td>
+                                                        <td>pepito h</td>
+                                                      </tr>
+        
+                                                      <tr>
+                                                        <th scope="row">2</th>
+                                                        <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                        <td>Thornton</td>
+                                                      </tr>
+        
+                                                    </tbody>
+                                                  </table>
+        
+                                                  <ul class="pagination pagination-sm">
+                                                        <li class="active"><a href="#">1</a></li>
+                                                        <li><a href="#">2</a></li>
+        
+                                                  </ul>
+                                            </div>
+            
+                                            <div id="messages" class="tab-pane fade">
+                                                
+                                                <form action="">
+        
+                                                    <div class="form-group">
+                                                            <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+        
+                                                </form>
+        
+                                            </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Guardar Comentario</button>
-
-                                    </form>
-
                                 </div>
-                            </div>
-                        </div>
-
-                        <br>
-
-                    </div>
-                    <div class="social-widget col-sm-12">
-                        <div class="soc-header box-green">
-                            <i><h1>Comercial Availability</h1></i>
-                        </div>
-
-                        <div class="soc-content">
-                            <div class="col-xs-6 b-r b-b">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Bud Mon</h5>
-                            </div>
-                            <div class="col-xs-6 b-b">
-                                <h3 class="font-medium">92,62 %</h3>
-                                <h5 class="text-muted">Real Mon</h5>
-                            </div>
-                        </div>
-
-                        <br>
-
-                        <div class="tabbable">
-                            <ul class="nav nav-tabs" id="myTab">
-                                <li class="active">
-                                    <a data-toggle="tab" href="#home">
-                                        <i class="greenAES ace-icon fa fa-key bigger-120"></i>
-                                        KPI
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a data-toggle="tab" href="#messages">
-                                        <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                                        Comentarios
-                                        <!-- <span class="badge badge-danger">Nuevo</span> -->
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div id="home" class="tab-pane fade in active">
-                                    <p>Este KPI significa....</p>
-                                </div>
-
-                                <div id="messages" class="tab-pane fade">
-                                    
-                                    <form action="">
-
-                                        <div class="form-group">
-                                                <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Guardar Comentario</button>
-
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
+                                
+                                <br>
+        
+                            </div>  
 
 
 
 
-            </div>
+                </div>
         </div>
 
 
