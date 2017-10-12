@@ -16,7 +16,7 @@ class My_Controller extends Ci_Controller {
    
   	}
 
-    function cargarVista($nombreV, $dataC){
+    function cargarVista($nombreV, $dataC, $javasc = null){
       if($this->session->userdata('logged_in')){
         $session_data = $this->session->userdata('logged_in');
         $data['username'] = $session_data['username'];
@@ -36,6 +36,20 @@ class My_Controller extends Ci_Controller {
         $this->load->view('backend/sidebar',$data);
         $this->load->view($nombreV, $dataC);
         $this->load->view('backend/footer');
+
+        /**
+         * esta linea añade archivos Js de ser necesario
+         * el formato en que debe pasarse la info es:
+         * un arreglo asociativo y dentro separado por comas los Strings de cada nombre de archivo
+         * los Js los busca en el directorio assets del raiz de CI
+         * ejemplo:
+         * $js['javascript']= ["archivo.js","tuVieja.js","bloqueaa.js"];
+         */
+        
+        if(!is_null($javasc)){
+
+          $this->load->view('backend/script_js', $javasc);
+        }
 
       }else{
         $this->load->helper(array('form'));

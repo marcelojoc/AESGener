@@ -70,7 +70,7 @@
     color: #99abb4 !important; }
 
     html body .font-medium {
-    font-weight: 500; }
+    font-weight: 300; }
 
                   
 
@@ -81,6 +81,8 @@
     .content-progres {
       
       font-size:0.9em ;
+      padding-top: 2em;
+      padding-bottom: 1em;
     
     }
 
@@ -94,7 +96,7 @@
 
     .indicador-kpi{
 
-      height: 2em;
+      height: 2.3em;
       text-align: center;
       border-bottom: 1px solid #FFFFFF;
       color:  #FFFFFF;
@@ -104,7 +106,7 @@
 
     .borde {
 
-      border-top: 5px solid rgb(45, 27, 206);
+      border-top: 0.7em solid rgb(45, 27, 206);
       border-right: 1px solid rgba(120, 130, 140, 0.13);
 
     }

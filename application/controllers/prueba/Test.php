@@ -10,6 +10,8 @@ class Test extends My_Controller{
 		$this->load->library('miexcel');				
 		$this->load->library('/Excel/PHPExcel');
 		$this->load->library('/Excel/PHPExcel/IOFactory');		
+		$this->load->model('Kpi_model');
+
   	}
 
   	function index(){
@@ -61,6 +63,7 @@ class Test extends My_Controller{
 
 	public function load(){ 
 
+		$plantilla= 1; 
 
 		$data="";
 		$nombreVista="backend/prueba/subir_view";
@@ -78,9 +81,36 @@ public function panel (){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	$data="";
+	$js['javascript']= ["vendor/vue.js","app/main.js",];
 	$nombreVista="backend/prueba/panel_view";
-	$this->cargarVista($nombreVista,$data);
+
+	$this->cargarVista($nombreVista,$data,$js);
 
 
 
