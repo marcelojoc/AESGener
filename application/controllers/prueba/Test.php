@@ -10,7 +10,7 @@ class Test extends My_Controller{
 		$this->load->library('miexcel');				
 		$this->load->library('/Excel/PHPExcel');
 		$this->load->library('/Excel/PHPExcel/IOFactory');		
-		$this->load->model('Kpi_model');
+		$this->load->model('/prueba/Kpi_model');
 
   	}
 
@@ -63,7 +63,7 @@ class Test extends My_Controller{
 
 	public function load(){ 
 
-		$plantilla= 1; 
+		
 
 		$data="";
 		$nombreVista="backend/prueba/subir_view";
@@ -79,14 +79,14 @@ class Test extends My_Controller{
    
 public function panel (){
 
+	$plantilla= 1; 
+
+
+$maquinas = $this->Kpi_model->getMaquina($plantilla);
 
 
 
-
-
-
-
-
+var_dump($maquinas);
 
 
 
