@@ -1,22 +1,9 @@
 <?php 
 
-var_dump($maquina);
+//var_dump($maquina);
 $valor= $maquina[0];
 
-
-
-
-
-
-
 $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";
-
-var_dump($res );
-
-
-
-
-
 
 ?>
 
@@ -31,15 +18,13 @@ var_dump($res );
 
             <div class="page-header col-sm-4 text-center blueAES b-r">
                 <h1 class="blueAES">
- Tablero Estratégico 
-<?php echo $valor->nombreMaquina  ?>
-
-
-
+                    Tablero Estratégico 
+                    <?php echo $valor->nombreMaquina  ?>
                 </h1>
             </div>  
             <div class=" col-sm-8 blueAES form-inline ">
 
+                <form action="<?php echo base_url('/prueba/test/panel')  ?>" method="post" name="form_selector" id="form_selector">
 
                     <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -47,15 +32,15 @@ var_dump($res );
                             <div class="form-group">
 
                                     <select class="form-control" name="category">
-                                            <option value=""></option>
-                                            <option value="0">select1</option>
-                                            <option value="1">select2</option>
-                                            <option value="2">select3</option>
+                                            <option value="">seleccionar</option>
+                                            <option value="0">Maquina</option>
+                                            <option value="1">Divicion</option>
+                                            <option value="2">Complejo</option>
                                         </select>   
                             </div>
                    
                             <div class="form-group text-left">
-                                <select class="form-control" name="category">
+                                <select class="form-control" name="category" id="category">
                                     <option value=""></option>
 
                                         <?php 
@@ -73,7 +58,7 @@ var_dump($res );
                         </div>
                 
 
-
+                 </form>
 
             </div>  
 
@@ -121,9 +106,9 @@ var_dump($res );
                                         <!-- este marca el 100% del progres bar -->
                                         <div class="progres-full limite " >
 
-                                                <?php $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";   
+                                                <?php   $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";   
 
-                                                $res.= 'width:'.$valor->actualMes .'%;';
+                                                        $res.= 'width:'.$valor->actualMes .'%;';
 
                                                 ?>
 
@@ -137,15 +122,9 @@ var_dump($res );
                                         </div>
                                         <div class="progres-full">
 
-
-
                                                 <div class="borde box-green" style="height: 3em; width: <?php echo $valor->targetMes .'%;' ?>;">
 
-
-
-
-
-                                                <p><strong>Valor Esperado Mensual 88,7%</strong></p>
+                                                <p><strong>Valor Esperado Mensual</strong></p>
 
                                             </div>
 
@@ -199,7 +178,7 @@ var_dump($res );
 
 
             
-                                                    <p><strong>Valor anual acumulado </strong></p>
+                                                    <p><strong>Valor anual acumulado  </strong></p>
                                                 </div>
             
                                             </div>
@@ -478,21 +457,24 @@ var_dump($res );
     
                                 <!-- contenedor general de la progress bar -->
                                 <div class="content-progres social-widget"> 
-    
-                                    <!-- este marca el 100% del progres bar -->
+
                                     <div class="progres-full limite " >
-    
-                                        <div class="indicador-kpi " style="height: 3.9em; background: #F1C40F; width: 90%;" >
-    
-                                            <p><strong>Valor Mensual</strong></p>
+
+
+                                        <div class="indicador-kpi" style="height: 3.9em; <?php echo $res ?>">
+
+
+
+                                        <p><strong>Valor Mensual <?php echo $valor->actualMes .'%' ?> </strong></p>
                                         </div>
-    
+
                                     </div>
+
                                     <div class="progres-full">
     
-                                        <div class="borde box-green" style="height: 3em; width: 88%;" >
+                                        <div class="borde" style="height: 3em; width: <?php echo $valor->targetMes .'%;' ?>;">
     
-                                            <p><strong>Valor Esperado Mensual 88,7%</strong></p>
+                                            <p><strong>Valor Esperado Mensual <?php echo $valor->targetMes .'%' ?></strong></p>
     
                                         </div>
     
@@ -513,19 +495,22 @@ var_dump($res );
                                             <div class="content-progres social-widget"> 
                 
                                                 <!-- este marca el 100% del progres bar -->
-                                                <div class="progres-full limite " >
-                
-                                                    <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width: 78%;" >
-                
-                                                        <p><strong>valor real 78%</strong></p>
-                                                    </div>
-                
+                                            <!-- este marca el 100% del progres bar -->
+                                            <div class="progres-full limite " >
+            
+                                                    <div class="indicador-kpi" style="height: 3.9em;<?php echo $res2 ?>">
+
+
+            
+                                                    <p><strong>Valor anual acumulado <?php echo $valor->ytdActual .'%' ?> </strong></p>
                                                 </div>
+            
+                                            </div>
                                                 <div class="progres-full">
                 
-                                                    <div class="borde box-green" style="height: 3em; width: 89.7%;" >
+                                                        <div class="borde box-green" style="height: 3em; width: <?php echo $valor->ytdTarget .'%;' ?>">
                 
-                                                        <p><strong>Valor Esperado 99,7%</strong></p>
+                                                        <p><strong>Valor Anual acumulado Esperado <?php echo $valor->ytdTarget .'%' ?></strong></p>
                 
                                                     </div>
                 
