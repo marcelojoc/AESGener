@@ -1,3 +1,25 @@
+<?php 
+
+var_dump($maquina);
+$valor= $maquina[0];
+
+
+
+
+
+
+
+$res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";
+
+var_dump($res );
+
+
+
+
+
+
+?>
+
 <div class="main-content">
     <div class="main-content-inner">
         <div class="page-content">
@@ -5,9 +27,15 @@
 <div class="row">
 
 
+
+
             <div class="page-header col-sm-4 text-center blueAES b-r">
                 <h1 class="blueAES">
-                    Tablero Estratégico
+ Tablero Estratégico 
+<?php echo $valor->nombreMaquina  ?>
+
+
+
                 </h1>
             </div>  
             <div class=" col-sm-8 blueAES form-inline ">
@@ -26,12 +54,20 @@
                                         </select>   
                             </div>
                    
-                            <div class="form-group text-right">
+                            <div class="form-group text-left">
                                 <select class="form-control" name="category">
                                     <option value=""></option>
-                                    <option value="0">select1</option>
-                                    <option value="1">select2</option>
-                                    <option value="2">select3</option>
+
+                                        <?php 
+
+                                            foreach($lista as $item){
+
+                                            echo('<option value="'.$item->idMaquina.'">'.$item->nombreMaquina.'</option>');
+
+                                            }
+
+                                        ?>
+
                                 </select>           
                             </div>
                         </div>
@@ -62,13 +98,14 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-6 b-r b-b">
-                                    <h5 class="font-medium">92,62 %</h5>
-                                    <h6 class="text-muted">Bud Mon</h6>
+                                    <h5 class="font-medium"><?php echo $valor->actualMes .'%'  ?></h5>
+                                    <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-6 b-b">
-                                    <h5 class="font-medium">92,62 %</h5>
-                                    <h6 class="text-muted">Real Mon</h6>
+                                    <h5 class="font-medium"><?php echo $valor->targetMes .'%' ?></h5>
+                                    <h6 class="text-muted">Target Mon</h6>
+
                                 </div>
                             </div> 
 
@@ -84,7 +121,15 @@
                                         <!-- este marca el 100% del progres bar -->
                                         <div class="progres-full limite " >
 
-                                            <div class="indicador-kpi" style="height: 3.9em; background: #2ecc71; width: 90%;" >
+                                                <?php $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";   
+
+                                                $res.= 'width:'.$valor->actualMes .'%;';
+
+                                                ?>
+
+                                                <div class="indicador-kpi" style="height: 3.9em; <?php echo $res ?>">
+
+
 
                                                 <p><strong>Valor Mensual</strong></p>
                                             </div>
@@ -92,7 +137,13 @@
                                         </div>
                                         <div class="progres-full">
 
-                                            <div class="borde box-green" style="height: 3em; width: 88%;" >
+
+
+                                                <div class="borde box-green" style="height: 3em; width: <?php echo $valor->targetMes .'%;' ?>;">
+
+
+
+
 
                                                 <p><strong>Valor Esperado Mensual 88,7%</strong></p>
 
@@ -108,12 +159,20 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-6 b-r b-b b-t">
-                                    <h5 class="font-medium">92,62 %</h5>
-                                    <h6 class="text-muted">Bud YTD</h6>
+                                    <h5 class="font-medium">
+                                        <?php echo $valor->ytdActual .'%'  ?>
+
+                                    </h5>
+
+                                    <h6 class="text-muted">Real YTD</h6>
                                 </div>                          
                                 <div class="col-xs-6 b-b b-t">
-                                    <h5 class="font-medium">92,62 %</h5>
-                                    <h6 class="text-muted">Real YTD</h6>
+                                    <h5 class="font-medium">
+                                        <?php echo $valor->ytdTarget .'%'  ?>
+
+                                    </h5>
+
+                                    <h6 class="text-muted">Bud YTD</h6>
                                 </div>
                             </div>
                     
@@ -127,18 +186,29 @@
             
                                             <!-- este marca el 100% del progres bar -->
                                             <div class="progres-full limite " >
+
+                                                    <?php $res2 = ($valor->ytdActual >= $valor->ytdTarget) ? "background: #2ecc71;" : "background: #E74C3C;";   
+
+                                                        $res2.= 'width:'.$valor->ytdActual .'%;';
+
+                                                    ?>
+
+
             
-                                                <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width: 78%;" >
+                                                    <div class="indicador-kpi" style="height: 3.9em;<?php echo $res2 ?>">
+
+
             
-                                                    <p><strong>valor real 78%</strong></p>
+                                                    <p><strong>Valor anual acumulado </strong></p>
                                                 </div>
             
                                             </div>
                                             <div class="progres-full">
             
-                                                <div class="borde box-green" style="height: 3em; width: 89.7%;" >
+                                                    <div class="borde box-green" style="height: 3em; width: <?php echo $valor->ytdTarget .'%;' ?>">
+
             
-                                                    <p><strong>Valor Esperado 99,7%</strong></p>
+                                                    <p><strong>Valor anual acumulado esperado</strong></p>
             
                                                 </div>
             
@@ -318,16 +388,16 @@
 
 
                             <div class="tabbable">
-                                    <ul class="nav nav-tabs" id="myTab">
+                                    <ul class="nav nav-tabs" id="myTab2">
                                         <li class="active">
-                                            <a data-toggle="tab" href="#home">
+                                            <a data-toggle="tab2" href="#home">
                                                 <i class="greenAES ace-icon fa fa-key bigger-120"></i>
                                                 Comentarios
                                             </a>
                                         </li>
 
                                         <li>
-                                            <a data-toggle="tab" href="#messages">
+                                            <a data-toggle="tab2" href="#messages">
                                                 <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
                                                 Aañadir Comentario
                                                 <!-- <span class="badge badge-danger">Nuevo</span> -->
@@ -393,7 +463,7 @@
                 <div class="col-sm-4">
                         <div class="page-header center greenAES">
                             <h4>
-                                Eficiencia
+                                Confiabilidad vista Compacta
                             </h4>
                         </div>  
                        
@@ -470,16 +540,16 @@
     
     
                             <div class="tabbable">
-                                    <ul class="nav nav-tabs" id="myTab">
+                                    <ul class="nav nav-tabs" id="myTab3">
                                         <li class="active">
-                                            <a data-toggle="tab" href="#home">
+                                            <a data-toggle="tab3" href="#home">
                                                 <i class="greenAES ace-icon fa fa-key bigger-120"></i>
                                                 Comentarios
                                             </a>
                                         </li>
         
                                         <li>
-                                            <a data-toggle="tab" href="#messages">
+                                            <a data-toggle="tab3" href="#messages">
                                                 <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
                                                 Aañadir Comentario
                                                 <!-- <span class="badge badge-danger">Nuevo</span> -->
@@ -541,8 +611,9 @@
                         </div>
     
                         <div class="social-widget col-sm-12 b-l b-r">
-                            <div class="soc-header box-red">
-                                <i><h1>EFOF (%)</h1></i>
+                                <div class="soc-header box-corporativo">
+
+                                <i><h3>EFOF (%)</h3></i>
                             </div>
     
                             <div class="soc-content">
@@ -559,16 +630,16 @@
                             <br>
     
                             <div class="tabbable">
-                                <ul class="nav nav-tabs" id="myTab">
+                                <ul class="nav nav-tabs" id="myTab4">
                                     <li class="active">
-                                        <a data-toggle="tab" href="#home">
+                                        <a data-toggle="tab4" href="#home">
                                             <i class="greenAES ace-icon fa fa-key bigger-120"></i>
                                             KPI
                                         </a>
                                     </li>
     
                                     <li>
-                                        <a data-toggle="tab" href="#messages">
+                                        <a data-toggle="tab4" href="#messages">
                                             <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
                                             Comentarios
                                             <!-- <span class="badge badge-danger">Nuevo</span> -->
@@ -709,7 +780,7 @@
         
         
                                 <div class="tabbable">
-                                        <ul class="nav nav-tabs" id="myTab">
+                                        <ul class="nav nav-tabs" id="myTab5">
                                             <li class="active">
                                                 <a data-toggle="tab" href="#home">
                                                     <i class="greenAES ace-icon fa fa-key bigger-120"></i>
