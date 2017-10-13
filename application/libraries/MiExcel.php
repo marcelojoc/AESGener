@@ -18,17 +18,12 @@ class MiExcel
         $raiz = 10;
         $multiplicador = pow ($raiz,$digitos);
         $resultado = ((int)($number * $multiplicador)) / $multiplicador;
-        return number_format($resultado, $digitos);
+        return (float)number_format($resultado, $digitos);
 
     }
 
 
-    public function test()
-    {
 
-        return 'prueba de lib';
-
-    }
 
 }
 
