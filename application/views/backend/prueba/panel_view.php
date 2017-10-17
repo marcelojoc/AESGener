@@ -34,7 +34,7 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                                     <select class="form-control" name="category">
                                             <option value="">seleccionar</option>
                                             <option value="0">Maquina</option>
-                                            <option value="1">Divicion</option>
+                                            <option value="1">Division</option>
                                             <option value="2">Complejo</option>
                                         </select>   
                             </div>
@@ -660,26 +660,26 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                     </div>
                 
                 
-                <div class="col-sm-4">
+                <div class="col-sm-4" id="app">
                         <div class="page-header center greenAES">
                             <h4>
-                                Costos
+                                {{title}}
                             </h4>
                         </div>
 
                         <div class="social-widget col-sm-12 b-l b-r">
                                 <div class="soc-header box-corporativo">
-                                    <i><h4>EAF (%)</h4></i>
+                                    <i><h4>{{nombre}}</h4></i>
                                 </div>
         
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-r b-b">
-                                        <h5 class="font-medium">92,62 %</h5>
+                                        <h5 class="font-medium">{{esperado}}</h5>
                                         <h6 class="text-muted">Bud Mon</h6>
                                     </div>
                                    
                                     <div class="col-xs-6 b-b">
-                                        <h5 class="font-medium">92,62 %</h5>
+                                        <h5 class="font-medium">{{grafico[0].description}}</h5>
                                         <h6 class="text-muted">Real Mon</h6>
                                     </div>
                                 </div> 
@@ -837,11 +837,14 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
 
 
 
+                            {{$data }}
 
                 </div>
         </div>
 
+<pre>
 
+</pre>
 
 
 </div> 
