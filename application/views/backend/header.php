@@ -22,29 +22,13 @@
 		<!-- ace styles -->
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
 
-		<!--[if lte IE 9]>
-			<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace-part2.css" class="ace-main-stylesheet" />
-		<![endif]-->
-
-		<!--[if lte IE 9]>
-		  <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace-ie.css" />
-		<![endif]-->
-
-
-				<!-- text fonts -->
-				<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/aesg/style.css" />
-
-		<!-- inline styles related to this page -->
+		<!-- text fonts -->
+		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/aesg/style.css" />
 
 		<!-- ace settings handler -->
 		<script src="<?php echo base_url() ?>assets/js/ace-extra.js"></script>
 
-		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
-		<!--[if lte IE 8]>
-		<script src="<?php echo base_url() ?>assets/js/html5shiv.js"></script>
-		<script src="<?php echo base_url() ?>assets/js/respond.js"></script>
-		<![endif]-->
 	</head>
 
 <!COMIENZA HEADER!-->

@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Test extends My_Controller{
 
+//#region constructor de controlador test
 	function __construct(){
 
 		parent::__construct();
@@ -21,7 +22,7 @@ class Test extends My_Controller{
 		$this->load->model('/prueba/Kpi_model');
 
 	}
-
+//#endregion constructor de controlador test
 	
 	function index(){
 
@@ -127,7 +128,7 @@ class Test extends My_Controller{
 		
 		$data['lista']=$lista;
 		
-		$js['javascript']= ["vendor/vue.js","app/main.js",];
+		$js['javascript']= ["vendor/vue.js", "vendor/vue-resource.js","app/component/grafic_component.js","app/main.js"];
 		
 		
 		
@@ -186,6 +187,17 @@ class Test extends My_Controller{
 			$this->cargarVista($nombreVista,$data);
 
 		}
+
+	}
+
+
+
+
+	public function vrPrueba(){
+
+		$lista=  $this->Kpi_model->getMaquina(1);
+		echo json_encode($lista);
+
 
 	}
 

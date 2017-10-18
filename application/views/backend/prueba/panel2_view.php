@@ -7,9 +7,9 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
 
 ?>
 
-<div class="main-content">
+<div class="main-content " >
     <div class="main-content-inner">
-        <div class="page-content">
+        <div class="page-content" id="app">
             
         <div class="row">
 
@@ -31,11 +31,13 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                                         
                                                 <div class="form-group">
                     
-                                                        <select class="form-control" name="category">
-                                                                <option value="">seleccionar</option>
-                                                                <option value="0">Maquina</option>
-                                                                <option value="1">Division</option>
-                                                                <option value="2">Complejo</option>
+                                                        <select class="form-control"  name="category" @change="getLists">
+
+                                                            <option value="">seleccionar</option>
+                                                            <option v-for="option in busqueda" v-bind:value="option.id">
+                                                            {{ option.nombre }}
+                                                            </option>
+
                                                         </select>   
                                                 </div>
                                         </div>
@@ -48,12 +50,13 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                                         
                                                 <div class="form-group">
                     
-                                                        <select class="form-control" name="category">
-                                                                <option value="">seleccionar</option>
-                                                                <option value="0">Maquina</option>
-                                                                <option value="1">Division</option>
-                                                                <option value="2">Complejo</option>
-                                                        </select>   
+                                                    <select class="form-control"  name="category" @change="getLists">
+
+                                                        <option v-for="option in seleccion" v-bind:value="option.idMaquina">
+                                                            {{ option.nombreMaquina }}
+                                                        </option>
+
+                                                    </select>  
                                                 </div>
                                         </div>
 
@@ -76,7 +79,7 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                 <div class="col-sm-7 ">
                    
                     <div class="social-widget col-sm-12 b-l b-r b-b">
-                            <div class="soc-header box-corporativo" id="app">
+                            <div class="soc-header box-corporativo" >
                                 <i><h4>EAF (%) {{title}}</h4></i>
                             </div>
 
@@ -456,9 +459,12 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                 
 
 
+            <vm-grafico></vm-grafico>
 
+<pre>
 
-
+{{$data}}
+</pre>
 
 
 

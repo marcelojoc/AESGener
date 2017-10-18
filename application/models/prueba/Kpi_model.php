@@ -168,15 +168,7 @@ class Kpi_model extends CI_Model {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	/**
 	* Este metodo trae todas las maquinas de un a misma planilla
