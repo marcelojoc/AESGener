@@ -23,13 +23,13 @@
 									<div>
 										<select class="form-control" name="tipoPlanilla" placeholder="Seleccione Tipo Planilla"><!-- Codigo de Combo con datos de la BD -->
 											<option value="">--- Seleccione Tipo Planilla ---</option>
-											<option value="aesgener">Planilla de AES Gener</option>
-											<option value="sap">Planilla de SAP</option>
+											<option value="aesgener">Planilla AES Gener</option>
+											<option value="sap">Planilla SAP</option>
 										</select>
 									</div>
 							</div>
 						</div>
-
+ 
 						<div class="form-group">
 							<label class="ace-file-input ace-file-multiple">
 								<input type="file" name="userfile" value="fichero" multiple="">

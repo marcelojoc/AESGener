@@ -60,6 +60,27 @@
 				?>
 
 				<li class="">
+					<a href="<?php echo base_url()?>planilla/Planilla">
+						<i class="menu-icon fa fa-wrench"></i>
+						<span class="menu-text">Configuración</span>
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+
+				<?php 		}
+						}	
+					}
+				?>
+
+				<?php 
+					if ($nivel){							
+						foreach($nivel->result() as $niv){
+      						if ($niv->descripNivel == "Administrador de Usuarios" || 
+      							$niv->descripNivel == "Administrador"){
+				?>
+
+				<li class="">
 					<a href="#" class="dropdown-toggle">
 						<i class="menu-icon fa fa-cogs"></i> 
 							<span class="menu-text">Gestiones Internas</span>
@@ -127,7 +148,7 @@
 						<ul class="submenu">
 
 							<li class="">
-								<a href="<?php echo base_url()?>seguridad/abmUsuariosC">
+								<a href="<?php echo base_url()?>prueba/test/panel">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Estratégicos
 								</a>

@@ -67,13 +67,13 @@ class Planilla extends My_Controller{
 		  
 			 }
 
-        	echo $nroFilas.'</br>';
-        	echo $data['nombreMaquina'].'</br>';
-        	echo $data['mesActual'].'</br>';
-        	echo $data['mesTarget'].'</br>';
-        	echo $data['ytdActual'].'</br>';
-        	echo $data['ytdTarget'].'</br>';
-        	die();
+        	// echo $nroFilas.'</br>';
+        	// echo $data['nombreMaquina'].'</br>';
+        	// echo $data['mesActual'].'</br>';
+        	// echo $data['mesTarget'].'</br>';
+        	// echo $data['ytdActual'].'</br>';
+        	// echo $data['ytdTarget'].'</br>';
+        	// die();
 
 
         	

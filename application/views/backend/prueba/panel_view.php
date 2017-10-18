@@ -32,9 +32,9 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                             <div class="form-group">
 
                                     <select class="form-control" name="category">
-                                            <option value="">seleccionar</option>
-                                            <option value="0">Maquina</option>
-                                            <option value="1">Divicion</option>
+                                            <option value="">Seleccionar</option>
+                                            <option value="0">Máquina</option>
+                                            <option value="1">División</option>
                                             <option value="2">Complejo</option>
                                         </select>   
                             </div>
