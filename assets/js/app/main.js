@@ -44,3 +44,28 @@ var selector = {
 
 
 }
+
+
+
+
+var app = new Vue({
+    el: '#app',
+    data: {
+      
+        title: 'Costos',
+
+        nombre: 'EFOFO(%)',
+        real:     '23%',
+        esperado:  '34%',
+        
+
+        grafico : [
+            { description : "Go to the store ", completed : true },
+            { description : "Leave the store" , completed : false }
+           ] 
+
+
+
+
+    }
+})

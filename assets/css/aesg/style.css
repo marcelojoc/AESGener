@@ -47,12 +47,8 @@
       vertical-align: middle; }
 
 
-
-
-
     html body .b-r {
     border-right: 1px solid rgba(120, 130, 140, 0.13); }
-
 
     html body .b-l {
     border-left: 1px solid rgba(120, 130, 140, 0.13); }
@@ -81,8 +77,8 @@
     .content-progres {
       
       font-size:0.9em ;
-      padding-top: 2em;
-      padding-bottom: 1em;
+      padding-top: 1em;
+      /* padding-bottom: 1em; */
     
     }
 
@@ -91,16 +87,15 @@
 
       background: #F5F5F5;
 
-
     }
 
     .indicador-kpi{
 
-      height: 2.3em;
+      height: 1.1em;
       text-align: center;
       border-bottom: 1px solid #FFFFFF;
       color:  #FFFFFF;
-      padding: 5% 0;
+      padding: 2% 0;
 
     }
 
@@ -117,3 +112,13 @@
     padding: 1em;
         
   }
+
+  .beige{
+
+    background-color: blue;
+    padding:0px;
+    width: 0.7em;
+    display float;
+
+  }
+

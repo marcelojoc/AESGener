@@ -107,7 +107,7 @@ class Test extends My_Controller{
 		
 		$maquinas = $this->Kpi_model->getDatosMaquina($planilla, $maquina);
 		
-		//$		maquinas = $this->Kpi_model->getDivicion($planilla, 2);
+		//$maquinas = $this->Kpi_model->getDivicion($planilla, 2);
 
 		$maquinas[0]->actualMes=$this->miexcel->truncateFloat($maquinas[0]->actualMes,2);
 		
@@ -132,7 +132,7 @@ class Test extends My_Controller{
 		
 		
 		
-		$nombreVista="backend/prueba/panel_view";
+		$nombreVista="backend/prueba/panel2_view";
 
 		$this->cargarVista($nombreVista,$data,$js);
 
