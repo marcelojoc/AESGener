@@ -24,6 +24,8 @@
 										<select class="form-control" name="tipoPlanilla" placeholder="Seleccione Tipo Planilla"><!-- Codigo de Combo con datos de la BD -->
 											<option value="">--- Seleccione Tipo Planilla ---</option>
 											<option value="aesgener">Planilla AES Gener</option>
+											<option value="costos">Planilla Costos</option>
+											<option value="mtbf">Planilla MTBF</option>
 											<option value="sap">Planilla SAP</option>
 										</select>
 									</div>

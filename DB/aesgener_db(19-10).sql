@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2017 a las 16:23:03
+-- Tiempo de generación: 19-10-2017 a las 20:50:18
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.21
 
@@ -53,7 +53,7 @@ CREATE TABLE `complejo` (
 INSERT INTO `complejo` (`idComplejo`, `nombreComplejo`, `idUbicacion`) VALUES
 (1, 'Complejo Norte', 0),
 (2, 'Complejo Centro', 0),
-(3, 'Complejo Guancolda', 0);
+(3, 'Complejo Guacolda', 0);
 
 -- --------------------------------------------------------
 
@@ -87,9 +87,9 @@ CREATE TABLE `division` (
 --
 
 INSERT INTO `division` (`idDivision`, `nombreDivision`, `idComplejo`, `idUbicacion`) VALUES
-(1, 'Divicion Ventanas', 2, 0),
-(2, 'Divicion Cordillera', 2, 0),
-(3, 'Divicion Renca', 2, 0);
+(1, 'Division Ventanas', 2, 0),
+(2, 'Division Cordillera', 2, 0),
+(3, 'Division Renca', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -186,18 +186,24 @@ INSERT INTO `empleado` (`idEmpleado`, `nombreE`, `apellidoE`, `nroLegajo`, `conv
 
 CREATE TABLE `kpi` (
   `idKPI` int(11) NOT NULL,
-  `nombreKPI` varchar(45) NOT NULL
+  `nombreKPI` varchar(45) NOT NULL,
+  `abreviaturaKPI` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `kpi`
 --
 
-INSERT INTO `kpi` (`idKPI`, `nombreKPI`) VALUES
-(1, 'EAF'),
-(2, 'EFOF'),
-(3, 'ENPHR'),
-(4, 'CA');
+INSERT INTO `kpi` (`idKPI`, `nombreKPI`, `abreviaturaKPI`) VALUES
+(1, 'EAF', 'EAF'),
+(2, 'EFOF', 'EFOF'),
+(3, 'Hate Rate', 'ENPHR'),
+(4, 'Comercial Availability', 'CA'),
+(5, 'Horas Equivalente Derrateo Programado', 'HEDP'),
+(6, 'Horas Equivalente Derrateo Forzado', 'HEDF'),
+(7, 'Horas de Salida Forzada', 'HSF'),
+(8, 'Horas Operación Unidad Generadora', 'MTBF'),
+(9, 'Costos', 'CTM OPEX');
 
 -- --------------------------------------------------------
 
@@ -307,11 +313,46 @@ CREATE TABLE `ubicacion` (
 CREATE TABLE `unidad_generadora` (
   `idUnidadGen` int(11) NOT NULL,
   `nombreUG` varchar(45) NOT NULL,
-  `IdKPIPlanilla` int(11) NOT NULL,
-  `idDivision` int(11) NOT NULL,
-  `idComplejo` int(11) NOT NULL,
+  `abreviaturaUG` varchar(25) NOT NULL,
+  `idDivision` int(11) DEFAULT NULL,
+  `idComplejo` int(11) DEFAULT NULL,
   `idUbicacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `unidad_generadora`
+--
+
+INSERT INTO `unidad_generadora` (`idUnidadGen`, `nombreUG`, `abreviaturaUG`, `idDivision`, `idComplejo`, `idUbicacion`) VALUES
+(1, 'Norgener 1', 'NT01', NULL, 1, 0),
+(2, 'Norgener 2', 'NT02', NULL, 1, 0),
+(3, 'Angamos 1', 'ANG1', NULL, 1, 0),
+(4, 'Angamos 2', 'ANG2', NULL, 1, 0),
+(5, 'Cochrane 1', '', NULL, 1, 0),
+(6, 'Cochrane 2', '', NULL, 1, 0),
+(7, 'Ventanas 1', 'VEN1', 1, 2, 0),
+(8, 'Ventanas 2', 'VEN2', 1, 2, 0),
+(9, 'Ventanas 3', 'NVE3', 1, 2, 0),
+(10, 'Ventanas 4', '', 1, 2, 0),
+(11, 'Laguna Verde ST', '', 1, 2, 0),
+(12, 'Alfalfal 1', '', 2, 2, 0),
+(13, 'Alfalfal 2', '', 2, 2, 0),
+(14, 'Maitenes 1', '', 2, 2, 0),
+(15, 'Maitenes 2', '', 2, 2, 0),
+(16, 'Maitenes 3', '', 2, 2, 0),
+(17, 'Queltehues 1', '', 2, 2, 0),
+(18, 'Queltehues 2', '', 2, 2, 0),
+(19, 'Queltehues 3', '', 2, 2, 0),
+(20, 'Volcan', '', 2, 2, 0),
+(21, 'Nueva Renca', 'CNR', 3, 2, 0),
+(22, 'Los Vientos', '', 3, 2, 0),
+(23, 'Santa Lidia', '', 3, 2, 0),
+(24, 'Laja', '', 3, 2, 0),
+(25, 'Guacolda 1', 'GUA1', NULL, 3, 0),
+(26, 'Guacolda 2', 'GUA2', NULL, 3, 0),
+(27, 'Guacolda 3', 'GUA3', NULL, 3, 0),
+(28, 'Guacolda 4', 'GUA4', NULL, 3, 0),
+(29, 'Guacolda 5', 'GUA5', NULL, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -453,7 +494,6 @@ ALTER TABLE `ubicacion`
 --
 ALTER TABLE `unidad_generadora`
   ADD PRIMARY KEY (`idUnidadGen`),
-  ADD KEY `IdKPIPlanilla` (`IdKPIPlanilla`),
   ADD KEY `idDivision` (`idDivision`),
   ADD KEY `idComplejo` (`idComplejo`),
   ADD KEY `idUbicacion` (`idUbicacion`);
@@ -507,7 +547,7 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT de la tabla `kpi`
 --
 ALTER TABLE `kpi`
-  MODIFY `idKPI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idKPI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `kpi_planilla`
 --
@@ -537,7 +577,7 @@ ALTER TABLE `ubicacion`
 -- AUTO_INCREMENT de la tabla `unidad_generadora`
 --
 ALTER TABLE `unidad_generadora`
-  MODIFY `idUnidadGen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUnidadGen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --

@@ -7,7 +7,7 @@ class Planilla_model extends CI_Model {
 		$this->load->database();
 	}
 
-	function crearPlanilla($ruta, $fecha){
+	function crearPlanilla($ruta, $fecha, $tipoP){
 		$this->db->insert('planilla', 
 			array('url'=>$ruta, 
 					'dia'=>$fecha['mday'], 

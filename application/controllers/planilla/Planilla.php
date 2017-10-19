@@ -35,6 +35,7 @@ class Planilla extends My_Controller{
         $min = $fecha['minutes'];
 
         //Leo tipo de planilla
+        /*Modificar para que sea el idTIpoPlanilla*/
         $tipoP = $this->input->post('tipoPlanilla');
 
         if($tipoP == "aesgener"){
@@ -53,7 +54,7 @@ class Planilla extends My_Controller{
         	$nroFilas = 4; 
 
         	//Crear Planilla
-        	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha);
+        	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $tipoP); 
 
         	for($i = 4; $i <= $nroFilas; $i++){
 				
@@ -65,7 +66,7 @@ class Planilla extends My_Controller{
 
 			  	$this->Planilla_model->guardarDatos($data, $idPlanilla);
 		  
-			 }
+			}
 
         	// echo $nroFilas.'</br>';
         	// echo $data['nombreMaquina'].'</br>';
@@ -81,6 +82,20 @@ class Planilla extends My_Controller{
         }elseif($tipoP == "sap"){
 
         	$planilla['file_name'] = 'SAP_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
+
+        }elseif($tipoP == "mtbf"){
+
+        	$planilla['file_name'] = 'MTBF_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
+        	//$archivo = base_url().'.uploads/'.$planilla['file_name'];
+        	$archivo = './uploads/'.$planilla['file_name'];
+        	
+        	//Cargamos la librería de subida y le pasamos la configuración 
+			$this->load->library('upload', $planilla);
+			$this->upload->do_upload();
+
+        	$objExcel = PHPExcel_IOFactory::load($archivo);
+        	$objExcel->setActiveSheetIndex(0);
+
         }
 
 		// if(!$this->upload->do_upload()){
