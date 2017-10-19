@@ -113,71 +113,15 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
 
                                 <div class="col-xs-6 b-r">
 
-                                    <!-- contenedor general de la progress bar -->
-                                    <div class="content-progres social-widget"> 
-
-                                        <!-- este marca el 100% del progres bar -->
-                                        <div class="progres-full limite " >
-
-                                                <?php   $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";   
-
-                                                        $res.= 'width:'.$valor->actualMes .'%;';
-
-                                                ?>
-
-                                                <div class="indicador-kpi" style="height: 3.9em; <?php echo $res ?>">
-
-
-
-                                                <p><strong>Valor Mensual</strong></p>
-                                            </div>
-
-                                        </div>
-                                        <div class="progres-full">
-
-                                                <div class="borde box-green" style="height: 3em; width: <?php echo $valor->targetMes .'%;' ?>;">
-
-                                                <p><strong>Valor Esperado Mensual</strong></p>
-
-                                            </div>
-
-                                        </div><br>
-
-                                    </div><br>
+                                    <vm-grafico esperado=98 real=80 tipo="true" lble="1222222222" lblr="34444444444444"></vm-grafico>
+                                    
 
                                 </div>
 
-                                <div class="col-xs-6">
+                                <div class="col-xs-6 ">
                                         
-                                    <!-- contenedor general de la progress bar -->
-                                    <div class="content-progres social-widget"> 
-
-                                        <!-- este marca el 100% del progres bar -->
-                                        <div class="progres-full limite " >
-
-                                                    <?php   $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";   
-
-                                                            $res.= 'width:'.$valor->actualMes .'%;';
-
-                                                    ?>
-
-                                                <div class="indicador-kpi" style="height: 3.9em; <?php echo $res ?>">
-
-                                                <p><strong>Valor Mensual</strong></p>
-                                                </div>
-
-                                        </div>
-                                        <div class="progres-full">
-
-                                            <div class="borde box-green" style="height: 3em; width: <?php echo $valor->targetMes .'%;' ?>;">
-
-                                                <p><strong>Valor Esperado Mensual</strong></p>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
+                                    <vm-grafico esperado=98 real=80 tipo="true" lble="1222222222" lblr="34444444444444"></vm-grafico>
+                                    
 
                                 </div>
 
@@ -189,7 +133,7 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
 
 
 
-                <div class="col-xs-4">
+                <div class="col-xs-4 animated jackInTheBox">
 
                         <div class="tabbable">
                                 <ul class="nav nav-tabs" id="myTab">
@@ -300,73 +244,13 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
 
                                 <div class="col-xs-6 b-r">
 
-                                    <!-- contenedor general de la progress bar -->
-                                    <div class="content-progres social-widget"> 
-
-                                        <!-- este marca el 100% del progres bar -->
-                                        <div class="progres-full limite " >
-
-                                                <?php   $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";   
-
-                                                        $res.= 'width:'.$valor->actualMes .'%;';
-
-                                                ?>
-
-                                                <div class="indicador-kpi" style="height: 3.9em; <?php echo $res ?>">
-
-
-
-                                                <p><strong>Valor Mensual</strong></p>
-                                            </div>
-
-                                        </div>
-                                        <div class="progres-full">
-
-                                                <div class="borde box-green" style="height: 3em; width: <?php echo $valor->targetMes .'%;' ?>;">
-
-                                                <p><strong>Valor Esperado Mensual</strong></p>
-
-                                            </div>
-
-                                        </div><br>
-
-                                    </div><br>
+                                    <vm-grafico esperado=98 real=80 tipo="false" lble="1222222222" lblr="34444444444444"></vm-grafico>
 
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <!-- contenedor general de la progress bar -->
-                                    <div class="content-progres social-widget"> 
-
-                                        <!-- este marca el 100% del progres bar -->
-                                        <div class="progres-full limite " >
-
-                                                <?php   $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";   
-
-                                                        $res.= 'width:'.$valor->actualMes .'%;';
-
-                                                ?>
-
-                                                <div class="indicador-kpi" style="height: 3.9em; <?php echo $res ?>">
-
-
-
-                                                <p><strong>Valor Mensual</strong></p>
-                                            </div>
-
-                                        </div>
-                                        <div class="progres-full">
-
-                                                <div class="borde box-green" style="height: 3em; width: <?php echo $valor->targetMes .'%;' ?>;">
-
-                                                <p><strong>Valor Esperado Mensual</strong></p>
-
-                                            </div>
-
-                                        </div><br>
-
-                                    </div><br>
+                                    <vm-grafico esperado=50 real=40 tipo="false" lble="555555555554" lblr="666666666"></vm-grafico>
 
                                 </div>
 
@@ -459,7 +343,7 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                 
 
 
-            <vm-grafico></vm-grafico>
+            
 
 <pre>
 
@@ -482,3 +366,34 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
 
 
 
+<!-- tag de templates -->
+
+<template id="aesgen-graph">
+
+            <!-- contenedor general de la progress bar -->
+            <div class="content-progres social-widget"> 
+
+                <!-- este marca el 100% del progres bar -->
+                <div class="progres-full limite animated zoomIn" >
+
+                    <!-- <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width:50%;" > -->
+                    <div class="indicador-kpi" :style="{ background: getColor, height: '3.9em' , width: real + '%' }" >
+                        
+                        <p><strong>{{lblr + " "}}{{real +"%" }}</strong></p>
+
+                    </div>
+
+                </div>
+                <div class="progres-full animated bounceIn">
+
+                    <div class="borde box-green" :style="{ width: esperado + '%' }" >
+
+                        <p><strong>{{lble +" " }} {{esperado +"%" }}</strong></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+</template>

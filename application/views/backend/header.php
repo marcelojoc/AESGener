@@ -23,6 +23,7 @@
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
 
 		<!-- text fonts -->
+		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/aesg/animate.css" />
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/aesg/style.css" />
 
 		<!-- ace settings handler -->
