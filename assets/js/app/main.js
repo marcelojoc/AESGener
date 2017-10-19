@@ -79,6 +79,15 @@ var app = new Vue({
 
                 });
 
+        nombre: 'EFOF(%)',
+        real:     '23%',
+        esperado:  '34%',
+        
+
+        grafico : [
+            { description : "Go to the store ", completed : true },
+            { description : "Leave the store" , completed : false }
+           ] 
 
             }
 
