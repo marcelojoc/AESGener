@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2017 a las 16:21:47
+-- Tiempo de generación: 19-10-2017 a las 16:23:03
 -- Versión del servidor: 10.1.13-MariaDB
 -- Versión de PHP: 5.6.21
 
@@ -23,6 +23,77 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `idComentario` int(11) NOT NULL,
+  `comentario` text NOT NULL,
+  `fecha` date NOT NULL,
+  `idEmpleado` int(11) NOT NULL,
+  `idValores` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `complejo`
+--
+
+CREATE TABLE `complejo` (
+  `idComplejo` int(11) NOT NULL,
+  `nombreComplejo` varchar(45) NOT NULL,
+  `idUbicacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `complejo`
+--
+
+INSERT INTO `complejo` (`idComplejo`, `nombreComplejo`, `idUbicacion`) VALUES
+(1, 'Complejo Norte', 0),
+(2, 'Complejo Centro', 0),
+(3, 'Complejo Guancolda', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `configuracion`
+--
+
+CREATE TABLE `configuracion` (
+  `idConfiguracion` int(11) NOT NULL,
+  `nombreConfig` varchar(45) NOT NULL,
+  `fechaI` date NOT NULL,
+  `fechaF` date NOT NULL,
+  `vigente` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `division`
+--
+
+CREATE TABLE `division` (
+  `idDivision` int(11) NOT NULL,
+  `nombreDivision` varchar(45) NOT NULL,
+  `idComplejo` int(11) NOT NULL,
+  `idUbicacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `division`
+--
+
+INSERT INTO `division` (`idDivision`, `nombreDivision`, `idComplejo`, `idUbicacion`) VALUES
+(1, 'Divicion Ventanas', 2, 0),
+(2, 'Divicion Cordillera', 2, 0),
+(3, 'Divicion Renca', 2, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `empleado`
 --
 
@@ -32,7 +103,7 @@ CREATE TABLE `empleado` (
   `apellidoE` varchar(100) NOT NULL,
   `nroLegajo` int(45) NOT NULL,
   `convenio` varchar(100) NOT NULL,
-  `dni` int(11) NOT NULL,
+  `rut` int(11) NOT NULL,
   `telefono` int(11) DEFAULT NULL,
   `direccion` varchar(100) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
@@ -45,7 +116,7 @@ CREATE TABLE `empleado` (
 -- Volcado de datos para la tabla `empleado`
 --
 
-INSERT INTO `empleado` (`idEmpleado`, `nombreE`, `apellidoE`, `nroLegajo`, `convenio`, `dni`, `telefono`, `direccion`, `email`, `activo`, `idTipoEmpleado`, `idReferente`) VALUES
+INSERT INTO `empleado` (`idEmpleado`, `nombreE`, `apellidoE`, `nroLegajo`, `convenio`, `rut`, `telefono`, `direccion`, `email`, `activo`, `idTipoEmpleado`, `idReferente`) VALUES
 (1, 'Marcelo', 'Contreras', 12894, 'Contratado', 29806389, 4567823, 'Anchorena 284', 'marceloc@hotmail.com', 1, 1, 0),
 (2, 'Aldana', 'Baeza', 27902, 'Contratado', 32085237, 4983256, 'Azcuenaga 188', 'aldanatb@hotmail.com', 1, 1, 0),
 (3, 'Usuario', 'OSEP', 11111, 'Planta Permanente', 22222222, 3333333, 'Direccion', 'usuario@email.com', 1, 1, 0),
@@ -110,6 +181,40 @@ INSERT INTO `empleado` (`idEmpleado`, `nombreE`, `apellidoE`, `nroLegajo`, `conv
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `kpi`
+--
+
+CREATE TABLE `kpi` (
+  `idKPI` int(11) NOT NULL,
+  `nombreKPI` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `kpi`
+--
+
+INSERT INTO `kpi` (`idKPI`, `nombreKPI`) VALUES
+(1, 'EAF'),
+(2, 'EFOF'),
+(3, 'ENPHR'),
+(4, 'CA');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `kpi_planilla`
+--
+
+CREATE TABLE `kpi_planilla` (
+  `idKPIPlanilla` int(11) NOT NULL,
+  `idPlanilla` int(11) NOT NULL,
+  `idKPI` int(11) NOT NULL,
+  `idUbicacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `nivel`
 --
 
@@ -128,6 +233,85 @@ INSERT INTO `nivel` (`idNivel`, `descripNivel`) VALUES
 (5, 'Administrador'),
 (6, 'Administrador de Usuarios'),
 (7, 'Referente');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `planilla`
+--
+
+CREATE TABLE `planilla` (
+  `idPlanilla` int(11) NOT NULL,
+  `dia` int(11) NOT NULL,
+  `mes` int(11) NOT NULL,
+  `anio` int(11) NOT NULL,
+  `url` varchar(50) NOT NULL,
+  `idEmpleado` int(11) NOT NULL,
+  `idTipoPlanilla` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `planilla`
+--
+
+INSERT INTO `planilla` (`idPlanilla`, `dia`, `mes`, `anio`, `url`, `idEmpleado`, `idTipoPlanilla`) VALUES
+(1, 13, 10, 2017, './uploads/AES_2017-10-13_10-24.xlsx', 2, 1),
+(2, 13, 10, 2017, './uploads/AES_2017-10-13_10-45.xlsx', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_planilla`
+--
+
+CREATE TABLE `tipo_planilla` (
+  `idTipoPlanilla` int(11) NOT NULL,
+  `nombreTipoP` varchar(45) NOT NULL,
+  `descripTipoP` varchar(45) NOT NULL,
+  `idConfig` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo_planilla`
+--
+
+INSERT INTO `tipo_planilla` (`idTipoPlanilla`, `nombreTipoP`, `descripTipoP`, `idConfig`) VALUES
+(1, 'Planilla AES Gener', '', 0),
+(2, 'Planilla Costos', '', 0),
+(3, 'Planilla SAP', '', 0),
+(4, 'Planilla MTBF', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ubicacion`
+--
+
+CREATE TABLE `ubicacion` (
+  `idUbicacion` int(11) NOT NULL,
+  `letra` char(5) NOT NULL,
+  `nro` int(5) NOT NULL,
+  `inicioLetra` char(5) NOT NULL,
+  `finLetra` char(5) NOT NULL,
+  `inicioNro` int(5) NOT NULL,
+  `finNro` int(5) NOT NULL,
+  `idConfiguracion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `unidad_generadora`
+--
+
+CREATE TABLE `unidad_generadora` (
+  `idUnidadGen` int(11) NOT NULL,
+  `nombreUG` varchar(45) NOT NULL,
+  `IdKPIPlanilla` int(11) NOT NULL,
+  `idDivision` int(11) NOT NULL,
+  `idComplejo` int(11) NOT NULL,
+  `idUbicacion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -155,9 +339,61 @@ INSERT INTO `usuario` (`idUsuario`, `contrasenia`, `usuario`, `idNivel`, `idEmpl
 (7, 'c893bad68927b457dbed39460e6afd62', 'jimena', 1, 22),
 (8, 'c893bad68927b457dbed39460e6afd62', 'adriana', 1, 4);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `valores`
+--
+
+CREATE TABLE `valores` (
+  `idValores` int(11) NOT NULL,
+  `actualMes` double NOT NULL,
+  `targetMes` double NOT NULL,
+  `ytdActual` double NOT NULL,
+  `ytdTarget` double NOT NULL,
+  `fyf` double NOT NULL,
+  `fyBudget` double NOT NULL,
+  `hedp` double NOT NULL,
+  `hsf` double NOT NULL,
+  `mtbf` int(11) NOT NULL,
+  `mtbfTarget` int(11) NOT NULL,
+  `idUnidadGen` int(11) NOT NULL,
+  `idDivision` int(11) NOT NULL,
+  `idComplejo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`idComentario`),
+  ADD KEY `idEmpleado` (`idEmpleado`),
+  ADD KEY `idMaquina` (`idValores`);
+
+--
+-- Indices de la tabla `complejo`
+--
+ALTER TABLE `complejo`
+  ADD PRIMARY KEY (`idComplejo`),
+  ADD KEY `idUbicacion` (`idUbicacion`);
+
+--
+-- Indices de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  ADD PRIMARY KEY (`idConfiguracion`);
+
+--
+-- Indices de la tabla `division`
+--
+ALTER TABLE `division`
+  ADD PRIMARY KEY (`idDivision`),
+  ADD KEY `idComplejo` (`idComplejo`),
+  ADD KEY `idUbicacion` (`idUbicacion`);
 
 --
 -- Indices de la tabla `empleado`
@@ -169,10 +405,58 @@ ALTER TABLE `empleado`
   ADD KEY `idReferente` (`idReferente`);
 
 --
+-- Indices de la tabla `kpi`
+--
+ALTER TABLE `kpi`
+  ADD PRIMARY KEY (`idKPI`);
+
+--
+-- Indices de la tabla `kpi_planilla`
+--
+ALTER TABLE `kpi_planilla`
+  ADD PRIMARY KEY (`idKPIPlanilla`),
+  ADD KEY `idPlanilla` (`idPlanilla`),
+  ADD KEY `idKPI` (`idKPI`),
+  ADD KEY `idUbicacion` (`idUbicacion`);
+
+--
 -- Indices de la tabla `nivel`
 --
 ALTER TABLE `nivel`
   ADD PRIMARY KEY (`idNivel`);
+
+--
+-- Indices de la tabla `planilla`
+--
+ALTER TABLE `planilla`
+  ADD PRIMARY KEY (`idPlanilla`),
+  ADD KEY `idEmpleado` (`idEmpleado`),
+  ADD KEY `idTipoPlanilla` (`idTipoPlanilla`);
+
+--
+-- Indices de la tabla `tipo_planilla`
+--
+ALTER TABLE `tipo_planilla`
+  ADD PRIMARY KEY (`idTipoPlanilla`),
+  ADD KEY `idConfig` (`idConfig`);
+
+--
+-- Indices de la tabla `ubicacion`
+--
+ALTER TABLE `ubicacion`
+  ADD PRIMARY KEY (`idUbicacion`),
+  ADD KEY `idConfiguracion` (`idConfiguracion`),
+  ADD KEY `idConfiguracion_2` (`idConfiguracion`);
+
+--
+-- Indices de la tabla `unidad_generadora`
+--
+ALTER TABLE `unidad_generadora`
+  ADD PRIMARY KEY (`idUnidadGen`),
+  ADD KEY `IdKPIPlanilla` (`IdKPIPlanilla`),
+  ADD KEY `idDivision` (`idDivision`),
+  ADD KEY `idComplejo` (`idComplejo`),
+  ADD KEY `idUbicacion` (`idUbicacion`);
 
 --
 -- Indices de la tabla `usuario`
@@ -182,24 +466,88 @@ ALTER TABLE `usuario`
   ADD KEY `idUsuario` (`idUsuario`);
 
 --
+-- Indices de la tabla `valores`
+--
+ALTER TABLE `valores`
+  ADD PRIMARY KEY (`idValores`),
+  ADD KEY `idUnidadGen` (`idUnidadGen`),
+  ADD KEY `idDivision` (`idDivision`),
+  ADD KEY `idComplejo` (`idComplejo`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `idComentario` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `complejo`
+--
+ALTER TABLE `complejo`
+  MODIFY `idComplejo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `configuracion`
+--
+ALTER TABLE `configuracion`
+  MODIFY `idConfiguracion` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `division`
+--
+ALTER TABLE `division`
+  MODIFY `idDivision` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `empleado`
 --
 ALTER TABLE `empleado`
   MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
+-- AUTO_INCREMENT de la tabla `kpi`
+--
+ALTER TABLE `kpi`
+  MODIFY `idKPI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `kpi_planilla`
+--
+ALTER TABLE `kpi_planilla`
+  MODIFY `idKPIPlanilla` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `nivel`
 --
 ALTER TABLE `nivel`
   MODIFY `idNivel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT de la tabla `planilla`
+--
+ALTER TABLE `planilla`
+  MODIFY `idPlanilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `tipo_planilla`
+--
+ALTER TABLE `tipo_planilla`
+  MODIFY `idTipoPlanilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `ubicacion`
+--
+ALTER TABLE `ubicacion`
+  MODIFY `idUbicacion` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `unidad_generadora`
+--
+ALTER TABLE `unidad_generadora`
+  MODIFY `idUnidadGen` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT de la tabla `valores`
+--
+ALTER TABLE `valores`
+  MODIFY `idValores` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
