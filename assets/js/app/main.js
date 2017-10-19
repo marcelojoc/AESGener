@@ -54,7 +54,7 @@ var app = new Vue({
       
         title: 'Costos',
 
-        nombre: 'EFOFO(%)',
+        nombre: 'EFOF(%)',
         real:     '23%',
         esperado:  '34%',
         
