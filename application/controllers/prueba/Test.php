@@ -90,43 +90,43 @@ class Test extends My_Controller{
 	public function panel (){
 		
 		
-		$maquina = $this->input->post('category');
+		// $maquina = $this->input->post('category');
 
-		// var_dump($_POST);
-		// var_dump($barrio);
+		// // var_dump($_POST);
+		// // var_dump($barrio);
 
-		if(is_null($maquina)){
+		// if(is_null($maquina)){
 
-			$maquina= 1;
+		// 	$maquina= 1;
 
-		}
+		// }
 
 
 
 		$planilla= 1;
-		$lista=  $this->Kpi_model->getMaquina($planilla);
+		// $lista=  $this->Kpi_model->getMaquina($planilla);
 		
-		$maquinas = $this->Kpi_model->getDatosMaquina($planilla, $maquina);
+		// $maquinas = $this->Kpi_model->getDatosMaquina($planilla, $maquina);
 		
-		//$maquinas = $this->Kpi_model->getDivicion($planilla, 2);
+		// //$maquinas = $this->Kpi_model->getDivicion($planilla, 2);
 
-		$maquinas[0]->actualMes=$this->miexcel->truncateFloat($maquinas[0]->actualMes,2);
+		// $maquinas[0]->actualMes=$this->miexcel->truncateFloat($maquinas[0]->actualMes,2);
 		
-		$maquinas[0]->targetMes=$this->miexcel->truncateFloat($maquinas[0]->targetMes,2);
+		// $maquinas[0]->targetMes=$this->miexcel->truncateFloat($maquinas[0]->targetMes,2);
 		
-		$maquinas[0]->ytdActual=$this->miexcel->truncateFloat($maquinas[0]->ytdActual,2);
+		// $maquinas[0]->ytdActual=$this->miexcel->truncateFloat($maquinas[0]->ytdActual,2);
 		
-		$maquinas[0]->ytdTarget=$this->miexcel->truncateFloat($maquinas[0]->ytdTarget,2);
+		// $maquinas[0]->ytdTarget=$this->miexcel->truncateFloat($maquinas[0]->ytdTarget,2);
 		
-		$maquinas[0]->fyf=$this->miexcel->truncateFloat($maquinas[0]->fyf,2);
+		// $maquinas[0]->fyf=$this->miexcel->truncateFloat($maquinas[0]->fyf,2);
 		
-		$maquinas[0]->fyBudget=$this->miexcel->truncateFloat($maquinas[0]->fyBudget,2);
+		// $maquinas[0]->fyBudget=$this->miexcel->truncateFloat($maquinas[0]->fyBudget,2);
 		
 		
 		
-		$data['maquina']=$maquinas;
+		$data="";
 		
-		$data['lista']=$lista;
+		// $data['lista']=$lista;
 		
 		$js['javascript']= ["vendor/vue.js", "vendor/vue-resource.js","app/component/grafic_component.js","app/main.js"];
 		

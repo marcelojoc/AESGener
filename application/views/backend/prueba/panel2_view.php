@@ -1,9 +1,9 @@
 <?php 
 
 //var_dump($maquina);
-$valor= $maquina[0];
+// $valor= $maquina[0];
 
-$res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";
+// $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";
 
 ?>
 
@@ -17,7 +17,7 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
                     <div class="page-header col-sm-4 text-center blueAES b-r">
                         <h1 class="blueAES">
                             Tablero Estratégico 
-                            <?php echo $valor->nombreMaquina  ?>
+                            <?php //echo $valor->nombreMaquina  ?>
                         </h1>
                     </div>  
                     <div class=" col-sm-8 blueAES form-inline ">
@@ -85,22 +85,22 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium"><?php echo $valor->actualMes .'%'  ?></h5>
+                                    <h5 class="font-medium"><?php //echo $valor->actualMes .'%'  ?></h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium"><?php echo $valor->targetMes .'%' ?></h5>
+                                    <h5 class="font-medium"><?php //echo $valor->targetMes .'%' ?></h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium"><?php echo $valor->actualMes .'%'  ?></h5>
+                                        <h5 class="font-medium"><?php //echo $valor->actualMes .'%'  ?></h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium"><?php echo $valor->targetMes .'%' ?></h5>
+                                        <h5 class="font-medium"><?php //echo $valor->targetMes .'%' ?></h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
@@ -216,22 +216,22 @@ $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "back
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium"><?php echo $valor->actualMes .'%'  ?></h5>
+                                    <h5 class="font-medium">3333333</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium"><?php echo $valor->targetMes .'%' ?></h5>
+                                    <h5 class="font-medium">wwwww</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium"><?php echo $valor->actualMes .'%'  ?></h5>
+                                        <h5 class="font-medium">333333</h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium"><?php echo $valor->targetMes .'%' ?></h5>
+                                        <h5 class="font-medium">444444444</h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
