@@ -19,7 +19,7 @@ class Planilla extends My_Controller{
 
 	}
 
-	public function subir(){
+	public function subir(){/*Falta pasar datos del empleado*/
 		//Ruta donde se guardan los ficheros
 		$planilla['upload_path'] = './uploads/';
 		//Tipos de ficheros permitidos
@@ -83,7 +83,12 @@ class Planilla extends My_Controller{
 
         	$planilla['file_name'] = 'SAP_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
 
+
+        	
+
         }elseif($tipoP == "mtbf"){
+        	$nombreKPI = "MTBF";
+        	$idKPI = $this->Planilla_model->getKPI($nombreKPI);
 
         	$planilla['file_name'] = 'MTBF_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
         	//$archivo = base_url().'.uploads/'.$planilla['file_name'];
@@ -95,6 +100,13 @@ class Planilla extends My_Controller{
 
         	$objExcel = PHPExcel_IOFactory::load($archivo);
         	$objExcel->setActiveSheetIndex(0);
+        	$nroFilas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+
+        	//Crear Planilla
+        	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $tipoP);
+
+        	//Crear KPI-Planilla
+        	$idKPIPlanilla = $this->Planilla_model->crearKPIPlanilla($idPlanilla, $idKPI);
 
         }
 

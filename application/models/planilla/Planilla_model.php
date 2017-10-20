@@ -14,9 +14,18 @@ class Planilla_model extends CI_Model {
 					'mes'=>$fecha['mon'], 
 					'anio'=>$fecha['year'],
 					'idEmpleado'=>2,
-					'idTipoPlanilla'=>1));
+					'idTipoPlanilla'=> $tipoP));
 		$idPlanilla = $this->db->insert_id();
 		return $idPlanilla;
+	}
+
+	function crearKPIPlanilla($idPlan, $idKPI){
+		$this->db->insert('kpi_planilla', 
+			array('idPlanilla'=>$idPlan, 
+					'idKPI'=>$idKPI,
+					'idUbicacion'=>$idKPI));
+		$idKPIPlanilla = $this->db->insert_id();
+		return $idKPIPlanilla;
 	}
 
 	function guardarDatos($data){
@@ -29,6 +38,16 @@ class Planilla_model extends CI_Model {
 					'ytdTarget'=>$data['ytdTarget']));
 		$idMaquina = $this->db->insert_id();
 		return $idMaquina;
+	}
+
+	function getKPI($nomKPI){
+		$this->db->select('kpi.idKPI');
+		$this->db->where('kpi.abreviatura', $nomKPI);
+		$this->db->from('kpi');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) return $query;
+		else return false;
 	}
 		
 }
