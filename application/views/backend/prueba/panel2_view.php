@@ -47,7 +47,7 @@
 
                                                             <option value="" disabled selected hidden>Seleccionar</option>
                                                             <option v-for="option in busqueda" v-bind:value="option.id">
-                                                            {{ option.nombre }}
+                                                            {{ option.nombre  }}
                                                             </option>
 
                                                         </select>   
@@ -99,22 +99,22 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium"><?php //echo $valor->actualMes .'%'  ?></h5>
+                                    <h5 class="font-medium" >{{kpi[0].actualMes}}</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium"><?php //echo $valor->targetMes .'%' ?></h5>
+                                    <h5 class="font-medium">{{kpi[0].targetMes}}</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium"><?php //echo $valor->actualMes .'%'  ?></h5>
+                                        <h5 class="font-medium">{{kpi[0].ytdActual}}</h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium"><?php //echo $valor->targetMes .'%' ?></h5>
+                                        <h5 class="font-medium">{{kpi[0].ytdTarget}}</h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
@@ -127,14 +127,14 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico esperado='98'  real='80' tipo="true" lble="1222222222" lblr="34444444444444"></vm-grafico>
+                                    <vm-grafico esperado='98'  real='80' tipo="true" lble="valor esperado" lblr="valor real"></vm-grafico>
                                     
 
                                 </div>
 
                                 <div class="col-xs-6 ">
                                         
-                                    <vm-grafico esperado ='98' real='80' tipo="true" lble="1222222222" lblr="34444444444444"></vm-grafico>
+                                    <vm-grafico esperado ='98' real='80' tipo="true" lble="valor esperado" lblr="valor real"></vm-grafico>
                                     
 
                                 </div>
@@ -225,54 +225,173 @@
                    
                     <div class="social-widget col-sm-12 b-l b-r b-b">
                             <div class="soc-header box-corporativo">
-                                <i><h4>EAF (%)</h4></i>
+                                <i><h4>EFOF (%)</h4></i>
                             </div>
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium">3333333</h5>
+                                    <h5 class="font-medium">{{kpi[1].actualMes}}</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium">wwwww</h5>
+                                    <h5 class="font-medium">{{kpi[1].targetMes}}</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium">333333</h5>
+                                        <h5 class="font-medium">{{kpi[1].ytdActual}}</h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium">444444444</h5>
+                                        <h5 class="font-medium">{{kpi[1].ytdTarget}}</h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
 
                             </div> 
 
-                    
-
                             <div class="row">
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico esperado= '45' real= '55'  tipo="false" lble="1222222222" lblr="34444444444444"></vm-grafico>
+                                    <vm-grafico esperado= '45' real= '55'  tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
 
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <vm-grafico esperado= '50' real= '29' tipo="false" lble="555555555554" lblr="666666666"></vm-grafico>
+                                    <vm-grafico esperado= '50' real= '29' tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
 
                                 </div>
 
+                            </div>
 
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-xs-5">
+
+                        <div class="tabbable">
+                                <ul class="nav nav-tabs" id="myTab">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#home">
+                                            <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                            Comentarios
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a data-toggle="tab" href="#messages">
+                                            <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                            Aañadir Comentario
+                                            <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="home" class="tab-pane fade in active">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                <th>#</th>
+                                                <th>Contenido</th>
+                                                <th>Autor</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <th scope="row">1</th>
+                                                <td>Cambios de prefiltros en compresor</td>
+                                                <td>pepito h</td>
+                                                </tr>
+
+                                                <tr>
+                                                <th scope="row">2</th>
+                                                <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                <td>Thornton</td>
+                                                </tr>
+
+                                            </tbody>
+                                            </table>
+                                    </div>
+
+                                    <div id="messages" class="tab-pane fade">
+                                        
+                                        <form action="">
+
+                                            <div class="form-group">
+                                                    <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                        </div><br>
+
+                </div><br>
+
+
+            </div>
+
+                
+
+            
+            <div class="row">
+                <div class="col-sm-7 ">
+                   
+                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                            <div class="soc-header box-corporativo">
+                                <i><h4>HEAT RATE (%)</h4></i>
+                            </div>
+
+                            <div class="soc-content">
+                                <div class="col-xs-3 b-r b-b">
+                                    <h5 class="font-medium">{{kpi[2].actualMes }}</h5>
+                                    <h6 class="text-muted">Actual Mon</h6>
+                                </div>
+                            
+                                <div class="col-xs-3 b-b b-r">
+                                    <h5 class="font-medium">{{kpi[2].targetMes}}</h5>
+                                    <h6 class="text-muted">Target Mon</h6>
+
+                                </div>
+                                <div class="col-xs-3 b-r b-b">
+                                        <h5 class="font-medium">{{kpi[2].ytdActual}}</h5>
+                                        <h6 class="text-muted">Actual Mon</h6>
+                                    </div>
+                                
+                                    <div class="col-xs-3 b-b">
+                                        <h5 class="font-medium">{{kpi[2].ytdTarget}}</h5>
+                                        <h6 class="text-muted">Target Mon</h6>
+    
+                                </div>
+
+                            </div> 
+
+                            <div class="row">
+
+                                <div class="col-xs-6 b-r">
+
+                                    <vm-grafico esperado= '45' real= '55'  tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
+
+                                </div>
+
+                                <div class="col-xs-6">
+                                        
+                                    <vm-grafico esperado= '50' real= '29' tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
+
+                                </div>
 
                             </div>
-                 
-
 
                     </div>
 
@@ -326,11 +445,6 @@
                                             </tbody>
                                             </table>
 
-                                            <ul class="pagination pagination-sm">
-                                                <li class="active"><a href="#">1</a></li>
-                                                <li><a href="#">2</a></li>
-
-                                            </ul>
                                     </div>
 
                                     <div id="messages" class="tab-pane fade">
@@ -354,14 +468,13 @@
 
             </div>
 
-                
 
 
             
 
 <pre>
 
-{{$data}}
+
 </pre>
 
 

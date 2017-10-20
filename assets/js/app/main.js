@@ -45,7 +45,7 @@ var app = new Vue({
 
                 ],
         seleccion:[],              
-        kpi: [],
+        kpi:  [{  actualMes: "", targetMes: "", ytdActual: "", ytdTarget: "", fyf: "", fyBudget: "", hedp: "", hsf: "", mtbf: "", mtbfTarget: "", idUnidadGen: "", idDivision: "", idComplejo: "", idKPIPlanilla: "" }, { idValores: "", actualMes: "", targetMes: "", ytdActual: "", ytdTarget: "", fyf: "", fyBudget: "", hedp: "", hsf: "", mtbf: "", mtbfTarget: "", idUnidadGen: "", idDivision: "", idComplejo: "", idKPIPlanilla: "" }, { idValores: "", actualMes: "", targetMes: "", ytdActual: "", ytdTarget: "", fyf: "", fyBudget: "", hedp: "", hsf: "", mtbf: "", mtbfTarget: "", idUnidadGen: "", idDivision: "", idComplejo: "", idKPIPlanilla: "" } ],
         idSelect:"",
         idList:""
     },

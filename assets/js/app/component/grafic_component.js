@@ -70,3 +70,22 @@ Vue.component('vm-grafico',{
 
 
 //endregion Component
+
+
+
+//region filtros personalizados
+
+
+// Vue.filter('trunc', (value) => {
+
+//     console.log(value);
+//     if(value== ""){
+
+//         return value;
+//     }else{
+
+//         return value.toFixed(2);
+//     }
+// });
+
+//endregios filtros personalizados
