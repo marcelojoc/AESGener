@@ -98,14 +98,18 @@ class Kpi_model extends CI_Model {
 		// traigo valores de division
 		public function getValueDiv($idDivision){
 
-		$this->db->where ('idDivision',$idDivision );	
-		$this->db->where ('idUnidadGen= 0');
-		$this->db->select('*');
-		$this->db->from('valores');
-		$this->db->join('division','division.idDivision=valores.idDivision','left');
-				
+		// $this->db->where ('idDivision',$idDivision );	
+		// $this->db->where ('idUnidadGen= 0');
+		// $this->db->select('*');
+		// $this->db->from('valores');
+		// $this->db->join('division','division.idDivision = valores.idDivision','left');
+
+
+		$query = $this->db->query('SELECT * FROM valores INNER JOIN division ON division.idDivision= valores.idDivision
+		INNER JOIN complejo ON complejo.idComplejo= valores.idComplejo WHERE valores.idDivision = '.$idDivision.' AND valores.idUnidadGen=0');
+
         //SELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
-		$query = $this->db->get();
+		// $query = $this->db->get();
 
 		if ($query->num_rows() > 0) {
 
@@ -125,6 +129,8 @@ class Kpi_model extends CI_Model {
 
 		$this->db->select('*');
 		$this->db->from('valores');
+		//$this->db->join('unidad_generadora', 'unidad_generadora.idUnidadGen = valores.idUnidadGen');
+
 		$this->db->where ('idUnidadGen',$idUg );				
         //SELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
 		$query = $this->db->get();
