@@ -1,21 +1,8 @@
 <?php 
 
 //var_dump($maquina);
-
-
-
-
 // $valor= $maquina[0];
-
-
-
-
-
 // $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";
-
-
-
-
 
 ?>
 
@@ -33,7 +20,6 @@
                         </h1>
                     </div>  
                     <div class=" col-sm-8 blueAES form-inline ">
-
 
                             <div class="row">
                                 <div class="col-md-4">
@@ -77,11 +63,7 @@
                                 </div>
                             </div>
 
-
-
-
-                    </div>
-                        
+                    </div>         
 
         </div>  
 
@@ -99,22 +81,22 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium" >{{kpi[0].actualMes}}</h5>
+                                    <h5 class="font-medium" >{{kpi[0].actualMes |truncar }}</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium">{{kpi[0].targetMes}}</h5>
+                                    <h5 class="font-medium">{{kpi[0].targetMes |truncar}}</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium">{{kpi[0].ytdActual}}</h5>
+                                        <h5 class="font-medium">{{kpi[0].ytdActual |truncar}}</h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium">{{kpi[0].ytdTarget}}</h5>
+                                        <h5 class="font-medium">{{kpi[0].ytdTarget |truncar}}</h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
@@ -127,14 +109,14 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico esperado='98'  real='80' tipo="true" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-grafico v-bind:esperado='kpi[0].targetMes |truncar'  v-bind:real='kpi[0].actualMes |truncar' tipo="true" lble="valor esperado" lblr="valor real"></vm-grafico>
                                     
 
                                 </div>
 
                                 <div class="col-xs-6 ">
                                         
-                                    <vm-grafico esperado ='98' real='80' tipo="true" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-grafico v-bind:esperado ='kpi[0].ytdActual|truncar' v-bind:real='kpi[0].ytdTarget|truncar' tipo="true" lble="valor esperado" lblr="valor real"></vm-grafico>
                                     
 
                                 </div>
@@ -144,8 +126,6 @@
                     </div>
 
                 </div>
-
-
 
                 <div class="col-xs-4 animated jackInTheBox">
 
@@ -220,6 +200,7 @@
 
 
             </div>
+
             <div class="row">
                 <div class="col-sm-7 ">
                    
@@ -230,22 +211,22 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium">{{kpi[1].actualMes}}</h5>
+                                    <h5 class="font-medium">{{kpi[1].actualMes |truncar}}</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium">{{kpi[1].targetMes}}</h5>
+                                    <h5 class="font-medium">{{kpi[1].targetMes |truncar}}</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium">{{kpi[1].ytdActual}}</h5>
+                                        <h5 class="font-medium">{{kpi[1].ytdActual |truncar}}</h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium">{{kpi[1].ytdTarget}}</h5>
+                                        <h5 class="font-medium">{{kpi[1].ytdTarget |truncar}}</h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
@@ -256,13 +237,13 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico esperado= '45' real= '55'  tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-grafico v-bind:esperado= 'kpi[1].targetMes |truncar' v-bind:real= 'kpi[1].actualMes |truncar'  tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
 
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <vm-grafico esperado= '50' real= '29' tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-grafico v-bind:esperado= 'kpi[1].ytdTarget |truncar' v-bind:real= 'kpi[1].ytdActual |truncar' tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
 
                                 </div>
 
@@ -271,8 +252,6 @@
                     </div>
 
                 </div>
-
-
 
                 <div class="col-xs-5">
 
@@ -339,7 +318,6 @@
 
                 </div><br>
 
-
             </div>
 
                 
@@ -360,7 +338,7 @@
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium">{{kpi[2].targetMes}}</h5>
+                                    <h5 class="font-medium">{{kpi[2].targetMes }}</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
@@ -381,13 +359,13 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico esperado= '45' real= '55'  tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-grafico v-bind:esperado= '6' v-bind:real= '66 '  tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
 
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <vm-grafico esperado= '50' real= '29' tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-grafico v-bind:esperado= '55' v-bind:real= '56' tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
 
                                 </div>
 
@@ -396,8 +374,6 @@
                     </div>
 
                 </div>
-
-
 
                 <div class="col-xs-5">
 
@@ -474,6 +450,7 @@
 
 <pre>
 
+    {{$data}}
 
 </pre>
 
