@@ -1,3 +1,31 @@
+
+
+//region filtros personalizados
+
+
+Vue.filter('truncar', (value) => {
+    
+    if(value != ""){
+        
+        posiciones = 2
+        var s = value.toString()
+        var l = s.length
+        var decimalLength = s.indexOf('.') + 1
+        var numStr = s.substr(0, decimalLength + posiciones)
+        return Number(numStr)
+    }else{
+
+        return "";
+
+    }
+
+        
+    });
+    
+//endregios filtros personalizados
+
+
+
 //region Component grafico
 
 Vue.component('vm-grafico',{
@@ -8,41 +36,11 @@ Vue.component('vm-grafico',{
 
         return {
             
-
-
         }
     },
 
-    props: {
+    props: ['lble','lblr','esperado','real','tipo'],
 
-        lble: {
-          type: String,
-          required: true,
-        },
-
-        lblr: {
-            type: String,
-            required: true,
-        },   
-        // a number with default value
-        esperado: {
-          type: String,
-          default: 100,
-          required: true
-        },
-        // a number with default value
-        real: {
-          type: String,
-          default: 100,
-          required: true
-        },
-        // object/array defaults should be returned from a
-        // factory function
-        tipo: {
-          type:String,
-          default: 'true',
-        }
-    },
  
     computed: {
         
@@ -64,28 +62,11 @@ Vue.component('vm-grafico',{
         return color;
 
         }
-    }
+    },
+
 
 })
 
 
 //endregion Component
 
-
-
-//region filtros personalizados
-
-
-// Vue.filter('trunc', (value) => {
-
-//     console.log(value);
-//     if(value== ""){
-
-//         return value;
-//     }else{
-
-//         return value.toFixed(2);
-//     }
-// });
-
-//endregios filtros personalizados
