@@ -1,9 +1,21 @@
 <?php 
 
 //var_dump($maquina);
+
+
+
+
 // $valor= $maquina[0];
 
+
+
+
+
 // $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";
+
+
+
+
 
 ?>
 
@@ -31,9 +43,9 @@
                                         
                                                 <div class="form-group">
                     
-                                                        <select class="form-control"  name="category" @change="getLists">
+                                                        <select class="form-control" v-model="idSelect" name="category" @change="getLists">
 
-                                                            <option value="">seleccionar</option>
+                                                            <option value="" disabled selected hidden>Seleccionar</option>
                                                             <option v-for="option in busqueda" v-bind:value="option.id">
                                                             {{ option.nombre }}
                                                             </option>
@@ -50,14 +62,16 @@
                                         
                                                 <div class="form-group">
                     
-                                                    <select class="form-control"  name="category" @change="getLists">
-
-                                                        <option v-for="option in seleccion" v-bind:value="option.idMaquina">
-                                                            {{ option.nombreMaquina }}
+                                                    <select class="form-control" v-model="idList" name="category" >
+                                                        <option value="" disabled selected hidden>Seleccionar</option>
+                                                        <option v-for="option in seleccion" v-bind:value="option.id">
+                                                            {{ option.nombre }}
                                                         </option>
 
                                                     </select>  
                                                 </div>
+
+                                                <button v-on:click.prevent="getData" >ir</button>
                                         </div>
 
                                 </div>
@@ -80,7 +94,7 @@
                    
                     <div class="social-widget col-sm-12 b-l b-r b-b">
                             <div class="soc-header box-corporativo" >
-                                <i><h4>EAF (%) {{title}}</h4></i>
+                                <i><h4>EAF (%) </h4></i>
                             </div>
 
                             <div class="soc-content">
@@ -113,14 +127,14 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico esperado=98 real=80 tipo="true" lble="1222222222" lblr="34444444444444"></vm-grafico>
+                                    <vm-grafico esperado='98'  real='80' tipo="true" lble="1222222222" lblr="34444444444444"></vm-grafico>
                                     
 
                                 </div>
 
                                 <div class="col-xs-6 ">
                                         
-                                    <vm-grafico esperado=98 real=80 tipo="true" lble="1222222222" lblr="34444444444444"></vm-grafico>
+                                    <vm-grafico esperado ='98' real='80' tipo="true" lble="1222222222" lblr="34444444444444"></vm-grafico>
                                     
 
                                 </div>
@@ -244,13 +258,13 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico esperado=98 real=80 tipo="false" lble="1222222222" lblr="34444444444444"></vm-grafico>
+                                    <vm-grafico esperado= '45' real= '55'  tipo="false" lble="1222222222" lblr="34444444444444"></vm-grafico>
 
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <vm-grafico esperado=50 real=40 tipo="false" lble="555555555554" lblr="666666666"></vm-grafico>
+                                    <vm-grafico esperado= '50' real= '29' tipo="false" lble="555555555554" lblr="666666666"></vm-grafico>
 
                                 </div>
 

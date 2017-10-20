@@ -40,18 +40,14 @@ var app = new Vue({
 
         busqueda:[
                     { id : "1", nombre : 'Unidad Generadora' },
-                    { id : "2", nombre : 'Divicion' },
+                    { id : "2", nombre : 'Division' },
                     { id : "3", nombre : 'Complejo' },
 
                 ],
         seleccion:[],              
-        
-        title: 'Costos',
-
-        nombre: 'EFOFO(%)',
-        real:     '23%',
-        esperado:  '34%',
-        
+        kpi: [],
+        idSelect:"",
+        idList:""
     },
 
     methods:{
@@ -59,25 +55,42 @@ var app = new Vue({
             //Metodo para listar las unidades, diviciones y complejos
             getLists: function(){
 
-                this.$http.get(url).then( function (resp){
+                this.$http.get(url, { params: { page: this.idSelect } } ).then( function (resp){
 
                     this.seleccion=resp.data;
-                    // var limit = resp.data.length
-                    
-                    // for (var i = 0; i < limit; i+=1) {
-
-                    //     this.seleccion.push({id: i , nombre: resp.data[i]});
-                    //   }
 
 
-
-                }, function(){
+                }, function(err){
                     //si sale mal
 
-                    alert ('todo malllllll');
+                    console.log(err);
+                    alert ('Error de conexion');
 
 
                 })
+
+            },
+
+            getData: function(){
+
+                var geturl = "http://localhost/AESGener/prueba/test/vrdata";
+
+                this.$http.get(geturl, { params: { idselect: this.idSelect, idlist: this.idList } }).then(function (resp) {
+
+                    this.kpi = resp.data;
+
+
+                }, function (err) {
+                    //si sale mal
+
+                    console.log(err);
+                    alert('Error de conexion');
+
+
+                })
+
+
+
 
             }
 

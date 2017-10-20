@@ -4,7 +4,6 @@ Vue.component('vm-grafico',{
     // options
     template: '#aesgen-graph',
 
-
     data: function () {
 
         return {
@@ -13,7 +12,6 @@ Vue.component('vm-grafico',{
 
         }
     },
-
 
     props: {
 
@@ -28,13 +26,13 @@ Vue.component('vm-grafico',{
         },   
         // a number with default value
         esperado: {
-          type: Number,
+          type: String,
           default: 100,
           required: true
         },
         // a number with default value
         real: {
-          type: Number,
+          type: String,
           default: 100,
           required: true
         },
@@ -46,14 +44,11 @@ Vue.component('vm-grafico',{
         }
     },
  
-
-
-
     computed: {
         
         getColor: function () {
         
-        let color="";
+        var color="";
             // `this` apunta a la instancia de vm
             if(this.tipo === 'true'){
 
@@ -70,8 +65,6 @@ Vue.component('vm-grafico',{
 
         }
     }
-
-
 
 })
 
