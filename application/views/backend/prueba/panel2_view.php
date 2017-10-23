@@ -359,13 +359,13 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-semaforizado  v-if= " kpi[2].targetMes != ''"  v-bind:esperado= 'kpi[2].targetMes |sindec' v-bind:real= 'kpi[2].actualMes |sindec'  lbl="valor esperado" ></vm-semaforizado>
+                                    <vm-semaforizado  v-if= " kpi[2].targetMes != ''"  v-bind:esperado= 'kpi[2].targetMes |sindec' v-bind:real= 'kpi[2].actualMes |sindec'  lbl="valor esperado" tipo="true"></vm-semaforizado>
 
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <vm-semaforizado  v-if= " kpi[2].ytdTarget != ''"  v-bind:esperado= 'kpi[2].ytdTarget |sindec ' v-bind:real= 'kpi[2].ytdActual |sindec'  lbl="valor esperado"></vm-semaforizado>
+                                    <vm-semaforizado  v-if= " kpi[2].ytdTarget != ''"  v-bind:esperado= 'kpi[2].ytdTarget |sindec ' v-bind:real= 'kpi[2].ytdActual |sindec'  lbl="valor esperado" tipo= "true" ></vm-semaforizado>
 
                                 </div>
 
