@@ -359,13 +359,13 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico v-bind:esperado= '6' v-bind:real= '66 '  tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-semaforizado v-bind:esperado= 'kpi[2].targetMes' v-bind:real= 'kpi[2].actualMes'  lble="valor esperado" lblr="valor real"></vm-semaforizado>
 
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <vm-grafico v-bind:esperado= '55' v-bind:real= '56' tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-semaforizado v-bind:esperado= 'kpi[2].ytdTarget' v-bind:real= 'kpi[2].ytdActual'  lble="valor esperado" lblr="valor real"></vm-semaforizado>
 
                                 </div>
 
@@ -499,5 +499,31 @@
                 </div>
 
             </div>
+
+</template>
+
+
+
+<template id="aesgen-semaf">
+
+    <!-- contenedor general de la progress bar -->
+    <div class="content-progres social-widget">
+
+                <div class="progres-full limite animated zoomIn">
+                
+                    <!-- <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width:50%;" > -->
+                    <div class="indicador-kpi" :style="{ background: getColorPoint, height: '3.9em' , width: '100%' }">
+                
+                        <p>
+                            <strong>{{lblr + " "}}{{real  }}</strong>
+                        </p>
+                
+                    </div>
+                
+                </div>
+
+{{getColorPoint}}
+{{$data}}
+    </div>
 
 </template>
