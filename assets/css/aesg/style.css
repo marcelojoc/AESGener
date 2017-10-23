@@ -78,7 +78,7 @@
       
       font-size:0.9em ;
       padding-top: 1em;
-      /* padding-bottom: 1em; */
+      padding-bottom: 1em;
     
     }
 
@@ -113,12 +113,5 @@
         
   }
 
-  .beige{
-
-    background-color: blue;
-    padding:0px;
-    width: 0.7em;
-    display float;
-
-  }
+  
 

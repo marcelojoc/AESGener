@@ -70,3 +70,56 @@ Vue.component('vm-grafico',{
 
 //endregion Component
 
+
+//region Component semaforizacion
+
+Vue.component('vm-semaforizado',{
+    // options
+    template: '#aesgen-semaf',
+
+    data: function () {
+
+        return {
+
+            valor: "wwwwwwwwwww",
+            otro: " background: green "
+            
+        }
+    },
+
+    props: ['lble','lblr','esperado','real'],
+
+ 
+    computed: {
+        
+        getColorPoint: function () {
+        
+        var css="";
+        var esperado = parseFloat(this.esperado);
+        var real = parseFloat(this.real);
+
+        this.valor= esperado;
+        this.otro = real;
+
+            if(real >= esperado){
+
+                //tengo que poner el verde
+
+                css= "#2ecc71";
+
+            }else{
+                css = "#E74C3C";
+
+            }
+
+        return css;
+
+        }
+    },
+
+
+})
+
+
+//endregion Component
+
