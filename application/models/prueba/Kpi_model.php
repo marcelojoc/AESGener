@@ -201,8 +201,7 @@ class Kpi_model extends CI_Model {
 		// 		$this->db->join('division','division.idDivision = valores.idDivision','left');
 		
 		
-		$query = $this->db->query('SELECT * FROM valores INNER JOIN division ON division.idDivision= valores.idDivision
-		INNER JOIN complejo ON complejo.idComplejo= valores.idComplejo WHERE valores.idDivision = '.$idDivision.' AND valores.idUnidadGen=0');
+		$query = $this->db->query('SELECT * FROM valores  where valores.idDivision = '.$idDivision.' AND valores.idUnidadGen=0');
 		
 		
 		

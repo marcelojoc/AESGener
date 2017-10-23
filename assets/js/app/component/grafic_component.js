@@ -1,29 +1,47 @@
 
-
 //region filtros personalizados
+    Vue.filter('truncar', (value) => {
 
+        if(value != ""){
+            
+            posiciones = 2
+            var s = value.toString()
+            var l = s.length
+            var decimalLength = s.indexOf('.') + 1
+            var numStr = s.substr(0, decimalLength + posiciones)
+            return Number(numStr)
+        }else{
 
-Vue.filter('truncar', (value) => {
-    
-    if(value != ""){
-        
-        posiciones = 2
-        var s = value.toString()
-        var l = s.length
-        var decimalLength = s.indexOf('.') + 1
-        var numStr = s.substr(0, decimalLength + posiciones)
-        return Number(numStr)
-    }else{
+            return "";
 
-        return "";
-
-    }
+        }
 
         
     });
-    
-//endregios filtros personalizados
 
+    //filtro simplificado para quitar los decimales de valores grandes
+    Vue.filter('sindec', (value) => {
+
+        if(value != ""){
+            
+            var result= Math.trunc(parseFloat(value))
+
+            return result;
+        }else{
+
+            return "";
+
+        }
+
+        
+    });
+
+
+
+
+
+    
+//endregion filtros personalizados
 
 
 //region Component grafico
@@ -39,7 +57,7 @@ Vue.component('vm-grafico',{
         }
     },
 
-    props: ['lble','lblr','esperado','real','tipo'],
+    props: ['lble','lblr','esperado','real'],
 
  
     computed: {
@@ -47,10 +65,13 @@ Vue.component('vm-grafico',{
         getColor: function () {
         
         var color="";
-            // `this` apunta a la instancia de vm
-            if(this.tipo === 'true'){
+        var esperado = parseFloat(this.esperado);
+        var real = parseFloat(this.real);
 
-                
+        // console.log(esperado +"esperado");
+
+        // console.log(real  +"real");
+            if(real >= esperado){
 
                 color= '#2ecc71';
 
@@ -80,14 +101,13 @@ Vue.component('vm-semaforizado',{
     data: function () {
 
         return {
+            // esto es solo de prueba
 
-            valor: "wwwwwwwwwww",
-            otro: " background: green "
             
         }
     },
 
-    props: ['lble','lblr','esperado','real'],
+    props: ['lbl','esperado','real', 'tipo'],
 
  
     computed: {
@@ -98,12 +118,14 @@ Vue.component('vm-semaforizado',{
         var esperado = parseFloat(this.esperado);
         var real = parseFloat(this.real);
 
-        this.valor= esperado;
-        this.otro = real;
+        var isTrueSet = (this.tipo === 'true'); // aqui valido si lo que viene en el atributo tipo es verdadero o false
+            //este atributo cambia en la forma que se grafica
+
+        if(isTrueSet){  // si el real es mayor que el esperado queda verde
 
             if(real >= esperado){
 
-                //tengo que poner el verde
+                //uso normal
 
                 css= "#2ecc71";
 
@@ -111,6 +133,20 @@ Vue.component('vm-semaforizado',{
                 css = "#E74C3C";
 
             }
+
+        }else{
+            if(real >= esperado){ // si el real es mayor que el esperado queda rojo
+
+            //uso alternativo
+
+                css= "#E74C3C";
+
+            }else{
+                css = "#2ecc71";
+
+            }
+        }
+
 
         return css;
 
