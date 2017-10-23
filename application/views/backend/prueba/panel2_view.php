@@ -81,7 +81,7 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium" >{{kpi[0].actualMes |truncar }}</h5>
+                                    <h5 class="font-medium" >{{kpi[0].actualMes |truncar  }}</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
@@ -109,14 +109,14 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico v-bind:esperado='kpi[0].targetMes |truncar'  v-bind:real='kpi[0].actualMes |truncar' tipo="true" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-grafico  v-if= " kpi[0].targetMes != ''"   v-bind:esperado='kpi[0].targetMes |truncar'  v-bind:real='kpi[0].actualMes |truncar'  lble="valor esperado" lblr="valor real"></vm-grafico>
                                     
 
                                 </div>
 
                                 <div class="col-xs-6 ">
                                         
-                                    <vm-grafico v-bind:esperado ='kpi[0].ytdActual|truncar' v-bind:real='kpi[0].ytdTarget|truncar' tipo="true" lble="valor esperado" lblr="valor real"></vm-grafico>
+                                    <vm-grafico v-if= " kpi[0].ytdActual != ''"  v-bind:esperado ='kpi[0].ytdTarget|truncar' v-bind:real='kpi[0].ytdActual|truncar'  lble="valor esperado" lblr="valor real"></vm-grafico>
                                     
 
                                 </div>
@@ -211,7 +211,7 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium">{{kpi[1].actualMes |truncar}}</h5>
+                                    <h5 class="font-medium">{{kpi[1].actualMes |truncar }}</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
@@ -237,14 +237,14 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-grafico v-bind:esperado= 'kpi[1].targetMes |truncar' v-bind:real= 'kpi[1].actualMes |truncar'  tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
-
+                                    <vm-semaforizado v-if= " kpi[1].targetMes != ''"  v-bind:esperado= 'kpi[1].targetMes |truncar' v-bind:real= 'kpi[1].actualMes |truncar'  lbl=""  tipo= "false"></vm-semaforizado>
+                                    
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <vm-grafico v-bind:esperado= 'kpi[1].ytdTarget |truncar' v-bind:real= 'kpi[1].ytdActual |truncar' tipo="false" lble="valor esperado" lblr="valor real"></vm-grafico>
-
+                                    <vm-semaforizado    v-if= " kpi[1].ytdTarget != ''"  v-bind:esperado= 'kpi[1].ytdTarget |truncar' v-bind:real= 'kpi[1].ytdActual |truncar'  lbl="" tipo="false"></vm-semaforizado>
+                                    
                                 </div>
 
                             </div>
@@ -333,22 +333,22 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium">{{kpi[2].actualMes }}</h5>
+                                    <h5 class="font-medium">{{kpi[2].actualMes |sindec }}</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium">{{kpi[2].targetMes }}</h5>
+                                    <h5 class="font-medium">{{kpi[2].targetMes |sindec}}</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium">{{kpi[2].ytdActual}}</h5>
+                                        <h5 class="font-medium">{{kpi[2].ytdActual |sindec}}</h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium">{{kpi[2].ytdTarget}}</h5>
+                                        <h5 class="font-medium">{{kpi[2].ytdTarget |sindec}}</h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
@@ -359,13 +359,13 @@
 
                                 <div class="col-xs-6 b-r">
 
-                                    <vm-semaforizado v-bind:esperado= 'kpi[2].targetMes' v-bind:real= 'kpi[2].actualMes'  lble="valor esperado" lblr="valor real"></vm-semaforizado>
+                                    <vm-semaforizado  v-if= " kpi[2].targetMes != ''"  v-bind:esperado= 'kpi[2].targetMes |sindec' v-bind:real= 'kpi[2].actualMes |sindec'  lbl="valor esperado" ></vm-semaforizado>
 
                                 </div>
 
                                 <div class="col-xs-6">
                                         
-                                    <vm-semaforizado v-bind:esperado= 'kpi[2].ytdTarget' v-bind:real= 'kpi[2].ytdActual'  lble="valor esperado" lblr="valor real"></vm-semaforizado>
+                                    <vm-semaforizado  v-if= " kpi[2].ytdTarget != ''"  v-bind:esperado= 'kpi[2].ytdTarget |sindec ' v-bind:real= 'kpi[2].ytdActual |sindec'  lbl="valor esperado"></vm-semaforizado>
 
                                 </div>
 
@@ -450,7 +450,7 @@
 
 <pre>
 
-    {{$data}}
+   
 
 </pre>
 
@@ -515,15 +515,14 @@
                     <div class="indicador-kpi" :style="{ background: getColorPoint, height: '3.9em' , width: '100%' }">
                 
                         <p>
-                            <strong>{{lblr + " "}}{{real  }}</strong>
+                            <strong>{{lbl }}</strong>
                         </p>
                 
                     </div>
                 
                 </div>
 
-{{getColorPoint}}
-{{$data}}
+
     </div>
 
 </template>
