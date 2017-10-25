@@ -243,54 +243,71 @@ class Kpi_model extends CI_Model {
 	
 	// 	traigo los valores de Unidades generadoras
 	public function getValueUg( $idUg){
-		
-		
-		
+
 		$this->db->select('*');
-		
-		
+
 		$this->db->from('valores');
-		
-		
+
 		//$		this->db->join('unidad_generadora', 'unidad_generadora.idUnidadGen = valores.idUnidadGen');
-		
-		
-		
+
 		$this->db->where ('idUnidadGen',$idUg );
-		
 		
 		//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
 		$query = $this->db->get();
-		
-		
-		
+
 		if ($query->num_rows() > 0) {
-			
-			
-			
+
 			return $query->result();
-			
-			
-			
+
 		}
 		
 		else{
-			
-			
-			
+
 			return false;
-			
-			
-			
+
 		}
-		
-		
-		
-		
 		
 	}
 	
 	
+
+	public function getCa($idCa=0){
+		//en este caso kpi planilla es 4, pero esto debe ser dinamico
+		$kpi_estatico= 4;
+		$this->db->select(' valores.idvalores, 
+							valores.actualMes,
+							valores.targetMes,
+							valores.ytdActual,
+							valores.ytdTarget,
+							
+							planta.nombrePlanta
+							');
+		
+		$this->db->from('valores');
+
+		$this->db->join('planta', 'valores.idPlanta = planta.idPlanta','left');
+		
+		if($idCa != 0 ){  // si no envia parametros o es un valor inferior a 1 devuelve todos los valores
+
+			$this->db->where ('valores.idPlanta',$idCa );
+		}
+		$this->db->where ('valores.idKPIPlanilla',$kpi_estatico );	
+				
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) {
+			
+			return $query->result();
+
+		}else{
+
+			return false;
+
+		}
+
+
+
+	}
 	
 	
 	

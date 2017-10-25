@@ -446,15 +446,230 @@
 
             <pre>
 
-            
+            {{$data}}
 
             </pre>
+
+
+
+            <div class="row">
+                    
+
+                <div class="page-header col-sm-4 text-center blueAES b-r">
+                    <h1 class="blueAES">
+                        Tablero CA 
+                    </h1>
+                </div>  
+                <div class=" col-sm-8 form-inline ">
+
+                        <div class="row">
+                            <div class="col-xs-6">
+
+                                    <div class="input-group" >
+                                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                    
+                                            <div class="form-group">
+                
+                                                    <select class="form-control" v-model="idcaSelect" name="caSelect" >
+
+                                                            <option value="" disabled selected hidden>Seleccionar</option>
+                                                            <option value="0">Todas</option>
+                                                            <option v-for="option in camodel" v-bind:value="option.id">
+                                                            {{ option.nombre  }}
+                                                            </option>
+
+                                                    </select>   
+                                            </div>
+                                    </div>
+
+                            </div>
+                            <div class="col-xs-6">
+
+                                <button v-on:click.prevent="getCa" class="btn btn-xs btn-success " >
+                                        <span class="bigger-110">Ir</span>
+
+                                        <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                                </button>
+
+                            </div>
+                        </div>
+
+                </div>  
+            
+                    <hr>
+            </div>  
+
+
+<!-- inicio bloque Ca -->
+
+                     
+            <div class="row" v-for ="item in cakpi" >     <!-- inicio contenedor V-FOR -->
+
+                    <div class="col-sm-7 ">
+                    
+                        <div class="social-widget col-sm-12 b-l b-r b-b">
+                                <div class="soc-header box-ca">
+                                    <i><h4>{{item.nombrePlanta}}</h4></i>
+                                </div>
+
+                                <div class="soc-content">
+                                    <div class="col-xs-3 b-r b-b">
+                                        <h5 class="font-medium">{{item.actualMes | truncar}} %</h5>
+                                        <h6 class="text-muted">Actual Mon</h6>
+                                    </div>
+                                
+                                    <div class="col-xs-3 b-b b-r">
+                                        <h5 class="font-medium">{{item.targetMes | truncar }} %</h5>
+                                        <h6 class="text-muted">Target Mon</h6>
+
+                                    </div>
+                                    <div class="col-xs-3 b-r b-b">
+                                            <h5 class="font-medium">{{item.ytdActual | truncar}} %</h5>
+                                            <h6 class="text-muted">Actual Mon</h6>
+                                        </div>
+                                    
+                                        <div class="col-xs-3 b-b">
+                                            <h5 class="font-medium">{{item.ytdTarget | truncar}} %</h5>
+                                            <h6 class="text-muted">Target Mon</h6>
+
+                                    </div>
+
+                                </div> 
+
+                                <div class="row">
+
+                                    <div class="col-xs-6 b-r">
+
+                                            <vm-grafico  v-if= " item.targetMes != ''"   v-bind:esperado='item.targetMes |truncar'  v-bind:real='item.actualMes |truncar'  lble="valor esperado  " lblr="valor real"></vm-grafico>
+
+                                    </div>
+
+                                    <div class="col-xs-6">
+
+                                            <vm-grafico  v-if= " item.targetMes != ''"   v-bind:esperado='item.targetMes |truncar'  v-bind:real='item.actualMes |truncar'  lble="valor esperado" lblr="valor real"></vm-grafico>
+
+                                    </div>
+
+                                </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-5">
+
+                            <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                                Comentarios
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#messages">
+                                                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                                Aañadir Comentario
+                                                <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>Contenido</th>
+                                                    <th>Autor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Cambios de prefiltros en compresor</td>
+                                                    <td>pepito h</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                    <td>Thornton</td>
+                                                    </tr>
+
+                                                </tbody>
+                                                </table>
+                                        </div>
+
+                                        <div id="messages" class="tab-pane fade">
+                                            
+                                            <form action="">
+
+                                                <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                            </div><br>
+
+                    </div><br>
+
+            </div>  <!-- fin contenedor V-for -->
+         
+
+<!-- fin bloque CA -->
+
 
         </div> <!-- fin page-content -->
 
     </div> <!-- fin main-content-inner -->
 
 </div> <!-- fin main-content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -467,6 +682,7 @@
             <div class="content-progres social-widget"> 
 
                 <!-- este marca el 100% del progres bar -->
+                <!-- progres-full limite animated zoomIn -->
                 <div class="progres-full limite animated zoomIn" >
 
                     <!-- <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width:50%;" > -->

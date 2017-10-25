@@ -53,7 +53,7 @@ Vue.component('vm-grafico',{
     data: function () {
 
         return {
-            
+           
         }
     },
 
@@ -84,6 +84,7 @@ Vue.component('vm-grafico',{
 
         }
     },
+
 
 
 })
