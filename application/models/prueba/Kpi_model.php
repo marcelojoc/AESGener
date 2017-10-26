@@ -142,7 +142,7 @@ class Kpi_model extends CI_Model {
 								valores.ytdTarget, 
 								valores.ctmActual, 
 								valores.ctmBudget, 
-								kpi.nombreKPI
+								kpi.abreviaturaKPI as nombreKPI
 							');
 				$this->db->from('valores');
 				$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');
@@ -184,7 +184,7 @@ class Kpi_model extends CI_Model {
 								valores.ytdTarget, 
 								valores.ctmActual, 
 								valores.ctmBudget, 
-								kpi.nombreKPI
+								kpi.abreviaturaKPI as nombreKPI
 							');
 		 		$this->db->from('valores');
 		 		$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');
@@ -218,7 +218,7 @@ class Kpi_model extends CI_Model {
 								valores.ytdTarget, 
 								valores.ctmActual, 
 								valores.ctmBudget, 
-								kpi.nombreKPI
+								kpi.abreviaturaKPI as nombreKPI
 							');
 		 		$this->db->from('valores');
 		 		$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');

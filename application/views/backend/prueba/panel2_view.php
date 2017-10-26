@@ -1,11 +1,3 @@
-<?php 
-
-//var_dump($maquina);
-// $valor= $maquina[0];
-// $res = ($valor->actualMes >= $valor->targetMes) ? "background: #2ecc71;" : "background: #E74C3C;";
-
-?>
-
 <div class="main-content " >
     <div class="main-content-inner">
         <div class="page-content" id="app">
@@ -16,7 +8,7 @@
                     <div class="page-header col-sm-4 text-center blueAES b-r">
                         <h1 class="blueAES">
                             Tablero Estratégico 
-                            <?php //echo $valor->nombreMaquina  ?>
+
                         </h1>
                     </div>  
                     <div class=" col-sm-8 blueAES form-inline ">
@@ -41,7 +33,7 @@
                                         </div>
 
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-4">
 
                                         <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-list" aria-hidden="true"></i></span>
@@ -56,11 +48,21 @@
 
                                                     </select>  
                                                 </div>
-
-                                                <button v-on:click.prevent="getData" >ir</button>
                                         </div>
 
                                 </div>
+
+
+
+                                <div class="col-md-4">
+                                        
+                                        <button v-on:click.prevent="getData" class="btn text-center btn-xs btn-success " >
+                                                <span class="bigger-110">Ir</span>
+        
+                                                <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                                        </button>                                    
+
+                                </div>                                
                             </div>
 
                     </div>         
@@ -72,7 +74,7 @@
             <div class="row" v-for ="item in kpi">
 
                 <!-- <div class="col-xs-1 beige">aqui  va la tab</div> -->
-                <div class="col-sm-7 ">
+                <div class="col-sm-7 " v-if="item.nombreKPI == 'EAF'">
                    
                     <div class="social-widget col-sm-12 b-l b-r b-b">
                             <div class="soc-header box-corporativo" >
@@ -102,30 +104,171 @@
     
                                 </div>
 
-                                
-
                             </div> 
-
-                    
 
                             <div class="row">
 
                                 <div class="col-xs-6 b-r">
 
-                                    <!-- <vm-grafico  v-if= " kpi[0].targetMes != ''"   v-bind:esperado='kpi[0].targetMes |truncar'  v-bind:real='kpi[0].actualMes |truncar'  lble="valor esperado" lblr="valor real"></vm-grafico> -->
+                                    <vm-grafico  v-if= " item.targetMes != ''"   v-bind:esperado='item.targetMes |truncar'  v-bind:real='item.actualMes |truncar'  lble="valor esperado" lblr="valor real"></vm-grafico>
                                     
 
                                 </div>
 
                                 <div class="col-xs-6 ">
                                         
-                                    <!-- <vm-grafico v-if= " kpi[0].ytdActual != ''"  v-bind:esperado ='kpi[0].ytdTarget|truncar' v-bind:real='kpi[0].ytdActual|truncar'  lble="valor esperado" lblr="valor real"></vm-grafico> -->
+                                    <vm-grafico v-if= "item.ytdActual != ''"  v-bind:esperado ='item.ytdTarget|truncar' v-bind:real='item.ytdActual|truncar'  lble="valor esperado" lblr="valor real"></vm-grafico>
                                     
+                                </div>
+
+                            </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-sm-7 " v-if="item.nombreKPI == 'EFOF'">
+                   
+                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                            <div class="soc-header box-corporativo" >
+                                <i><h4>{{item.nombreKPI}} (%) </h4></i>
+                            </div>
+
+
+                            <div class="soc-content">
+                                <div class="col-xs-3 b-r b-b">
+                                    <h5 class="font-medium" >{{item.actualMes |truncar  }} %</h5>
+                                    <h6 class="text-muted">Actual Mon</h6>
+                                </div>
+                            
+                                <div class="col-xs-3 b-b b-r">
+                                    <h5 class="font-medium">{{item.targetMes |truncar}} %</h5>
+                                    <h6 class="text-muted">Target Mon</h6>
+
+                                </div>
+                                <div class="col-xs-3 b-r b-b">
+                                        <h5 class="font-medium">{{item.ytdActual |truncar}}%</h5>
+                                        <h6 class="text-muted">Actual Mon</h6>
+                                    </div>
+                                
+                                    <div class="col-xs-3 b-b">
+                                        <h5 class="font-medium">{{item.ytdTarget |truncar}}%</h5>
+                                        <h6 class="text-muted">Target Mon</h6>
+    
+                                </div>
+
+                            </div> 
+
+                            <div class="row" >
+                                    
+                                <div class="col-xs-6 b-r">
+                    
+                                    <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.targetMes |truncar' v-bind:real= 'item.actualMes |truncar'  lbl=""  tipo= "false"></vm-semaforizado>
+                    
+                    
+                                </div>
+                    
+                                <div class="col-xs-6 ">
+                    
+                                    <vm-semaforizado v-if= " item.ytdTarget != ''"  v-bind:esperado= 'item.ytdTarget |truncar' v-bind:real= 'item.ytdActual |truncar'  lbl=""  tipo= "false"></vm-semaforizado>
+                    
+                    
+                                </div>
+                    
+                            </div>
+
+
+                    </div>
+
+                </div>
+                <div class="col-sm-7 " v-if="item.nombreKPI == 'ENPHR'">
+                   
+                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                            <div class="soc-header box-corporativo" >
+                                <i><h4>{{item.nombreKPI}} </h4></i>
+                            </div>
+
+
+                            <div class="soc-content">
+                                <div class="col-xs-3 b-r b-b">
+                                    <h5 class="font-medium" >{{item.actualMes |sindec  }}</h5>
+                                    <h6 class="text-muted">Actual Mon</h6>
+                                </div>
+                            
+                                <div class="col-xs-3 b-b b-r">
+                                    <h5 class="font-medium">{{item.targetMes |sindec}}</h5>
+                                    <h6 class="text-muted">Target Mon</h6>
+
+                                </div>
+                                <div class="col-xs-3 b-r b-b">
+                                        <h5 class="font-medium">{{item.ytdActual |sindec}}</h5>
+                                        <h6 class="text-muted">Actual Mon</h6>
+                                    </div>
+                                
+                                    <div class="col-xs-3 b-b">
+                                        <h5 class="font-medium">{{item.ytdTarget |sindec}}</h5>
+                                        <h6 class="text-muted">Target Mon</h6>
+    
+                                </div>
+
+                            </div> 
+
+                            <div class="row" >
+                                    
+                                <div class="col-xs-6 b-r">
+
+                                        <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.targetMes |sindec' v-bind:real= 'item.actualMes |sindec'  lbl=""  tipo= "true"></vm-semaforizado>
+                                        
+
+                                </div>
+
+                                <div class="col-xs-6 ">
+                                        
+                                        <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.ytdTarget |sindec' v-bind:real= 'item.ytdActual |sindec'  lbl=""  tipo= "true"></vm-semaforizado>
+                                        
 
                                 </div>
 
                             </div>
-                 
+
+
+                    </div>
+
+                </div>
+                <div class="col-sm-7 " v-if="item.nombreKPI == 'CTM OPEX'">
+                   
+                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                            <div class="soc-header box-twitter" >
+                                <i><h4>{{item.nombreKPI}} </h4></i>
+                            </div>
+
+
+                            <div class="soc-content">
+                                <div class="col-xs-6 b-r b-b">
+                                    <h5 class="font-medium" >{{item.ctmActual}}</h5>
+                                    <h6 class="text-muted">Actual Mon</h6>
+                                </div>
+                            
+                                <div class="col-xs-6 b-b ">
+                                    <h5 class="font-medium">{{item.ctmBudget}}</h5>
+                                    <h6 class="text-muted">Target Mon</h6>
+
+                                </div>
+
+                            </div> 
+
+                            <div class="row" >
+
+                                <div class="col-xs-12 ">
+
+                                        <vm-semaforizado v-if= " item.ctmActual != ''"  v-bind:esperado= 'item.ctmBudget ' v-bind:real= 'item.ctmActual'  lbl=""  tipo= "true"></vm-semaforizado>
+                                        
+                                </div>
+
+
+                            </div>
+
+
                     </div>
 
                 </div>
@@ -199,62 +342,21 @@
                                 </div>
                         </div><br>
 
-                </div><br>
+                </div>
 
 
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- 
             <pre>
 
             {{$data}}
 
-            </pre>
+            </pre> -->
 
 
-
+            <hr>
             <div class="row">
                     
 
@@ -523,14 +625,12 @@
                     <div class="indicador-kpi" :style="{ background: getColorPoint, height: '3.9em' , width: '100%' }">
                 
                         <p>
-                            <strong>{{lbl }}</strong>
+                            <strong>{{leyenda }}</strong>
                         </p>
                 
                     </div>
                 
                 </div>
-
-
     </div>
 
 </template>
