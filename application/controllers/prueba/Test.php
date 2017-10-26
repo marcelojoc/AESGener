@@ -218,6 +218,9 @@ class Test extends My_Controller{
 
 		}
 
+
+
+
 		public function vrdata(){
 
 			if( isset($_GET) && (!empty($_GET['idlist']) ) && (!empty($_GET['idselect']) )){
@@ -252,6 +255,7 @@ class Test extends My_Controller{
 		}
 
 
+		// este metodo es donde accede la petiicion ajax  trae los datos de CA  independientes del resto
 		public function vrcadata(){
 
 
@@ -273,25 +277,8 @@ class Test extends My_Controller{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 	
-	
-	
-	
-	
+
 	
 	?>

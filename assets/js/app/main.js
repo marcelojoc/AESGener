@@ -39,11 +39,11 @@ var app = new Vue({
     data: {
 
         busqueda:[
-                    { id : "1", nombre : 'Unidad Generadora' },
-                    { id : "2", nombre : 'Division' },
-                    { id : "3", nombre : 'Complejo' },
+            { id : "1", nombre : 'Unidad Generadora' },
+            { id : "2", nombre : 'Division' },
+            { id : "3", nombre : 'Complejo' },
 
-                ],
+        ],
         camodel:[
             { id : "1", nombre : 'AES Gener S.A' },
             { id : "2", nombre : 'ESSA' },

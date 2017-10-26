@@ -134,44 +134,38 @@ class Kpi_model extends CI_Model {
 	
 	// 	traigo los valores de el cmplejo
 	public function getValueComplejo($idComplejo){
-		
-		
-		
-		$this->db->select('*');
-		
-		
-		$this->db->from('valores');
-		
-		
-		$this->db->where ('idComplejo',$idComplejo );
-		
-		
-		$this->db->where ('idDivision= 0' );
-		
-		
-		$this->db->where ('idUnidadGen= 0');
-		
-		
-		//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
-		$query = $this->db->get();
-		
-		
-		
-		if ($query->num_rows() > 0) {
-	
-			return $query->result();
 
-		}
-		
-		else{
+				$this->db->select('
+								valores.actualMes, 
+								valores.targetMes, 
+								valores.ytdActual, 
+								valores.ytdTarget, 
+								valores.ctmActual, 
+								valores.ctmBudget, 
+								kpi.nombreKPI
+							');
+				$this->db->from('valores');
+				$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');
+				$this->db->join('kpi','kpi.idKPI = kpi_planilla.idKPI','left');
 
+				$this->db->where ('idComplejo',$idComplejo );
+				$this->db->where ('idDivision= 0' );
+				$this->db->where ('idUnidadGen= 0');
+				
+				//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
+				$query = $this->db->get();
+				
+				if ($query->num_rows() > 0) {
 			
-			return false;
-			
-			
-			
-		}
-		
+					return $query->result();
+
+				}
+				
+				else{
+
+					return false;
+
+				}
 		
 	}
 	
@@ -181,61 +175,33 @@ class Kpi_model extends CI_Model {
 	// 	traigo valores de division
 	public function getValueDiv($idDivision){
 		
+				$this->db->where ('idDivision',$idDivision );
+				$this->db->where ('idUnidadGen= 0');
+				$this->db->select('
+								valores.actualMes, 
+								valores.targetMes, 
+								valores.ytdActual, 
+								valores.ytdTarget, 
+								valores.ctmActual, 
+								valores.ctmBudget, 
+								kpi.nombreKPI
+							');
+		 		$this->db->from('valores');
+		 		$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');
+		 		$this->db->join('kpi','kpi.idKPI = kpi_planilla.idKPI','left');
 		
-		
-		// 		$this->db->where ('idDivision',$idDivision );
-		
-		
-		// 		$this->db->where ('idUnidadGen= 0');
-		
-		
-		// 		$this->db->select('*');
-		
-		
-		// 		$this->db->from('valores');
-		
-		
-		// 		$this->db->join('division','division.idDivision = valores.idDivision','left');
-		
-		
-		// 		$this->db->join('division','division.idDivision = valores.idDivision','left');
-		
-		
-		$query = $this->db->query('SELECT * FROM valores  where valores.idDivision = '.$idDivision.' AND valores.idUnidadGen=0');
-		
-		
-		
-		//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
-		// 		$query = $this->db->get();
-		
-		
-		
-		//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
-		// 		$query = $this->db->get();
-		
+				$query = $this->db->get();
 		
 		if ($query->num_rows() > 0) {
-			
-			
-			
+
 			return $query->result();
-			
-			
-			
-		}
-		
-		else{
-			
-			
-			
+
+		}else{
+
 			return false;
-			
-			
-			
+
 		}
-		
-		
-		
+
 	}
 	
 	
@@ -243,29 +209,36 @@ class Kpi_model extends CI_Model {
 	
 	// 	traigo los valores de Unidades generadoras
 	public function getValueUg( $idUg){
+				
+				$this->db->where ('idUnidadGen',$idUg );
+				$this->db->select('
+								valores.actualMes, 
+								valores.targetMes, 
+								valores.ytdActual, 
+								valores.ytdTarget, 
+								valores.ctmActual, 
+								valores.ctmBudget, 
+								kpi.nombreKPI
+							');
+		 		$this->db->from('valores');
+		 		$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');
+		 		$this->db->join('kpi','kpi.idKPI = kpi_planilla.idKPI','left');
 
-		$this->db->select('*');
+				
+				//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
+				$query = $this->db->get();
 
-		$this->db->from('valores');
+				if ($query->num_rows() > 0) {
 
-		//$		this->db->join('unidad_generadora', 'unidad_generadora.idUnidadGen = valores.idUnidadGen');
+					return $query->result();
 
-		$this->db->where ('idUnidadGen',$idUg );
-		
-		//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
-		$query = $this->db->get();
+				}
+				
+				else{
 
-		if ($query->num_rows() > 0) {
+					return false;
 
-			return $query->result();
-
-		}
-		
-		else{
-
-			return false;
-
-		}
+				}
 		
 	}
 	
@@ -279,7 +252,6 @@ class Kpi_model extends CI_Model {
 							valores.targetMes,
 							valores.ytdActual,
 							valores.ytdTarget,
-							
 							planta.nombrePlanta
 							');
 		
