@@ -2,7 +2,7 @@
 //region filtros personalizados
     Vue.filter('truncar', (value) => {
 
-        if(value != ""){
+        if(value != "" && value != null){
             
             posiciones = 2
             var s = value.toString()
@@ -53,7 +53,7 @@ Vue.component('vm-grafico',{
     data: function () {
 
         return {
-            
+           
         }
     },
 
@@ -86,6 +86,7 @@ Vue.component('vm-grafico',{
     },
 
 
+
 })
 
 
@@ -102,7 +103,7 @@ Vue.component('vm-semaforizado',{
 
         return {
             // esto es solo de prueba
-
+            leyenda:""
             
         }
     },
@@ -128,10 +129,11 @@ Vue.component('vm-semaforizado',{
                 //uso normal
 
                 css= "#2ecc71";
+                this.leyenda=" Valor actual superior al esperado";
 
             }else{
                 css = "#E74C3C";
-
+                this.leyenda=" Valor actual Inferior al esperado";
             }
 
         }else{
@@ -140,10 +142,11 @@ Vue.component('vm-semaforizado',{
             //uso alternativo
 
                 css= "#E74C3C";
+                this.leyenda=" Valor actual Superior  al esperado";
 
             }else{
                 css = "#2ecc71";
-
+                this.leyenda=" Valor actual Inferior al esperado";
             }
         }
 

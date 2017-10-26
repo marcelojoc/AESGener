@@ -39,15 +39,29 @@ var app = new Vue({
     data: {
 
         busqueda:[
-                    { id : "1", nombre : 'Unidad Generadora' },
-                    { id : "2", nombre : 'Division' },
-                    { id : "3", nombre : 'Complejo' },
+            { id : "1", nombre : 'Unidad Generadora' },
+            { id : "2", nombre : 'Division' },
+            { id : "3", nombre : 'Complejo' },
 
-                ],
+        ],
+        camodel:[
+            { id : "1", nombre : 'AES Gener S.A' },
+            { id : "2", nombre : 'ESSA' },
+            { id : "3", nombre : 'Empresa Eléctrica Guacolda S.A' },
+            { id : "4", nombre : 'Eléctrica Ventanas S.A' },
+            { id : "5", nombre : 'Empresa Electrica Angamos S.A' },
+            { id : "6", nombre : 'Empresa Electrica Campiche S.A' },
+            { id : "7", nombre : 'Empresa Electrica Cochrane S.A' },
+
+        ],
+
         seleccion:[],              
-        kpi:  [{  actualMes: "", targetMes: "", ytdActual: "", ytdTarget: "", fyf: "", fyBudget: "", hedp: "", hsf: "", mtbf: "", mtbfTarget: "", idUnidadGen: "", idDivision: "", idComplejo: "", idKPIPlanilla: "" }, { idValores: "", actualMes: "", targetMes: "", ytdActual: "", ytdTarget: "", fyf: "", fyBudget: "", hedp: "", hsf: "", mtbf: "", mtbfTarget: "", idUnidadGen: "", idDivision: "", idComplejo: "", idKPIPlanilla: "" }, { idValores: "", actualMes: "", targetMes: "", ytdActual: "", ytdTarget: "", fyf: "", fyBudget: "", hedp: "", hsf: "", mtbf: "", mtbfTarget: "", idUnidadGen: "", idDivision: "", idComplejo: "", idKPIPlanilla: "" } ],
+        kpi: [],
         idSelect:"",
-        idList:""
+        idList:"",
+
+        idcaSelect:"",  //el id de seleccion del area de Ca
+        cakpi:[]      // kpi de comertial A..
     },
 
     methods:{
@@ -62,7 +76,6 @@ var app = new Vue({
 
                 }, function(err){
                     //si sale mal
-
                     console.log(err);
                     alert ('Error de conexion');
 
@@ -89,10 +102,37 @@ var app = new Vue({
 
                 })
 
+            },
+
+            getCa: function(){
+
+                var geturl = "http://localhost/AESGener/prueba/test/vrcadata";
+
+                this.$http.get(geturl, { params: { idcaSelect: this.idcaSelect} }).then(function (resp) {
+
+                    this.cakpi = resp.data;
 
 
+                }, function (err) {
+                    //si sale mal
+
+                    console.log(err);
+                    alert('Error de conexion');
+
+
+                })
 
             }
+
+
+
+
+
+
+
+
+
+
 
 
 
