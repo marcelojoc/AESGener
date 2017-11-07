@@ -23,7 +23,7 @@ class Planilla_model extends CI_Model {
 		$this->db->insert('kpi_planilla', 
 			array('idPlanilla'=>$idPlan, 
 					'idKPI'=>$idKPI,
-					'idUbicacion'=>$idKPI));
+					'idUbicacion'=>$idKPI)); //Cambia aca que ponga una ubicacion real
 		$idKPIPlanilla = $this->db->insert_id();
 		return $idKPIPlanilla;
 	}
@@ -41,13 +41,19 @@ class Planilla_model extends CI_Model {
 	}
 
 	function getKPI($nomKPI){
-		$this->db->select('kpi.idKPI');
-		$this->db->where('kpi.abreviatura', $nomKPI);
+		$this->db->select('*');
+		$this->db->where('kpi.abreviaturaKPI', $nomKPI);
 		$this->db->from('kpi');
 		$query = $this->db->get();
 
-		if ($query->num_rows() > 0) return $query;
-		else return false;
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}	
+			return $data;
+		}else{
+			return false;
+		}
 	}
 		
 }

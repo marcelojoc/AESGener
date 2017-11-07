@@ -6,8 +6,7 @@ class Planilla extends My_Controller{
     function __construct(){
       	parent::__construct(); //Ejecuta el controlador del padre
 		$this->load->model('Bienvenida_model');
-		$this->load->helper('url');
-		$this->load->library('miexcel');				
+		$this->load->helper('url');				
 		$this->load->library('/Excel/PHPExcel');
 		$this->load->library('/Excel/PHPExcel/IOFactory');		
   	}
@@ -76,37 +75,61 @@ class Planilla extends My_Controller{
         	// echo $data['ytdTarget'].'</br>';
         	// die();
 
-
-        	
-
         }elseif($tipoP == "sap"){
 
         	$planilla['file_name'] = 'SAP_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
 
-
-        	
-
         }elseif($tipoP == "mtbf"){
         	$nombreKPI = "MTBF";
-        	$idKPI = $this->Planilla_model->getKPI($nombreKPI);
+        	$data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
+
+            foreach ($data['KPI'] as $kpi){
+                $idKPI = $kpi->idKPI;
+            }
 
         	$planilla['file_name'] = 'MTBF_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
-        	//$archivo = base_url().'.uploads/'.$planilla['file_name'];
+        	//$archivo = base_url().'uploads/'.$planilla['file_name'];
         	$archivo = './uploads/'.$planilla['file_name'];
-        	
+
         	//Cargamos la librería de subida y le pasamos la configuración 
 			$this->load->library('upload', $planilla);
 			$this->upload->do_upload();
 
         	$objExcel = PHPExcel_IOFactory::load($archivo);
         	$objExcel->setActiveSheetIndex(0);
-        	$nroFilas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+        	$nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
         	//Crear Planilla
+            $tipoP = 4; 
         	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $tipoP);
 
         	//Crear KPI-Planilla
         	$idKPIPlanilla = $this->Planilla_model->crearKPIPlanilla($idPlanilla, $idKPI);
+
+
+            for ($i = 4; $i <= $nroFilas; $i++) {
+
+                $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+
+                echo $mtbf;
+                echo "</br>";
+                echo $mtbfTarget;
+                echo "</br>";
+                echo "</br>";
+                echo "</br>";
+
+
+
+            }
+
+die();
+
+
+
+
+
 
         }
 
