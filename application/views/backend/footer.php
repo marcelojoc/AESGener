@@ -1,4 +1,4 @@
-<!COMIENZA FOOTER!-->
+
 		<div class="footer">
 				<div class="footer-inner">
 					<!-- #section:basics/footer -->

@@ -139,7 +139,7 @@ class Test extends My_Controller{
 				
 				// 			$data['lista']=$lista;
 
-				$js['javascript']= ["vendor/vue.js", "vendor/vue-resource.js","app/component/grafic_component.js","app/main.js"];
+				$js['javascript']= ["vendor/vue.js", "app/component/grafic_component.js","vendor/vue-resource.js","app/main.js"];
 
 				$nombreVista="backend/prueba/panel2_view";
 

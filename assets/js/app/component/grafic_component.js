@@ -1,6 +1,6 @@
 
 //region filtros personalizados
-    Vue.filter('truncar', (value) => {
+    Vue.filter('truncar', function(value) {
 
         if(value != "" && value != null){
             
@@ -20,7 +20,7 @@
     });
 
     //filtro simplificado para quitar los decimales de valores grandes
-    Vue.filter('sindec', (value) => {
+    Vue.filter('sindec', function (value)  {
 
         if(value != ""){
             

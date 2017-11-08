@@ -32,7 +32,7 @@
 
 	</head>
 
-<!COMIENZA HEADER!-->
+
 	<body class="no-skin">
 		<!-- #section:basics/navbar.layout -->
 		<div id="navbar" class="navbar navbar-default">

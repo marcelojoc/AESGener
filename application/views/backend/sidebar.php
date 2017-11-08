@@ -32,10 +32,6 @@
 	</div>
 </body>
 
-<!FINALIZA HEADER!-->
-
-
-<!COMIENZA SIDEBAR!-->
 
 		<!-- /section:basics/navbar.layout -->
 	<div class="main-container" id="main-container">
