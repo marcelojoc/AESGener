@@ -144,7 +144,7 @@
 						<ul class="submenu">
 
 							<li class="">
-								<a href="<?php echo base_url()?>prueba/test/panel">
+								<a href="<?php echo base_url('gener/est')?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Estratégicos
 								</a>
@@ -152,7 +152,7 @@
 							</li>
 
 							<li class="">
-								<a href="<?php echo base_url()?>seguridad/abmNivelesC">
+								<a href="<?php echo base_url('gener/tac')?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Tácticos
 								</a>
@@ -160,7 +160,7 @@
 							</li>
 
 							<li class="">
-								<a href="<?php echo base_url()?>seguridad/abmNivelesC">
+								<a href="<?php echo base_url('gener/ops')?>">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Operativos
 								</a>

@@ -52,3 +52,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['gener'] = 'gener/panel';
+$route['gener/(:any)'] = 'gener/panel/$1';
+
+
+/**
+ * Esta area resuelve las rutas para peticiones ajax desde los componentes 
+ * 
+ */
+
+
+$route['ajax/(:any)'] = 'ajax/Queryajax/$1';
+

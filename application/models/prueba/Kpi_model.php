@@ -12,7 +12,7 @@ class Kpi_model extends CI_Model {
 		
 		
 		
-		$this->load->library('miexcel');
+		//$this->load->library('miexcel');
 		
 		
 		
