@@ -106,22 +106,27 @@ class Queryajax extends My_Controller{
 
 		function vrtactic (){
 
-			// if(empty($_GET['page'])){
-				
-			// 	$data = 1;
-			// }
-			// else{
+			$request = json_decode(file_get_contents('php://input'));
 
-			// 	$data = $_GET['page'];
-				
-			// }
+			try{
+			//COLOCAMOS LA PROGRAMACION QUE NECESITAMOS HACER Y EN ESTE MISMO LUGAR CONFIGURAMOS            
+			//NUESTRAS EXCEPCIONES.
+				if(is_object($request)){
 
-			// $lista=  $this->Kpi_model->getLists(1,$data);
+					$id_ugen= $request->dato;
+				}else{
 
+					throw new Exception('‘Existio un error, provocado’',0);
 
-			// $lista= $_POST['dato'];
-var_dump($_POST);
-			//echo json_encode($lista);
+				}
+			}catch(Exception $e){
+
+				$id_ugen= 3;
+			}
+
+			$datos=$this->Kpi_model->getValueUgfortac($id_ugen);
+
+			echo json_encode($datos);
 
 
 

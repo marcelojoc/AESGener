@@ -53,6 +53,78 @@
 <!-- aqui va el contenido -->
 
 
+        <div class="row">
+
+
+            <div class="col-sm-12 text-left" >
+
+                <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>KPI</th>
+                            <th>REAL MON</th>
+                            <th>COMENTARIOS</th>
+                        </tr>
+                        </thead>
+
+
+                        <tbody v-for="item in kpi">
+
+                            <tr HEIGHT="50">
+                                <td>HEDP</td>
+                                <td>{{item.hedp}} [hr]</td>
+                                <td class=" text-center">Traslado Mantenimiento al 2018 (840 hrs)</td>
+                            </tr>
+
+                            <tr HEIGHT="50">
+                                <td>HEDF</td>
+                                <td>{{item.hedf}} [hr]</td>
+                                <td class=" text-center">Cambios de prefiltros en compresor</td>
+                            </tr>
+
+                            <tr HEIGHT="50">
+                                <td>HSF</td>
+                                <td>{{item.hsf}} [hr]</td>
+                                <td class=" text-center">7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                            </tr>
+
+                                
+                            <tr HEIGHT="50">
+                                <td>MTBF CNR</td>
+                                <td> 57 [hr. Oper]</td>
+                                <td class=" text-center"></td>
+                            </tr>
+
+                            <tr HEIGHT="50">
+                                <td>MTBF target</td>
+                                <td>1600 [hr. Oper]</td>
+                                <td class=" text-center">Comentario</td>
+                            </tr>
+
+                            <tr HEIGHT="50">
+                                <td>Costo Mtto. Correctivo
+                                        [K USD]</td>
+                                <td>47.7</td>
+                                <td class=" text-center">Comentario</td>
+                            </tr>
+
+                            <tr HEIGHT="50">
+                                <td>Costo Mtto. Preventivo
+                                        [K USD]</td>
+                                <td>350.4</td>
+                                <td class=" text-center">Comentario</td>
+                            </tr>
+
+
+
+
+
+                        </tbody>
+
+                </table>
+            </div>
+
+        </div>
 
 
 
@@ -77,11 +149,13 @@
 
 
 
-
-
-
-
+<!-- 
+<pre>
 {{$data}}
+</pre> -->
+
+
+
 
 
         </div>  

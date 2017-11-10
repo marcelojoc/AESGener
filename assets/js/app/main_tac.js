@@ -31,13 +31,10 @@ var app = new Vue({
 
         getkpi: function(){
 
-            this.$http.post(url+'vrtactic', { dato: this.idSelect,
-
-                                              prueba: "lalalala",
-                                              test: "uuuuuuuuuuu"
+            this.$http.post(url+'vrtactic', { dato: this.idSelect} )
             
-                                            } ).then( function (resp){
-
+            .then( function (resp){
+                
                 this.kpi=resp.data;
 
             }, function(err){
