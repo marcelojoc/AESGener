@@ -12,7 +12,7 @@ class Planilla extends My_Controller{
   	}
 
   	function index(){
-  		$data ="";
+        $data['meses'] = $this->Planilla_model->obtenerMeses();  
 		$nombreVista="backend/planilla/upload_view";
 		$this->cargarVista($nombreVista,$data);
 
@@ -108,19 +108,50 @@ class Planilla extends My_Controller{
 
 
             for ($i = 4; $i <= $nroFilas; $i++) {
+                $columna = "A";
+                $fila = $i;
 
-                $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-
-                $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-
-                echo $mtbf;
-                echo "</br>";
-                echo $mtbfTarget;
-                echo "</br>";
-                echo "</br>";
-                echo "</br>";
+                $ubicacion = $this->Planilla_model->buscarUbicacion($fila, $columna, $idKPI);
 
 
+
+                foreach ($ubicacion as $ubi){
+                    $id = $ubi->idUbicacion;
+                }
+
+
+
+                foreach ($ubicacion as $ubi){
+                    if($ubi->idUnidadGen != 0){
+                        $idUnidadGen = $ubi->idUnidadGen;
+
+                        $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                        $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+
+                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0, $idUnidadGen,0,0, $idKPIPlanilla,0);
+
+                    }elseif($ubi->idDivision != 0){
+                        $idDivision = $ubi->idDivision;  
+
+                        $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                        $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+
+                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0,0,$idDivision,0, $idKPIPlanilla,0);
+
+                    }elseif($ubi->idComplejo != 0){
+                        $idComplejo = $ubi->idComplejo;
+
+                        $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                        $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+
+                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0,0,0,$idComplejo, $idKPIPlanilla,0);
+                    }
+                }
+
+                
 
             }
 

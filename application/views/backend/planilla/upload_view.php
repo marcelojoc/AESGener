@@ -18,6 +18,40 @@
 					<form class="form-horizontal" role="form" method="post" action="<?php echo base_url()?>planilla/Planilla/subir" enctype="multipart/form-data">
 						
 						<div class="form-group"> <!-- Empieza linea del form con desplegable -->
+							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Año</label>
+								<div class="col-sm-5">
+									<div>
+										<select class="form-control" name="tipoPlanilla" placeholder="Seleccione Tipo Planilla"><!-- Codigo de Combo con datos de la BD -->
+											<option value="">--- Seleccione Año ---</option>
+											<?php 
+                   								$year = date("Y");
+                     							for ($i= 2015; $i <= $year ; $i++){
+                     								echo'<option value="$i">'.$i.'</option>';
+                     								echo'<option value="++$i">'.++$i.'</option>';
+                         						}
+                    						?>
+										</select>
+									</div>
+							</div>
+						</div>
+
+						<div class="form-group"> <!-- Empieza linea del form con desplegable -->
+							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Mes</label>
+								<div class="col-sm-5">
+									<div>
+										<select class="form-control" name="tipoPlanilla" placeholder="Seleccione Tipo Planilla"><!-- Codigo de Combo con datos de la BD -->
+											<option value="">--- Seleccione Mes ---</option>
+											<?php 
+                   								foreach ($meses->result() as $) {
+                   									# code...$key => $value
+                   								}
+                    						?>
+										</select>
+									</div>
+							</div>
+						</div>
+
+						<div class="form-group"> <!-- Empieza linea del form con desplegable -->
 							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Tipo de Planilla</label>
 								<div class="col-sm-5">
 									<div>
