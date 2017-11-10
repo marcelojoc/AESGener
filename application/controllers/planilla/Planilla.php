@@ -6,14 +6,13 @@ class Planilla extends My_Controller{
     function __construct(){
       	parent::__construct(); //Ejecuta el controlador del padre
 		$this->load->model('Bienvenida_model');
-		$this->load->helper('url');
-		//$this->load->library('miexcel');				
+		$this->load->helper('url');				
 		$this->load->library('/Excel/PHPExcel');
 		$this->load->library('/Excel/PHPExcel/IOFactory');		
   	}
 
   	function index(){
-  		$data ="";
+        $data['meses'] = $this->Planilla_model->obtenerMeses();  
 		$nombreVista="backend/planilla/upload_view";
 		$this->cargarVista($nombreVista,$data);
 
@@ -76,37 +75,92 @@ class Planilla extends My_Controller{
         	// echo $data['ytdTarget'].'</br>';
         	// die();
 
-
-        	
-
         }elseif($tipoP == "sap"){
 
         	$planilla['file_name'] = 'SAP_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
 
-
-        	
-
         }elseif($tipoP == "mtbf"){
         	$nombreKPI = "MTBF";
-        	$idKPI = $this->Planilla_model->getKPI($nombreKPI);
+        	$data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
+
+            foreach ($data['KPI'] as $kpi){
+                $idKPI = $kpi->idKPI;
+            }
 
         	$planilla['file_name'] = 'MTBF_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
-        	//$archivo = base_url().'.uploads/'.$planilla['file_name'];
+        	//$archivo = base_url().'uploads/'.$planilla['file_name'];
         	$archivo = './uploads/'.$planilla['file_name'];
-        	
+
         	//Cargamos la librería de subida y le pasamos la configuración 
 			$this->load->library('upload', $planilla);
 			$this->upload->do_upload();
 
         	$objExcel = PHPExcel_IOFactory::load($archivo);
         	$objExcel->setActiveSheetIndex(0);
-        	$nroFilas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow();
+        	$nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
         	//Crear Planilla
+            $tipoP = 4; 
         	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $tipoP);
 
         	//Crear KPI-Planilla
         	$idKPIPlanilla = $this->Planilla_model->crearKPIPlanilla($idPlanilla, $idKPI);
+
+
+            for ($i = 4; $i <= $nroFilas; $i++) {
+                $columna = "A";
+                $fila = $i;
+
+                $ubicacion = $this->Planilla_model->buscarUbicacion($fila, $columna, $idKPI);
+
+
+
+                foreach ($ubicacion as $ubi){
+                    $id = $ubi->idUbicacion;
+                }
+
+
+
+                foreach ($ubicacion as $ubi){
+                    if($ubi->idUnidadGen != 0){
+                        $idUnidadGen = $ubi->idUnidadGen;
+
+                        $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                        $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+
+                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0, $idUnidadGen,0,0, $idKPIPlanilla,0);
+
+                    }elseif($ubi->idDivision != 0){
+                        $idDivision = $ubi->idDivision;  
+
+                        $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                        $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+
+                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0,0,$idDivision,0, $idKPIPlanilla,0);
+
+                    }elseif($ubi->idComplejo != 0){
+                        $idComplejo = $ubi->idComplejo;
+
+                        $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                        $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
+
+                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0,0,0,$idComplejo, $idKPIPlanilla,0);
+                    }
+                }
+
+                
+
+            }
+
+die();
+
+
+
+
+
 
         }
 

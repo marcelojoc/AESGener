@@ -23,7 +23,7 @@ class Planilla_model extends CI_Model {
 		$this->db->insert('kpi_planilla', 
 			array('idPlanilla'=>$idPlan, 
 					'idKPI'=>$idKPI,
-					'idUbicacion'=>$idKPI));
+					'idUbicacion'=>$idKPI)); //Cambia aca que ponga una ubicacion real
 		$idKPIPlanilla = $this->db->insert_id();
 		return $idKPIPlanilla;
 	}
@@ -41,13 +41,73 @@ class Planilla_model extends CI_Model {
 	}
 
 	function getKPI($nomKPI){
-		$this->db->select('kpi.idKPI');
-		$this->db->where('kpi.abreviatura', $nomKPI);
+		$this->db->select('*');
+		$this->db->where('kpi.abreviaturaKPI', $nomKPI);
 		$this->db->from('kpi');
 		$query = $this->db->get();
 
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}	
+			return $data;
+		}else{
+			return false;
+		}
+	}
+
+	function obtenerMeses(){
+		$this->db->select('*');
+		$this->db->from('meses');
+		$query = $this->db->get();
+
 		if ($query->num_rows() > 0) return $query;
-		else return false;
+			else return false;	
+	}
+
+	function buscarUbicacion($fi, $col, $idKPI){
+		$this->db->select('*');
+		$this->db->where('ubicacion.idKPI', $idKPI);
+		$this->db->where('ubicacion.letra', $col);
+		$this->db->where('ubicacion.nro', $fi);
+		$this->db->from('ubicacion');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}	
+			return $data;
+		}else{
+			return false;
+		}
+
+	}
+
+	function crearValor($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, $hsf, $mtbf, $mtbfTarget, 
+						$ctmActual, $ctmBudget, $idUnidadGen, $idDivision, $idComplejo ,$idKPIPlanilla, $idPlanta){
+		$this->db->insert('valores', 
+			array('actualMes'=>$actualMes,
+					'targetMes'=>$targetMes,
+					'ytdActual'=>$ytdActual,
+					'ytdTarget'=>$ytdTarget,
+					'fyf'=>$fyf,
+					'fyBudget'=>$fyBudget,
+					'hedp'=>$hedp,
+					'hedf'=>$hedf,
+					'hsf'=>$hsf,
+					'mtbf'=>$mtbf, 
+					'mtbfTarget'=>$mtbfTarget, 
+					'ctmActual'=>$ctmActual, 
+					'ctmBudget'=>$ctmBudget,
+					'idUnidadGen'=>$idUnidadGen,
+					'idDivision'=>$idDivision,
+					'idComplejo'=>$idComplejo,
+					'idKPIPlanilla'=> $idKPIPlanilla,
+					'idPlanta'=>$idPlanta));
+		$idValores = $this->db->insert_id();
+		return $idValores;
+
 	}
 		
 }

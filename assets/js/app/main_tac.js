@@ -1,4 +1,8 @@
-var url= "http://localhost/AESGener/ajax/";
+var url= $("#siteurl").val()+"ajax/";
+
+$("#main-content").show();
+
+
 
 
 var app = new Vue({
@@ -16,15 +20,26 @@ var app = new Vue({
 
         ],
 
+        load: false,
+
         idSelect:""
 
 
 
     },
+
+    beforeCreate: function () {
+        
+        
+    },
     created: function() {
         // fetch the data when the view is created and the data is
         // already being observed
         this.getugen()
+    },
+
+    mounted: function () {
+        this.load=true;
     },
 
     methods:{
@@ -34,7 +49,7 @@ var app = new Vue({
             this.$http.post(url+'vrtactic', { dato: this.idSelect} )
             
             .then( function (resp){
-                
+
                 this.kpi=resp.data;
 
             }, function(err){
