@@ -5,8 +5,8 @@ class Planilla extends My_Controller{
 
     function __construct(){
       	parent::__construct(); //Ejecuta el controlador del padre
-		$this->load->model('Bienvenida_model');
-		$this->load->helper('url');				
+		$this->load->model('Bienvenida_model');			
+		//$this->load->library('miexcel');				
 		$this->load->library('/Excel/PHPExcel');
 		$this->load->library('/Excel/PHPExcel/IOFactory');		
   	}

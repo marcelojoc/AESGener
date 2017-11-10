@@ -1,39 +1,19 @@
 //region  jquery
     $(function() {
-        // Handler for .ready() called.
     
-        selector.bind();
-    
-    
+        //polifill para funcion trunc
+        Math.trunc = Math.trunc || function(x) {
+            return x - x % 1;
+        }   
     });
     
-    var selector = {
 
-        bind: function(){
-
-            $( "#category" ).on(
-            'change', function(){
-                
-                selector.submit();
-
-            });
-
-        },
-    
-        submit: function(){
-            
-            $( "#form_selector" ).submit();
-        
-        }
-    
-    }
+    var url= $("#siteurl").val()+"ajax/";
 //endregion  jquery
 
 
-
-
 //region Vue
-var url= "http://localhost/AESGener/prueba/test/vrPrueba";
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -69,29 +49,24 @@ var app = new Vue({
             //Metodo para listar las unidades, diviciones y complejos
             getLists: function(){
 
-                this.$http.get(url, { params: { page: this.idSelect } } ).then( function (resp){
+                this.$http.get(url+'vrPrueba', { params: { page: this.idSelect } } ).then( function (resp){
 
                     this.seleccion=resp.data;
-
 
                 }, function(err){
                     //si sale mal
                     console.log(err);
                     alert ('Error de conexion');
-
-
-                })
+                });
 
             },
 
             getData: function(){
 
-                var geturl = "http://localhost/AESGener/prueba/test/vrdata";
 
-                this.$http.get(geturl, { params: { idselect: this.idSelect, idlist: this.idList } }).then(function (resp) {
+                this.$http.get(url+'vrdata', { params: { idselect: this.idSelect, idlist: this.idList } }).then(function (resp) {
 
                     this.kpi = resp.data;
-
 
                 }, function (err) {
                     //si sale mal
@@ -99,16 +74,13 @@ var app = new Vue({
                     console.log(err);
                     alert('Error de conexion');
 
-
                 })
 
             },
 
             getCa: function(){
 
-                var geturl = "http://localhost/AESGener/prueba/test/vrcadata";
-
-                this.$http.get(geturl, { params: { idcaSelect: this.idcaSelect} }).then(function (resp) {
+                this.$http.get(url+'vrcadata', { params: { idcaSelect: this.idcaSelect} }).then(function (resp) {
 
                     this.cakpi = resp.data;
 
@@ -123,18 +95,6 @@ var app = new Vue({
                 })
 
             }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 })

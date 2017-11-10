@@ -4,7 +4,7 @@
             
         <div class="row">
 
-
+                    <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
                     <div class="page-header col-sm-4 text-center blueAES b-r">
                         <h1 class="blueAES">
                             Tablero Estratégico 
@@ -84,22 +84,22 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium" >{{item.actualMes |truncar  }} %</h5>
+                                    <h5 class="font-medium" >{{item.actualMes |truncar }} %</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium">{{item.targetMes |truncar}} %</h5>
+                                    <h5 class="font-medium">{{item.targetMes |truncar }} %</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium">{{item.ytdActual |truncar}}%</h5>
+                                        <h5 class="font-medium">{{item.ytdActual |truncar }}%</h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium">{{item.ytdTarget |truncar}}%</h5>
+                                        <h5 class="font-medium">{{item.ytdTarget |truncar }}%</h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
@@ -191,22 +191,22 @@
 
                             <div class="soc-content">
                                 <div class="col-xs-3 b-r b-b">
-                                    <h5 class="font-medium" >{{item.actualMes |sindec  }}</h5>
+                                    <h5 class="font-medium" >{{item.actualMes |sindec  }} [BTU/MWH]</h5>
                                     <h6 class="text-muted">Actual Mon</h6>
                                 </div>
                             
                                 <div class="col-xs-3 b-b b-r">
-                                    <h5 class="font-medium">{{item.targetMes |sindec}}</h5>
+                                    <h5 class="font-medium">{{item.targetMes |sindec}} [BTU/MWH]</h5>
                                     <h6 class="text-muted">Target Mon</h6>
 
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
-                                        <h5 class="font-medium">{{item.ytdActual |sindec}}</h5>
+                                        <h5 class="font-medium">{{item.ytdActual |sindec}}[BTU/MWH]</h5>
                                         <h6 class="text-muted">Actual Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
-                                        <h5 class="font-medium">{{item.ytdTarget |sindec}}</h5>
+                                        <h5 class="font-medium">{{item.ytdTarget |sindec}}[BTU/MWH]</h5>
                                         <h6 class="text-muted">Target Mon</h6>
     
                                 </div>
@@ -580,8 +580,8 @@
 
 
 <!-- tag de templates -->
-
-<template id="aesgen-graph">
+<script type="text/x-template" id="aesgen-graph" >
+<!-- <template id="aesgen-graph"> -->
 
             <!-- contenedor general de la progress bar -->
             <div class="content-progres social-widget"> 
@@ -610,11 +610,11 @@
 
             </div>
 
-</template>
+</script>
 
 
 
-<template id="aesgen-semaf">
+<script type="text/x-template" id="aesgen-semaf">
 
     <!-- contenedor general de la progress bar -->
     <div class="content-progres social-widget">
@@ -633,4 +633,4 @@
                 </div>
     </div>
 
-</template>
+</script>
