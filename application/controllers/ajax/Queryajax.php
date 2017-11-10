@@ -21,7 +21,7 @@ class Queryajax extends My_Controller{
 	}
 	
 
-		public function vrPrueba(){
+		public function vrPrueba(){  // trae todos las unidades generadoras
 			
 			if(empty($_GET['page'])){
 				
@@ -43,7 +43,7 @@ class Queryajax extends My_Controller{
 
 
 
-		public function vrdata(){
+		public function vrdata(){  // trae los datos de cada unidad complejo o divicion
 
 			if( isset($_GET) && (!empty($_GET['idlist']) ) && (!empty($_GET['idselect']) )){
 
@@ -97,6 +97,35 @@ class Queryajax extends My_Controller{
 
 		}
 
+
+
+
+
+		// metodos parte tactica
+
+
+		function vrtactic (){
+
+			// if(empty($_GET['page'])){
+				
+			// 	$data = 1;
+			// }
+			// else{
+
+			// 	$data = $_GET['page'];
+				
+			// }
+
+			// $lista=  $this->Kpi_model->getLists(1,$data);
+
+
+			// $lista= $_POST['dato'];
+var_dump($_POST);
+			//echo json_encode($lista);
+
+
+
+		}
 
 
 

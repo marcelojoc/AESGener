@@ -4,7 +4,7 @@
             
         <div class="row">
 
-
+                    <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
                     <div class="page-header col-sm-4 text-center blueAES b-r">
                         <h1 class="blueAES">
                             Tablero Estratégico 

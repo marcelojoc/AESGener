@@ -1,16 +1,15 @@
 //region  jquery
     $(function() {
     
+        //polifill para funcion trunc
         Math.trunc = Math.trunc || function(x) {
             return x - x % 1;
         }   
     });
     
 
-    var url= "http://localhost/AESGener/ajax/";
+    var url= $("#siteurl").val()+"ajax/";
 //endregion  jquery
-
-
 
 
 //region Vue
@@ -54,14 +53,11 @@ var app = new Vue({
 
                     this.seleccion=resp.data;
 
-
                 }, function(err){
                     //si sale mal
                     console.log(err);
                     alert ('Error de conexion');
-
-
-                })
+                });
 
             },
 
@@ -72,13 +68,11 @@ var app = new Vue({
 
                     this.kpi = resp.data;
 
-
                 }, function (err) {
                     //si sale mal
 
                     console.log(err);
                     alert('Error de conexion');
-
 
                 })
 

@@ -19,13 +19,13 @@
                                 
                                         <div class="form-group">
             
-                                                <select class="form-control" v-model="idcaSelect" name="caSelect" >
+                                                <select class="form-control" v-model="idSelect" name="ugenSelect" >
 
-                                                        <!-- <option value="" disabled selected hidden>Seleccionar</option>
-                                                        <option value="0">Todas</option>
-                                                        <option v-for="option in camodel" v-bind:value="option.id">
+                                                        <option value="" disabled selected hidden>Seleccionar</option>
+                                                        <!-- <option value="0">Todas</option> -->
+                                                        <option v-for="option in ugen" v-bind:value="option.id">
                                                         {{ option.nombre  }}
-                                                        </option> -->
+                                                        </option>
 
                                                 </select>   
                                         </div>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-xs-6">
 
-                            <button v-on:click.prevent="getCa" class="btn btn-xs btn-success " >
+                            <button v-on:click.prevent="getkpi" class="btn btn-xs btn-success " >
                                     <span class="bigger-110">Ir</span>
 
                                     <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
@@ -81,7 +81,7 @@
 
 
 
-
+{{$data}}
 
 
         </div>  

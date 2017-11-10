@@ -1,12 +1,13 @@
 
 //region filtros personalizados
+    // filtro para truncar decimales
     Vue.filter('truncar', function(value) {
 
         if(value != "" && value != null){
             
             posiciones = 2
             var s = value.toString()
-            var l = s.length
+            var l = s.length;
             var decimalLength = s.indexOf('.') + 1
             var numStr = s.substr(0, decimalLength + posiciones)
             return Number(numStr)
@@ -16,7 +17,6 @@
 
         }
 
-        
     });
 
     //filtro simplificado para quitar los decimales de valores grandes
@@ -27,18 +27,14 @@
             var result= Math.trunc(parseFloat(value))
 
             return result;
+
         }else{
 
             return "";
 
         }
-
         
     });
-
-
-
-
 
     
 //endregion filtros personalizados
@@ -58,7 +54,6 @@ Vue.component('vm-grafico',{
     },
 
     props: ['lble','lblr','esperado','real'],
-
  
     computed: {
         
@@ -84,8 +79,6 @@ Vue.component('vm-grafico',{
 
         }
     },
-
-
 
 })
 
@@ -149,7 +142,6 @@ Vue.component('vm-semaforizado',{
                 this.leyenda=" Valor actual Inferior al esperado";
             }
         }
-
 
         return css;
 

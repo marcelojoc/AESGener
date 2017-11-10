@@ -17,9 +17,6 @@ class Panel extends My_Controller{
 	}
 	
 	
-	
-	
-	
 	//#	endregion constructor de controlador test
 	
 		function index(){
@@ -60,7 +57,11 @@ class Panel extends My_Controller{
 
 
         public function ops(){
-            echo base_url();
+			echo base_url();
+			
+
+
+			
 
         }
 
