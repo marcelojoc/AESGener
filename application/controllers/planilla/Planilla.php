@@ -13,31 +13,39 @@ class Planilla extends My_Controller{
 
   	function index(){
         $data['meses'] = $this->Planilla_model->obtenerMeses();  
+        $data['tipoPlanilla'] = $this->Planilla_model->obtenerTiposPlanillas();
+        $data['divisionesSAP'] = $this->Planilla_model->obtenerDivisionesSAP();
 		$nombreVista="backend/planilla/upload_view";
 		$this->cargarVista($nombreVista,$data);
 
 	}
 
-	public function subir(){/*Falta pasar datos del empleado*/
+	public function subir(){
+        /*Falta pasar datos del empleado*/
+        /*Falta pasar datos del empleado*/
+        /*Falta pasar datos del empleado*/
+        /*Falta pasar datos del empleado*/
+        $anio = $this->input->post('anio');
+        $mes = $this->input->post('mes');
+        $tipoP = $this->input->post('tipoPlanilla');
+        $data['divisionSAP'] = $this->input->post('divisionSAP');
+
 		//Ruta donde se guardan los ficheros
 		$planilla['upload_path'] = './uploads/';
 		//Tipos de ficheros permitidos
 		$planilla['allowed_types'] = 'xlsx';
 
+
 		//Tomo datos del sistema
 		date_default_timezone_set('America/Santiago');
         $fecha = getdate();
-        $anio = $fecha['year'];
-        $mes = $fecha['mon'];
         $dia = $fecha['mday'];
         $hora = $fecha['hours'];
         $min = $fecha['minutes'];
 
-        //Leo tipo de planilla
-        /*Modificar para que sea el idTIpoPlanilla*/
-        $tipoP = $this->input->post('tipoPlanilla');
 
-        if($tipoP == "aesgener"){
+        //Analizo que Tipo de Planilla recibi
+        if($tipoP == "1"){
 
         	$planilla['file_name'] = 'AES_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
         	//$archivo = base_url().'.uploads/'.$planilla['file_name'];
@@ -75,12 +83,12 @@ class Planilla extends My_Controller{
         	// echo $data['ytdTarget'].'</br>';
         	// die();
 
-        }elseif($tipoP == "sap"){
+        }elseif($tipoP == "3"){
 
         	$planilla['file_name'] = 'SAP_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
 
-        }elseif($tipoP == "mtbf"){
-        	$nombreKPI = "MTBF";
+        }elseif($tipoP == "4"){
+        	$nombreKPI = "MTBF"; //Pensar si no habria que traerlo tbn de la db
         	$data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
 
             foreach ($data['KPI'] as $kpi){
@@ -88,7 +96,6 @@ class Planilla extends My_Controller{
             }
 
         	$planilla['file_name'] = 'MTBF_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
-        	//$archivo = base_url().'uploads/'.$planilla['file_name'];
         	$archivo = './uploads/'.$planilla['file_name'];
 
         	//Cargamos la librería de subida y le pasamos la configuración 
@@ -100,12 +107,7 @@ class Planilla extends My_Controller{
         	$nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
         	//Crear Planilla
-            $tipoP = 4; 
-        	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $tipoP);
-
-        	//Crear KPI-Planilla
-        	$idKPIPlanilla = $this->Planilla_model->crearKPIPlanilla($idPlanilla, $idKPI);
-
+        	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP);
 
             for ($i = 4; $i <= $nroFilas; $i++) {
                 $columna = "A";
@@ -113,49 +115,21 @@ class Planilla extends My_Controller{
 
                 $ubicacion = $this->Planilla_model->buscarUbicacion($fila, $columna, $idKPI);
 
-
-
                 foreach ($ubicacion as $ubi){
                     $id = $ubi->idUbicacion;
                 }
 
-
-
                 foreach ($ubicacion as $ubi){
                     if($ubi->idUnidadGen != 0){
+
                         $idUnidadGen = $ubi->idUnidadGen;
-
                         $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-
                         $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-
-                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0, $idUnidadGen,0,0, $idKPIPlanilla,0);
-
-                    }elseif($ubi->idDivision != 0){
-                        $idDivision = $ubi->idDivision;  
-
-                        $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-
-                        $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-
-                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0,0,$idDivision,0, $idKPIPlanilla,0);
-
-                    }elseif($ubi->idComplejo != 0){
-                        $idComplejo = $ubi->idComplejo;
-
-                        $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
-
-                        $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-
-                        $idValor = $this->Planilla_model->crearValor(0,0,0,0,0,0,0,0,0, $mtbf, $mtbfTarget,0,0,0,0,$idComplejo, $idKPIPlanilla,0);
+                        $idLineaMTBF = $this->Planilla_model->crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla);
                     }
                 }
-
-                
-
             }
 
-die();
 
 
 

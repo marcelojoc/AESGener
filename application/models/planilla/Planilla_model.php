@@ -7,37 +7,20 @@ class Planilla_model extends CI_Model {
 		$this->load->database();
 	}
 
-	function crearPlanilla($ruta, $fecha, $tipoP){
+	function crearPlanilla($ruta, $fecha, $anio, $mes, $tipoP){
+		//Asignar idEmpleado Real
+		//Asignar idEmpleado Real
+		//Asignar idEmpleado Real
+		//Asignar idEmpleado Real
 		$this->db->insert('planilla', 
 			array('url'=>$ruta, 
 					'dia'=>$fecha['mday'], 
-					'mes'=>$fecha['mon'], 
-					'anio'=>$fecha['year'],
+					'mes'=>$mes, 
+					'anio'=>$anio,
 					'idEmpleado'=>2,
 					'idTipoPlanilla'=> $tipoP));
 		$idPlanilla = $this->db->insert_id();
 		return $idPlanilla;
-	}
-
-	function crearKPIPlanilla($idPlan, $idKPI){
-		$this->db->insert('kpi_planilla', 
-			array('idPlanilla'=>$idPlan, 
-					'idKPI'=>$idKPI,
-					'idUbicacion'=>$idKPI)); //Cambia aca que ponga una ubicacion real
-		$idKPIPlanilla = $this->db->insert_id();
-		return $idKPIPlanilla;
-	}
-
-	function guardarDatos($data){
-		//Crear en orden de mas grande a menor, Complejo, Division y Maquina
-		$this->db->insert('maquina', 
-			array('nombreMaquina'=>$data['nombreMaquina'], 
-					'actualMes'=>$data['mesActual'], 
-					'targetMes'=>$data['mesActual'], 
-					'ytdActual'=>$data['ytdActual'],
-					'ytdTarget'=>$data['ytdTarget']));
-		$idMaquina = $this->db->insert_id();
-		return $idMaquina;
 	}
 
 	function getKPI($nomKPI){
@@ -58,11 +41,29 @@ class Planilla_model extends CI_Model {
 
 	function obtenerMeses(){
 		$this->db->select('*');
-		$this->db->from('meses');
+		$this->db->from('mes');
 		$query = $this->db->get();
 
 		if ($query->num_rows() > 0) return $query;
 			else return false;	
+	}
+
+	function obtenerTiposPlanillas(){
+		$this->db->select('*');
+		$this->db->from('tipo_planilla');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) return $query;
+			else return false;	
+	}
+
+	function obtenerDivisionesSAP(){
+		$this->db->select('*');
+		$this->db->from('division_sap');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) return $query;
+			else return false;
 	}
 
 	function buscarUbicacion($fi, $col, $idKPI){
@@ -84,31 +85,68 @@ class Planilla_model extends CI_Model {
 
 	}
 
-	function crearValor($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, $hsf, $mtbf, $mtbfTarget, 
-						$ctmActual, $ctmBudget, $idUnidadGen, $idDivision, $idComplejo ,$idKPIPlanilla, $idPlanta){
-		$this->db->insert('valores', 
-			array('actualMes'=>$actualMes,
-					'targetMes'=>$targetMes,
-					'ytdActual'=>$ytdActual,
-					'ytdTarget'=>$ytdTarget,
-					'fyf'=>$fyf,
-					'fyBudget'=>$fyBudget,
-					'hedp'=>$hedp,
-					'hedf'=>$hedf,
-					'hsf'=>$hsf,
-					'mtbf'=>$mtbf, 
+	function crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla){
+		$this->db->insert('linea_mtbf', 
+			array('mtbf'=>$mtbf, 
 					'mtbfTarget'=>$mtbfTarget, 
-					'ctmActual'=>$ctmActual, 
-					'ctmBudget'=>$ctmBudget,
 					'idUnidadGen'=>$idUnidadGen,
-					'idDivision'=>$idDivision,
-					'idComplejo'=>$idComplejo,
-					'idKPIPlanilla'=> $idKPIPlanilla,
-					'idPlanta'=>$idPlanta));
-		$idValores = $this->db->insert_id();
-		return $idValores;
-
+					'idPlanilla'=> $idPlanilla));
+		$idLineaMTBF = $this->db->insert_id();
+		return $idLineaMTBF;
 	}
 		
 }
+
+
+	// function crearValor($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, $hsf, $mtbf, $mtbfTarget, 
+	// 					$ctmActual, $ctmBudget, $idUnidadGen, $idDivision, $idComplejo ,$idKPIPlanilla, $idPlanta){
+	// 	$this->db->insert('valores', 
+	// 		array('actualMes'=>$actualMes,
+	// 				'targetMes'=>$targetMes,
+	// 				'ytdActual'=>$ytdActual,
+	// 				'ytdTarget'=>$ytdTarget,
+	// 				'fyf'=>$fyf,
+	// 				'fyBudget'=>$fyBudget,
+	// 				'hedp'=>$hedp,
+	// 				'hedf'=>$hedf,
+	// 				'hsf'=>$hsf,
+	// 				'mtbf'=>$mtbf, 
+	// 				'mtbfTarget'=>$mtbfTarget, 
+	// 				'ctmActual'=>$ctmActual, 
+	// 				'ctmBudget'=>$ctmBudget,
+	// 				'idUnidadGen'=>$idUnidadGen,
+	// 				'idDivision'=>$idDivision,
+	// 				'idComplejo'=>$idComplejo,
+	// 				'idKPIPlanilla'=> $idKPIPlanilla,
+	// 				'idPlanta'=>$idPlanta));
+	// 	$idValores = $this->db->insert_id();
+	// 	return $idValores;
+	// }
+
+
+
+
+	// function crearKPIPlanilla($idPlan, $idKPI){
+	// 	$this->db->insert('kpi_planilla', 
+	// 		array('idPlanilla'=>$idPlan, 
+	// 				'idKPI'=>$idKPI,
+	// 				'idUbicacion'=>$idKPI)); //Cambia aca que ponga una ubicacion real
+	// 	$idKPIPlanilla = $this->db->insert_id();
+	// 	return $idKPIPlanilla;
+	// }
+
+	// function guardarDatos($data){
+	// 	//Crear en orden de mas grande a menor, Complejo, Division y Maquina
+	// 	$this->db->insert('maquina', 
+	// 		array('nombreMaquina'=>$data['nombreMaquina'], 
+	// 				'actualMes'=>$data['mesActual'], 
+	// 				'targetMes'=>$data['mesActual'], 
+	// 				'ytdActual'=>$data['ytdActual'],
+	// 				'ytdTarget'=>$data['ytdTarget']));
+	// 	$idMaquina = $this->db->insert_id();
+	// 	return $idMaquina;
+	// }
+
 ?>
+
+
