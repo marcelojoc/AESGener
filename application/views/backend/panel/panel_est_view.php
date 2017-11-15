@@ -95,12 +95,12 @@
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
                                         <h5 class="font-medium">{{item.ytdActual |truncar }}%</h5>
-                                        <h6 class="text-muted">Actual Mon</h6>
+                                        <h6 class="text-muted">YTD Actual</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
                                         <h5 class="font-medium">{{item.ytdTarget |truncar }}%</h5>
-                                        <h6 class="text-muted">Target Mon</h6>
+                                        <h6 class="text-muted">YTD Target</h6>
     
                                 </div>
 
@@ -148,12 +148,12 @@
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
                                         <h5 class="font-medium">{{item.ytdActual |truncar}}%</h5>
-                                        <h6 class="text-muted">Actual Mon</h6>
+                                        <h6 class="text-muted">YTD Actual</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
                                         <h5 class="font-medium">{{item.ytdTarget |truncar}}%</h5>
-                                        <h6 class="text-muted">Target Mon</h6>
+                                        <h6 class="text-muted">YTD Target</h6>
     
                                 </div>
 
@@ -202,12 +202,12 @@
                                 </div>
                                 <div class="col-xs-3 b-r b-b">
                                         <h5 class="font-medium">{{item.ytdActual |sindec}}[BTU/MWH]</h5>
-                                        <h6 class="text-muted">Actual Mon</h6>
+                                        <h6 class="text-muted">YTD Actual</h6>
                                     </div>
                                 
                                     <div class="col-xs-3 b-b">
                                         <h5 class="font-medium">{{item.ytdTarget |sindec}}[BTU/MWH]</h5>
-                                        <h6 class="text-muted">Target Mon</h6>
+                                        <h6 class="text-muted">YTD Target</h6>
     
                                 </div>
 
@@ -217,14 +217,14 @@
                                     
                                 <div class="col-xs-6 b-r">
 
-                                        <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.targetMes |sindec' v-bind:real= 'item.actualMes |sindec'  lbl=""  tipo= "true"></vm-semaforizado>
+                                        <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.targetMes |sindec' v-bind:real= 'item.actualMes |sindec'  lbl=""  tipo= "false"></vm-semaforizado>
                                         
 
                                 </div>
 
                                 <div class="col-xs-6 ">
                                         
-                                        <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.ytdTarget |sindec' v-bind:real= 'item.ytdActual |sindec'  lbl=""  tipo= "true"></vm-semaforizado>
+                                        <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.ytdTarget |sindec' v-bind:real= 'item.ytdActual |sindec'  lbl=""  tipo= "false"></vm-semaforizado>
                                         
 
                                 </div>

@@ -35,7 +35,14 @@ class My_Controller extends Ci_Controller {
         $this->load->view('backend/header');
         $this->load->view('backend/sidebar',$data);
         $this->load->view($nombreV, $dataC);
+
+
         $this->load->view('backend/footer');
+        
+        if(!is_null($javasc)){
+
+          $this->load->view('backend/script_js', $javasc);
+        }
 
         /**
          * esta linea añade archivos Js de ser necesario
@@ -46,10 +53,7 @@ class My_Controller extends Ci_Controller {
          * $js['javascript']= ["archivo.js","tuVieja.js","bloqueaa.js"];
          */
         
-        if(!is_null($javasc)){
 
-          $this->load->view('backend/script_js', $javasc);
-        }
 
       }else{
         $this->load->helper(array('form'));

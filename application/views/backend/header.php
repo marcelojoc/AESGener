@@ -27,7 +27,9 @@
 		<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/aesg/style.css" />
 
 		<!-- ace settings handler -->
+		<script src="<?php echo base_url() ?>assets/js/vendor/vue.js"></script>
 		<script src="<?php echo base_url() ?>assets/js/ace-extra.js"></script>
+		
 
 
 	</head>

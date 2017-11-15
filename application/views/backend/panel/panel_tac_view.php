@@ -1,9 +1,11 @@
-<div class="main-content " >
+
+
+<div class="main-content ">
 <div class="main-content-inner">
     <div class="page-content" id="app">
         
         <div class="row">
-
+                <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
             <div class="page-header col-sm-4 text-center blueAES b-r">
                 <h1 class="blueAES">
                     Tablero Tactico
@@ -90,7 +92,7 @@
 
                                 
                             <tr HEIGHT="50">
-                                <td>MTBF CNR</td>
+                                <td>MTBF</td>
                                 <td> 57 [hr. Oper]</td>
                                 <td class=" text-center"></td>
                             </tr>

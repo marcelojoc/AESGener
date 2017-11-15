@@ -31,7 +31,7 @@ class Panel extends My_Controller{
 
 				$data="";
 
-				$js['javascript']= ["vendor/vue.js", "app/component/grafic_component.js","vendor/vue-resource.js","app/main.js"];
+				$js['javascript']= ["vendor/vue-resource.js","app/component/grafic_component.js", "app/main.js"];
 
 				$nombreVista="backend/panel/panel_est_view";
 
@@ -44,7 +44,7 @@ class Panel extends My_Controller{
         
             $data="";
 
-            $js['javascript']= ["vendor/vue.js", "app/component/grafic_component.js","vendor/vue-resource.js","app/main_tac.js"];
+            $js['javascript']= ["vendor/vue-resource.js", "app/component/grafic_component.js", "app/main_tac.js"];
 
             $nombreVista="backend/panel/panel_tac_view";
 
