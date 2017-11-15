@@ -45,7 +45,7 @@ class Planilla extends My_Controller{
 
 
         //Analizo que Tipo de Planilla recibi
-        if($tipoP == "1"){
+        if($tipoP == "1"){//TIpo Planilla AES Gener
 
         	$planilla['file_name'] = 'AES_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
         	//$archivo = base_url().'.uploads/'.$planilla['file_name'];
@@ -75,19 +75,17 @@ class Planilla extends My_Controller{
 		  
 			}
 
-        	// echo $nroFilas.'</br>';
-        	// echo $data['nombreMaquina'].'</br>';
-        	// echo $data['mesActual'].'</br>';
-        	// echo $data['mesTarget'].'</br>';
-        	// echo $data['ytdActual'].'</br>';
-        	// echo $data['ytdTarget'].'</br>';
-        	// die();
 
-        }elseif($tipoP == "3"){
+        }elseif($tipoP == "2"){//TIpo Planilla Costos
+
+
+
+
+        }elseif($tipoP == "3"){//TIpo Planilla SAP
 
         	$planilla['file_name'] = 'SAP_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
 
-        }elseif($tipoP == "4"){
+        }elseif($tipoP == "4"){//TIpo Planilla MTBF
         	$nombreKPI = "MTBF"; //Pensar si no habria que traerlo tbn de la db
         	$data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
 
@@ -129,13 +127,6 @@ class Planilla extends My_Controller{
                     }
                 }
             }
-
-
-
-
-
-
-
         }
 
 		// if(!$this->upload->do_upload()){
