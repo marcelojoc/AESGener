@@ -51,7 +51,7 @@ var app = new Vue({
 
                 this.$http.get(url+'vrPrueba', { params: { page: this.idSelect } } ).then( function (resp){
 
-                    this.seleccion=resp.data;
+                    this.seleccion=JSON.parse(resp.data);
 
                 }, function(err){
                     //si sale mal
@@ -66,7 +66,7 @@ var app = new Vue({
 
                 this.$http.get(url+'vrdata', { params: { idselect: this.idSelect, idlist: this.idList } }).then(function (resp) {
 
-                    this.kpi = resp.data;
+                    this.kpi = JSON.parse(resp.data);
 
                 }, function (err) {
                     //si sale mal
@@ -82,7 +82,7 @@ var app = new Vue({
 
                 this.$http.get(url+'vrcadata', { params: { idcaSelect: this.idcaSelect} }).then(function (resp) {
 
-                    this.cakpi = resp.data;
+                    this.cakpi = JSON.parse(resp.data);
 
 
                 }, function (err) {

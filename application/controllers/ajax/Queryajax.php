@@ -121,12 +121,12 @@ class Queryajax extends My_Controller{
 				}
 			}catch(Exception $e){
 
-				$id_ugen= 3;
+				$id_ugen= 4;
 			}
 
 			$datos=$this->Kpi_model->getValueUgfortac($id_ugen);
 
-			echo json_encode($datos);
+			print json_encode($datos, true);
 
 
 
@@ -134,22 +134,31 @@ class Queryajax extends My_Controller{
 
 
 
-		function test(){
+		function vrdivsap(){
 
-			$uno=$this->uri->segment(1); // controller
-			$dos=$this->uri->segment(2); // action
-			$tres=$this->uri->segment(3); // 1stsegment
-			$cuatro=$this->uri->segment(4); // 2ndsegment
-
-
-
-			echo($uno."<br>");
-			echo($dos."<br>");
-			echo($tres."<br>");
-			echo($cuatro."<br>");
+			//trae todos las diviciones segun la tabla sap
+			$datos=[];
+			$datos=$this->Kpi_model->getDivSap();
+			echo json_encode($datos);
 
 
-			var_dump($_POST);
+		}
+
+		function vrdivsapdatos(){
+
+			$datos=[];
+			if( isset($_GET) && !empty($_GET['idlist'])) {
+				
+				$idList= $_GET['idlist'];
+
+				$datos=$this->Kpi_model->getDataDivSap($idList);
+
+			}
+			//trae todos las diviciones segun la tabla sap
+			
+			echo json_encode($datos);
+
+
 		}
 
 

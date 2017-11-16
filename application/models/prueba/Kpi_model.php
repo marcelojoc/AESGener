@@ -178,27 +178,18 @@ class Kpi_model extends CI_Model {
 						valores.hsf, 
 					');
 		 $this->db->from('valores');
-
-		
-		//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
 		$query = $this->db->get();
 
 		if ($query->num_rows() > 0) {
 
 			return $query->result();
-
-		}
-		
-		else{
-
+		}else{
 			return false;
-
 		}
 
 }
 
 
-	
 
 	public function getCa($idCa=0){
 		//en este caso kpi planilla es 4, pero esto debe ser dinamico
@@ -290,6 +281,50 @@ class Kpi_model extends CI_Model {
 	
 	
 	
+
+	public function getDivSap(){
+
+		$this->db->select('*');
+		
+				$this->db->from('division_sap');
+				$query = $this->db->get();
+				if ($query->num_rows() > 0) {
+		
+					return $query->result();
+					
+				}
+				else{
+		
+					return false;
+				}
+
+	}
+
+
+
+	public function getDataDivSap($idDiv){
+		
+		$this->db->where ('division_sap.idDivSAP',$idDiv );
+				$this->db->select('*');
+				$this->db->from('division_sap');
+				$this->db->join('linea_sap','linea_sap.idDivSAP = division_sap.idDivSAP','left');
+				$this->db->join('parametro','parametro.idDivSAP = division_sap.idDivSAP','left');
+				 
+						$query = $this->db->get();
+						if ($query->num_rows() > 0) {
+				
+							return $query->result();
+						}
+						else{
+				
+							return false;
+						}
+		
+			}
+
+
+
+
 	
 }
 
