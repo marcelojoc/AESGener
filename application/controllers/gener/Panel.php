@@ -49,18 +49,25 @@ class Panel extends My_Controller{
             $nombreVista="backend/panel/panel_tac_view";
 
             $this->cargarVista($nombreVista,$data,$js);
-
+			
 		}
 		
         
         
-
-
+		
+		
         public function ops(){
-			echo base_url();
 			
-
-
+			
+			
+			$data="";
+	
+			$js['javascript']= ["vendor/vue-resource.js", "app/component/grafic_component.js", "app/main_op.js"];
+	
+			$nombreVista="backend/panel/panel_ops_view";
+	
+			$this->cargarVista($nombreVista,$data,$js);
+			
 			
 
         }

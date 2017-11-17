@@ -103,7 +103,8 @@ Vue.component('vm-semaforizado',{
 
     props: ['lbl','esperado','real', 'tipo'],
 
- 
+
+
     computed: {
         
         getColorPoint: function () {

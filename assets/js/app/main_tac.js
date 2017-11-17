@@ -1,8 +1,5 @@
 var url= $("#siteurl").val()+"ajax/";
 
-$("#main-content").show();
-
-
 
 
 var app = new Vue({
@@ -48,9 +45,9 @@ var app = new Vue({
 
             this.$http.post(url+'vrtactic', { dato: this.idSelect} )
             
-            .then( function (resp){
+            .then( function (resp,status, request){
 
-                this.kpi=resp.data;
+                this.kpi=JSON.parse(resp.data);
 
             }, function(err){
                 //si sale mal
@@ -64,7 +61,7 @@ var app = new Vue({
 
             this.$http.post(url+'vrPrueba' ).then( function (resp){
 
-                this.ugen=resp.data;
+                this.ugen = JSON.parse(resp.data);
 
             }, function(err){
                 //si sale mal
