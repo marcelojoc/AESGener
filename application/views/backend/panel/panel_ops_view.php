@@ -175,7 +175,7 @@
     
                                     <div class="soc-content">
                                         <div class="col-xs-6 b-l b-r b-b">
-                                            <h5 class="font-medium">80%</h5>
+                                            <h5 class="font-medium">{{item.trabajoProactivo}} %</h5>
                                             <h6 class="text-muted">Bud Mon</h6>
                                         </div>
                                     
@@ -191,7 +191,7 @@
     
                                         <div class="col-xs-12 ">
     
-                                                <vm-semaforizado  v-bind:esperado= '80' v-bind:real= '21'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                <vm-semaforizado  v-bind:esperado= 'item.trabajoProactivo' v-bind:real= '21'  lbl=""  tipo= "false"></vm-semaforizado>
                                                 
                                         </div>
     
@@ -288,7 +288,7 @@
         
                                         <div class="soc-content">
                                             <div class="col-xs-6 b-l b-r b-b">
-                                                <h5 class="font-medium">80%</h5>
+                                                <h5 class="font-medium">{{item.trabajoPlaneado}} %</h5>
                                                 <h6 class="text-muted">Bud Mon</h6>
                                             </div>
                                         
@@ -304,7 +304,7 @@
         
                                             <div class="col-xs-12 ">
         
-                                                    <vm-semaforizado  v-bind:esperado= '80' v-bind:real= '352'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                    <vm-semaforizado  v-bind:esperado= 'item.trabajoPlanead' v-bind:real= '60'  lbl=""  tipo= "false"></vm-semaforizado>
                                                     
                                             </div>
         
@@ -406,7 +406,7 @@
             
                                             <div class="soc-content">
                                                 <div class="col-xs-6 b-l b-r b-b">
-                                                    <h5 class="font-medium">30%</h5>
+                                                    <h5 class="font-medium">{{item.correctivoBudget}} %</h5>
                                                     <h6 class="text-muted">Bud Mon</h6>
                                                 </div>
                                             
@@ -422,7 +422,7 @@
             
                                                 <div class="col-xs-12 ">
             
-                                                        <vm-semaforizado  v-bind:esperado= '30' v-bind:real= '1'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                        <vm-semaforizado  v-bind:esperado= 'item.correctivoBudget' v-bind:real= '1'  lbl=""  tipo= "false"></vm-semaforizado>
                                                         
                                                 </div>
             
@@ -520,7 +520,7 @@
                 
                                                 <div class="soc-content">
                                                     <div class="col-xs-6 b-l b-r b-b">
-                                                        <h5 class="font-medium">80%</h5>
+                                                        <h5 class="font-medium">{{item.preventivoBudget}} %</h5>
                                                         <h6 class="text-muted">Bud Mon</h6>
                                                     </div>
                                                 
@@ -536,7 +536,7 @@
                 
                                                     <div class="col-xs-12 ">
                 
-                                                            <vm-semaforizado  v-bind:esperado= '80' v-bind:real= '95'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                            <vm-semaforizado  v-bind:esperado= 'item.preventivoBudget' v-bind:real= '95'  lbl=""  tipo= "false"></vm-semaforizado>
                                                             
                                                     </div>
                 
