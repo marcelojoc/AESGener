@@ -632,7 +632,7 @@
 
 <!-- fin bloque CA -->
 
-<pre>{{$data}}</pre>
+<!-- <pre>{{$data}}</pre> -->
         </div> <!-- fin page-content -->
 
     </div> <!-- fin main-content-inner -->
