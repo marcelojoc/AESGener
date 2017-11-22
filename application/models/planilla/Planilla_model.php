@@ -85,14 +85,45 @@ class Planilla_model extends CI_Model {
 
 	}
 
-	function crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla){
+	function crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla, $idKPI){
 		$this->db->insert('linea_mtbf', 
 			array('mtbf'=>$mtbf, 
 					'mtbfTarget'=>$mtbfTarget, 
 					'idUnidadGen'=>$idUnidadGen,
-					'idPlanilla'=> $idPlanilla));
+					'idPlanilla'=> $idPlanilla,
+					'idKPI'=> $idKPI));
 		$idLineaMTBF = $this->db->insert_id();
 		return $idLineaMTBF;
+	}
+
+	function crearLineaCostos($ctmActual, $ctmBudget, $idDivision, $idComplejo, $idPlanilla, $idKPI){
+		$this->db->insert('linea_costos', 
+			array('ctmActual'=>$ctmActual, 
+					'ctmBudget'=>$ctmBudget, 
+					'idDivision'=>$idDivision,
+					'idComplejo'=>$idComplejo,
+					'idPlanilla'=> $idPlanilla,
+					'idKPI'=> $idKPI));
+		$idLineaCostos = $this->db->insert_id();
+		return $idLineaCostos;
+	}
+
+	function crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget,
+                            $idUnidadGen, $idDivision, $idComplejo, $idPlanilla, $idKPI){
+		$this->db->insert('linea_aes', 
+			array('actualMes'=>$actualMes, 
+					'targetMes'=>$targetMes,
+					'ytdActual'=>$ytdActual,
+					'ytdTarget'=>$ytdTarget,
+					'fyf'=>$fyf,
+					'fyBudget'=>$fyBudget,
+					'idUnidadGen'=>$idUnidadGen, 
+					'idDivision'=>$idDivision,
+					'idComplejo'=>$idComplejo,
+					'idPlanilla'=> $idPlanilla,
+					'idKPI'=> $idKPI));
+		$idLineaAES = $this->db->insert_id();
+		return $idLineaAES;
 	}
 		
 }

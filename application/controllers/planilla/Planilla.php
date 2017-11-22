@@ -33,7 +33,7 @@ class Planilla extends My_Controller{
 		//Ruta donde se guardan los ficheros
 		$planilla['upload_path'] = './uploads/';
 		//Tipos de ficheros permitidos
-		$planilla['allowed_types'] = 'xlsx';
+		$planilla['allowed_types'] ='xlsx|xlsb';
 
 
 		//Tomo datos del sistema
@@ -47,39 +47,148 @@ class Planilla extends My_Controller{
         //Analizo que Tipo de Planilla recibi
         if($tipoP == "1"){//TIpo Planilla AES Gener
 
-        	$planilla['file_name'] = 'AES_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
-        	//$archivo = base_url().'.uploads/'.$planilla['file_name'];
-        	$archivo = './uploads/'.$planilla['file_name'];
-        	
-        	//Cargamos la librería de subida y le pasamos la configuración 
-			$this->load->library('upload', $planilla);
-			$this->upload->do_upload();
+            $planilla['file_name'] = 'AES_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
+            $archivo = './uploads/'.$planilla['file_name'];
 
-        	$objExcel = PHPExcel_IOFactory::load($archivo);
-        	$objExcel->setActiveSheetIndex(0);
-        	//$nroFilas = $objPHPExcel->setActiveSheetIndex(0)->getHighestRow(); //104 filas
-        	$nroFilas = 4; 
+            $this->load->library('upload', $planilla);
+            $this->upload->do_upload();
 
-        	//Crear Planilla
-        	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $tipoP); 
+            $objExcel = PHPExcel_IOFactory::load($archivo);
+            $objExcel->setActiveSheetIndex(0);
+            $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
-        	for($i = 4; $i <= $nroFilas; $i++){
-				
-				$data['nombreMaquina'] = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();  
-			  	$data['mesActual'] = $objExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue()*100;
-			  	$data['mesTarget'] = $objExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue()*100;
-			  	$data['ytdActual'] = $objExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue()*100;
-			  	$data['ytdTarget'] = $objExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue()*100;
+            //Crear Planilla
+            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP);
 
-			  	$this->Planilla_model->guardarDatos($data, $idPlanilla);
-		  
-			}
+            for ($i = 1; $i <= $nroFilas; $i++) {
+
+                $nombreKPI = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                if($nombreKPI != ""){ //Aca puede fallar porque en muchas lineas es ""
+
+                    $data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
+
+                    foreach ($data['KPI'] as $kpi){
+                        $idKPI = $kpi->idKPI;
+                    }
+
+
+                    //Deberia buscar la ubicacion del KPI completo en la TABLA UBICACION no hardcodear los valores de inicio y fin
+                    //Deberia buscar la ubicacion del KPI completo en la TABLA UBICACION no hardcodear los valores de inicio y fin
+                    //Deberia buscar la ubicacion del KPI completo en la TABLA UBICACION no hardcodear los valores de inicio y fin
+                    if($idKPI){
+                        if($idKPI == 1){
+                            $inicio = 4;
+                            $fin = 38;
+
+                        }elseif($idKPI == 2){
+                            $inicio = 39;
+                            $fin = 73;
+
+                        }elseif($idKPI == 3){   
+                            $inicio = 74;
+                            $fin = 97;
+
+                        }elseif($idKPI == 4){
+                            $inicio = 98;
+                            $fin = 104;
+                        }
+                    }
+                    //Deberia buscar la ubicacion del KPI completo en la TABLA UBICACION no hardcodear los valores de inicio y fin
+
+
+
+                    for ($i = $inicio; $i <= $fin; $i++) {
+                        $columna = "C";
+                        $fila = $i;
+
+                        $ubicacion = $this->Planilla_model->buscarUbicacion($fila, $columna, $idKPI);
+
+                        foreach ($ubicacion as $ubi){
+                            $id = $ubi->idUbicacion;
+                        }
+
+                        foreach ($ubicacion as $ubi){
+
+                                $idUnidadGen = $ubi->idUnidadGen;
+                                $idDivision = $ubi->idDivision;
+                                $idComplejo = $ubi->idComplejo;
+                                $actualMes = $objExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
+                                $targetMes = $objExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+                                $ytdActual = $objExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+                                $ytdTarget = $objExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+                                $fyf = $objExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+                                $fyBudget = $objExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
+                                
+                                $idLineaAES = $this->Planilla_model->crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget,
+                                                                                    $idUnidadGen, $idDivision, $idComplejo, $idPlanilla, $idKPI);
+                               //$idKPILinea = $this->Planilla_model->crearKPILinea($idKPI, $idKPILinea)
+
+                        }
+                    }
+
+
+                    /*ERROR nunca pasa al segundo KPI!!!!*/
+                    /*ERROR nunca pasa al segundo KPI!!!!*/
+                    /*ERROR nunca pasa al segundo KPI!!!!*/
+                    /*ERROR nunca pasa al segundo KPI!!!!*/
+                    /*ERROR nunca pasa al segundo KPI!!!!*/
+
+                }
+                
+            }
+
+            die();
 
 
         }elseif($tipoP == "2"){//TIpo Planilla Costos
+            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
+            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
+            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
+            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
+            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
 
+            $nombreKPI = "CTM OPEX"; //Pensar si no habria que traerlo tbn de la db
+            $data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
 
+            foreach ($data['KPI'] as $kpi){
+                $idKPI = $kpi->idKPI;
+            }
 
+            $planilla['file_name'] = 'COSTOS_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsb';
+            $archivo = './uploads/'.$planilla['file_name'];
+
+            //Cargamos la librería de subida y le pasamos la configuración 
+            $this->load->library('upload', $planilla);
+            $this->upload->do_upload();
+
+            $objExcel = PHPExcel_IOFactory::load($archivo);
+            $objExcel->setActiveSheetIndex(0);
+            $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
+
+            //Crear Planilla
+            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP);
+
+            for ($i = 8; $i <= $nroFilas; $i++) {
+                $columna = "D";
+                $fila = $i;
+
+                $ubicacion = $this->Planilla_model->buscarUbicacion($fila, $columna, $idKPI);
+
+                foreach ($ubicacion as $ubi){
+                    $id = $ubi->idUbicacion;
+                }
+
+                foreach ($ubicacion as $ubi){
+
+                        $idDivision = $ubi->idDivision;
+                        $idComplejo = $ubi->idComplejo;
+                        $ctmActual = $objExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+                        $ctmBudget = $objExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+
+                        $idLineaCostos = $this->Planilla_model->crearLineaCostos($ctmActual, $ctmBudget, $idDivision, $idComplejo, $idPlanilla, $idKPI);
+                }
+            }
 
         }elseif($tipoP == "3"){//TIpo Planilla SAP
 
@@ -123,7 +232,8 @@ class Planilla extends My_Controller{
                         $idUnidadGen = $ubi->idUnidadGen;
                         $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
                         $mtbfTarget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
-                        $idLineaMTBF = $this->Planilla_model->crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla);
+
+                        $idLineaMTBF = $this->Planilla_model->crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla, $idKPI);
                     }
                 }
             }
