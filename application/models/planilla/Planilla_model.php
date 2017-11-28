@@ -82,7 +82,26 @@ class Planilla_model extends CI_Model {
 		}else{
 			return false;
 		}
+	}
 
+	function buscarUbicacionKPI($idKPI){
+		$this->db->select('*');
+		$this->db->where('ubicacion.idKPI', $idKPI);
+		$this->db->where('ubicacion.idUnidadGen', 0);
+		$this->db->where('ubicacion.idDivision', 0);
+		$this->db->where('ubicacion.idComplejo', 0);
+		$this->db->where('ubicacion.idPlanta', 0);
+		$this->db->from('ubicacion');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}	
+			return $data;
+		}else{
+			return false;
+		}
 	}
 
 	function crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla, $idKPI){
@@ -108,7 +127,7 @@ class Planilla_model extends CI_Model {
 		return $idLineaCostos;
 	}
 
-	function crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget,
+	function crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, $hsf,
                             $idUnidadGen, $idDivision, $idComplejo, $idPlanilla, $idKPI){
 		$this->db->insert('linea_aes', 
 			array('actualMes'=>$actualMes, 
@@ -117,6 +136,9 @@ class Planilla_model extends CI_Model {
 					'ytdTarget'=>$ytdTarget,
 					'fyf'=>$fyf,
 					'fyBudget'=>$fyBudget,
+					'hedp'=>$hedp,
+					'hedf'=>$hedf,
+					'hsf'=>$hsf,
 					'idUnidadGen'=>$idUnidadGen, 
 					'idDivision'=>$idDivision,
 					'idComplejo'=>$idComplejo,
