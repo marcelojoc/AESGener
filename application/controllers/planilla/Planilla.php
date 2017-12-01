@@ -318,24 +318,24 @@ class Planilla extends My_Controller{
             }
         }
 
-		// if(!$this->upload->do_upload()){
+		if(!$this->upload->do_upload()){
 
-		// 	/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
-		// 	$error=array('error' => $this->upload->display_errors());
-		// 	$data="";
-		// 	$nombreVista="backend/planilla/upload_view";
-		// 	$this->cargarVista($nombreVista,$data);
+			/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
+			$error=array('error' => $this->upload->display_errors());
+			$data="";
+			$nombreVista="backend/planilla/upload_view";
+			$this->cargarVista($nombreVista,$data);
 
-		// }else{
+		}else{
 
-		// 	//Datos del fichero subido
-		// 	//$datos["xls"]=$this->upload->data();
-		// 	// Podemos acceder a todas las propiedades del fichero subido 
-		// 	// $datos["img"]["file_name"]);
-		// 	//Agregar que muestre un msj de exito antes de refrescar
-		// 	redirect('/planilla/Planilla','refresh');
+			//Datos del fichero subido
+			//$datos["xls"]=$this->upload->data();
+			// Podemos acceder a todas las propiedades del fichero subido 
+			// $datos["img"]["file_name"]);
+			//Agregar que muestre un msj de exito antes de refrescar
+			redirect('/planilla/Planilla','refresh');
 	
-		// }
+		}
 	}
 
 }  
