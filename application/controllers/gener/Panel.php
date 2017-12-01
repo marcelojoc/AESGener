@@ -22,7 +22,15 @@ class Panel extends My_Controller{
 		function index(){
 
 
-            echo ('cargo el panel general');
+			
+			
+			$data="";
+			
+			$js['javascript']= [];
+
+			$nombreVista="backend/panel/panel_general_view";
+
+			$this->cargarVista($nombreVista,$data,$js);
 
 		}
 
@@ -41,7 +49,6 @@ class Panel extends My_Controller{
 
 		public function tac(){
 
-        
             $data="";
 
             $js['javascript']= ["vendor/vue-resource.js", "app/component/grafic_component.js", "app/main_tac.js"];
@@ -57,8 +64,6 @@ class Panel extends My_Controller{
 		
 		
         public function ops(){
-			
-			
 			
 			$data="";
 	
