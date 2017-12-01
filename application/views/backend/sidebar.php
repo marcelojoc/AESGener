@@ -143,6 +143,15 @@
 					<b class="arrow"></b>
 						<ul class="submenu">
 
+
+						<li class="">
+								<a href="<?php echo base_url('gener/')?>">
+									<i class="menu-icon fa fa-caret-right"></i>
+									General
+								</a>
+								<b class="arrow"></b>
+							</li>
+
 							<li class="">
 								<a href="<?php echo base_url('gener/est')?>">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -166,6 +175,7 @@
 								</a>
 								<b class="arrow"></b>
 							</li>
+
 						</ul>
 				</li>				
 				<?php 		}
