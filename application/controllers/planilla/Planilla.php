@@ -237,7 +237,41 @@ class Planilla extends My_Controller{
 
         }elseif($tipoP == "3"){//TIpo Planilla SAP
 
+            /*Agregar nombre tambien a la planilla de SAP para guardar el archivo*/
+             /*Agregar nombre tambien a la planilla de SAP para guardar el archivo*/
+              /*Agregar nombre tambien a la planilla de SAP para guardar el archivo*/
+               /*Agregar nombre tambien a la planilla de SAP para guardar el archivo*/
+
         	$planilla['file_name'] = 'SAP_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
+            $archivo = './uploads/'.$planilla['file_name'];
+
+            //Cargamos la librería de subida y le pasamos la configuración 
+            $this->load->library('upload', $planilla);
+            $this->upload->do_upload();
+
+            $objExcel = PHPExcel_IOFactory::load($archivo);
+            $objExcel->setActiveSheetIndex(3);
+            $nroFilas = $objExcel->setActiveSheetIndex(3)->getHighestRow();
+
+            $pestanias = $objExcel->getSheetCount() - 1;
+
+            echo $nroFilas;
+            echo "</br>";
+            echo $pestanias;
+
+
+
+
+            die();
+
+
+
+
+
+
+
+
+
 
         }elseif($tipoP == "4"){//TIpo Planilla MTBF
         	$nombreKPI = "MTBF"; //Pensar si no habria que traerlo tbn de la db
