@@ -49,9 +49,14 @@ Vue.component('vm-grafico',{
     data: function () {
 
         return {
+
+            
            
         }
     },
+
+
+
 
     props: ['lble','lblr','esperado','real'],
  
@@ -102,8 +107,7 @@ Vue.component('vm-semaforizado',{
     },
 
     props: ['lbl','esperado','real', 'tipo'],
-
-
+    
 
     computed: {
         

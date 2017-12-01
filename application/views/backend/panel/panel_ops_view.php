@@ -673,8 +673,7 @@
                     </div>
     
                 </div>
-    
-    </script>
+</script>
     
     
     
@@ -683,7 +682,8 @@
         <!-- contenedor general de la progress bar -->
         <div class="content-progres social-widget">
     
-                    <div class="progres-full limite animated zoomIn">
+            
+                    <div class="progres-full limite animated rubberBand">
                     
                         <!-- <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width:50%;" > -->
                         <div class="indicador-kpi" :style="{ background: getColorPoint, height: '3.9em' , width: '100%' }">
@@ -695,6 +695,8 @@
                         </div>
                     
                     </div>
+
+
         </div>
     
     </script>
