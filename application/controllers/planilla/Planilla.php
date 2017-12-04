@@ -39,7 +39,6 @@ class Planilla extends My_Controller{
 		//Tipos de ficheros permitidos
 		$planilla['allowed_types'] ='xlsx|xlsb|csv';
 
-
 		//Tomo datos del sistema
 		date_default_timezone_set('America/Santiago');
         $fecha = getdate();
@@ -237,12 +236,13 @@ class Planilla extends My_Controller{
 
         }elseif($tipoP == "3"){//TIpo Planilla SAP
 
-            /*Agregar nombre tambien a la planilla de SAP para guardar el archivo*/
-             /*Agregar nombre tambien a la planilla de SAP para guardar el archivo*/
-              /*Agregar nombre tambien a la planilla de SAP para guardar el archivo*/
-               /*Agregar nombre tambien a la planilla de SAP para guardar el archivo*/
+            $data['divisionSAP'] = $this->Planilla_model->obtenerDivision($data['divisionSAP']);
 
-        	$planilla['file_name'] = 'SAP_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
+            foreach ($data['divisionSAP'] as $divSAP){
+                $nombreDiv = $divSAP->nombreDivSAP;
+            }
+
+        	$planilla['file_name'] = 'SAP_'.$nombreDiv.'_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
             $archivo = './uploads/'.$planilla['file_name'];
 
             //Cargamos la librería de subida y le pasamos la configuración 
@@ -250,21 +250,39 @@ class Planilla extends My_Controller{
             $this->upload->do_upload();
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
-            $objExcel->setActiveSheetIndex(3);
-            $nroFilas = $objExcel->setActiveSheetIndex(3)->getHighestRow();
+            // //$objExcel->setActiveSheetIndex(3);
+            // $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
-            $pestanias = $objExcel->getSheetCount() - 1;
+            $pestanias = $objExcel->getSheetCount()-1;
 
-            echo $nroFilas;
-            echo "</br>";
-            echo $pestanias;
+            // echo $nroFilas;
+            // echo "</br>";
+            //echo $pestanias;
 
+            //Calculo HORAS CORRECTIVAS
+            $objExcel->setActiveSheetIndex(0);
+            $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
+            $letraCol = $objExcel->setActiveSheetIndex(0)->getHighestColumn();
 
+            //Guardo en que columna estan los valores de "Trabajo Real"
+            foreach(range("A", $letraCol) as $columna) {
+                $nombreCol = $objExcel->getActiveSheet()->getCell($columna. 2)->getCalculatedValue();
 
+                if ($nombreCol == "Trabajo real"){
+                    $col = $columna;
+                }   
+            }
 
+            $contadorHs = 0;
+
+            for ($i = 3; $i <= $nroFilas; $i++) {
+
+                $horaLinea = $objExcel->getActiveSheet()->getCell($col.$i)->getCalculatedValue();
+                $contadorHs = $horaLinea + $contadorHs;
+            }
+
+            echo $contadorHs;
             die();
-
-
 
 
 
@@ -318,24 +336,24 @@ class Planilla extends My_Controller{
             }
         }
 
-		if(!$this->upload->do_upload()){
+		// if(!$this->upload->do_upload()){
 
-			/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
-			$error=array('error' => $this->upload->display_errors());
-			$data="";
-			$nombreVista="backend/planilla/upload_view";
-			$this->cargarVista($nombreVista,$data);
+		// 	/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
+		// 	$error=array('error' => $this->upload->display_errors());
+		// 	$data="";
+		// 	$nombreVista="backend/planilla/upload_view";
+		// 	$this->cargarVista($nombreVista,$data);
 
-		}else{
+		// }else{
 
-			//Datos del fichero subido
-			//$datos["xls"]=$this->upload->data();
-			// Podemos acceder a todas las propiedades del fichero subido 
-			// $datos["img"]["file_name"]);
-			//Agregar que muestre un msj de exito antes de refrescar
-			redirect('/planilla/Planilla','refresh');
+		// 	//Datos del fichero subido
+		// 	//$datos["xls"]=$this->upload->data();
+		// 	// Podemos acceder a todas las propiedades del fichero subido 
+		// 	// $datos["img"]["file_name"]);
+		// 	//Agregar que muestre un msj de exito antes de refrescar
+		// 	redirect('/planilla/Planilla','refresh');
 	
-		}
+		// }
 	}
 
 }  

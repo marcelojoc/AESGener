@@ -66,6 +66,23 @@ class Planilla_model extends CI_Model {
 			else return false;
 	}
 
+	function obtenerDivision($idDivisionSAP){
+		$this->db->select('*');
+		$this->db->where('idDivSAP', $idDivisionSAP);
+		$this->db->from('division_sap');
+
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}	
+			return $data;
+		}else{
+			return false;
+		}
+	}
+
 	function buscarUbicacion($fi, $col, $idKPI){
 		$this->db->select('*');
 		$this->db->where('ubicacion.idKPI', $idKPI);
