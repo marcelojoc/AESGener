@@ -250,16 +250,14 @@ class Planilla extends My_Controller{
             $this->upload->do_upload();
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
-            // //$objExcel->setActiveSheetIndex(3);
-            // $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
+            /*Probar si en vez de poner la pestaña hay alguna forma de variarlo en un for*/
+            /*Probar si en vez de poner la pestaña hay alguna forma de variarlo en un for*/
+            /*Probar si en vez de poner la pestaña hay alguna forma de variarlo en un for*/
             $pestanias = $objExcel->getSheetCount()-1;
 
-            // echo $nroFilas;
-            // echo "</br>";
-            //echo $pestanias;
 
-            //Calculo HORAS CORRECTIVAS
+            //Calculo HORAS CORRECTIVAS y PREVENTIVAS -- Trabajo en pestaña IW-47
             $objExcel->setActiveSheetIndex(0);
             $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
             $letraCol = $objExcel->setActiveSheetIndex(0)->getHighestColumn();
@@ -269,20 +267,45 @@ class Planilla extends My_Controller{
                 $nombreCol = $objExcel->getActiveSheet()->getCell($columna. 2)->getCalculatedValue();
 
                 if ($nombreCol == "Trabajo real"){
-                    $col = $columna;
-                }   
+                    $colTR = $columna;
+                }
+
+                if ($nombreCol == "Clase orden"){
+                    $colCO = $columna;
+                } 
             }
 
             $contadorHs = 0;
+            $contadorHsPM10 = 0;
+            $contadorHsPM2025 = 0;
 
             for ($i = 3; $i <= $nroFilas; $i++) {
 
-                $horaLinea = $objExcel->getActiveSheet()->getCell($col.$i)->getCalculatedValue();
+                $horaLinea = $objExcel->getActiveSheet()->getCell($colTR.$i)->getCalculatedValue();
                 $contadorHs = $horaLinea + $contadorHs;
+
+                $tipoOT = $objExcel->getActiveSheet()->getCell($colCO.$i)->getCalculatedValue();
+
+                if($tipoOT == "PM10"){
+                    $contadorHsPM10 = $horaLinea + $contadorHsPM10;
+                }
+
+                if($tipoOT == "PM20" || $tipoOT == "PM25"){
+                    $contadorHsPM2025 = $horaLinea + $contadorHsPM2025;
+                }
             }
 
-            echo $contadorHs;
-            die();
+            //Formula HORAS CORRECTIVAS
+            $hsTRCorrectivo = ($contadorHsPM10/$contadorHs)*100;
+
+            //Formula HORAS PREVENTIVAS
+            $hsTRPreventivo = ($contadorHsPM2025/$contadorHs)*100;
+
+
+
+
+
+
 
 
 
