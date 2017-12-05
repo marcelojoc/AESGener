@@ -230,16 +230,17 @@ class Planilla extends My_Controller{
                 }
             }
 
-
-                        echo $nroFilas;
-            die();
-
         }elseif($tipoP == "3"){//TIpo Planilla SAP
 
-            $data['divisionSAP'] = $this->Planilla_model->obtenerDivision($data['divisionSAP']);
-
-            foreach ($data['divisionSAP'] as $divSAP){
+            $data['divSAP'] = $this->Planilla_model->obtenerDivision($data['divisionSAP']);
+            $data['parametro'] = $this->Planilla_model->obtenerParametro($data['divisionSAP']);
+            
+            foreach ($data['divSAP'] as $divSAP){
                 $nombreDiv = $divSAP->nombreDivSAP;
+            }
+
+            foreach ($data['parametro'] as $param){
+                $hsDispSemana = $param->hsDispSemana;
             }
 
         	$planilla['file_name'] = 'SAP_'.$nombreDiv.'_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
@@ -257,9 +258,10 @@ class Planilla extends My_Controller{
             $pestanias = $objExcel->getSheetCount()-1;
 
 
-            //Calculo HORAS CORRECTIVAS y PREVENTIVAS -- Trabajo en pestaña IW-47
+
+            /*Calculo HORAS CORRECTIVAS y PREVENTIVAS -- Trabajo en pestaña IW-47*/
             $objExcel->setActiveSheetIndex(0);
-            $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
+            $nroFilas47 = $objExcel->setActiveSheetIndex(0)->getHighestRow();
             $letraCol = $objExcel->setActiveSheetIndex(0)->getHighestColumn();
 
             //Guardo en que columna estan los valores de "Trabajo Real"
@@ -279,7 +281,7 @@ class Planilla extends My_Controller{
             $contadorHsPM10 = 0;
             $contadorHsPM2025 = 0;
 
-            for ($i = 3; $i <= $nroFilas; $i++) {
+            for ($i = 3; $i <= $nroFilas47; $i++) {
 
                 $horaLinea = $objExcel->getActiveSheet()->getCell($colTR.$i)->getCalculatedValue();
                 $contadorHs = $horaLinea + $contadorHs;
@@ -301,6 +303,76 @@ class Planilla extends My_Controller{
             //Formula HORAS PREVENTIVAS
             $hsTRPreventivo = ($contadorHsPM2025/$contadorHs)*100;
 
+
+
+            /*Calculo BACKLOG -- Trabajo en pestaña IW-47 Ready Backlog*/
+            $objExcel->setActiveSheetIndex(2);
+            $nroFilasBL = $objExcel->setActiveSheetIndex(2)->getHighestRow();
+
+            $hsPlanificadasBL = 0;
+            $hsEjecutadasBL = 0;
+
+            for ($i = 3; $i <= $nroFilasBL; $i++) {
+
+                $trabajo = $objExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+                $hsPlanificadasBL = $trabajo + $hsPlanificadasBL;
+
+                $trabajoReal = $objExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+                $hsEjecutadasBL = $trabajoReal + $hsEjecutadasBL;
+            }
+
+            //Calculo Horas Pendientes
+            $hsPendientesBL = $hsPlanificadasBL - $hsEjecutadasBL;
+
+            //Formula BACKLOG
+            $backlogReal = $hsPendientesBL/$hsDispSemana;
+
+
+
+            /*Calculo PLANNED WORK y PROACTIVE WORK -- Trabajo en pestaña IW-47 y IW-38*/
+            $objExcel->setActiveSheetIndex(1);
+            $nroFilas38 = $objExcel->setActiveSheetIndex(1)->getHighestRow();
+
+            $contadorHsPlan = 0;
+
+            for ($i = 3; $i <= $nroFilas38; $i++) {
+
+                $statusUsuario = $objExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+                $buscar = "PLND";
+                $resultado = strpos($statusUsuario, $buscar);
+
+                if($resultado !== FALSE){
+                    $orden38 = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                    //Agarro pestaña de IW-47
+                    $objExcel->setActiveSheetIndex(1);
+
+                    for ($i = 3; $i <= $nroFilas47; $i++) {
+
+                        $orden47 = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                        //Comparo nros de orden si es el mismo entonces guardo las horas de Trabajo Real de esa OT
+                        if($orden38 == $orden47){
+                            $horaLinea47 = $objExcel->getActiveSheet()->getCell($colTR.$i)->getCalculatedValue();
+                            $contadorHsPlan = $horaLinea47 + $contadorHsPlan;
+                        }                      
+                    }
+                }
+            }
+
+            //Formula PLANNED WORK
+            $hsDispMensual = $hsDispSemana*4;
+            $hsTRPlanificadas = ($contadorHsPlan/$hsDispMensual)*100;
+
+            echo $hsDispSemana;
+            echo "</br>";
+            echo $hsDispMensual;
+            echo "</br>";
+            echo $contadorHsPlan;
+            echo "</br>";
+            echo $hsTRPlanificadas;
+            
+            
 
 
 

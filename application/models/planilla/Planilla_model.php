@@ -83,6 +83,23 @@ class Planilla_model extends CI_Model {
 		}
 	}
 
+	function obtenerParametro($idDivSAP){
+		$this->db->select('*');
+		$this->db->where('idDivSAP', $idDivSAP);
+		$this->db->where('activo', 1);
+		$this->db->from('parametro');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}	
+			return $data;
+		}else{
+			return false;
+		}
+	}
+
 	function buscarUbicacion($fi, $col, $idKPI){
 		$this->db->select('*');
 		$this->db->where('ubicacion.idKPI', $idKPI);
