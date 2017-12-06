@@ -110,8 +110,8 @@ class Planilla extends My_Controller{
                     $hedf = 0;
                     $hsf = 0;
                     
-                    $idLineaAES = $this->Planilla_model->crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, 
-                                                                            $hedf, $hsf, $idUnidadGen, $idDivision, $idComplejo, $idPlanilla, $idKPI);
+                    $idLineaAES = $this->Planilla_model->crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, 
+                                                                        $hsf, $idUnidadGen, $idDivision, $idComplejo, $idPlanta, $idPlanilla, $idKPI);
                    //$idKPILinea = $this->Planilla_model->crearKPILinea($idKPI, $idKPILinea)
                 }           
             }
@@ -171,9 +171,10 @@ class Planilla extends My_Controller{
                         $fyBudget  = 0;
                         $idDivision = 0;
                         $idComplejo = 0;
+                        $idPlanta = 0;
                         
-                        $idLineaAES = $this->Planilla_model->crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, 
-                                                                            $hedf, $hsf, $idUnidadGen, $idDivision, $idComplejo, $idPlanilla, $idKPI);
+                        $idLineaAES = $this->Planilla_model->crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, 
+                                                                            $hsf, $idUnidadGen, $idDivision, $idComplejo, $idPlanta, $idPlanilla, $idKPI);
                        //$idKPILinea = $this->Planilla_model->crearKPILinea($idKPI, $idKPILinea)
                     }                     
                 }
@@ -230,16 +231,18 @@ class Planilla extends My_Controller{
                 }
             }
 
-
-                        echo $nroFilas;
-            die();
-
         }elseif($tipoP == "3"){//TIpo Planilla SAP
 
-            $data['divisionSAP'] = $this->Planilla_model->obtenerDivision($data['divisionSAP']);
-
-            foreach ($data['divisionSAP'] as $divSAP){
+            $data['divSAP'] = $this->Planilla_model->obtenerDivision($data['divisionSAP']);
+            $data['parametro'] = $this->Planilla_model->obtenerParametro($data['divisionSAP']);
+            
+            foreach ($data['divSAP'] as $divSAP){
                 $nombreDiv = $divSAP->nombreDivSAP;
+                $idDivisionSAP = $divSAP->idDivSAP;
+            }
+
+            foreach ($data['parametro'] as $param){
+                $hsDispSemana = $param->hsDispSemana;
             }
 
         	$planilla['file_name'] = 'SAP_'.$nombreDiv.'_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
@@ -257,9 +260,10 @@ class Planilla extends My_Controller{
             $pestanias = $objExcel->getSheetCount()-1;
 
 
-            //Calculo HORAS CORRECTIVAS y PREVENTIVAS -- Trabajo en pestaña IW-47
+
+            /*Calculo HORAS CORRECTIVAS y PREVENTIVAS -- Trabajo en pestaña IW-47*/
             $objExcel->setActiveSheetIndex(0);
-            $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
+            $nroFilas47 = $objExcel->setActiveSheetIndex(0)->getHighestRow();
             $letraCol = $objExcel->setActiveSheetIndex(0)->getHighestColumn();
 
             //Guardo en que columna estan los valores de "Trabajo Real"
@@ -275,14 +279,14 @@ class Planilla extends My_Controller{
                 } 
             }
 
-            $contadorHs = 0;
+            $hsTrabRealTotal = 0;
             $contadorHsPM10 = 0;
             $contadorHsPM2025 = 0;
 
-            for ($i = 3; $i <= $nroFilas; $i++) {
+            for ($i = 3; $i <= $nroFilas47; $i++) {
 
                 $horaLinea = $objExcel->getActiveSheet()->getCell($colTR.$i)->getCalculatedValue();
-                $contadorHs = $horaLinea + $contadorHs;
+                $hsTrabRealTotal = $horaLinea + $hsTrabRealTotal;
 
                 $tipoOT = $objExcel->getActiveSheet()->getCell($colCO.$i)->getCalculatedValue();
 
@@ -296,11 +300,121 @@ class Planilla extends My_Controller{
             }
 
             //Formula HORAS CORRECTIVAS
-            $hsTRCorrectivo = ($contadorHsPM10/$contadorHs)*100;
+            $hsTRCorrectivo = ($contadorHsPM10/$hsTrabRealTotal)*100;
 
             //Formula HORAS PREVENTIVAS
-            $hsTRPreventivo = ($contadorHsPM2025/$contadorHs)*100;
+            $hsTRPreventivo = ($contadorHsPM2025/$hsTrabRealTotal)*100;
 
+
+
+            /*Calculo BACKLOG -- Trabajo en pestaña IW-47 Ready Backlog*/
+            $objExcel->setActiveSheetIndex(2);
+            $nroFilasBL = $objExcel->setActiveSheetIndex(2)->getHighestRow();
+
+            $hsPlanificadasBL = 0;
+            $hsEjecutadasBL = 0;
+
+            for ($i = 3; $i <= $nroFilasBL; $i++) {
+
+                $trabajo = $objExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
+                $hsPlanificadasBL = $trabajo + $hsPlanificadasBL;
+
+                $trabajoReal = $objExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+                $hsEjecutadasBL = $trabajoReal + $hsEjecutadasBL;
+            }
+
+            //Calculo Horas Pendientes
+            $hsPendientesBL = $hsPlanificadasBL - $hsEjecutadasBL;
+
+            //Formula BACKLOG
+            $backlogReal = $hsPendientesBL/$hsDispSemana;
+
+
+
+            /*Calculo PLANNED WORK -- Trabajo en pestaña IW-47 y IW-38*/
+            $objExcel->setActiveSheetIndex(1);
+            $nroFilas38 = $objExcel->setActiveSheetIndex(1)->getHighestRow();
+
+            $contadorHsPlan = 0;
+
+            for ($i = 3; $i <= $nroFilas38; $i++){
+                //Agarro pestaña de IW-38 en cada vuelta del loop
+                $objExcel->setActiveSheetIndex(1);
+
+                $statusUsuario = $objExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
+                $buscar = "PLND";
+                $resultado = strpos($statusUsuario, $buscar);
+
+                if($resultado !== FALSE){
+                    $orden38 = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+
+                    //Agarro pestaña de IW-47
+                    $objExcel->setActiveSheetIndex(0);
+
+                    for ($j = 3; $j <= $nroFilas47; $j++) {
+                        $orden47 = $objExcel->getActiveSheet()->getCell('B'.$j)->getCalculatedValue();
+
+                        //Comparo nros de orden si es el mismo entonces guardo las horas de Trabajo Real de esa OT
+                        if($orden38 == $orden47){
+
+                            $horaLinea47 = $objExcel->getActiveSheet()->getCell($colTR.$j)->getCalculatedValue();
+                            $contadorHsPlan = $horaLinea47 + $contadorHsPlan;
+                        }                      
+                    }
+                }
+            }
+
+            //Formula PLANNED WORK
+            $hsDispMensual = $hsDispSemana*4;
+            $hsTRPlanificadas = ($contadorHsPlan/$hsDispMensual)*100;
+
+
+
+            /*Calculo PROACTIVE WORK -- Trabajo en pestaña IW-38*/
+            $idKPI = 14;
+            $objExcel->setActiveSheetIndex(1);
+
+            $cantOTCompletas = 0;
+            $cantOTs = 0;
+
+            for ($i = 3; $i <= $nroFilas38; $i++){
+
+                //Agarro solo ordenes PM20 y PM25
+                $clase = $objExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
+
+                if($clase == "PM20" || $clase == "PM25"){
+
+                    //Reviso si encuentro NOTP NOTI CERR y/o CTEC en Status Sistema para saber si estan Ejecutadas, si estan sumo 1
+                    $statusSistema = $objExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
+                    $notp = "NOTP";
+                    $noti = "NOTI";
+                    $cerr = "CERR";
+                    $ctec = "CTEC";
+
+                    $rdo1 = strpos($statusSistema, $notp);
+                    $rdo2 = strpos($statusSistema, $noti);
+                    $rdo3 = strpos($statusSistema, $cerr);
+                    $rdo4 = strpos($statusSistema, $ctec);
+
+                    if($rdo1!==FALSE || $rdo2!==FALSE || $rdo3!==FALSE || $rdo4!==FALSE){
+                       $cantOTCompletas++; 
+                    }
+
+                    $cantOTs++;
+                }
+            }
+
+            //Formula PROACTIVE WORK 
+            $trabajoProactivo = $cantOTCompletas/$cantOTs;
+
+            //Guardo Datos en DB
+            $idLineaMTBF = $this->Planilla_model->crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal,$hsTrabRealTotal, 
+                                                                    $hsTRCorrectivo, $hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, 
+                                                                    $cantOTCompletas, $cantOTs, $trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI);
+
+
+            
+            
 
 
 
