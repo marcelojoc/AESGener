@@ -183,9 +183,9 @@ class Planilla_model extends CI_Model {
 		return $idLineaAES;
 	}
 
-	function crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal,$hsTrabRealTotal, $hsTRCorrectivo, 
-							$hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, $cantOTCompletas, $cantOTs, 
-							$trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI){
+	function crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal, $hsTrabRealTotal, 
+                            $hsTRCorrectivo, $hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, 
+                            $cantOTCompletas, $cantOTs, $trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI){
 		$this->db->insert('linea_sap', 
 			array('hsPlanificadasBL'=>$hsPlanificadasBL, 
 					'hsEjecutadasBL'=>$hsEjecutadasBL,
@@ -198,6 +198,7 @@ class Planilla_model extends CI_Model {
 					'hsTRPlanificadas'=>$hsTRPlanificadas,
 					'cantOTCompletas'=>$cantOTCompletas, 
 					'cantOTs'=>$cantOTs,
+					'trabajoProactivo'=>$trabajoProactivo,
 					'idDivSAP'=>$idDivisionSAP,
 					'idPlanilla'=> $idPlanilla,
 					'idKPI'=> $idKPI));
