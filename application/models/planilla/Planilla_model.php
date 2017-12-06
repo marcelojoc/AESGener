@@ -162,7 +162,7 @@ class Planilla_model extends CI_Model {
 	}
 
 	function crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, $hsf,
-                            $idUnidadGen, $idDivision, $idComplejo, $idPlanilla, $idKPI){
+                            $idUnidadGen, $idDivision, $idComplejo, $idPlanta, $idPlanilla, $idKPI){
 		$this->db->insert('linea_aes', 
 			array('actualMes'=>$actualMes, 
 					'targetMes'=>$targetMes,
@@ -176,10 +176,33 @@ class Planilla_model extends CI_Model {
 					'idUnidadGen'=>$idUnidadGen, 
 					'idDivision'=>$idDivision,
 					'idComplejo'=>$idComplejo,
+					'idPlanta'=> $idPlanta,
 					'idPlanilla'=> $idPlanilla,
 					'idKPI'=> $idKPI));
 		$idLineaAES = $this->db->insert_id();
 		return $idLineaAES;
+	}
+
+	function crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal,$hsTrabRealTotal, $hsTRCorrectivo, 
+							$hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, $cantOTCompletas, $cantOTs, 
+							$trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI){
+		$this->db->insert('linea_sap', 
+			array('hsPlanificadasBL'=>$hsPlanificadasBL, 
+					'hsEjecutadasBL'=>$hsEjecutadasBL,
+					'hsPendientesBL'=>$hsPendientesBL,
+					'backlogReal'=>$backlogReal,
+					'hsTrabRealTotal'=>$hsTrabRealTotal,
+					'hsTRCorrectivo'=>$hsTRCorrectivo,
+					'hsTRPreventivo'=>$hsTRPreventivo,
+					'hsDispMensual'=>$hsDispMensual,
+					'hsTRPlanificadas'=>$hsTRPlanificadas,
+					'cantOTCompletas'=>$cantOTCompletas, 
+					'cantOTs'=>$cantOTs,
+					'idDivSAP'=>$idDivisionSAP,
+					'idPlanilla'=> $idPlanilla,
+					'idKPI'=> $idKPI));
+		$idLineaSAP = $this->db->insert_id();
+		return $idLineaSAP;
 	}
 		
 }
