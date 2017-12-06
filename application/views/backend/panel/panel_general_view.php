@@ -56,8 +56,6 @@
             <div class="col-sm-4">
 
 
-
-
                 <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-corporativo"><i><h4>EAF (%) </h4></i></div> <div class="soc-content"><div class="col-xs-3 b-r b-b"><h5 class="font-medium">94.25 %</h5> <h6 class="text-muted">Actual Mon</h6></div> <div class="col-xs-3 b-b b-r"><h5 class="font-medium">95.83 %</h5> <h6 class="text-muted">Target Mon</h6></div> <div class="col-xs-3 b-r b-b"><h5 class="font-medium">93.74%</h5> <h6 class="text-muted">YTD Actual</h6></div> <div class="col-xs-3 b-b"><h5 class="font-medium">94.84%</h5> <h6 class="text-muted">YTD Target</h6></div></div> <div class="row"><div class="col-xs-6 b-r"><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 94.25%;"><p><strong>valor real 94.25%</strong></p></div></div> <div class="progres-full animated bounceIn"><div class="borde box-green" style="width: 95.83%;"><p><strong>valor esperado  95.83%</strong></p></div></div></div></div> <div class="col-xs-6 "><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 93.74%;"><p><strong>valor real 93.74%</strong></p></div></div> <div class="progres-full animated bounceIn"><div class="borde box-green" style="width: 94.84%;"><p><strong>valor esperado  94.84%</strong></p></div></div></div></div></div></div>
 
 

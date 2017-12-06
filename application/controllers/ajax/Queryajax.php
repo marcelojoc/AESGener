@@ -66,6 +66,8 @@ class Queryajax extends My_Controller{
 
 					}
 				}
+
+				
 				echo json_encode($datos);
 
 			}else{

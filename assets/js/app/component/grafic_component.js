@@ -5,6 +5,7 @@
 
         if(value != "" && value != null){
             
+            value= value*100;
             posiciones = 2
             var s = value.toString()
             var l = s.length;

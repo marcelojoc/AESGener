@@ -66,7 +66,7 @@ var app = new Vue({
 
                 this.$http.get(url+'vrdata', { params: { idselect: this.idSelect, idlist: this.idList } }).then(function (resp) {
 
-                    this.kpi = JSON.parse(resp.data);
+                    this.kpi = JSON.parse(resp.data );
 
                 }, function (err) {
                     //si sale mal
