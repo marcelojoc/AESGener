@@ -57,81 +57,152 @@
 
         <div class="row">
 
+            <div class="col-sm-6 text-left" >
 
-            <div class="col-sm-12 text-left" >
+                <div class="soc-content ">
+                    <div class="col-xs-6 b-r b-b">
+                        <h3 class="font-medium" >HEDP</h3>
+                        
+                    </div>
+                
+                    <div class="col-xs-6 b-b ">
+                        <h3 class="font-medium">1.39</h3>
+                        
 
-                <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>KPI</th>
-                            <th>REAL MON</th>
-                            <th>COMENTARIOS</th>
-                        </tr>
-                        </thead>
+                    </div>
+
+                </div>  
 
 
-                        <tbody v-for="item in kpi">
 
-                            <tr HEIGHT="50">
-                                <td>HEDP</td>
-                                <td>{{item.hedp}} [hr]</td>
-                                <td class=" text-center">Traslado Mantenimiento al 2018 (840 hrs)</td>
-                            </tr>
 
-                            <tr HEIGHT="50">
-                                <td>HEDF</td>
-                                <td>{{item.hedf}} [hr]</td>
-                                <td class=" text-center">Cambios de prefiltros en compresor</td>
-                            </tr>
 
-                            <tr HEIGHT="50">
-                                <td>HSF</td>
-                                <td>{{item.hsf}} [hr]</td>
-                                <td class=" text-center">7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
-                            </tr>
-
+                <div class="soc-content ">
+                        <div class="col-xs-6 b-r b-b">
+                            <h3 class="font-medium" >HEDP</h3>
+                            
+                        </div>
+                    
+                        <div class="col-xs-6 b-b ">
+                            <h3 class="font-medium">1.39</h3>
+                            
+    
+                        </div>
+    
+                    </div>  
+                    
+                    <div class="soc-content ">
+                            <div class="col-xs-6 b-r b-b">
+                                <h3 class="font-medium" >HEDP</h3>
                                 
-                            <tr HEIGHT="50">
-                                <td>MTBF</td>
-                                <td> 57 [hr. Oper]</td>
-                                <td class=" text-center"></td>
-                            </tr>
+                            </div>
+                        
+                            <div class="col-xs-6 b-b ">
+                                <h3 class="font-medium">1.39</h3>
+                                
+        
+                            </div>
+        
+                    </div>  
+                        
+                        <div class="row">
 
-                            <tr HEIGHT="50">
-                                <td>MTBF target</td>
-                                <td>1600 [hr. Oper]</td>
-                                <td class=" text-center">Comentario</td>
-                            </tr>
 
-                            <tr HEIGHT="50">
-                                <td>Costo Mtto. Correctivo
-                                        [K USD]</td>
-                                <td>47.7</td>
-                                <td class=" text-center">Comentario</td>
-                            </tr>
 
-                            <tr HEIGHT="50">
-                                <td>Costo Mtto. Preventivo
-                                        [K USD]</td>
-                                <td>350.4</td>
-                                <td class=" text-center">Comentario</td>
-                            </tr>
-
+                        <div class="col-xs-12 animated jackInTheBox"><div class="tabbable"><ul class="nav nav-tabs" id="myTab"><li class="active"><a data-toggle="tab" href="#home">
+                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>Comentarios</a></li><li>
+                                <a data-toggle="tab" href="#messages"><i class="greenAES ace-icon fa fa-comments bigger-120"></i>Aañadir Comentario</a>
+                                </li></ul><div class="tab-content "><div id="home" class="tab-pane fade in active"><table class="table">
+                                <thead><tr><th>#</th><th>Contenido</th><th>Autor</th></tr></thead>
+                                <tbody><tr><th scope="row">1</th><td>Cambios de prefiltros en compresor</td><td>pepito h</td></tr><tr><tr></tbody></table></div>
+                                <div id="messages" class="tab-pane fade"><form action="">
+                                <div class="form-group"><label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></div>
+                                <button type="submit" class="btn btn-primary">Guardar Comentario</button></form></div></div></div><br></div>  <br> 
 
 
 
 
-                        </tbody>
+                        </div>
 
-                </table>
+
+
+
+
+
             </div>
+
+
+
+            
+
+
+            <div class="col-xs-6 b-r">
+
+                         <div class="social-widget col-sm-12 b-l b-r b-b">
+                                 <div class="soc-header box-twitter" >
+                                     <i><h4> MTBF </h4></i>
+                                 </div>
+     
+     
+                                 <div class="soc-content">
+                                     <div class="col-xs-6 b-r b-b">
+                                         <h5 class="font-medium" >8569</h5>
+                                         <h6 class="text-muted">Actual Mon</h6>
+                                     </div>
+                                 
+                                     <div class="col-xs-6 b-b ">
+                                         <h5 class="font-medium">1600</h5>
+                                         <h6 class="text-muted">Target Mon</h6>
+     
+                                     </div>
+     
+                                 </div> 
+     
+                                 <div class="row" >
+     
+                                     <div class="col-xs-12 ">
+     
+                                        <vm-semaforizado  v-bind:esperado= '1600' v-bind:real= '8569 |sindec'  lbl=""  tipo= "false"></vm-semaforizado>
+                                        
+                                     </div>
+     
+     
+                                 </div>
+     
+     
+
+                                 <div class="col-xs-12 animated jackInTheBox"><div class="tabbable"><ul class="nav nav-tabs" id="myTab"><li class="active"><a data-toggle="tab" href="#home">
+                                    <i class="greenAES ace-icon fa fa-key bigger-120"></i>Comentarios</a></li><li>
+                                    <a data-toggle="tab" href="#messages"><i class="greenAES ace-icon fa fa-comments bigger-120"></i>Aañadir Comentario</a>
+                                    </li></ul><div class="tab-content "><div id="home" class="tab-pane fade in active"><table class="table">
+                                    <thead><tr><th>#</th><th>Contenido</th><th>Autor</th></tr></thead>
+                                    <tbody><tr><th scope="row">1</th><td>Cambios de prefiltros en compresor</td><td>pepito h</td></tr><tr><tr></tbody></table></div>
+                                    <div id="messages" class="tab-pane fade"><form action="">
+                                    <div class="form-group"><label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></div>
+                                    <button type="submit" class="btn btn-primary">Guardar Comentario</button></form></div></div></div><br></div>  <br> 
+
+
+
+
+
+
+                         </div>
+
+
+
+     
+                     
+
+            </div>
+
+
+
 
         </div>
 
 
-<!-- <pre>
- -->
-<!-- {{$data}}</pre> -->
 
 
 
@@ -170,3 +241,79 @@
     </div> <!-- fin main-content-inner -->
 
 </div> <!-- fin main-content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- tag de templates -->
+<script type="text/x-template" id="aesgen-graph" >
+<!-- <template id="aesgen-graph"> -->
+
+            <!-- contenedor general de la progress bar -->
+            <div class="content-progres social-widget"> 
+
+                <!-- este marca el 100% del progres bar -->
+                <!-- progres-full limite animated zoomIn -->
+                <div class="progres-full limite animated zoomIn" >
+
+                    <!-- <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width:50%;" > -->
+                    <div class="indicador-kpi" :style="{ background: getColor, height: '3.9em' , width: real + '%' }" >
+                        
+                        <p><strong>{{lblr + " "}}{{real +"%" }}</strong></p>
+
+                    </div>
+
+                </div>
+                <div class="progres-full animated bounceIn">
+
+                    <div class="borde box-green" :style="{ width: esperado + '%' }" >
+
+                        <p><strong>{{lble +" " }} {{esperado +"%" }}</strong></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+</script>
+
+
+
+<script type="text/x-template" id="aesgen-semaf">
+
+    <!-- contenedor general de la progress bar -->
+    <div class="content-progres social-widget">
+
+                <div class="progres-full limite animated zoomIn">
+                
+                    <!-- <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width:50%;" > -->
+                    <div class="indicador-kpi" :style="{ background: getColorPoint, height: '3.9em' , width: '100%' }">
+                
+                        <p>
+                            <strong>{{leyenda }}</strong>
+                        </p>
+                
+                    </div>
+                
+                </div>
+    </div>
+
+</script>

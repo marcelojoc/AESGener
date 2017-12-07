@@ -56,25 +56,8 @@ var app = new Vue({
 
                     var datos =JSON.parse(resp.data);
 
-                    for (var i in datos) {
-    
-    
-                        console.log(datos[i].idPlanilla)
-    
-                        if(datos[i].idTipoPlanilla == '1'){
-        
-                            this.idPlanillaAes = datos[i].idPlanilla;
-        
-                        }else{
-        
-                            this.idPlanillaCos = datos[i].idPlanilla;
-        
-                        }
-    
-    
-                     }
-
-
+                    this.idPlanillaAes= datos[0].idPlanilla;
+                    this.idPlanillaCos= datos[1].idPlanilla;
 
 
                 }, function(err){

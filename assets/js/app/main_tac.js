@@ -12,23 +12,31 @@ var app = new Vue({
 
         ugen:[],  // unidades generadoras
 
-
         load: false,
 
-        idSelect:""
+        idSelect:"",
 
+        idPlanillaAes:0,
 
+        idPlanillaMtbf:0,
 
     },
 
-    beforeCreate: function () {
+
+    created: function () { 
         
-        
-    },
-    created: function() {
-        // fetch the data when the view is created and the data is
-        // already being observed
-        this.getugen()
+            this.getugen()
+            this.$http.get(url+'vrcheckpanel', { params: { tab: "tac" } } ).then( function (resp){
+
+                var datos =JSON.parse(resp.data);
+                this.idPlanillaAes= datos[0].idPlanilla;
+                this.idPlanillaMtbf= datos[1].idPlanilla;
+
+            }, function(err){
+                //si sale mal
+                console.log(err);
+                alert ('Error de conexion');
+            });
     },
 
     mounted: function () {
@@ -39,7 +47,10 @@ var app = new Vue({
 
         getkpi: function(){
 
-            this.$http.post(url+'vrtactic', { dato: this.idSelect} )
+            this.$http.post(url+'vrtactic', { dato: this.idSelect,
+                                                idplanillaAes: this.idPlanillaAes,
+                                                idPlanillaMtbf: this.idPlanillaMtbf
+                                            } )
             
             .then( function (resp,status, request){
 

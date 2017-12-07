@@ -62,25 +62,72 @@ class Kpi_model extends CI_Model {
 
 		if($tablero == "est"){
 
-			// si es panel estrategico  es el tipo de tabla 1 y 2
-			$this->db->where (' idTipoPlanilla= 1 OR  idTipoPlanilla= 2');
-			$this->db->select('*');
+			// busco la planilla de tipo 1  mas reciente
+			$this->db->where (' idTipoPlanilla= 1');
 			$this->db->from('planilla');
-			$this->db->order_by("idPlanilla", "ASC"); 
-			$this->db->limit(2);
+			$this->db->select_max('idPlanilla');
+			$query = $this->db->get();
+			$idplnillaAes= $query->result();
+			
+
+			//pido las de planilla 2
+
+			$this->db->where (' idTipoPlanilla= 2');
+			$this->db->from('planilla');
+			$this->db->select_max('idPlanilla');
+			$query = $this->db->get();
+			$idplnillaMtbf= $query->result();
+
+			$resultado = array_merge($idplnillaAes , $idplnillaMtbf);  // unifico los arreglos para devolver los resultados
+
+
+
 
 		}else{
 
 
+			if($tablero == "tac"){
+
+				// si es panel estrategico  es el tipo de tabla 1 y 2
+				$this->db->where (' idTipoPlanilla= 1');
+				$this->db->from('planilla');
+				$this->db->select_max('idPlanilla');
+				$query = $this->db->get();
+				$idplnillaAes= $query->result();
+
+				//pido las de planilla 4
+
+				$this->db->where (' idTipoPlanilla= 4');
+				$this->db->from('planilla');
+				$this->db->select_max('idPlanilla');
+
+				$query = $this->db->get();
+				$idplnillaMtbf= $query->result();
+
+				$resultado = array_merge($idplnillaAes , $idplnillaMtbf);  // unifico los arreglos para devolver los resultados
+
+
+
+
+			}else{
+
+				// panel operATIVO
+
+
+
+
+
+
+			}
 
 
 		}
 
-		$query = $this->db->get();
+		
 
 		if ($query->num_rows() > 0) {
 
-			return $query->result();
+			return $resultado;
 
 		}else{
 
@@ -277,24 +324,68 @@ class Kpi_model extends CI_Model {
 
 
 	// 	traigo los valores de Unidades generadoras
-	public function getValueUgfortac( $idUg){
-		
-		$this->db->where ('idUnidadGen',$idUg )->limit(1);
+	public function getValueUgfortac( $idUg, $idplanillaAes, $idPlanillaMtbf){
 
-		$this->db->select('
-		linea_aes.hedp, 
-		linea_aes.hedf, 
-		linea_aes.hsf, 
-					');
-		 $this->db->from('linea_aes');
+		//var_dump($idplanillaAes);
+
+		// $idplanillaAes=21;
+		// $idPlanillaMtbf=25;
+
+		$this->db->where ('linea_aes.idKPI = 5' ); // busco los HEDP
+		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
+		$this->db->where ('linea_aes.idUnidadGen',$idUg );
+		$this->db->select('linea_aes.hedp,');
+		$this->db->from('linea_aes');
 		$query = $this->db->get();
+		$hedp = $query->result();
 
-		if ($query->num_rows() > 0) {
 
-			return $query->result();
-		}else{
-			return false;
-		}
+		$this->db->where ('linea_aes.idKPI = 7' ); // busco los HSF
+		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
+		$this->db->where ('linea_aes.idUnidadGen',$idUg );
+		$this->db->select('linea_aes.hsf,');
+		$this->db->from('linea_aes');
+		$query = $this->db->get();
+		$hsf = $query->result();
+
+
+		$this->db->where ('linea_aes.idKPI = 6' ); // busco los Hedf
+		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
+		$this->db->where ('linea_aes.idUnidadGen',$idUg );
+		$this->db->select('linea_aes.hedf,');
+		$this->db->from('linea_aes');
+		$query = $this->db->get();
+		$hedf = $query->result();
+
+
+		$this->db->where ('linea_mtbf.idKPI = 8' ); // busco los MTBF
+		$this->db->where ('linea_mtbf.idPlanilla',$idPlanillaMtbf );
+		$this->db->where ('linea_mtbf.idUnidadGen',$idUg );
+		$this->db->select('*');
+		$this->db->from('linea_mtbf');
+		$query = $this->db->get();
+		$mtbf = $query->result();
+
+		$resultado =  array_merge($hedp ,$hsf, $hedf, $mtbf);
+
+
+		return $resultado;
+
+		// if ($query->num_rows() > 0) {
+
+		// 	return $query->result();
+		// }else{
+		// 	return false;
+		// }
+
+
+
+
+
+
+
+
+
 
 }
 
