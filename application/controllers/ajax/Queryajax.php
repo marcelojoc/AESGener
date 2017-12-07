@@ -127,7 +127,7 @@ class Queryajax extends My_Controller{
 
 			$request = json_decode(file_get_contents('php://input'));
 
-			
+
 
 			try{
 			//COLOCAMOS LA PROGRAMACION QUE NECESITAMOS HACER Y EN ESTE MISMO LUGAR CONFIGURAMOS            
@@ -135,6 +135,9 @@ class Queryajax extends My_Controller{
 				if(is_object($request)){
 
 					$id_ugen= $request->dato;
+					$idplanillaAes =$request->idplanillaAes;
+					$idPlanillaMtbf = $request->idPlanillaMtbf;
+
 				}else{
 
 					throw new Exception('‘Existio un error, provocado’',0);
@@ -145,7 +148,7 @@ class Queryajax extends My_Controller{
 				$id_ugen= 4;
 			}
 
-			$datos=$this->Kpi_model->getValueUgfortac($id_ugen);
+			$datos=$this->Kpi_model->getValueUgfortac($id_ugen, $idplanillaAes, $idPlanillaMtbf );
 
 			print json_encode($datos, true);
 
