@@ -10,10 +10,7 @@
 
 			<div class="row">
 				<div class="center" style="width:50%; margin-right:auto; margin-left:auto;">
-					<!-- <h3 class="header greenAES smaller lighter">
-						Subir planilla al servidor
-					</h3> -->
-					
+
 					<!-- our form -->
 					<form class="form-horizontal" role="form" method="post" action="<?php echo base_url()?>planilla/Planilla/subir" enctype="multipart/form-data">
 						
@@ -64,8 +61,7 @@
 												<option value="<?=$tipoP->idTipoPlanilla?>"><?=$tipoP->nombreTipoP;?></option>																					
 											<?php
 												}
-											?>
-                    						?>
+											?>                    						
 										</select>
 									</div>
 								</div>
@@ -83,8 +79,7 @@
 												<option value="<?=$divSAP->idDivSAP?>"><?=$divSAP->nombreDivSAP;?></option>																					
 											<?php
 												}
-											?>
-                    						?>
+											?>                    
 										</select>
 									</div>
 								</div>
@@ -104,9 +99,17 @@
 						</div> 
 
 						<div class="hr hr-12 dotted"></div>
+
+						<button class="btn btn-success" type="submit" >
+							<i class="ace-icon fa fa-check bigger-110"></i>
+								Cargar
+						</button>
 						
-						<button type="submit" class="btn btn-sm btn-success">Cargar</button>
-						<button type="reset" class="btn btn-sm">Limpiar</button>
+						<button class="btn" type="reset">
+							<i class="ace-icon fa fa-undo bigger-110"></i>
+								Limpiar
+						</button>
+						<!-- <button type="reset" class="btn btn-sm">Limpiar</button> -->
 					</form>
 				</div>
  			</div>
@@ -137,11 +140,11 @@
 <!--Para que se vean los botones de la tabla responsive-->
 
 	    <script type="text/javascript">
-	      window.jQuery || document.write("<script src='../assets/js/jquery.js'>"+"<"+"/script>");
+	      window.jQuery || document.write("<script src='../../assets/js/jquery.js'>"+"<"+"/script>");
 	    </script>
 
 
 	    <script type="text/javascript">
-	      if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
+	      if('ontouchstart' in document.documentElement) document.write("<script src='../../assets/js/jquery.mobile.custom.js'>"+"<"+"/script>");
 	    </script>
-	    <script src="../assets/js/bootstrap.js"></script>
+	    <script src="../../assets/js/bootstrap.js"></script>

@@ -9,10 +9,10 @@ class Parametros extends My_Controller{
   	}
 
   	function index(){
-        $data = "";
+  		$data['meses'] = $this->Planilla_model->obtenerMeses(); 
+  		$data['divisionesSAP'] = $this->Planilla_model->obtenerDivisionesSAP();
 		$nombreVista="backend/parametros/cargaParametros_view";
 		$this->cargarVista($nombreVista,$data);
-
 	}
 }
 ?>

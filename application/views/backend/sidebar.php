@@ -110,9 +110,9 @@
 				?>
 
 				<li class="">
-					<a href="<?php echo base_url()?>planilla/Planilla">
-						<i class="menu-icon fa fa-upload"></i>
-						<span class="menu-text">Planillas</span>
+					<a href="<?php echo base_url()?>parametros/Parametros">
+						<i class="menu-icon fa fa-cog"></i>
+						<span class="menu-text">Parámetros</span>
 					</a>
 
 					<b class="arrow"></b>
@@ -133,9 +133,9 @@
 				?>
 
 				<li class="">
-					<a href="<?php echo base_url()?>parametros/Parametros">
+					<a href="<?php echo base_url()?>planilla/Planilla">
 						<i class="menu-icon fa fa-upload"></i>
-						<span class="menu-text">Parámetros</span>
+						<span class="menu-text">Planillas</span>
 					</a>
 
 					<b class="arrow"></b>
@@ -243,7 +243,7 @@
 				?>
 				
 				<li class="">
-					<a href="<?php echo base_url('bienvenidaC') ?>">
+					<a href="<?php echo base_url('Bienvenida') ?>">
 						<i class="menu-icon fa fa-reply-all"></i>
 						<span class="menu-text"> Inicio</span>
 					</a>
