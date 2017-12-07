@@ -552,7 +552,7 @@
             </div>  <!-- fin contenedor V-for -->
          <pre>
          
-         {{$data}}
+        
          
          </pre>
 
