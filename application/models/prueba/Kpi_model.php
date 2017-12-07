@@ -57,65 +57,26 @@ class Kpi_model extends CI_Model {
 	
 	
 	
-	
-	
-	// 	traigo los valores de el cmplejo
-	public function getValueComplejo($idComplejo){
 
-				$this->db->select('
-								valores.actualMes, 
-								valores.targetMes, 
-								valores.ytdActual, 
-								valores.ytdTarget, 
-								valores.ctmActual, 
-								valores.ctmBudget, 
-								kpi.abreviaturaKPI as nombreKPI
-							');
-				$this->db->from('valores');
-				$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');
-				$this->db->join('kpi','kpi.idKPI = kpi_planilla.idKPI','left');
+	public function checkplanill($tablero){
 
-				$this->db->where ('idComplejo',$idComplejo );
-				$this->db->where ('idDivision= 0' );
-				$this->db->where ('idUnidadGen= 0');
-				
-				//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
-				$query = $this->db->get();
-				
-				if ($query->num_rows() > 0) {
-			
-					return $query->result();
+		if($tablero == "est"){
 
-				}else{
+			// si es panel estrategico  es el tipo de tabla 1 y 2
+			$this->db->where (' idTipoPlanilla= 1 OR  idTipoPlanilla= 2');
+			$this->db->select('*');
+			$this->db->from('planilla');
+			$this->db->order_by("idPlanilla", "desc"); 
+			$this->db->limit(2);
 
-					return false;
+		}else{
 
-				}
-		
-	}
-	
-	
-	
-	
-	// 	traigo valores de division
-	public function getValueDiv($idDivision){
-		
-				$this->db->where ('idDivision',$idDivision );
-				$this->db->where ('idUnidadGen= 0');
-				$this->db->select('
-								valores.actualMes, 
-								valores.targetMes, 
-								valores.ytdActual, 
-								valores.ytdTarget, 
-								valores.ctmActual, 
-								valores.ctmBudget, 
-								kpi.abreviaturaKPI as nombreKPI
-							');
-		 		$this->db->from('valores');
-		 		$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');
-		 		$this->db->join('kpi','kpi.idKPI = kpi_planilla.idKPI','left');
-		
-				$query = $this->db->get();
+
+
+
+		}
+
+		$query = $this->db->get();
 		
 		if ($query->num_rows() > 0) {
 
@@ -127,29 +88,157 @@ class Kpi_model extends CI_Model {
 
 		}
 
+
+
+	}
+
+
+
+	
+	
+	// 	traigo los valores de el cmplejo
+	public function getValueComplejo($idComplejo , $idplnillaAes= null, $idPlanillaCosto= null){
+
+		$idplnillaAes= 17;
+		$idPlanillaCosto= 17;
+
+				$this->db->where ('idDivision = 0' );
+				$this->db->where ('idUnidadGen = 0');
+				$this->db->where ('idComplejo', $idComplejo);				
+				$this->db->where ('linea_aes.idPlanilla', $idplnillaAes);
+				$this->db->select('
+							linea_aes.actualMes, 
+							linea_aes.targetMes, 
+							linea_aes.ytdActual, 
+							linea_aes.ytdTarget, 
+							kpi.abreviaturaKPI AS nombreKPI');
+		 		$this->db->from('linea_aes');
+		 		$this->db->join('kpi','kpi.idKPI = linea_aes.idKPI','left');
+
+				$query = $this->db->get();
+
+					$array1= $query->result();  // almaceno el resultado en el array 1
+
+
+				
+					$this->db->where ('linea_costos.idPlanilla', $idPlanillaCosto);
+					$this->db->where ('idDivision =0' );
+					$this->db->where ('idComplejo', $idComplejo);
+					$this->db->select('
+								linea_costos.ctmActual,
+								linea_costos.ctmBudget,
+								kpi.abreviaturaKPI AS nombreKPI');
+					 $this->db->from('linea_costos');
+					 $this->db->join('kpi','kpi.idKPI = linea_costos.idKPI','left');
+	
+					 $query2 = $this->db->get();
+					 
+						$array2= $query2->result(); // vuelco el resultado en array2
+						
+				
+					$resultado = array_merge($array1 , $array2);  // unifico los arreglos para devolver los resultados
+					// compruebo que el array no este vacio
+	
+					if(count($resultado)==0) { 
+	
+						return false;
+	
+					}else{ 
+	
+						return $resultado; 
+					}  
+	
+		
+	}
+	
+	
+	
+	
+	// 	traigo valores de division
+	public function getValueDiv($idDivision, $idplnillaAes= null, $idPlanillaCosto= null){
+
+		$idplnillaAes= 17;
+		$idPlanillaCosto= 17;
+
+				$this->db->where ('idDivision',$idDivision );
+				$this->db->where ('idUnidadGen= 0');
+				$this->db->where ('idComplejo= 0');				
+				$this->db->where ('linea_aes.idPlanilla', $idplnillaAes);
+				$this->db->select('
+							linea_aes.actualMes, 
+							linea_aes.targetMes, 
+							linea_aes.ytdActual, 
+							linea_aes.ytdTarget, 
+							kpi.abreviaturaKPI AS nombreKPI');
+		 		$this->db->from('linea_aes');
+		 		$this->db->join('kpi','kpi.idKPI = linea_aes.idKPI','left');
+
+				$query = $this->db->get();
+
+					
+					$array1= $query->result(); 
+					
+				
+
+				$this->db->where ('linea_costos.idPlanilla', $idPlanillaCosto);
+				$this->db->where ('idDivision',$idDivision );
+				$this->db->where ('idComplejo= 0');
+				$this->db->select('
+							linea_costos.ctmActual,
+							linea_costos.ctmBudget,
+							kpi.abreviaturaKPI AS nombreKPI');
+		 		$this->db->from('linea_costos');
+		 		$this->db->join('kpi','kpi.idKPI = linea_costos.idKPI','left');
+
+				 $query2 = $this->db->get();
+				 
+				
+					
+					$array2= $query2->result(); 
+					
+				
+
+				$resultado = array_merge($array1 , $array2);
+				// compruebo que el array no este vacio
+
+				if(count($resultado)==0) { 
+
+					return false;
+
+				}else{ 
+
+					return $resultado; 
+				}  
+
+				
+
 	}
 	
 
 
 	// 	traigo los valores de Unidades generadoras
-	public function getValueUg( $idUg){
+	public function getValueUg( $idUg , $idPlanilla=null){
 				
+		/**
+		 * recibo el id de la unidad generadora y el id de la planilla del mes seleccionado
+		 */
+		$idPlanilla=17;
+		
 				$this->db->where ('idUnidadGen',$idUg );
+				$this->db->where ('idComplejo= 0');
+				$this->db->where ('idDivision= 0');
+				$this->db->where ('linea_aes.idPlanilla', $idPlanilla);
 				$this->db->select('
-								valores.actualMes, 
-								valores.targetMes, 
-								valores.ytdActual, 
-								valores.ytdTarget, 
-								valores.ctmActual, 
-								valores.ctmBudget, 
-								kpi.abreviaturaKPI as nombreKPI
+							linea_aes.actualMes , 
+							linea_aes.targetMes, 
+							linea_aes.ytdActual, 
+							linea_aes.ytdTarget, 
+							kpi.abreviaturaKPI AS nombreKPI
 							');
-		 		$this->db->from('valores');
-		 		$this->db->join('kpi_planilla','kpi_planilla.idKPIPlanilla = valores.idKPIPlanilla','left');
-		 		$this->db->join('kpi','kpi.idKPI = kpi_planilla.idKPI','left');
+		 		$this->db->from('linea_aes');
 
-				
-				//S		ELECT * FROM valores WHERE `idComplejo`= 1  AND `idDivision`= 0 AND `idUnidadGen`= 0
+		 		$this->db->join('kpi','kpi.idKPI = linea_aes.idKPI','left');
+
 				$query = $this->db->get();
 
 				if ($query->num_rows() > 0) {
@@ -166,6 +255,29 @@ class Kpi_model extends CI_Model {
 		
 	}
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// 	traigo los valores de Unidades generadoras
 	public function getValueUgfortac( $idUg){
@@ -193,24 +305,28 @@ class Kpi_model extends CI_Model {
 
 	public function getCa($idCa=0){
 		//en este caso kpi planilla es 4, pero esto debe ser dinamico
-		$kpi_estatico= 4;
-		$this->db->select(' valores.idvalores, 
-							valores.actualMes,
-							valores.targetMes,
-							valores.ytdActual,
-							valores.ytdTarget,
+		$kpi_estatico= 17;
+		$this->db->select('  
+							linea_aes.actualMes,
+							linea_aes.targetMes,
+							linea_aes.ytdActual,
+							linea_aes.ytdTarget,
 							planta.nombrePlanta
 							');
 		
-		$this->db->from('valores');
-
-		$this->db->join('planta', 'valores.idPlanta = planta.idPlanta','left');
+		$this->db->from('linea_aes');
+		$this->db->join('planta', 'linea_aes.idPlanta = planta.idPlanta','left');
 		
 		if($idCa != 0 ){  // si no envia parametros o es un valor inferior a 1 devuelve todos los valores
 
-			$this->db->where ('valores.idPlanta',$idCa );
+			$this->db->where ('linea_aes.idPlanta',$idCa );
+		}else{
+
+			$this->db->where ('linea_aes.idPlanta > 0' );
 		}
-		$this->db->where ('valores.idKPIPlanilla',$kpi_estatico );	
+
+
+		$this->db->where ('linea_aes.idPlanilla',$kpi_estatico );	
 				
 		$query = $this->db->get();
 
