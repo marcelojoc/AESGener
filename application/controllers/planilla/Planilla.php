@@ -25,10 +25,6 @@ class Planilla extends My_Controller{
         /*Falta pasar datos del empleado*/
         /*Falta pasar datos del empleado*/
         /*Falta pasar datos del empleado*/
-        /*Falta agregar en la vista el campo de seleccion de que division es la planilla si es SAP*/
-        /*Falta agregar en la vista el campo de seleccion de que division es la planilla si es SAP*/
-        /*Falta agregar en la vista el campo de seleccion de que division es la planilla si es SAP*/
-        /*Falta agregar en la vista el campo de seleccion de que division es la planilla si es SAP*/
         $anio = $this->input->post('anio');
         $mes = $this->input->post('mes');
         $tipoP = $this->input->post('tipoPlanilla');
@@ -254,14 +250,13 @@ class Planilla extends My_Controller{
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
 
-            /*Probar si en vez de poner la pestaña hay alguna forma de variarlo en un for*/
-            /*Probar si en vez de poner la pestaña hay alguna forma de variarlo en un for*/
-            /*Probar si en vez de poner la pestaña hay alguna forma de variarlo en un for*/
+            //Crear Planilla
+            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP);
             $pestanias = $objExcel->getSheetCount()-1;
 
 
 
-            /*Calculo HORAS CORRECTIVAS y PREVENTIVAS -- Trabajo en pestaña IW-47*/
+            /*----------Calculo HORAS CORRECTIVAS y PREVENTIVAS -- Trabajo en pestaña IW-47 ----------*/
             $objExcel->setActiveSheetIndex(0);
             $nroFilas47 = $objExcel->setActiveSheetIndex(0)->getHighestRow();
             $letraCol = $objExcel->setActiveSheetIndex(0)->getHighestColumn();
@@ -301,13 +296,34 @@ class Planilla extends My_Controller{
 
             //Formula HORAS CORRECTIVAS
             $hsTRCorrectivo = ($contadorHsPM10/$hsTrabRealTotal)*100;
+          
+            $idKPI = 11;
+            //Guardo Datos en DB
+            $hsPlanificadasBL = $hsEjecutadasBL = $hsPendientesBL = $backlogReal = $hsTRPreventivo = 0; 
+            $hsDispMensual = $hsTRPlanificadas = $cantOTCompletas = $cantOTs = $trabajoProactivo = 0;
+
+            $idLineaSAP = $this->Planilla_model->crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal,$hsTrabRealTotal, 
+                                                                    $hsTRCorrectivo, $hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, 
+                                                                    $cantOTCompletas, $cantOTs, $trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI);
+
 
             //Formula HORAS PREVENTIVAS
-            $hsTRPreventivo = ($contadorHsPM2025/$hsTrabRealTotal)*100;
+            $hsTRPreventivo = ($contadorHsPM2025/$hsTrabRealTotal)*100;  
+            
+            $idKPI = 12;
+            //Guardo Datos en DB
+            $hsPlanificadasBL = $hsEjecutadasBL = $hsPendientesBL = $backlogReal = $hsTRCorrectivo = 0; 
+            $hsDispMensual = $hsTRPlanificadas = $cantOTCompletas = $cantOTs = $trabajoProactivo = 0;
+
+            $idLineaSAP = $this->Planilla_model->crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal, $hsTrabRealTotal, 
+                                                                    $hsTRCorrectivo, $hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, 
+                                                                    $cantOTCompletas, $cantOTs, $trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI);
+            /*----------Calculo HORAS CORRECTIVAS y PREVENTIVAS -- Trabajo en pestaña IW-47 ----------*/
 
 
 
-            /*Calculo BACKLOG -- Trabajo en pestaña IW-47 Ready Backlog*/
+            /*----------Calculo BACKLOG -- Trabajo en pestaña IW-47 Ready Backlog----------*/
+            $idKPI = 10;
             $objExcel->setActiveSheetIndex(2);
             $nroFilasBL = $objExcel->setActiveSheetIndex(2)->getHighestRow();
 
@@ -329,9 +345,19 @@ class Planilla extends My_Controller{
             //Formula BACKLOG
             $backlogReal = $hsPendientesBL/$hsDispSemana;
 
+            //Guardo Datos en DB
+            $hsTrabRealTotal = $hsTRCorrectivo = $hsTRPreventivo = $hsDispMensual = 0; 
+            $hsTRPlanificadas = $cantOTCompletas = $cantOTs = $trabajoProactivo = 0;
+
+            $idLineaSAP = $this->Planilla_model->crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal,$hsTrabRealTotal, 
+                                                                    $hsTRCorrectivo, $hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, 
+                                                                    $cantOTCompletas, $cantOTs, $trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI);
+            /*----------Calculo BACKLOG -- Trabajo en pestaña IW-47 Ready Backlog----------*/
 
 
-            /*Calculo PLANNED WORK -- Trabajo en pestaña IW-47 y IW-38*/
+
+            /*----------Calculo PLANNED WORK -- Trabajo en pestaña IW-47 y IW-38----------*/
+            $idKPI = 13;
             $objExcel->setActiveSheetIndex(1);
             $nroFilas38 = $objExcel->setActiveSheetIndex(1)->getHighestRow();
 
@@ -368,9 +394,18 @@ class Planilla extends My_Controller{
             $hsDispMensual = $hsDispSemana*4;
             $hsTRPlanificadas = ($contadorHsPlan/$hsDispMensual)*100;
 
+            //Guardo Datos en DB
+            $hsPlanificadasBL = $hsEjecutadasBL = $hsPendientesBL = $backlogReal = $hsTrabRealTotal = 0; 
+            $hsTRCorrectivo = $hsTRPreventivo = $cantOTCompletas = $cantOTs = $trabajoProactivo = 0;
+
+            $idLineaSAP = $this->Planilla_model->crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal,$hsTrabRealTotal, 
+                                                                    $hsTRCorrectivo, $hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, 
+                                                                    $cantOTCompletas, $cantOTs, $trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI);
+            /*----------Calculo PLANNED WORK -- Trabajo en pestaña IW-47 y IW-38----------*/
 
 
-            /*Calculo PROACTIVE WORK -- Trabajo en pestaña IW-38*/
+
+            /*----------Calculo PROACTIVE WORK -- Trabajo en pestaña IW-38----------*/
             $idKPI = 14;
             $objExcel->setActiveSheetIndex(1);
 
@@ -408,24 +443,13 @@ class Planilla extends My_Controller{
             $trabajoProactivo = $cantOTCompletas/$cantOTs;
 
             //Guardo Datos en DB
-            $idLineaMTBF = $this->Planilla_model->crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal,$hsTrabRealTotal, 
+            $hsPlanificadasBL = $hsEjecutadasBL = $hsPendientesBL = $backlogReal = $hsTrabRealTotal = 0;
+            $hsTRCorrectivo = $hsTRPreventivo = $hsDispMensual = $hsTRPlanificadas = 0;
+
+            $idLineaSAP = $this->Planilla_model->crearLineaSAP($hsPlanificadasBL, $hsEjecutadasBL, $hsPendientesBL, $backlogReal,$hsTrabRealTotal, 
                                                                     $hsTRCorrectivo, $hsTRPreventivo, $hsDispMensual, $hsTRPlanificadas, 
                                                                     $cantOTCompletas, $cantOTs, $trabajoProactivo, $idDivisionSAP, $idPlanilla, $idKPI);
-
-
-            
-            
-
-
-
-
-
-
-
-
-
-
-
+            /*----------Calculo PROACTIVE WORK -- Trabajo en pestaña IW-38----------*/
 
 
         }elseif($tipoP == "4"){//TIpo Planilla MTBF
@@ -473,24 +497,25 @@ class Planilla extends My_Controller{
             }
         }
 
-		// if(!$this->upload->do_upload()){
+		if(!$this->upload->do_upload()){
 
-		// 	/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
-		// 	$error=array('error' => $this->upload->display_errors());
-		// 	$data="";
-		// 	$nombreVista="backend/planilla/upload_view";
-		// 	$this->cargarVista($nombreVista,$data);
+			/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
+			$error=array('error' => $this->upload->display_errors());
+			$data="";
+			$nombreVista="backend/planilla/upload_view";
+			$this->cargarVista($nombreVista,$data);
 
-		// }else{
+		}else{
 
-		// 	//Datos del fichero subido
-		// 	//$datos["xls"]=$this->upload->data();
-		// 	// Podemos acceder a todas las propiedades del fichero subido 
-		// 	// $datos["img"]["file_name"]);
-		// 	//Agregar que muestre un msj de exito antes de refrescar
-		// 	redirect('/planilla/Planilla','refresh');
+			//Datos del fichero subido
+			//$datos["xls"]=$this->upload->data();
+			// Podemos acceder a todas las propiedades del fichero subido 
+			// $datos["img"]["file_name"]);
+			//Agregar que muestre un msj de exito antes de refrescar
+            echo '<script >alert("Planilla cargada con éxito!");</script>';
+			redirect('/planilla/Planilla','refresh');
 	
-		// }
+		}
 	}
 
 }  
