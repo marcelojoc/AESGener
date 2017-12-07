@@ -12,10 +12,6 @@ var app = new Vue({
 
         ugen:[],  // unidades generadoras
 
-        hard:[
-            { id : "1", valor : '' }
-
-        ],
 
         load: false,
 

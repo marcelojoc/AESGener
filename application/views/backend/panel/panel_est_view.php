@@ -550,11 +550,7 @@
                     </div><br>
 
             </div>  <!-- fin contenedor V-for -->
-         <pre>
-         
-        {{$data}}
-         
-         </pre>
+
 
 <!-- fin bloque CA -->
 

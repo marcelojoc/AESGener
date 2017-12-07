@@ -220,8 +220,6 @@ class Kpi_model extends CI_Model {
 		 * recibo el id de la unidad generadora y el id de la planilla del mes seleccionado
 		 */
 
-
-
 		
 				$this->db->where ('idUnidadGen',$idUg );
 				$this->db->where ('idComplejo= 0');
@@ -284,11 +282,11 @@ class Kpi_model extends CI_Model {
 		$this->db->where ('idUnidadGen',$idUg )->limit(1);
 
 		$this->db->select('
-						valores.hedp, 
-						valores.hedf, 
-						valores.hsf, 
+		linea_aes.hedp, 
+		linea_aes.hedf, 
+		linea_aes.hsf, 
 					');
-		 $this->db->from('valores');
+		 $this->db->from('linea_aes');
 		$query = $this->db->get();
 
 		if ($query->num_rows() > 0) {
@@ -304,8 +302,6 @@ class Kpi_model extends CI_Model {
 
 	public function getCa($idCa=0 , $idPlanilla= null){
 		//en este caso kpi planilla es 4, pero esto debe ser dinamico
-
-		$idPlanilla= 20;
 
 		$this->db->select('  
 							linea_aes.actualMes,

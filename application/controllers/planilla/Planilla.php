@@ -263,7 +263,7 @@ class Planilla extends My_Controller{
 
             //Guardo en que columna estan los valores de "Trabajo Real"
             foreach(range("A", $letraCol) as $columna) {
-                $nombreCol = $objExcel->getActiveSheet()->getCell($columna. 2)->getCalculatedValue();
+                $nombreCol = $objExcel->getActiveSheet()->getCell($columna. 1)->getCalculatedValue();
 
                 if ($nombreCol == "Trabajo real"){
                     $colTR = $columna;
@@ -278,7 +278,7 @@ class Planilla extends My_Controller{
             $contadorHsPM10 = 0;
             $contadorHsPM2025 = 0;
 
-            for ($i = 3; $i <= $nroFilas47; $i++) {
+            for ($i = 2; $i <= $nroFilas47; $i++) {
 
                 $horaLinea = $objExcel->getActiveSheet()->getCell($colTR.$i)->getCalculatedValue();
                 $hsTrabRealTotal = $horaLinea + $hsTrabRealTotal;
@@ -330,7 +330,7 @@ class Planilla extends My_Controller{
             $hsPlanificadasBL = 0;
             $hsEjecutadasBL = 0;
 
-            for ($i = 3; $i <= $nroFilasBL; $i++) {
+            for ($i = 2; $i <= $nroFilasBL; $i++) {
 
                 $trabajo = $objExcel->getActiveSheet()->getCell('J'.$i)->getCalculatedValue();
                 $hsPlanificadasBL = $trabajo + $hsPlanificadasBL;
@@ -363,7 +363,7 @@ class Planilla extends My_Controller{
 
             $contadorHsPlan = 0;
 
-            for ($i = 3; $i <= $nroFilas38; $i++){
+            for ($i = 2; $i <= $nroFilas38; $i++){
                 //Agarro pestaña de IW-38 en cada vuelta del loop
                 $objExcel->setActiveSheetIndex(1);
 
@@ -412,7 +412,7 @@ class Planilla extends My_Controller{
             $cantOTCompletas = 0;
             $cantOTs = 0;
 
-            for ($i = 3; $i <= $nroFilas38; $i++){
+            for ($i = 2; $i <= $nroFilas38; $i++){
 
                 //Agarro solo ordenes PM20 y PM25
                 $clase = $objExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
@@ -519,125 +519,6 @@ class Planilla extends My_Controller{
 	}
 
 }  
-
-
-
-                // echo "nombreKPI linea: ".$i." nombre: ".$nombreKPI;
-                // echo "</br>";
-
-                // //if($nombreKPI != ""){ //Aca puede fallar porque en muchas lineas es ""
-
-                //     $data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
-
-                //     var_dump($data['KPI']);
-                //     echo "</br>";
-                //     echo "evaluar getKPI";
-
-                //     foreach ($data['KPI'] as $kpi){
-                //         $idKPI = $kpi->idKPI;
-                //     }
-
-
-                //     //Deberia buscar la ubicacion del KPI completo en la TABLA UBICACION no hardcodear los valores de inicio y fin
-                //     //Deberia buscar la ubicacion del KPI completo en la TABLA UBICACION no hardcodear los valores de inicio y fin
-                //     //Deberia buscar la ubicacion del KPI completo en la TABLA UBICACION no hardcodear los valores de inicio y fin
-                //     if($idKPI){
-                //         if($idKPI == 1){
-                //             $inicio = 4;
-                //             $fin = 38;
-
-                //             echo "entra a kpi 1";
-                //             echo "</br>";
-
-                //         }elseif($idKPI == 2){
-                //             $inicio = 39;
-                //             $fin = 73;
-
-                //             echo "entra a kpi 2";
-                //             echo "</br>";
-
-                //         }elseif($idKPI == 3){   
-                //             $inicio = 74;
-                //             $fin = 97;
-
-                //             echo "entra a kpi 3";
-                //             echo "</br>";
-                //         }elseif($idKPI == 4){
-                //             $inicio = 98;
-                //             $fin = 104;
-
-                //             echo "entra a kpi 4";
-                //             echo "</br>";
-                //         }
-                //     }
-                //     //Deberia buscar la ubicacion del KPI completo en la TABLA UBICACION no hardcodear los valores de inicio y fin
-
-                //     echo "idKPI nro".$i;
-                //     var_dump($idKPI);
-                //     echo "</br>";
-                //     echo "</br>";
-                //     echo "</br>";
-                //     echo "</br>";
-
-                //     for ($i = $inicio; $i <= $fin; $i++) {
-
-                //         echo $i;
-                //         echo "</br>";
-                //         echo $fin;
-                //         echo "</br>";
-                //         $columna = "C";
-                //         $fila = $i;
-
-                //         $ubicacion = $this->Planilla_model->buscarUbicacion($fila, $columna, $idKPI);
-
-                //         foreach ($ubicacion as $ubi){
-                //             $id = $ubi->idUbicacion;
-                //         }
-
-                //         foreach ($ubicacion as $ubi){
-
-                //                 $idUnidadGen = $ubi->idUnidadGen;
-                //                 $idDivision = $ubi->idDivision;
-                //                 $idComplejo = $ubi->idComplejo;
-                //                 $actualMes = $objExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
-                //                 $targetMes = $objExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-                //                 $ytdActual = $objExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-                //                 $ytdTarget = $objExcel->getActiveSheet()->getCell('G'.$i)->getCalculatedValue();
-                //                 $fyf = $objExcel->getActiveSheet()->getCell('H'.$i)->getCalculatedValue();
-                //                 $fyBudget = $objExcel->getActiveSheet()->getCell('I'.$i)->getCalculatedValue();
-                                
-                //                 $idLineaAES = $this->Planilla_model->crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget,
-                //                                                                     $idUnidadGen, $idDivision, $idComplejo, $idPlanilla, $idKPI);
-                //                //$idKPILinea = $this->Planilla_model->crearKPILinea($idKPI, $idKPILinea)
-
-                //         }
-                //     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>

@@ -127,6 +127,8 @@ class Queryajax extends My_Controller{
 
 			$request = json_decode(file_get_contents('php://input'));
 
+			
+
 			try{
 			//COLOCAMOS LA PROGRAMACION QUE NECESITAMOS HACER Y EN ESTE MISMO LUGAR CONFIGURAMOS            
 			//NUESTRAS EXCEPCIONES.
