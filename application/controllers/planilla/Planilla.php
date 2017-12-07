@@ -25,10 +25,6 @@ class Planilla extends My_Controller{
         /*Falta pasar datos del empleado*/
         /*Falta pasar datos del empleado*/
         /*Falta pasar datos del empleado*/
-        /*Falta agregar en la vista el campo de seleccion de que division es la planilla si es SAP*/
-        /*Falta agregar en la vista el campo de seleccion de que division es la planilla si es SAP*/
-        /*Falta agregar en la vista el campo de seleccion de que division es la planilla si es SAP*/
-        /*Falta agregar en la vista el campo de seleccion de que division es la planilla si es SAP*/
         $anio = $this->input->post('anio');
         $mes = $this->input->post('mes');
         $tipoP = $this->input->post('tipoPlanilla');
@@ -516,6 +512,7 @@ class Planilla extends My_Controller{
 			// Podemos acceder a todas las propiedades del fichero subido 
 			// $datos["img"]["file_name"]);
 			//Agregar que muestre un msj de exito antes de refrescar
+            echo '<script >alert("Planilla cargada con éxito!");</script>';
 			redirect('/planilla/Planilla','refresh');
 	
 		}
