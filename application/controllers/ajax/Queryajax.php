@@ -61,8 +61,8 @@ class Queryajax extends My_Controller{
 
 				$idSelect= $_GET['idselect'];
 				$idList= $_GET['idlist'];
-				$idplnillaAes=$_GET['idlist'];
-				$idPlanillaCosto=$_GET['idlist'];
+				$idplnillaAes=$_GET['idplanillaAes'];
+				$idPlanillaCosto=$_GET['idPlanillaCos'];
 
 				$datos=[];
 				if($idSelect == "1"){ // busco por Unidad Gen
@@ -100,9 +100,11 @@ class Queryajax extends My_Controller{
 
 			if( isset($_GET) || (!empty($_GET['idcaSelect'])) ){  // compruebo los datos enviados
 
+				
 				@$idcaSelect = $this->input->get('idcaSelect');  //si no hay nada o es 0  trae todo
+				@$idplanillaAes = $this->input->get('idplanillaAes');  //si no hay nada o es 0  trae todo
 
-				$datos=$this->Kpi_model->getCa($idcaSelect ? $idcaSelect : 0);
+				$datos=$this->Kpi_model->getCa($idcaSelect ? $idcaSelect : 0, $idplanillaAes);
 
 			}else{
 

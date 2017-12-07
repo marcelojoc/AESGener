@@ -56,7 +56,7 @@
 				?>
 
 				<li class="">
-					<a href="<?php echo base_url()?>planilla/Planilla">
+					<a href="<?php echo base_url()?>Bienvenida">
 						<i class="menu-icon fa fa-wrench"></i>
 						<span class="menu-text">Configuración</span>
 					</a>

@@ -43,9 +43,9 @@ var app = new Vue({
         idcaSelect:"",  //el id de seleccion del area de Ca
         cakpi:[] ,     // kpi de comertial A..
 
-        idPlanilla:[
-            
-        ]
+        idPlanillaAes:0,
+
+        idPlanillaCos:0,
 
 
     },
@@ -54,7 +54,28 @@ var app = new Vue({
 
                 this.$http.get(url+'vrcheckpanel', { params: { tab: "est" } } ).then( function (resp){
 
-                    this.idPlanilla=JSON.parse(resp.data);
+                    var datos =JSON.parse(resp.data);
+
+                    for (var i in datos) {
+    
+    
+                        console.log(datos[i].idPlanilla)
+    
+                        if(datos[i].idTipoPlanilla == '1'){
+        
+                            this.idPlanillaAes = datos[i].idPlanilla;
+        
+                        }else{
+        
+                            this.idPlanillaCos = datos[i].idPlanilla;
+        
+                        }
+    
+    
+                     }
+
+
+
 
                 }, function(err){
                     //si sale mal
@@ -82,20 +103,12 @@ var app = new Vue({
 
             getData: function(){
 
-                if(this.idPlanilla.idTipoPlanilla == '1'){
 
-                    var planillaAes= this.idPlanilla.idPlanilla;
-
-                }else{
-
-                    var planillaAes= this.idPlanilla.idPlanilla;
-
-                }
 
                 this.$http.get(url+'vrdata', { params: { idselect: this.idSelect, idlist: this.idList,
                 
-                                                        idplanillaA: this.idSelect,
-                                                        idPlanillaB: this.idSelect
+                                                        idplanillaAes: this.idPlanillaAes,
+                                                        idPlanillaCos: this.idPlanillaCos
                 
                                                         } }).then(function (resp) {
 
@@ -113,7 +126,11 @@ var app = new Vue({
 
             getCa: function(){
 
-                this.$http.get(url+'vrcadata', { params: { idcaSelect: this.idcaSelect} }).then(function (resp) {
+                this.$http.get(url+'vrcadata', { params: { idcaSelect: this.idcaSelect,
+                
+                                                            idplanillaAes: this.idPlanillaAes,
+
+                                                        } }).then(function (resp) {
 
                     this.cakpi = JSON.parse(resp.data);
 
