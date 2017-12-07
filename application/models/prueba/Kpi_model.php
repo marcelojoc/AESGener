@@ -77,7 +77,7 @@ class Kpi_model extends CI_Model {
 		}
 
 		$query = $this->db->get();
-		
+
 		if ($query->num_rows() > 0) {
 
 			return $query->result();
@@ -98,7 +98,6 @@ class Kpi_model extends CI_Model {
 	
 	// 	traigo los valores de el cmplejo
 	public function getValueComplejo($idComplejo , $idplnillaAes= null, $idPlanillaCosto= null){
-
 		$idplnillaAes= 17;
 		$idPlanillaCosto= 17;
 
@@ -222,7 +221,8 @@ class Kpi_model extends CI_Model {
 		/**
 		 * recibo el id de la unidad generadora y el id de la planilla del mes seleccionado
 		 */
-		$idPlanilla=17;
+		$idPlanilla= 17;
+
 		
 				$this->db->where ('idUnidadGen',$idUg );
 				$this->db->where ('idComplejo= 0');
@@ -303,9 +303,9 @@ class Kpi_model extends CI_Model {
 
 
 
-	public function getCa($idCa=0){
+	public function getCa($idCa=0 , $idPlanilla= null){
 		//en este caso kpi planilla es 4, pero esto debe ser dinamico
-		$kpi_estatico= 17;
+		$idPlanilla= 17;
 		$this->db->select('  
 							linea_aes.actualMes,
 							linea_aes.targetMes,
@@ -326,7 +326,7 @@ class Kpi_model extends CI_Model {
 		}
 
 
-		$this->db->where ('linea_aes.idPlanilla',$kpi_estatico );	
+		$this->db->where ('linea_aes.idPlanilla',$idPlanilla );	
 				
 		$query = $this->db->get();
 
