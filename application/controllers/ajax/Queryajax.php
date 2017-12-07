@@ -61,20 +61,23 @@ class Queryajax extends My_Controller{
 
 				$idSelect= $_GET['idselect'];
 				$idList= $_GET['idlist'];
+				$idplnillaAes=$_GET['idlist'];
+				$idPlanillaCosto=$_GET['idlist'];
+
 				$datos=[];
 				if($idSelect == "1"){ // busco por Unidad Gen
 
-					$datos=$this->Kpi_model->getValueUg($idList);
+					$datos=$this->Kpi_model->getValueUg($idList,$idplnillaAes );
 
 				}else{
 
 					if($idSelect == "2"){ // busca por division
 
-						$datos=$this->Kpi_model->getValueDiv($idList);
+						$datos=$this->Kpi_model->getValueDiv($idList, $idplnillaAes, $idPlanillaCosto);
 						
 					}else{               // Busca por Complejo
 
-						$datos=$this->Kpi_model->getValueComplejo($idList);
+						$datos=$this->Kpi_model->getValueComplejo($idList, $idplnillaAes, $idPlanillaCosto);
 
 					}
 				}

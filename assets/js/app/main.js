@@ -82,8 +82,22 @@ var app = new Vue({
 
             getData: function(){
 
+                if(this.idPlanilla.idTipoPlanilla == '1'){
 
-                this.$http.get(url+'vrdata', { params: { idselect: this.idSelect, idlist: this.idList } }).then(function (resp) {
+                    var planillaAes= this.idPlanilla.idPlanilla;
+
+                }else{
+
+                    var planillaAes= this.idPlanilla.idPlanilla;
+
+                }
+
+                this.$http.get(url+'vrdata', { params: { idselect: this.idSelect, idlist: this.idList,
+                
+                                                        idplanillaA: this.idSelect,
+                                                        idPlanillaB: this.idSelect
+                
+                                                        } }).then(function (resp) {
 
                     this.kpi = JSON.parse(resp.data );
 
