@@ -129,9 +129,9 @@
         </div>
 
 
-<!-- <pre>
+<pre>
 
-{{$data}}</pre> -->
+{{$data}}</pre>
 
 
 

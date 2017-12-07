@@ -127,6 +127,29 @@
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
       						if ($niv->descripNivel == "Administrador de Usuarios" || 
+      							$niv->descripNivel == "Administrador" || 
+      							$niv->descripNivel == "Referente" || 
+      							$niv->descripNivel == "Coordinador"){
+				?>
+
+				<li class="">
+					<a href="<?php echo base_url()?>parametros/Parametros">
+						<i class="menu-icon fa fa-upload"></i>
+						<span class="menu-text">Parámetros</span>
+					</a>
+
+					<b class="arrow"></b>
+				</li>
+
+				<?php 		}
+						}	
+					}
+				?>
+
+				<?php 
+					if ($nivel){							
+						foreach($nivel->result() as $niv){
+      						if ($niv->descripNivel == "Administrador de Usuarios" || 
       							$niv->descripNivel == "Facilitador" || 
       							$niv->descripNivel == "Administrador" || 
       							$niv->descripNivel == "Referente" || 
