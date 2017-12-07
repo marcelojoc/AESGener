@@ -19,6 +19,18 @@ class Queryajax extends My_Controller{
 
 		
 	}
+
+
+		public function vrcheckpanel(){
+
+			// paso el tipo de tablero y devuelvo los id que se corresponden
+			$tab = $_GET['tab'];
+			$lista=  $this->Kpi_model->checkplanill($tab);
+			echo json_encode($lista);
+
+		}
+
+
 	
 
 		public function vrPrueba(){  // trae todos las unidades generadoras

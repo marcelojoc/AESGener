@@ -41,7 +41,26 @@ var app = new Vue({
         idList:"",
 
         idcaSelect:"",  //el id de seleccion del area de Ca
-        cakpi:[]      // kpi de comertial A..
+        cakpi:[] ,     // kpi de comertial A..
+
+        idPlanilla:[
+            
+        ]
+
+
+    },
+
+    created: function () { 
+
+                this.$http.get(url+'vrcheckpanel', { params: { tab: "est" } } ).then( function (resp){
+
+                    this.idPlanilla=JSON.parse(resp.data);
+
+                }, function(err){
+                    //si sale mal
+                    console.log(err);
+                    alert ('Error de conexion');
+                });
     },
 
     methods:{

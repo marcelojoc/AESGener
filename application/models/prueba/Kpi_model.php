@@ -57,6 +57,43 @@ class Kpi_model extends CI_Model {
 	
 	
 	
+
+	public function checkplanill($tablero){
+
+		if($tablero == "est"){
+
+			// si es panel estrategico  es el tipo de tabla 1 y 2
+			$this->db->where (' idTipoPlanilla= 1 OR  idTipoPlanilla= 2');
+			$this->db->select('*');
+			$this->db->from('planilla');
+			$this->db->order_by("idPlanilla", "desc"); 
+			$this->db->limit(2);
+
+		}else{
+
+
+
+
+		}
+
+		$query = $this->db->get();
+		
+		if ($query->num_rows() > 0) {
+
+			return $query->result();
+
+		}else{
+
+			return false;
+
+		}
+
+
+
+	}
+
+
+
 	
 	
 	// 	traigo los valores de el cmplejo
