@@ -20,12 +20,12 @@
                                     
                                             <div class="form-group">
                 
-                                                    <select class="form-control" v-model="divselect " name="caSelect" >
+                                                    <select class="form-control" v-model="divselect " name="opSelect" id="opSelect" >
 
                                                             <option value="" disabled selected hidden>Seleccionar</option>
                                                            
-                                                            <option v-for="option in divlista" v-bind:value="option.idDivSAP">
-                                                            {{ option.nombreDivSAP  }}
+                                                            <option v-for="option in divlista" v-bind:value="option.id" v-bind:data-item="option.idPlanilla" >
+                                                                {{ option.nombreDivSAP  }}
                                                             </option>
 
                                                     </select>   
@@ -632,7 +632,7 @@
 
 <!-- fin bloque CA -->
 
-<!-- <pre>{{$data}}</pre> -->
+<pre>{{$data}}</pre>
         </div> <!-- fin page-content -->
 
     </div> <!-- fin main-content-inner -->

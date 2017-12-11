@@ -150,6 +150,8 @@ class Queryajax extends My_Controller{
 
 			$datos=$this->Kpi_model->getValueUgfortac($id_ugen, $idplanillaAes, $idPlanillaMtbf );
 
+			// var_dump($datos);
+
 			print json_encode($datos, true);
 
 
@@ -162,7 +164,7 @@ class Queryajax extends My_Controller{
 
 			//trae todos las diviciones segun la tabla sap
 			$datos=[];
-			$datos=$this->Kpi_model->getDivSap();
+			$datos=$this->Kpi_model->checkplanill('ops');
 			echo json_encode($datos);
 
 
@@ -173,9 +175,11 @@ class Queryajax extends My_Controller{
 			$datos=[];
 			if( isset($_GET) && !empty($_GET['idlist'])) {
 				
-				$idList= $_GET['idlist'];
+				$idList= $_GET['idlist'];      // este es el id de division sap
 
-				$datos=$this->Kpi_model->getDataDivSap($idList);
+				$idPlanilla= $_GET['idPlanilla']; // es la planilla correspondiente a la unidad generadora
+
+				$datos=$this->Kpi_model->getDataDivSap($idList, $idPlanilla);
 
 			}
 			//trae todos las diviciones segun la tabla sap
