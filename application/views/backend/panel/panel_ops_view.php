@@ -65,7 +65,7 @@
 
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-l b-r b-b">
-                                        <h5 class="font-medium">{{item.correctivoBudget}}</h5>
+                                        <h5 class="font-medium">{{item.correctivoBudget}} %</h5>
                                         <h6 class="text-muted">Bud Mon</h6>
                                     </div>
                                 
@@ -509,7 +509,7 @@
 
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-l b-r b-b">
-                                        <h5 class="font-medium">{{item.proactivoBudget}}</h5>
+                                        <h5 class="font-medium">{{item.proactivoBudget}} %</h5>
                                         <h6 class="text-muted">Bud Mon</h6>
                                     </div>
                                 

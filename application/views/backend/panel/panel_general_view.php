@@ -1,10 +1,10 @@
 <div class="main-content " >
     <div class="main-content-inner">
         <div class="page-content" id="app">
-<pre>
+<!-- <pre>
 
     {{$data}}
-</pre>
+</pre> -->
 <div class="row">
                     
                 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
@@ -349,68 +349,65 @@
                 <div class="col-sm-12 text-left" >
                     
 
-
-
                         <div class="col-xs-12 " >  
                                 
                                 
-                            <div class="soc-content "  >
+                            <div class="soc-content " v-for=" item in tac.kpi" >
                                     <div class="col-xs-6 b-r b-t" >
-                                        <h3 class="font-medium" ></h3>
+                                        <h3 class="font-medium" >{{item.nombre}} </h3>
                                         
                                     </div>
                                 
                                     <div class="col-xs-6 b-t " >
-                                        <h3 class="font-medium"></h3>
+                                        <h3 class="font-medium">{{item.valor}} </h3>
                                         
                 
                                     </div>
                 
                             </div>  
-                                            
-                                            
-                                
+                                                    
+   
                                                     
                         </div>
 
 
 
-                        <div class="row" v-if="true"> 
+                        <div class="row" v-if="this.tac.kpi.mtbf"> 
                                 
                             <div class="col-xs-12 ">  
                                 
-                                                        <div class="social-widget col-sm-12 b-l  b-b">
-                                                                <div class="soc-header box-twitter" >
-                                                                    <i><h4> MTBF </h4></i>
-                                                                </div>
-                                    
-                                    
-                                                                <div class="soc-content">
-                                                                    <div class="col-xs-6 b-r b-b">
-                                                                        <h5 class="font-medium" ></h5>
-                                                                        <h6 class="text-muted">Actual Mon</h6>
-                                                                    </div>
-                                                                
-                                                                    <div class="col-xs-6 b-b ">
-                                                                        <h5 class="font-medium"></h5>
-                                                                        <h6 class="text-muted">Target Mon</h6>
-                                    
-                                                                    </div>
-                                    
-                                                                </div> 
-                                    
-                                                                <div class="row" >
-                                    
-                                                                    <div class="col-xs-12 ">
-                                    
-                                                                        <vm-semaforizado  v-bind:esperado= '66' v-bind:real= '77'  lbl=""  tipo= "false"></vm-semaforizado>
-                                                                        
-                                                                    </div>
-                                    
-                                    
-                                                                </div>
-                                    
-                                                        </div>
+                                    <div class="social-widget col-sm-12 b-l  b-b">
+                                            <div class="soc-header box-twitter" >
+                                                <i><h4> MTBF </h4></i>
+                                            </div>
+                
+                
+                                            <div class="soc-content">
+                                                    <div class="col-xs-6 b-r b-b">
+                                                        <h5 class="font-medium" >{{this.tac.kpi.mtbf | sindec}} [hr.Oper]</h5>
+                                                        <h6 class="text-muted">Actual Mon</h6>
+                                                    </div>
+                                                
+                                                    <div class="col-xs-6 b-b ">
+                                                        <h5 class="font-medium">{{this.tac.kpi.mtbfTarget}} [hr.Oper]</h5>
+                                                        <h6 class="text-muted">Target Mon</h6>
+                    
+                                                    </div>
+                    
+                                                </div> 
+                    
+                                                <div class="row" >
+                    
+                                                    <div class="col-xs-12 ">
+                    
+                                                        <vm-semaforizado  v-bind:esperado= 'this.tac.kpi.mtbfTarget' v-bind:real= 'this.tac.kpi.mtbf'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                        
+                                                    </div>
+                    
+                    
+                                                </div>
+                
+                                    </div>
                 
                             </div>
                         </div>

@@ -42,16 +42,6 @@ var app = new Vue({
                 { id : "3", nombre : 'Complejo' },
     
             ],
-            camodel:[
-                { id : "1", nombre : 'AES Gener S.A' },
-                { id : "2", nombre : 'ESSA' },
-                { id : "3", nombre : 'Empresa Eléctrica Guacolda S.A' },
-                { id : "4", nombre : 'Eléctrica Ventanas S.A' },
-                { id : "5", nombre : 'Empresa Electrica Angamos S.A' },
-                { id : "6", nombre : 'Empresa Electrica Campiche S.A' },
-                { id : "7", nombre : 'Empresa Electrica Cochrane S.A' },
-    
-            ],
     
             seleccion:[],              
             kpi: [],
@@ -223,6 +213,11 @@ var app = new Vue({
 
                 })
 
+
+                //llamo al metodo del tactico
+                this.getkpiTAC()
+
+
             },
 
             // fin metodos tablero estrategico
@@ -258,7 +253,7 @@ var app = new Vue({
                         
                         .then( function (resp,status, request){
 
-                            this.kpi=JSON.parse(resp.data);
+                            this.tac.kpi=JSON.parse(resp.data);
 
                         }, function(err){
                             //si sale mal
@@ -268,20 +263,20 @@ var app = new Vue({
 
 
                     },
-                getugenTAC: function(){
+                // getugenTAC: function(){
         
-                    this.$http.post(url+'vrPrueba' ).then( function (resp){
+                //     this.$http.post(url+'vrPrueba' ).then( function (resp){
         
-                        this.ugen = JSON.parse(resp.data);
+                //         this.ugen = JSON.parse(resp.data);
         
-                    }, function(err){
-                        //si sale mal
-                        console.log(err);
-                        alert ('Error de conexion');
-                    });
+                //     }, function(err){
+                //         //si sale mal
+                //         console.log(err);
+                //         alert ('Error de conexion');
+                //     });
         
         
-                },
+                // },
 
 
 
