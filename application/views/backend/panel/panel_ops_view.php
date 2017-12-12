@@ -610,7 +610,7 @@
 
 <!-- fin bloque CA -->
 
-<pre>{{$data.valores}}</pre>
+<!-- <pre>{{$data.valores}}</pre> -->
         </div> <!-- fin page-content -->
 
     </div> <!-- fin main-content-inner -->

@@ -67,12 +67,6 @@ var app = new Vue({
             })
         },
 
-        modificar: function(valor){
-
-            console.log(valor);
-            //this.idPlanilla= valor
-
-        }
 
     },
 

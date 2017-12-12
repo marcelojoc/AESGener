@@ -1,50 +1,19 @@
 <div class="main-content " >
     <div class="main-content-inner">
         <div class="page-content" id="app">
+<pre>
 
+    {{$data}}
+</pre>
 <div class="row">
                     
                 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
-                <div class="page-header col-sm-4 text-center blueAES b-r">
+                <div class="page-header col-sm-12 text-center blueAES b-r">
                     <h1 class="blueAES">
                         Tablero General
                     </h1>
                 </div>  
-                <div class=" col-sm-8 form-inline ">
 
-                        <div class="row">
-                            <div class="col-xs-6">
-
-                                    <div class="input-group" >
-                                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                    
-                                            <div class="form-group">
-                
-                                                    <select class="form-control" v-model="divselect " name="caSelect" >
-
-                                                            <option value="" disabled selected hidden>Seleccionar</option>
-                                                           
-                                                            <option>opciones</option>
-                                                            <option>opciones</option>
-                                                            <option>opciones</option>
-
-                                                    </select>   
-                                            </div>
-                                    </div>
-
-                            </div>
-                            <div class="col-xs-6">
-
-                                <button v-on:click.prevent="getdatos" class="btn btn-xs btn-success " >
-                                        <span class="bigger-110">Ir</span>
-
-                                        <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
-                                </button>
-
-                            </div>
-                        </div>
-
-                </div><hr>
 </div>  
 
 
@@ -52,30 +21,382 @@
 
 <div class="row">   
 
+            <div class="col-sm-4 b-r">
 
-            <div class="col-sm-4">
+                <div class="page-header col-sm-12 text-center  ">
+                    <h1 class="blueAES">
+                        Estratégico
+                    </h1>
+                </div> 
+                <div class="col-sm-12 espaciod">
+                                     
+                        <div class="col-xs-5">
+
+                                <div class="input-group" >
+                                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                
+                                        <div class="form-group">
+            
+                                            <select class="form-control" v-model="est.idSelect" name="category" @change="getListsEST">
+
+                                                <option value="" disabled selected hidden>Seleccionar</option>
+                                                <option v-for="option in est.busqueda" v-bind:value="option.id">
+                                                {{ option.nombre  }}
+                                                </option>
+
+                                            </select>    
+                                        </div>
+                                </div>
+
+                        </div>
+
+                        <div class="col-xs-5">
+
+                                <div class="input-group" >
+                                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                
+                                        <div class="form-group">
+            
+                                                <select class="form-control" v-model="est.idList" name="category" >
+                                                        <option value="" disabled selected hidden>Seleccionar</option>
+                                                        <option v-for="option in est.seleccion" v-bind:value="option.id">
+                                                            {{ option.nombre }}
+                                                        </option>
+
+                                                    </select>  
+                                        </div>
+                                </div>
+
+                        </div>
+
+                        <div class="col-xs-2">
+
+                            <button v-on:click.prevent="getDataEST" class="btn btn-xs btn-success " >
+                                    <span class="bigger-110">Ir</span>
+
+                                    <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                            </button>
+
+                        </div>
+                                                
+                </div>
 
 
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-corporativo"><i><h4>EAF (%) </h4></i></div> <div class="soc-content"><div class="col-xs-3 b-r b-b"><h5 class="font-medium">94.25 %</h5> <h6 class="text-muted">Actual Mon</h6></div> <div class="col-xs-3 b-b b-r"><h5 class="font-medium">95.83 %</h5> <h6 class="text-muted">Target Mon</h6></div> <div class="col-xs-3 b-r b-b"><h5 class="font-medium">93.74%</h5> <h6 class="text-muted">YTD Actual</h6></div> <div class="col-xs-3 b-b"><h5 class="font-medium">94.84%</h5> <h6 class="text-muted">YTD Target</h6></div></div> <div class="row"><div class="col-xs-6 b-r"><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 94.25%;"><p><strong>valor real 94.25%</strong></p></div></div> <div class="progres-full animated bounceIn"><div class="borde box-green" style="width: 95.83%;"><p><strong>valor esperado  95.83%</strong></p></div></div></div></div> <div class="col-xs-6 "><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 93.74%;"><p><strong>valor real 93.74%</strong></p></div></div> <div class="progres-full animated bounceIn"><div class="borde box-green" style="width: 94.84%;"><p><strong>valor esperado  94.84%</strong></p></div></div></div></div></div></div>
+
+                <div class="row" v-for ="item in est.kpi">
+                        
+                                        <!-- <div class="col-xs-1 beige">aqui  va la tab</div> -->
+                        
+                        
+                                        <div v-if="item.nombreKPI == 'EAF'">
+                        
+                        
+                                            <div class="col-sm-12 " >
+                                                
+                                                 <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                         <div class="soc-header box-corporativo" >
+                                                             <i><h4>{{item.nombreKPI}} (%) </h4></i>
+                                                         </div>
+                             
+                             
+                                                         <div class="soc-content">
+                                                             <div class="col-xs-3 b-r b-b">
+                                                                 <h5 class="font-medium" >{{item.actualMes | truncar  }} %</h5>
+                                                                 <h6 class="text-muted">Actual Mon</h6>
+                                                             </div>
+                                                         
+                                                             <div class="col-xs-3 b-b b-r">
+                                                                 <h5 class="font-medium">{{item.targetMes  | truncar }} %</h5>
+                                                                 <h6 class="text-muted">Target Mon</h6>
+                             
+                                                             </div>
+                                                             <div class="col-xs-3 b-r b-b">
+                                                                     <h5 class="font-medium">{{item.ytdActual  | truncar  }}%</h5>
+                                                                     <h6 class="text-muted">YTD Actual</h6>
+                                                                 </div>
+                                                             
+                                                                 <div class="col-xs-3 b-b">
+                                                                     <h5 class="font-medium">{{item.ytdTarget | truncar  }}%</h5>
+                                                                     <h6 class="text-muted">YTD Target</h6>
+                                 
+                                                             </div>
+                             
+                                                         </div> 
+                             
+                                                         <div class="row">
+                             
+                                                             <div class="col-xs-6 b-r">
+                             
+                                                                 <vm-grafico  v-if= " item.targetMes != ''"   v-bind:esperado='item.targetMes  |truncar'  v-bind:real='item.actualMes |truncar'  lble="valor esperado" lblr="valor real"></vm-grafico>
+                                                                 
+                             
+                                                             </div>
+                             
+                                                             <div class="col-xs-6 ">
+                                                                     
+                                                                 <vm-grafico v-if= "item.ytdActual != ''"  v-bind:esperado ='item.ytdTarget|truncar' v-bind:real='item.ytdActual|truncar'  lble="valor esperado" lblr="valor real"></vm-grafico>
+                                                                 
+                                                             </div>
+                             
+                                                         </div>
+                             
+                             
+                                                 </div>
+                             
+                                             </div>
+                        
+                        
+                                        </div>
+                        
+                        
+                        
+                        
+                                        <div v-if="item.nombreKPI == 'EFOF'">
+                        
+                                            <div class="col-sm-12 " >
+                                                
+                                                 <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                         <div class="soc-header box-corporativo" >
+                                                             <i><h4>{{item.nombreKPI}} (%) </h4></i>
+                                                         </div>
+                             
+                             
+                                                         <div class="soc-content">
+                                                             <div class="col-xs-3 b-r b-b">
+                                                                 <h5 class="font-medium" >{{item.actualMes |truncar  }} %</h5>
+                                                                 <h6 class="text-muted">Actual Mon</h6>
+                                                             </div>
+                                                         
+                                                             <div class="col-xs-3 b-b b-r">
+                                                                 <h5 class="font-medium">{{item.targetMes |truncar}} %</h5>
+                                                                 <h6 class="text-muted">Target Mon</h6>
+                             
+                                                             </div>
+                                                             <div class="col-xs-3 b-r b-b">
+                                                                     <h5 class="font-medium">{{item.ytdActual |truncar}}%</h5>
+                                                                     <h6 class="text-muted">YTD Actual</h6>
+                                                                 </div>
+                                                             
+                                                                 <div class="col-xs-3 b-b">
+                                                                     <h5 class="font-medium">{{item.ytdTarget |truncar}}%</h5>
+                                                                     <h6 class="text-muted">YTD Target</h6>
+                                 
+                                                             </div>
+                             
+                                                         </div> 
+                             
+                                                         <div class="row" >
+                                                                 
+                                                             <div class="col-xs-6 b-r">
+                                                 
+                                                                 <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.targetMes |truncar' v-bind:real= 'item.actualMes |truncar'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                 
+                                                 
+                                                             </div>
+                                                 
+                                                             <div class="col-xs-6 ">
+                                                 
+                                                                 <vm-semaforizado v-if= " item.ytdTarget != ''"  v-bind:esperado= 'item.ytdTarget |truncar' v-bind:real= 'item.ytdActual |truncar'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                 
+                                                 
+                                                             </div>
+                                                 
+                                                         </div>
+                             
+                             
+                                                 </div>
+                             
+                                             </div>
+                        
+                        
+                        
+                                        </div>
+                        
+                                        
+                                        <div v-if="item.nombreKPI == 'ENPHR'">
+                        
+                                            <div class="col-sm-12 " >
+                                                
+                                                 <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                         <div class="soc-header box-corporativo" >
+                                                             <i><h4>{{item.nombreKPI}} </h4></i>
+                                                         </div>
+                             
+                             
+                                                         <div class="soc-content">
+                                                             <div class="col-xs-3 b-r b-b">
+                                                                 <h5 class="font-medium" >{{item.actualMes |sindec  }} [BTU/MWH]</h5>
+                                                                 <h6 class="text-muted">Actual Mon</h6>
+                                                             </div>
+                                                         
+                                                             <div class="col-xs-3 b-b b-r">
+                                                                 <h5 class="font-medium">{{item.targetMes |sindec}} [BTU/MWH]</h5>
+                                                                 <h6 class="text-muted">Target Mon</h6>
+                             
+                                                             </div>
+                                                             <div class="col-xs-3 b-r b-b">
+                                                                     <h5 class="font-medium">{{item.ytdActual |sindec}}[BTU/MWH]</h5>
+                                                                     <h6 class="text-muted">YTD Actual</h6>
+                                                                 </div>
+                                                             
+                                                                 <div class="col-xs-3 b-b">
+                                                                     <h5 class="font-medium">{{item.ytdTarget |sindec}}[BTU/MWH]</h5>
+                                                                     <h6 class="text-muted">YTD Target</h6>
+                                 
+                                                             </div>
+                             
+                                                         </div> 
+                             
+                                                         <div class="row" >
+                                                                 
+                                                             <div class="col-xs-6 b-r">
+                             
+                                                                     <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.targetMes |sindec' v-bind:real= 'item.actualMes |sindec'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                     
+                             
+                                                             </div>
+                             
+                                                             <div class="col-xs-6 ">
+                                                                     
+                                                                     <vm-semaforizado v-if= " item.targetMes != ''"  v-bind:esperado= 'item.ytdTarget |sindec' v-bind:real= 'item.ytdActual |sindec'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                     
+                             
+                                                             </div>
+                             
+                                                         </div>
+                             
+                             
+                                                 </div>
+                             
+                                             </div>
+                        
+                        
+                        
+                        
+                                        </div>
+                        
+                                        <div  v-if="item.nombreKPI == 'CTM OPEX'">
+                        
+                                            <div class="col-sm-12 ">
+                                                
+                                                 <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                         <div class="soc-header box-twitter" >
+                                                             <i><h4>{{item.nombreKPI}} </h4></i>
+                                                         </div>
+                             
+                             
+                                                         <div class="soc-content">
+                                                             <div class="col-xs-6 b-r b-b">
+                                                                 <h5 class="font-medium" >{{item.ctmActual}}</h5>
+                                                                 <h6 class="text-muted">Actual Mon</h6>
+                                                             </div>
+                                                         
+                                                             <div class="col-xs-6 b-b ">
+                                                                 <h5 class="font-medium">{{item.ctmBudget}}</h5>
+                                                                 <h6 class="text-muted">Target Mon</h6>
+                             
+                                                             </div>
+                             
+                                                         </div> 
+                             
+                                                         <div class="row" >
+                             
+                                                             <div class="col-xs-12 ">
+                             
+                                                                     <vm-semaforizado v-if= " item.ctmActual != ''"  v-bind:esperado= 'item.ctmBudget ' v-bind:real= 'item.ctmActual'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                     
+                                                             </div>
+                             
+                             
+                                                         </div>
+                             
+                             
+                                                 </div>
+                             
+                                             </div>
+                             
+                        
+                             
+                             
+                                        </div>
+                             
+                        
+                        
+                        
+                        
+                        
+        </div>
 
 
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-corporativo"><i><h4>EFOF (%) </h4></i></div> <div class="soc-content"><div class="col-xs-3 b-r b-b"><h5 class="font-medium">1.31 %</h5> <h6 class="text-muted">Actual Mon</h6></div> <div class="col-xs-3 b-b b-r"><h5 class="font-medium">0.54 %</h5> <h6 class="text-muted">Target Mon</h6></div> <div class="col-xs-3 b-r b-b"><h5 class="font-medium">0.24%</h5> <h6 class="text-muted">YTD Actual</h6></div> <div class="col-xs-3 b-b"><h5 class="font-medium">0.52%</h5> <h6 class="text-muted">YTD Target</h6></div></div> <div class="row"><div class="col-xs-6 b-r"><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 100%;"><p><strong> Valor actual Superior  al esperado</strong></p></div></div></div></div> <div class="col-xs-6 "><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(46, 204, 113); height: 3.9em; width: 100%;"><p><strong> Valor actual Inferior al esperado</strong></p></div></div></div></div></div></div>
 
 
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-corporativo"><i><h4>ENPHR </h4></i></div> <div class="soc-content"><div class="col-xs-3 b-r b-b"><h5 class="font-medium">7993 [BTU/MWH]</h5> <h6 class="text-muted">Actual Mon</h6></div> <div class="col-xs-3 b-b b-r"><h5 class="font-medium">7891 [BTU/MWH]</h5> <h6 class="text-muted">Target Mon</h6></div> <div class="col-xs-3 b-r b-b"><h5 class="font-medium">7927 [BTU/MWH]</h5> <h6 class="text-muted">YTD Actual</h6></div> <div class="col-xs-3 b-b"><h5 class="font-medium">7899 [BTU/MWH]</h5> <h6 class="text-muted">YTD Target</h6></div></div> <div class="row"><div class="col-xs-6 b-r"><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 100%;"><p><strong> Valor actual Superior  al esperado</strong></p></div></div></div></div> <div class="col-xs-6 "><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 100%;"><p><strong> Valor actual Superior  al esperado</strong></p></div></div></div></div></div></div>
 
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-twitter"><i><h4>CTM OPEX </h4></i></div> <div class="soc-content"><div class="col-xs-6 b-r b-b"><h5 class="font-medium">1950</h5> <h6 class="text-muted">Actual Mon</h6></div> <div class="col-xs-6 b-b "><h5 class="font-medium">1281</h5> <h6 class="text-muted">Target Mon</h6></div></div> <div class="row"><div class="col-xs-12 "><div class="content-progres social-widget"><div class="progres-full limite animated zoomIn"><div class="indicador-kpi" style="background: rgb(46, 204, 113); height: 3.9em; width: 100%;"><p><strong> Valor actual superior al esperado</strong></p></div></div></div></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
 
 
+
+
+
+
             <div class="col-sm-4">
 
-
-
-
-
-
+                    <div class="page-header col-sm-12 text-center  ">
+                            <h1 class="blueAES">
+                                Táctico
+                            </h1>
+                        </div> 
+                        <div class="col-sm-12 espaciod">
+                                             
+                                <div class="col-xs-6">
+        
+                                        <div class="input-group" >
+                                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                        
+                                                <div class="form-group">
+                    
+                                                        <select class="form-control"  name="caSelect" >
+        
+                                                                <option value="" disabled selected hidden>Seleccionar</option>
+                                                                
+                                                                <option>opciones</option>
+                                                                <option>opciones</option>
+                                                                <option>opciones</option>
+        
+                                                        </select>   
+                                                </div>
+                                        </div>
+        
+                                </div>
+        
+        
+                                <div class="col-xs-6">
+        
+                                    <button v-on:click.prevent="getdatos" class="btn btn-xs btn-success " >
+                                            <span class="bigger-110">Ir</span>
+        
+                                            <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                                    </button>
+        
+                                </div>
+                                                        
+                        </div>
 
                 <div class="col-sm-12 text-left" >
                     
@@ -89,54 +410,8 @@
                                             </thead>
                     
                     
-                                            <tbody v-for="item in kpi">
-                    
-                                                <tr HEIGHT="50">
-                                                    <td>HEDP</td>
-                                                    <td>34 [hr]</td>
-                                                </tr>
-                    
-                                                <tr HEIGHT="50">
-                                                    <td>HEDF</td>
-                                                    <td>35[hr]</td>
-                                                </tr>
-                    
-                                                <tr HEIGHT="50">
-                                                    <td>HSF</td>
-                                                    <td>36 [hr]</td>
-                                                </tr>
-                    
-                                                    
-                                                <tr HEIGHT="50">
-                                                    <td>MTBF</td>
-                                                    <td> 57 [hr. Oper]</td>
-                                                </tr>
-                    
-                                                <tr HEIGHT="50">
-                                                    <td>MTBF target</td>
-                                                    <td>1600 [hr. Oper]</td>
-                                                </tr>
-                    
-                                                <tr HEIGHT="50">
-                                                    <td>Costo Mtto. Correctivo
-                                                            [K USD]</td>
-                                                    <td>47.7</td>
-                                                </tr>
-                    
-                                                <tr HEIGHT="50">
-                                                    <td>Costo Mtto. Preventivo
-                                                            [K USD]</td>
-                                                    <td>350.4</td>
-                                                </tr>
-                    
-                    
-                    
-                    
-                    
-                                            </tbody>
-                    
                                     </table>
-                                </div>
+                </div>
 
 
 
@@ -146,19 +421,281 @@
 
             <div class="col-sm-4">
 
+                    <div class="page-header col-sm-12 text-center  ">
+                            <h1 class="blueAES">
+                                Operativo
+                            </h1>
+                        </div> 
+                        <div class="col-sm-12 espaciod">
+                                             
+                                <div class="col-xs-6">
+        
+                                        <div class="input-group" >
+                                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                        
+                                                <div class="form-group">
+                    
+                                                    <select class="form-control" v-model="op.divselectOP " name="opSelect" id="opSelect" >
+
+                                                        <option value="" disabled selected hidden>Seleccionar</option>
+
+                                                        <option v-for="option in op.divlista" v-bind:value="option.id" v-bind:data-item="option.idPlanilla" >
+                                                        {{ option.nombreDivSAP  }}
+                                                        </option>
+
+                                                    </select>  
+                                                </div>
+                                        </div>
+        
+                                </div>
+        
+        
+                                <div class="col-xs-6">
+        
+                                    <button v-on:click.prevent="getdatosOp" class="btn btn-xs btn-success " >
+                                            <span class="bigger-110">Ir</span>
+        
+                                            <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                                    </button>
+        
+                                </div>
+                                                        
+                        </div>                
 
 
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-ca"><i><h4>Backlog</h4></i></div> <div class="soc-content"><div class="col-xs-6 b-l b-r b-b"><h5 class="font-medium">4</h5> <h6 class="text-muted">Bud Mon</h6></div> <div class="col-xs-6 b-b b-r"><h5 class="font-medium">5052</h5> <h6 class="text-muted">Real Mon</h6></div></div> <div class="row"><div class="col-xs-12 "><div class="content-progres social-widget"><div class="progres-full limite animated rubberBand"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 100%;"><p><strong> Valor actual Superior  al esperado</strong></p></div></div></div></div></div></div>
-
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-ca"><i><h4>Proactive Work (%)</h4></i></div> <div class="soc-content"><div class="col-xs-6 b-l b-r b-b"><h5 class="font-medium">80 %</h5> <h6 class="text-muted">Bud Mon</h6></div> <div class="col-xs-6 b-b b-r"><h5 class="font-medium">21%</h5> <h6 class="text-muted">Real Mon</h6></div></div> <div class="row"><div class="col-xs-12 "><div class="content-progres social-widget"><div class="progres-full limite animated rubberBand"><div class="indicador-kpi" style="background: rgb(46, 204, 113); height: 3.9em; width: 100%;"><p><strong> Valor actual Inferior al esperado</strong></p></div></div></div></div></div></div>
-
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-ca"><i><h4>Planned work (%)</h4></i></div> <div class="soc-content"><div class="col-xs-6 b-l b-r b-b"><h5 class="font-medium">80 %</h5> <h6 class="text-muted">Bud Mon</h6></div> <div class="col-xs-6 b-b b-r"><h5 class="font-medium">352%</h5> <h6 class="text-muted">Real Mon</h6></div></div> <div class="row"><div class="col-xs-12 "><div class="content-progres social-widget"><div class="progres-full limite animated rubberBand"><div class="indicador-kpi" style="background: rgb(46, 204, 113); height: 3.9em; width: 100%;"><p><strong> Valor actual Inferior al esperado</strong></p></div></div></div></div></div></div>
-
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-ca"><i><h4>Correctivo (%)</h4></i></div> <div class="soc-content"><div class="col-xs-6 b-l b-r b-b"><h5 class="font-medium">32 %</h5> <h6 class="text-muted">Bud Mon</h6></div> <div class="col-xs-6 b-b b-r"><h5 class="font-medium">1%</h5> <h6 class="text-muted">Real Mon</h6></div></div> <div class="row"><div class="col-xs-12 "><div class="content-progres social-widget"><div class="progres-full limite animated rubberBand"><div class="indicador-kpi" style="background: rgb(46, 204, 113); height: 3.9em; width: 100%;"><p><strong> Valor actual Inferior al esperado</strong></p></div></div></div></div></div></div>
-
-                <div class="social-widget col-sm-12 b-l b-r b-b"><div class="soc-header box-ca"><i><h4>Cumplimiento Plan preventivo (%)</h4></i></div> <div class="soc-content"><div class="col-xs-6 b-l b-r b-b"><h5 class="font-medium">80 %</h5> <h6 class="text-muted">Bud Mon</h6></div> <div class="col-xs-6 b-b b-r"><h5 class="font-medium">95%</h5> <h6 class="text-muted">Real Mon</h6></div></div> <div class="row"><div class="col-xs-12 "><div class="content-progres social-widget"><div class="progres-full limite animated rubberBand"><div class="indicador-kpi" style="background: rgb(231, 76, 60); height: 3.9em; width: 100%;"><p><strong> Valor actual Superior  al esperado</strong></p></div></div></div></div></div></div>
 
 
+
+                        <div class="row" v-for ="item in op.valores">     <!-- inicio contenedor V-FOR -->
+                            
+                                            <div v-if="item.nombreKPI == 'Correctivo(%)'">             
+                                                <div class="col-sm-12 " >
+                                                
+                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                            <div class="soc-header box-ca">
+                                                                <i><h4>{{item.nombreKPI}}</h4></i>
+                                                            </div>
+                            
+                                                            <div class="soc-content">
+                                                                <div class="col-xs-6 b-l b-r b-b">
+                                                                    <h5 class="font-medium">{{item.correctivoBudget}}</h5>
+                                                                    <h6 class="text-muted">Bud Mon</h6>
+                                                                </div>
+                                                            
+                                                                <div class="col-xs-6 b-b b-r">
+                                                                    <h5 class="font-medium">{{item.hsTRCorrectivo | truncar}}</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
+                            
+                                                                </div>
+                            
+                                                            </div> 
+                            
+                                                            <div class="row">
+                            
+                                                                <div class="col-xs-12 ">
+                            
+                                                                        <vm-semaforizado  v-bind:esperado= 'item.correctivoBudget' v-bind:real= 'item.hsTRCorrectivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        
+                                                                </div>
+                            
+                                                            </div>
+                            
+                                                    </div>
+                            
+                                                </div>
+
+                            
+                                            </div> <!-- fin div contenerdor -->
+                            
+                            
+                            
+                            
+                            
+                            
+                                            <div v-if="item.nombreKPI == 'Cumplimiento Plan Preventivo(%)'">             
+                                                <div class="col-sm-12 " >
+                                                
+                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                            <div class="soc-header box-ca">
+                                                                <i><h4>{{item.nombreKPI}}</h4></i>
+                                                            </div>
+                            
+                                                            <div class="soc-content">
+                                                                <div class="col-xs-6 b-l b-r b-b">
+                                                                    <h5 class="font-medium">{{item.preventivoBudget}} %</h5>
+                                                                    <h6 class="text-muted">Bud Mon</h6>
+                                                                </div>
+                                                            
+                                                                <div class="col-xs-6 b-b b-r">
+                                                                    <h5 class="font-medium">{{item.hsTRPreventivo }} %</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
+                            
+                                                                </div>
+                            
+                                                            </div> 
+                            
+                                                            <div class="row">
+                            
+                                                                <div class="col-xs-12 ">
+                            
+                                                                        <vm-semaforizado  v-bind:esperado= 'item.preventivoBudget' v-bind:real= 'item.hsTRPreventivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        
+                                                                </div>
+                            
+                            
+                            
+                                                            </div>
+                            
+                                                    </div>
+                            
+                                                </div>
+                            
+                            
+                            
+                                            </div> <!-- fin div contenerdor -->
+                            
+                            
+                            
+                            
+                                            <div v-if="item.nombreKPI == 'Backlog (semanas)'">             
+                                                <div class="col-sm-12 " >
+                                                
+                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                            <div class="soc-header box-ca">
+                                                                <i><h4>{{item.nombreKPI}}</h4></i>
+                                                            </div>
+                            
+                                                            <div class="soc-content">
+                                                                <div class="col-xs-6 b-l b-r b-b">
+                                                                    <h5 class="font-medium">{{item.backlogBudget}} %</h5>
+                                                                    <h6 class="text-muted">Bud Mon</h6>
+                                                                </div>
+                                                            
+                                                                <div class="col-xs-6 b-b b-r">
+                                                                    <h5 class="font-medium">{{item.backlogReal | sindec}} %</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
+                            
+                                                                </div>
+                            
+                                                            </div> 
+                            
+                                                            <div class="row">
+                            
+                                                                <div class="col-xs-12 ">
+                            
+                                                                        <vm-semaforizado  v-bind:esperado= 'item.backlogBudget' v-bind:real= 'item.backlogReal'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        
+                                                                </div>
+                            
+                            
+                            
+                                                            </div>
+                            
+                                                    </div>
+                            
+                                                </div>
+                            
+                            
+                            
+                                            </div> <!-- fin div contenerdor -->
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                            <div v-if="item.nombreKPI == 'Planned Work(%)'">             
+                                                <div class="col-sm-12 " >
+                                                
+                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                            <div class="soc-header box-ca">
+                                                                <i><h4>{{item.nombreKPI}}</h4></i>
+                                                            </div>
+                            
+                                                            <div class="soc-content">
+                                                                <div class="col-xs-6 b-l b-r b-b">
+                                                                    <h5 class="font-medium">{{item.trabajoPlaneado}} %</h5>
+                                                                    <h6 class="text-muted">Bud Mon</h6>
+                                                                </div>
+                                                            
+                                                                <div class="col-xs-6 b-b b-r">
+                                                                    <h5 class="font-medium">{{item.hsTRPlanificadas}}</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
+                            
+                                                                </div>
+                            
+                                                            </div> 
+                            
+                                                            <div class="row">
+                            
+                                                                <div class="col-xs-12 ">
+                            
+                                                                        <vm-semaforizado  v-bind:esperado= 'item.trabajoPlaneado' v-bind:real= 'item.hsTRPlanificadas'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        
+                                                                </div>
+                            
+                            
+                            
+                                                            </div>
+                            
+                                                    </div>
+                            
+                                                </div>
+
+                            
+                                            </div> <!-- fin div contenerdor -->
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                                 <div v-if="item.nombreKPI == 'Proactive Work(%)'">             
+                                                <div class="col-sm-12 " >
+                                                
+                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                            <div class="soc-header box-ca">
+                                                                <i><h4>{{item.nombreKPI}}</h4></i>
+                                                            </div>
+                            
+                                                            <div class="soc-content">
+                                                                <div class="col-xs-6 b-l b-r b-b">
+                                                                    <h5 class="font-medium">{{item.proactivoBudget}}</h5>
+                                                                    <h6 class="text-muted">Bud Mon</h6>
+                                                                </div>
+                                                            
+                                                                <div class="col-xs-6 b-b b-r">
+                                                                    <h5 class="font-medium">{{item.trabajoProactivo}}</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
+                            
+                                                                </div>
+                            
+                                                            </div> 
+                            
+                                                            <div class="row">
+                            
+                                                                <div class="col-xs-12 ">
+                            
+                                                                        <vm-semaforizado  v-bind:esperado= 'item.proactivoBudget' v-bind:real= 'item.trabajoProactivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        
+                                                                </div>
+                            
+                            
+                            
+                                                            </div>
+                            
+                                                    </div>
+                            
+                                                </div>
+
+                            
+                            
+                                            </div> <!-- fin div contenerdor -->                                
+                                        </div>  <!-- fin contenedor V-for -->                     
 
 
 
@@ -196,3 +733,60 @@
 
     
     
+<!-- tag de templates -->
+<script type="text/x-template" id="aesgen-graph" >
+    <!-- <template id="aesgen-graph"> -->
+    
+                <!-- contenedor general de la progress bar -->
+                <div class="content-progres social-widget"> 
+    
+                    <!-- este marca el 100% del progres bar -->
+                    <!-- progres-full limite animated zoomIn -->
+                    <div class="progres-full limite animated zoomIn" >
+    
+                        <!-- <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width:50%;" > -->
+                        <div class="indicador-kpi" :style="{ background: getColor, height: '3.9em' , width: real + '%' }" >
+                            
+                            <p><strong>{{lblr + " "}}{{real +"%" }}</strong></p>
+    
+                        </div>
+    
+                    </div>
+                    <div class="progres-full animated bounceIn">
+    
+                        <div class="borde box-green" :style="{ width: esperado + '%' }" >
+    
+                            <p><strong>{{lble +" " }} {{esperado +"%" }}</strong></p>
+    
+                        </div>
+    
+                    </div>
+    
+                </div>
+</script>
+    
+    
+    
+    <script type="text/x-template" id="aesgen-semaf">
+    
+        <!-- contenedor general de la progress bar -->
+        <div class="content-progres social-widget">
+    
+            
+                    <div class="progres-full limite animated rubberBand">
+                    
+                        <!-- <div class="indicador-kpi" style="height: 3.9em; background: #E74C3C; width:50%;" > -->
+                        <div class="indicador-kpi" :style="{ background: getColorPoint, height: '3.9em' , width: '100%' }">
+                    
+                            <p>
+                                <strong>{{leyenda }}</strong>
+                            </p>
+                    
+                        </div>
+                    
+                    </div>
+
+
+        </div>
+    
+    </script>

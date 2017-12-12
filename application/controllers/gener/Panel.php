@@ -26,7 +26,7 @@ class Panel extends My_Controller{
 			
 			$data="";
 			
-			$js['javascript']= [];
+			$js['javascript']= ["vendor/vue-resource.js","app/component/grafic_component.js", "app/main_general.js"];
 
 			$nombreVista="backend/panel/panel_general_view";
 
