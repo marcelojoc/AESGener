@@ -524,3 +524,8 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+//Aumento tiempo maximo de Ejecucion
+set_time_limit(3600);
+ini_set('max_execution_time', 1200);
+ini_set('memory_limit', '256M');
