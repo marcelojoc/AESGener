@@ -52,9 +52,9 @@ var app = new Vue({
         getdatos: function(){
 
             this.$http.get(url+'vrdivsapdatos',{ params: { idlist: this.divselect ,
-                                                             idPlanilla: this.idPlanilla 
+                                                           idPlanilla: this.idPlanilla 
                                                         } 
-                                             }).then(function (resp) {
+                }).then(function (resp) {
 
                 this.valores = JSON.parse(resp.data);
 

@@ -556,29 +556,58 @@ class Kpi_model extends CI_Model {
 	}
 
 
+	/**
+	 * Este metodo trae la coleccion de datos de el tablero operativo
+	 * mezcla dos fuentes
+	 * 1) tabla parametros de cada unidad generadora
+	 * 2) tabla linea_sap con los datos de  unidad generadora  y id planilla 
+	 * que se guarda cuando es publicada la tabla de excel
+	 */
 
 	public function getDataDivSap($idDiv, $idPlanilla=null){
 
 
-
-
+		// traigo los paramentros para la division generadora
+		//unificando con la tabla kpi
+		//y la tabla linea_sap
 		
-		
-		$this->db->where ('division_sap.idDivSAP',$idDiv );
-				$this->db->select('*');
-				$this->db->from('division_sap');
-				$this->db->join('linea_sap','linea_sap.idDivSAP = division_sap.idDivSAP','left');
-				$this->db->join('parametro','parametro.idDivSAP = division_sap.idDivSAP','left');
+				$this->db->where ('linea_sap.idPlanilla',$idPlanilla );
+				$this->db->where ('linea_sap.idDivSAP',$idDiv );
+
+				$this->db->select('
+					linea_sap.hsPlanificadasBL,
+					linea_sap.hsEjecutadasBL,
+					linea_sap.hsPendientesBL,
+					linea_sap.backlogReal,
+					linea_sap.hsTrabRealTotal,
+					linea_sap.hsTRCorrectivo,
+					linea_sap.hsTRPreventivo,
+					linea_sap.hsDispMensual,
+					linea_sap.hsTRPlanificadas,
+					linea_sap.cantOTCompletas,
+					linea_sap.cantOTs,
+					linea_sap.trabajoProactivo,
+					kpi.nombreKPI,
+					parametro.backlogBudget,
+					parametro.hsDispSemana,
+					parametro.correctivoBudget,
+					parametro.preventivoBudget,
+					parametro.trabajoPlaneado,
+					parametro.trabajoProactivo
+				');
+				$this->db->from('linea_sap');
+				$this->db->join('kpi','kpi.idKPI = linea_sap.idKPI','left');
+				$this->db->join('parametro','parametro.idDivSAP = linea_sap.idDivSAP','left');
 				 
-						$query = $this->db->get();
-						if ($query->num_rows() > 0) {
-				
-							return $query->result();
-						}
-						else{
-				
-							return false;
-						}
+				$query = $this->db->get();
+				if ($query->num_rows() > 0) {
+		
+					return $query->result();
+				}
+				else{
+		
+					return false;
+				}
 		
 			}
 
