@@ -117,9 +117,14 @@
 
   
 
-  /*oculata pantalla*/
+  /*espaciadores*/
 
 
+  .espaciod{
+
+    margin-bottom:2em;
+
+  }
 
 
   /* estilos para Spinner */

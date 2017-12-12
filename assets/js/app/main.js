@@ -86,8 +86,6 @@ var app = new Vue({
 
             getData: function(){
 
-
-
                 this.$http.get(url+'vrdata', { params: { idselect: this.idSelect, idlist: this.idList,
                 
                                                         idplanillaAes: this.idPlanillaAes,

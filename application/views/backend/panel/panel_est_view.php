@@ -333,7 +333,7 @@
      
                                      <div class="col-xs-12 ">
      
-                                             <vm-semaforizado v-if= " item.ctmActual != ''"  v-bind:esperado= 'item.ctmBudget ' v-bind:real= 'item.ctmActual'  lbl=""  tipo= "true"></vm-semaforizado>
+                                             <vm-semaforizado v-if= " item.ctmActual != ''"  v-bind:esperado= 'item.ctmBudget ' v-bind:real= 'item.ctmActual'  lbl=""  tipo= "false"></vm-semaforizado>
                                              
                                      </div>
      
@@ -551,10 +551,10 @@
 
             </div>  <!-- fin contenedor V-for -->
 
-            <pre>
+            <!-- <pre>
 
 {{$data}}
-</pre>
+</pre> -->
 <!-- fin bloque CA -->
 
 
