@@ -70,7 +70,7 @@
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.hsTRCorrectivo | truncar}}</h5>
+                                        <h5 class="font-medium">{{item.hsTRCorrectivo | onlytrunc}} %</h5>
                                         <h6 class="text-muted">Real Mon</h6>
 
                                     </div>
@@ -179,7 +179,7 @@
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.hsTRPreventivo }} %</h5>
+                                        <h5 class="font-medium">{{item.hsTRPreventivo | onlytrunc}} %</h5>
                                         <h6 class="text-muted">Real Mon</h6>
 
                                     </div>
@@ -283,12 +283,12 @@
 
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-l b-r b-b">
-                                        <h5 class="font-medium">{{item.backlogBudget}} %</h5>
+                                        <h5 class="font-medium">{{item.backlogBudget}} </h5>
                                         <h6 class="text-muted">Bud Mon</h6>
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.backlogReal | sindec}} %</h5>
+                                        <h5 class="font-medium">{{item.backlogReal | onlytrunc}} </h5>
                                         <h6 class="text-muted">Real Mon</h6>
 
                                     </div>
@@ -402,7 +402,7 @@
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.hsTRPlanificadas}}</h5>
+                                        <h5 class="font-medium">{{item.hsTRPlanificadas | onlytrunc}} %</h5>
                                         <h6 class="text-muted">Real Mon</h6>
 
                                     </div>
@@ -514,7 +514,7 @@
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.trabajoProactivo}}</h5>
+                                        <h5 class="font-medium">{{item.trabajoProactivo | onlytrunc}} %</h5>
                                         <h6 class="text-muted">Real Mon</h6>
 
                                     </div>

@@ -20,6 +20,25 @@
 
     });
 
+
+    Vue.filter('onlytrunc', function(value) {
+        
+                if(value != "" && value != null){
+                    
+                    posiciones = 2
+                    var s = value.toString()
+                    var l = s.length;
+                    var decimalLength = s.indexOf('.') + 1
+                    var numStr = s.substr(0, decimalLength + posiciones)
+                    return Number(numStr)
+                }else{
+        
+                    return "";
+        
+                }
+        
+            });
+
     //filtro simplificado para quitar los decimales de valores grandes
     Vue.filter('sindec', function (value)  {
 

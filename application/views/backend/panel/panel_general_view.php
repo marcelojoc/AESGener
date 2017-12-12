@@ -235,12 +235,12 @@
                              
                                                              </div>
                                                              <div class="col-xs-3 b-r b-b">
-                                                                     <h5 class="font-medium">{{item.ytdActual |sindec}}[BTU/MWH]</h5>
+                                                                     <h5 class="font-medium">{{item.ytdActual |sindec}} [BTU/MWH]</h5>
                                                                      <h6 class="text-muted">YTD Actual</h6>
                                                                  </div>
                                                              
                                                                  <div class="col-xs-3 b-b">
-                                                                     <h5 class="font-medium">{{item.ytdTarget |sindec}}[BTU/MWH]</h5>
+                                                                     <h5 class="font-medium">{{item.ytdTarget |sindec}} [BTU/MWH]</h5>
                                                                      <h6 class="text-muted">YTD Target</h6>
                                  
                                                              </div>
@@ -330,24 +330,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
 
 
@@ -362,55 +344,89 @@
                                 Táctico
                             </h1>
                         </div> 
-                        <div class="col-sm-12 espaciod">
-                                             
-                                <div class="col-xs-6">
-        
-                                        <div class="input-group" >
-                                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                        
-                                                <div class="form-group">
-                    
-                                                        <select class="form-control"  name="caSelect" >
-        
-                                                                <option value="" disabled selected hidden>Seleccionar</option>
-                                                                
-                                                                <option>opciones</option>
-                                                                <option>opciones</option>
-                                                                <option>opciones</option>
-        
-                                                        </select>   
-                                                </div>
-                                        </div>
-        
-                                </div>
-        
-        
-                                <div class="col-xs-6">
-        
-                                    <button v-on:click.prevent="getdatos" class="btn btn-xs btn-success " >
-                                            <span class="bigger-110">Ir</span>
-        
-                                            <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
-                                    </button>
-        
-                                </div>
-                                                        
-                        </div>
+
 
                 <div class="col-sm-12 text-left" >
                     
-                                    <table class="table table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>KPI</th>
-                                                <th>REAL MON</th>
-                                                
-                                            </tr>
-                                            </thead>
-                    
-                    
-                                    </table>
+
+
+
+                        <div class="col-xs-12 " >  
+                                
+                                
+                            <div class="soc-content "  >
+                                    <div class="col-xs-6 b-r b-t" >
+                                        <h3 class="font-medium" ></h3>
+                                        
+                                    </div>
+                                
+                                    <div class="col-xs-6 b-t " >
+                                        <h3 class="font-medium"></h3>
+                                        
+                
+                                    </div>
+                
+                            </div>  
+                                            
+                                            
+                                
+                                                    
+                        </div>
+
+
+
+                        <div class="row" v-if="true"> 
+                                
+                            <div class="col-xs-12 ">  
+                                
+                                                        <div class="social-widget col-sm-12 b-l  b-b">
+                                                                <div class="soc-header box-twitter" >
+                                                                    <i><h4> MTBF </h4></i>
+                                                                </div>
+                                    
+                                    
+                                                                <div class="soc-content">
+                                                                    <div class="col-xs-6 b-r b-b">
+                                                                        <h5 class="font-medium" ></h5>
+                                                                        <h6 class="text-muted">Actual Mon</h6>
+                                                                    </div>
+                                                                
+                                                                    <div class="col-xs-6 b-b ">
+                                                                        <h5 class="font-medium"></h5>
+                                                                        <h6 class="text-muted">Target Mon</h6>
+                                    
+                                                                    </div>
+                                    
+                                                                </div> 
+                                    
+                                                                <div class="row" >
+                                    
+                                                                    <div class="col-xs-12 ">
+                                    
+                                                                        <vm-semaforizado  v-bind:esperado= '66' v-bind:real= '77'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        
+                                                                    </div>
+                                    
+                                    
+                                                                </div>
+                                    
+                                                        </div>
+                
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
 
 
@@ -483,7 +499,7 @@
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.hsTRCorrectivo | truncar}}</h5>
+                                                                    <h5 class="font-medium">{{item.hsTRCorrectivo | onlytrunc }} %</h5>
                                                                     <h6 class="text-muted">Real Mon</h6>
                             
                                                                 </div>
@@ -527,7 +543,7 @@
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.hsTRPreventivo }} %</h5>
+                                                                    <h5 class="font-medium">{{item.hsTRPreventivo | onlytrunc}} %</h5>
                                                                     <h6 class="text-muted">Real Mon</h6>
                             
                                                                 </div>
@@ -572,7 +588,7 @@
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.backlogReal | sindec}} %</h5>
+                                                                    <h5 class="font-medium">{{item.backlogReal | onlytrunc}} %</h5>
                                                                     <h6 class="text-muted">Real Mon</h6>
                             
                                                                 </div>
@@ -622,7 +638,7 @@
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.hsTRPlanificadas}}</h5>
+                                                                    <h5 class="font-medium">{{item.hsTRPlanificadas | onlytrunc}}</h5>
                                                                     <h6 class="text-muted">Real Mon</h6>
                             
                                                                 </div>
@@ -669,7 +685,7 @@
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.trabajoProactivo}}</h5>
+                                                                    <h5 class="font-medium">{{item.trabajoProactivo | onlytrunc}} %</h5>
                                                                     <h6 class="text-muted">Real Mon</h6>
                             
                                                                 </div>
