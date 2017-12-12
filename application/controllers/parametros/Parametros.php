@@ -50,15 +50,16 @@ class Parametros extends My_Controller{
         $data['budgetPreventivo'] = $this->input->post('budgetPreventivo');
         $data['budgetPlaneado'] = $this->input->post('budgetPlaneado');
         $data['budgetProactivo'] = $this->input->post('budgetProactivo');
+        $data['mtbfTarget'] = $this->input->post('mtbfTarget');
 
         //Tomo fecha actual del sistema
         date_default_timezone_set('America/Santiago');
         $fecha = getdate();
-        $anio = $fecha['year'];
+        $year = $fecha['year'];
         $mes = $fecha['mon'];
         $dia = $fecha['mday'];
 
-        $day = $anio."-".$mes."-".$dia;
+        $day = $year."-".$mes."-".$dia;
 
         if (isset($_POST['GuardarEnDB'])){
             $idParametro = $this->Parametros_model->guardarAnuales($sesion, $day, $anio, $data);

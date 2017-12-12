@@ -18,6 +18,7 @@ class Parametros_model extends CI_Model {
 			$preventivoBudget = $par->preventivoBudget;
 			$trabajoPlaneado = $par->trabajoPlaneado;
 			$trabajoProactivo = $par->trabajoProactivo;
+			$mtbfTarget = $par->mtbfTarget;
 			$idPar = $par->idParametro;
 		}
 
@@ -32,7 +33,43 @@ class Parametros_model extends CI_Model {
 					'correctivoBudget' => $correctivoBudget,
 					'preventivoBudget' => $preventivoBudget,
 					'trabajoPlaneado' => $trabajoPlaneado,
-					'trabajoProactivo' => $trabajoProactivo));
+					'trabajoProactivo' => $trabajoProactivo,
+					'mtbfTarget' => $mtbfTarget));
+		$idParametro = $this->db->insert_id();
+
+		$this->Parametros_model->updateParametro($idPar);
+		
+		return $idParametro;
+	}
+
+	function guardarMensuales($sesion, $day, $mes, $data){
+		$idEmpleado = $sesion['idEmpleado'];
+
+		$parametros = $this->Parametros_model->getMensuales();
+
+		foreach($parametro as $par){
+			$backlogBudget = $par->backlogBudget;
+			$correctivoBudget = $par->correctivoBudget;
+			$preventivoBudget = $par->preventivoBudget;
+			$trabajoPlaneado = $par->trabajoPlaneado;
+			$trabajoProactivo = $par->trabajoProactivo;
+			$mtbfTarget = $par->mtbfTarget;
+			$idPar = $par->idParametro;
+		}
+
+		$this->db->insert('parametro', 
+			array('fecha' => $day, 
+					'mes' => $data['mes'], 
+					'hsDispSemana' => $data['hsSemana'], 
+					'activo' =>1,
+					'idEmpleado' => $idEmpleado,
+					'idDivSAP' => $data['divisionSAP'],
+					'backlogBudget' => $backlogBudget,
+					'correctivoBudget' => $correctivoBudget,
+					'preventivoBudget' => $preventivoBudget,
+					'trabajoPlaneado' => $trabajoPlaneado,
+					'trabajoProactivo' => $trabajoProactivo,
+					'mtbfTarget' => $mtbfTarget));
 		$idParametro = $this->db->insert_id();
 
 		$this->Parametros_model->updateParametro($idPar);
@@ -61,6 +98,23 @@ class Parametros_model extends CI_Model {
 		$data = array('activo' => 0);
 		$this->db->where('idParametro', $idParametro);
 		$this->db->update('parametro', $data); 
+	}
+
+	public function getMTBF($idDivSAP){
+		$this->db->select('mtbfTarget');
+		$this->db->where('idDivSAP', $idDivSAP);
+		$this->db->where('activo', 1);
+		$this->db->from('parametro');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0){
+			foreach ($query->result() as $fila){
+				$data[] = $fila;
+			}	
+			return $data;
+		}else{
+			return false;
+		}
 	}
 
 }

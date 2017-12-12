@@ -135,6 +135,13 @@
 	                </div> 
 				</div>
 
+				<div class="form-group"> <!-- Empieza una linea del formulario -->
+					<label class="col-sm-3 control-label no-padding-right" for="mtbfTarget">MTBF Target </label>
+					<div class="col-sm-4">
+						<input class="form-control" id="mtbfTarget" name="mtbfTarget" placeholder="" type="text" required>
+	                </div> 
+				</div>
+
 				<div class="center" style="width:50%; margin-right:auto; margin-left:auto;">
 					<div class="hr hr-12 dotted"></div>
 
