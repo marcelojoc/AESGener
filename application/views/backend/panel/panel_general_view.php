@@ -389,7 +389,7 @@
                                                     </div>
                                                 
                                                     <div class="col-xs-6 b-b ">
-                                                        <h5 class="font-medium">{{this.tac.kpi.mtbfTarget}} [hr.Oper]</h5>
+                                                        <h5 class="font-medium">{{this.tac.kpi.mtbfTarget | sindec}} [hr.Oper]</h5>
                                                         <h6 class="text-muted">Target Mon</h6>
                     
                                                     </div>
