@@ -39,7 +39,33 @@ class Parametros extends My_Controller{
             echo '<script >alert("Parametros guardados con éxito!");</script>';
             redirect('/parametros/Parametros','refresh');
         }
+    }
 
+    public function datosAnuales(){
+        $sesion = $this->session->userdata('logged_in');
+
+        $anio = $this->input->post('anio');
+        $data['budgetBacklog'] = $this->input->post('budgetBacklog');
+        $data['budgetCorrectivo'] = $this->input->post('budgetCorrectivo');
+        $data['budgetPreventivo'] = $this->input->post('budgetPreventivo');
+        $data['budgetPlaneado'] = $this->input->post('budgetPlaneado');
+        $data['budgetProactivo'] = $this->input->post('budgetProactivo');
+
+        //Tomo fecha actual del sistema
+        date_default_timezone_set('America/Santiago');
+        $fecha = getdate();
+        $anio = $fecha['year'];
+        $mes = $fecha['mon'];
+        $dia = $fecha['mday'];
+
+        $day = $anio."-".$mes."-".$dia;
+
+        if (isset($_POST['GuardarEnDB'])){
+            $idParametro = $this->Parametros_model->guardarAnuales($sesion, $day, $anio, $data);
+
+            echo '<script >alert("Parametros guardados con éxito!");</script>';
+            redirect('/parametros/Parametros','refresh');
+        }
     }
 }
 ?>

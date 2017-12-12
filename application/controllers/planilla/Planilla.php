@@ -243,10 +243,6 @@ class Planilla extends My_Controller{
                 $idDivisionSAP = $divSAP->idDivSAP;
             }
 
-            foreach ($data['parametro'] as $param){
-                $hsDispSemana = $param->hsDispSemana;
-            }
-
         	$planilla['file_name'] = 'SAP_'.$nombreDiv.'_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
             $archivo = './uploads/'.$planilla['file_name'];
 
@@ -350,6 +346,10 @@ class Planilla extends My_Controller{
                 $hsEjecutadasBL = $trabajoReal + $hsEjecutadasBL;
             }
 
+            foreach ($data['parametro'] as $param){
+                $hsDispSemana = $param->hsDispSemana;
+            }
+
             //Calculo Horas Pendientes
             $hsPendientesBL = $hsPlanificadasBL - $hsEjecutadasBL;
 
@@ -383,7 +383,11 @@ class Planilla extends My_Controller{
                 $resultado = strpos($statusUsuario, $buscar);
 
                 if($resultado !== FALSE){
-                    $orden38 = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+                    /*Revisar poner el orden correcto de la ubicacion de la columna ORDEN sino buscarla por texto*/
+                    /*Revisar poner el orden correcto de la ubicacion de la columna ORDEN sino buscarla por texto*/
+                    /*Revisar poner el orden correcto de la ubicacion de la columna ORDEN sino buscarla por texto*/
+                    /*Revisar poner el orden correcto de la ubicacion de la columna ORDEN sino buscarla por texto*/
+                    $orden38 = $objExcel->getActiveSheet()->getCell('A'.$i)->getCalculatedValue();
 
                     //Agarro pestaña de IW-47
                     $objExcel->setActiveSheetIndex(0);
@@ -399,6 +403,10 @@ class Planilla extends My_Controller{
                         }                      
                     }
                 }
+            }
+
+            foreach ($data['parametro'] as $param){
+                $hsDispSemana = $param->hsDispSemana;
             }
 
             //Formula PLANNED WORK

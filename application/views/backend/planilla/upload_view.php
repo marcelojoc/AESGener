@@ -71,7 +71,7 @@
 							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> División</label>
 								<div class="col-sm-5">
 									<div>
-										<select class="form-control" name="divisionSAP" placeholder="Seleccione Tipo Planilla" required><!-- Codigo de Combo con datos de la BD -->
+										<select class="form-control" name="divisionSAP" placeholder="Seleccione Tipo Planilla" ><!-- Codigo de Combo con datos de la BD -->
 											<option value="">--- Seleccione División ---</option>
 											<?php 
                    								foreach ($divisionesSAP->result() as $divSAP) {
