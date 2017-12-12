@@ -83,45 +83,62 @@
         			<span class="col-xs-12"> Parámetros Anuales </span><!-- /.col -->
     			</h4>
 
+    			<div class="form-group"> <!-- Empieza linea del form con desplegable -->
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Año</label>
+						<div class="col-sm-4">
+							<div>
+								<select class="form-control" name="anio" placeholder="Seleccione Tipo Planilla" required><!-- Codigo de Combo con datos de la BD -->
+									<option value="">--- Seleccione Año ---</option>
+									<?php 
+           								$year = date("Y");
+             							for ($i= 2015; $i <= $year ; $i++){
+             								echo'<option value='.$i.'>'.$i.'</option>';
+                 						}
+            						?>
+								</select>
+							</div>
+						</div>
+				</div>
+
     			<div class="form-group"> <!-- Empieza una linea del formulario -->
-					<label class="col-sm-3 control-label no-padding-right" for="apellidoE"> Budget Backlog </label>
+					<label class="col-sm-3 control-label no-padding-right" for="budgetBacklog"> Budget Backlog </label>
 					<div class="col-sm-4">
-						<input class="form-control" id="apellidoE" name="apellidoE" placeholder=""  type="text">
+						<input class="form-control" id="budgetBacklog" name="budgetBacklog" placeholder=""  type="text" required>
 	                </div> 
 				</div>
 
 				<div class="form-group"> <!-- Empieza una linea del formulario -->
-					<label class="col-sm-3 control-label no-padding-right" for="nombreE"> Budget % Correctivo </label>
+					<label class="col-sm-3 control-label no-padding-right" for="budgetCorrectivo"> Budget % Correctivo </label>
 					<div class="col-sm-4">
-						<input class="form-control" id="nombreE" name="nombreE" placeholder=""  type="text">
+						<input class="form-control" id="budgetCorrectivo" name="budgetCorrectivo" placeholder=""  type="text" required>
 	                </div> 
 				</div>
 
 				<div class="form-group"> <!-- Empieza una linea del formulario -->
-					<label class="col-sm-3 control-label no-padding-right" for="nroLegajo"> Budget % Preventivo </label>
+					<label class="col-sm-3 control-label no-padding-right" for="budgetPreventivo"> Budget % Preventivo </label>
 					<div class="col-sm-4">
-						<input class="form-control" id="nroLegajo" name="nroLegajo" placeholder=""  type="number">
+						<input class="form-control" id="budgetPreventivo" name="budgetPreventivo" placeholder=""  type="text" required>
 	                </div> 
 				</div>
 
 				<div class="form-group"> <!-- Empieza una linea del formulario -->
-					<label class="col-sm-3 control-label no-padding-right" for="dni"> Budget % Planned Work</label>
+					<label class="col-sm-3 control-label no-padding-right" for="budgetPlaneado"> Budget % Planned Work</label>
 					<div class="col-sm-4">
-						<input class="form-control" id="dni" name="dni" placeholder=""  type="number" min="1000000" max="70000000">
+						<input class="form-control" id="budgetPlaneado" name="budgetPlaneado" placeholder=""  type="text" required>
 	                </div> 
 				</div>
 
 				<div class="form-group"> <!-- Empieza una linea del formulario -->
-					<label class="col-sm-3 control-label no-padding-right" for="dni">Budget % Proactive Work </label>
+					<label class="col-sm-3 control-label no-padding-right" for="budgetProactivo">Budget % Proactive Work </label>
 					<div class="col-sm-4">
-						<input class="form-control" id="dni" name="dni" placeholder=""  type="number" min="1000000" max="70000000">
+						<input class="form-control" id="budgetProactivo" name="budgetProactivo" placeholder="" type="text" required>
 	                </div> 
 				</div>
 
 				<div class="center" style="width:50%; margin-right:auto; margin-left:auto;">
 					<div class="hr hr-12 dotted"></div>
 
-					<button class="btn btn-success" type="submit" >
+					<button class="btn btn-success" type="submit" name="GuardarEnDB">
 						<i class="ace-icon fa fa-check bigger-110"></i>
 							Guardar
 					</button>
