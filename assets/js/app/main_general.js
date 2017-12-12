@@ -215,7 +215,16 @@ var app = new Vue({
 
 
                 //llamo al metodo del tactico
-                this.getkpiTAC()
+
+                if(this.est.idSelect == "1"){
+
+                    this.getkpiTAC()
+
+                }else{
+
+                    this.tac.kpi="";
+                }
+                
 
 
             },
