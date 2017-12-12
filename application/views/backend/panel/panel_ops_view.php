@@ -70,7 +70,225 @@
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.hsTrabRealTotal | truncar}}</h5>
+                                        <h5 class="font-medium">{{item.hsTRCorrectivo | truncar}}</h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+
+                                    </div>
+
+                                </div> 
+
+                                <div class="row">
+
+                                    <div class="col-xs-12 ">
+
+                                            <vm-semaforizado  v-bind:esperado= 'item.correctivoBudget' v-bind:real= 'item.hsTRCorrectivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                            
+                                    </div>
+
+                                </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-5">
+
+                            <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                                Comentarios
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#messages">
+                                                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                                Aañadir Comentario
+                                                <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>Contenido</th>
+                                                    <th>Autor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Cambios de prefiltros en compresor</td>
+                                                    <td>pepito h</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                    <td>Thornton</td>
+                                                    </tr>
+
+                                                </tbody>
+                                                </table>
+                                        </div>
+
+                                        <div id="messages" class="tab-pane fade">
+                                            
+                                            <form action="">
+
+                                                <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                            </div><br>
+
+                    </div><br>
+
+
+                </div> <!-- fin div contenerdor -->
+
+
+
+
+
+
+                <div v-if="item.nombreKPI == 'Cumplimiento Plan Preventivo(%)'">             
+                    <div class="col-sm-7 " >
+                    
+                        <div class="social-widget col-sm-12 b-l b-r b-b">
+                                <div class="soc-header box-ca">
+                                    <i><h4>{{item.nombreKPI}}</h4></i>
+                                </div>
+
+                                <div class="soc-content">
+                                    <div class="col-xs-6 b-l b-r b-b">
+                                        <h5 class="font-medium">{{item.preventivoBudget}} %</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
+                                    </div>
+                                
+                                    <div class="col-xs-6 b-b b-r">
+                                        <h5 class="font-medium">{{item.hsTRPreventivo }} %</h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+
+                                    </div>
+
+                                </div> 
+
+                                <div class="row">
+
+                                    <div class="col-xs-12 ">
+
+                                            <vm-semaforizado  v-bind:esperado= 'item.preventivoBudget' v-bind:real= 'item.hsTRPreventivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                            
+                                    </div>
+
+
+
+                                </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-5">
+
+                            <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                                Comentarios
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#messages">
+                                                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                                Aañadir Comentario
+                                                <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>Contenido</th>
+                                                    <th>Autor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Cambios de prefiltros en compresor</td>
+                                                    <td>pepito h</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                    <td>Thornton</td>
+                                                    </tr>
+
+                                                </tbody>
+                                                </table>
+                                        </div>
+
+                                        <div id="messages" class="tab-pane fade">
+                                            
+                                            <form action="">
+
+                                                <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                            </div><br>
+
+                    </div><br>
+
+
+                </div> <!-- fin div contenerdor -->
+
+
+
+
+                <div v-if="item.nombreKPI == 'Backlog (semanas)'">             
+                    <div class="col-sm-7 " >
+                    
+                        <div class="social-widget col-sm-12 b-l b-r b-b">
+                                <div class="soc-header box-ca">
+                                    <i><h4>{{item.nombreKPI}}</h4></i>
+                                </div>
+
+                                <div class="soc-content">
+                                    <div class="col-xs-6 b-l b-r b-b">
+                                        <h5 class="font-medium">{{item.backlogBudget}} %</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
+                                    </div>
+                                
+                                    <div class="col-xs-6 b-b b-r">
+                                        <h5 class="font-medium">{{item.backlogReal | sindec}} %</h5>
                                         <h6 class="text-muted">Real Mon</h6>
 
                                     </div>
@@ -166,6 +384,226 @@
 
 
 
+
+
+
+                <div v-if="item.nombreKPI == 'Planned Work(%)'">             
+                    <div class="col-sm-7 " >
+                    
+                        <div class="social-widget col-sm-12 b-l b-r b-b">
+                                <div class="soc-header box-ca">
+                                    <i><h4>{{item.nombreKPI}}</h4></i>
+                                </div>
+
+                                <div class="soc-content">
+                                    <div class="col-xs-6 b-l b-r b-b">
+                                        <h5 class="font-medium">{{item.trabajoPlaneado}} %</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
+                                    </div>
+                                
+                                    <div class="col-xs-6 b-b b-r">
+                                        <h5 class="font-medium">{{item.hsTRPlanificadas}}</h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+
+                                    </div>
+
+                                </div> 
+
+                                <div class="row">
+
+                                    <div class="col-xs-12 ">
+
+                                            <vm-semaforizado  v-bind:esperado= 'item.trabajoPlaneado' v-bind:real= 'item.hsTRPlanificadas'  lbl=""  tipo= "false"></vm-semaforizado>
+                                            
+                                    </div>
+
+
+
+                                </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-5">
+
+                            <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                                Comentarios
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#messages">
+                                                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                                Aañadir Comentario
+                                                <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>Contenido</th>
+                                                    <th>Autor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Cambios de prefiltros en compresor</td>
+                                                    <td>pepito h</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                    <td>Thornton</td>
+                                                    </tr>
+
+                                                </tbody>
+                                                </table>
+                                        </div>
+
+                                        <div id="messages" class="tab-pane fade">
+                                            
+                                            <form action="">
+
+                                                <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                            </div><br>
+
+                    </div><br>
+
+
+                </div> <!-- fin div contenerdor -->
+
+
+
+
+
+
+
+     <div v-if="item.nombreKPI == 'Proactive Work(%)'">             
+                    <div class="col-sm-7 " >
+                    
+                        <div class="social-widget col-sm-12 b-l b-r b-b">
+                                <div class="soc-header box-ca">
+                                    <i><h4>{{item.nombreKPI}}</h4></i>
+                                </div>
+
+                                <div class="soc-content">
+                                    <div class="col-xs-6 b-l b-r b-b">
+                                        <h5 class="font-medium">{{item.proactivoBudget}}</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
+                                    </div>
+                                
+                                    <div class="col-xs-6 b-b b-r">
+                                        <h5 class="font-medium">{{item.trabajoProactivo}}</h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+
+                                    </div>
+
+                                </div> 
+
+                                <div class="row">
+
+                                    <div class="col-xs-12 ">
+
+                                            <vm-semaforizado  v-bind:esperado= 'item.proactivoBudget' v-bind:real= 'item.trabajoProactivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                            
+                                    </div>
+
+
+
+                                </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-5">
+
+                            <div class="tabbable">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home">
+                                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                                                Comentarios
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a data-toggle="tab" href="#messages">
+                                                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                                                Aañadir Comentario
+                                                <!-- <span class="badge badge-danger">Nuevo</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="home" class="tab-pane fade in active">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                    <th>#</th>
+                                                    <th>Contenido</th>
+                                                    <th>Autor</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Cambios de prefiltros en compresor</td>
+                                                    <td>pepito h</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
+                                                    <td>Thornton</td>
+                                                    </tr>
+
+                                                </tbody>
+                                                </table>
+                                        </div>
+
+                                        <div id="messages" class="tab-pane fade">
+                                            
+                                            <form action="">
+
+                                                <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Guardar Comentario</button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                            </div><br>
+
+                    </div><br>
+
+
+                </div> <!-- fin div contenerdor -->                                
             </div>  <!-- fin contenedor V-for -->  
 
 

@@ -369,7 +369,8 @@ class Kpi_model extends CI_Model {
 
 		foreach($hedp as $item){
 
-			$resultado['hedp']=$item->hedp;
+			
+			$resultado[]=["nombre"=>"HEDP", "valor"=>$item->hedp];
 
 		}
 
@@ -387,7 +388,8 @@ class Kpi_model extends CI_Model {
 		
 		foreach($hsf as $item){
 
-			$resultado['hsf']=$item->hsf;
+			// $resultado['hsf']=$item->hsf;
+			$resultado[]=["nombre"=>"HSF", "valor"=>$item->hsf];
 
 		}
 
@@ -401,7 +403,8 @@ class Kpi_model extends CI_Model {
 		//array_push($resultado['hedf'],$hedf->hedf);
 		foreach($hedf as $item){
 
-			$resultado['hedf']=$item->hedf;
+			//$resultado['hedf']=$item->hedf;
+			$resultado[]=["nombre"=>"HEDF", "valor"=>$item->hedf];
 
 		}
 
@@ -413,13 +416,19 @@ class Kpi_model extends CI_Model {
 		$query = $this->db->get();
 		$mtbf = $query->result();
 
-		foreach($mtbf as $item){
+		if ($query->num_rows() > 0) {
 			
-				$resultado['mtbf']=$item->mtbf;
-				$resultado['mtbfTarget']=$item->mtbfTarget;
+			foreach($mtbf as $item){
+				
+					$resultado['mtbf']=$item->mtbf;
+					$resultado['mtbfTarget']=$item->mtbfTarget;
+			}
+
+		}else{
+
+			$resultado['mtbf']=false;
+			$resultado['mtbfTarget']=false;
 		}
-
-
 		return $resultado;
 
 		// if ($query->num_rows() > 0) {
@@ -587,13 +596,14 @@ class Kpi_model extends CI_Model {
 					linea_sap.cantOTCompletas,
 					linea_sap.cantOTs,
 					linea_sap.trabajoProactivo,
+					parametro.trabajoProactivo as proactivoBudget,
 					kpi.nombreKPI,
 					parametro.backlogBudget,
 					parametro.hsDispSemana,
 					parametro.correctivoBudget,
 					parametro.preventivoBudget,
-					parametro.trabajoPlaneado,
-					parametro.trabajoProactivo
+					parametro.trabajoPlaneado
+					
 				');
 				$this->db->from('linea_sap');
 				$this->db->join('kpi','kpi.idKPI = linea_sap.idKPI','left');
