@@ -12,7 +12,7 @@ var app = new Vue({
 
         ugen:[],  // unidades generadoras
 
-        load: false,
+        count: 0,
 
         idSelect:"",
 
@@ -39,8 +39,16 @@ var app = new Vue({
             });
     },
 
-    mounted: function () {
-        this.load=true;
+    watch: {
+        kpi: function () {
+            this.count=0;
+            for (var i in this.kpi) {
+
+                this.count ++;
+            
+             }
+
+        }
     },
 
     methods:{

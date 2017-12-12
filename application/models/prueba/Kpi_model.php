@@ -112,9 +112,37 @@ class Kpi_model extends CI_Model {
 			}else{
 
 				// panel operATIVO
+				$resultado=[];
+				$this->db->from('division_sap');
+				$query = $this->db->get();
+				$division_sap= $query->result(); // todas las diviciones de sap
+
+				foreach($division_sap as $item){  
+					
+					// recorro cada una de las diviciones
+					// buscando en las ultimas planillas  y traigo los id
+
+					// si es panel op  es el tipo de tabla 3
+					$this->db->like('url', $item->nombreDivSAP); 
+					$this->db->where (' idTipoPlanilla= 3');
+					$this->db->from('planilla');
+					$this->db->select('*');
+					$query = $this->db->get();
+
+						if ($query->num_rows() > 0) {
+							$dato= $query->result();
+						
+							$resultado[]=["id"=>$item->idDivSAP,
+										  "nombreDivSAP"=>$item->nombreDivSAP,
+										  "idPlanilla"=>$dato[0]->idPlanilla
+						];
+							
+						}
 
 
+				}
 
+				return $resultado;
 
 
 
@@ -327,7 +355,7 @@ class Kpi_model extends CI_Model {
 	public function getValueUgfortac( $idUg, $idplanillaAes, $idPlanillaMtbf){
 
 		//var_dump($idplanillaAes);
-
+		$resultado=[];
 		// $idplanillaAes=21;
 		// $idPlanillaMtbf=25;
 
@@ -339,6 +367,15 @@ class Kpi_model extends CI_Model {
 		$query = $this->db->get();
 		$hedp = $query->result();
 
+		foreach($hedp as $item){
+
+			
+			$resultado[]=["nombre"=>"HEDP", "valor"=>$item->hedp];
+
+		}
+
+		
+
 
 		$this->db->where ('linea_aes.idKPI = 7' ); // busco los HSF
 		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
@@ -347,7 +384,14 @@ class Kpi_model extends CI_Model {
 		$this->db->from('linea_aes');
 		$query = $this->db->get();
 		$hsf = $query->result();
+	
+		
+		foreach($hsf as $item){
 
+			// $resultado['hsf']=$item->hsf;
+			$resultado[]=["nombre"=>"HSF", "valor"=>$item->hsf];
+
+		}
 
 		$this->db->where ('linea_aes.idKPI = 6' ); // busco los Hedf
 		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
@@ -356,7 +400,13 @@ class Kpi_model extends CI_Model {
 		$this->db->from('linea_aes');
 		$query = $this->db->get();
 		$hedf = $query->result();
+		//array_push($resultado['hedf'],$hedf->hedf);
+		foreach($hedf as $item){
 
+			//$resultado['hedf']=$item->hedf;
+			$resultado[]=["nombre"=>"HEDF", "valor"=>$item->hedf];
+
+		}
 
 		$this->db->where ('linea_mtbf.idKPI = 8' ); // busco los MTBF
 		$this->db->where ('linea_mtbf.idPlanilla',$idPlanillaMtbf );
@@ -366,9 +416,19 @@ class Kpi_model extends CI_Model {
 		$query = $this->db->get();
 		$mtbf = $query->result();
 
-		$resultado =  array_merge($hedp ,$hsf, $hedf, $mtbf);
+		if ($query->num_rows() > 0) {
+			
+			foreach($mtbf as $item){
+				
+					$resultado['mtbf']=$item->mtbf;
+					$resultado['mtbfTarget']=$item->mtbfTarget;
+			}
 
+		}else{
 
+			$resultado['mtbf']=false;
+			$resultado['mtbfTarget']=false;
+		}
 		return $resultado;
 
 		// if ($query->num_rows() > 0) {
@@ -505,24 +565,59 @@ class Kpi_model extends CI_Model {
 	}
 
 
+	/**
+	 * Este metodo trae la coleccion de datos de el tablero operativo
+	 * mezcla dos fuentes
+	 * 1) tabla parametros de cada unidad generadora
+	 * 2) tabla linea_sap con los datos de  unidad generadora  y id planilla 
+	 * que se guarda cuando es publicada la tabla de excel
+	 */
 
-	public function getDataDivSap($idDiv){
+	public function getDataDivSap($idDiv, $idPlanilla=null){
+
+
+		// traigo los paramentros para la division generadora
+		//unificando con la tabla kpi
+		//y la tabla linea_sap
 		
-		$this->db->where ('division_sap.idDivSAP',$idDiv );
-				$this->db->select('*');
-				$this->db->from('division_sap');
-				$this->db->join('linea_sap','linea_sap.idDivSAP = division_sap.idDivSAP','left');
-				$this->db->join('parametro','parametro.idDivSAP = division_sap.idDivSAP','left');
+				$this->db->where ('linea_sap.idPlanilla',$idPlanilla );
+				$this->db->where ('linea_sap.idDivSAP',$idDiv );
+
+				$this->db->select('
+					linea_sap.hsPlanificadasBL,
+					linea_sap.hsEjecutadasBL,
+					linea_sap.hsPendientesBL,
+					linea_sap.backlogReal,
+					linea_sap.hsTrabRealTotal,
+					linea_sap.hsTRCorrectivo,
+					linea_sap.hsTRPreventivo,
+					linea_sap.hsDispMensual,
+					linea_sap.hsTRPlanificadas,
+					linea_sap.cantOTCompletas,
+					linea_sap.cantOTs,
+					linea_sap.trabajoProactivo,
+					parametro.trabajoProactivo as proactivoBudget,
+					kpi.nombreKPI,
+					parametro.backlogBudget,
+					parametro.hsDispSemana,
+					parametro.correctivoBudget,
+					parametro.preventivoBudget,
+					parametro.trabajoPlaneado
+					
+				');
+				$this->db->from('linea_sap');
+				$this->db->join('kpi','kpi.idKPI = linea_sap.idKPI','left');
+				$this->db->join('parametro','parametro.idDivSAP = linea_sap.idDivSAP','left');
 				 
-						$query = $this->db->get();
-						if ($query->num_rows() > 0) {
-				
-							return $query->result();
-						}
-						else{
-				
-							return false;
-						}
+				$query = $this->db->get();
+				if ($query->num_rows() > 0) {
+		
+					return $query->result();
+				}
+				else{
+		
+					return false;
+				}
 		
 			}
 

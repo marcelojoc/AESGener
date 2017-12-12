@@ -8,12 +8,28 @@ var app = new Vue({
 
         divlista:[],
         divselect:"",
+        idPlanilla:"",
         valores: [],
 
         cakpi:[]
 
     },
 
+    // metodo de escucha por el cambio del modelo divSelect
+    watch: {
+        divselect: function () {
+
+            for (var i in this.divlista) {
+
+                if(this.divlista[i].id == this.divselect){
+
+                    this.idPlanilla= this.divlista[i].idPlanilla
+                }
+            
+             }
+
+        }
+    },
 
     methods:{
 
@@ -35,7 +51,10 @@ var app = new Vue({
 
         getdatos: function(){
 
-            this.$http.get(url+'vrdivsapdatos',{ params: { idlist: this.divselect } }).then(function (resp) {
+            this.$http.get(url+'vrdivsapdatos',{ params: { idlist: this.divselect ,
+                                                           idPlanilla: this.idPlanilla 
+                                                        } 
+                }).then(function (resp) {
 
                 this.valores = JSON.parse(resp.data);
 
@@ -46,6 +65,13 @@ var app = new Vue({
                 alert('Error de conexion');
 
             })
+        },
+
+        modificar: function(valor){
+
+            console.log(valor);
+            //this.idPlanilla= valor
+
         }
 
     },
