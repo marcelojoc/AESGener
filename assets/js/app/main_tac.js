@@ -40,7 +40,10 @@ var app = new Vue({
     },
 
     mounted: function () {
-        this.load=true;
+        
+
+
+        
     },
 
     methods:{
