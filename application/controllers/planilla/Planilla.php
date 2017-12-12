@@ -5,8 +5,7 @@ class Planilla extends My_Controller{
 
     function __construct(){
       	parent::__construct(); //Ejecuta el controlador del padre
-		$this->load->model('Bienvenida_model');			
-		//$this->load->library('miexcel');				
+		$this->load->model('Bienvenida_model');						
 		$this->load->library('/Excel/PHPExcel');
 		$this->load->library('/Excel/PHPExcel/IOFactory');		
   	}
@@ -21,10 +20,7 @@ class Planilla extends My_Controller{
 	}
 
 	public function subir(){
-        /*Falta pasar datos del empleado*/
-        /*Falta pasar datos del empleado*/
-        /*Falta pasar datos del empleado*/
-        /*Falta pasar datos del empleado*/
+        $sesion = $this->session->userdata('logged_in');
         $anio = $this->input->post('anio');
         $mes = $this->input->post('mes');
         $tipoP = $this->input->post('tipoPlanilla');
@@ -50,7 +46,12 @@ class Planilla extends My_Controller{
             $archivo = './uploads/'.$planilla['file_name'];
 
             $this->load->library('upload', $planilla);
-            $this->upload->do_upload();
+            $carga = $this->upload->do_upload();
+
+            if(!$carga){
+                echo '<script >alert("No ha seleccionado una planilla para cargar, vuelva a intentarlo.");</script>';
+                redirect('/planilla/Planilla','refresh');
+            }
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
             $objExcel->setActiveSheetIndex(0);
@@ -58,7 +59,7 @@ class Planilla extends My_Controller{
             $nroCol = $objExcel->setActiveSheetIndex(0)->getHighestColumn();
 
             //Crear Planilla
-            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP);
+            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP, $sesion);
 
             //Recorro toda la planilla y guardo los KPI: AEF, EFOF, ENPHR y CA
             for ($i = 2; $i <= $nroFilas; $i++) {
@@ -195,14 +196,19 @@ class Planilla extends My_Controller{
 
             //Cargamos la librería de subida y le pasamos la configuración 
             $this->load->library('upload', $planilla);
-            $this->upload->do_upload();
+            $carga = $this->upload->do_upload();
+
+            if(!$carga){
+                echo '<script >alert("No ha seleccionado una planilla para cargar, vuelva a intentarlo.");</script>';
+                redirect('/planilla/Planilla','refresh');
+            }
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
             $objExcel->setActiveSheetIndex(0);
             $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
             //Crear Planilla
-            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP);
+            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP, $sesion);
 
             for ($i = 8; $i <= $nroFilas; $i++){
                 $columna = "D";
@@ -217,12 +223,12 @@ class Planilla extends My_Controller{
 
                     foreach ($ubicacion as $ubi){
 
-                            $idDivision = $ubi->idDivision;
-                            $idComplejo = $ubi->idComplejo;
-                            $ctmActual = $objExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-                            $ctmBudget = $objExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+                        $idDivision = $ubi->idDivision;
+                        $idComplejo = $ubi->idComplejo;
+                        $ctmActual = $objExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
+                        $ctmBudget = $objExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
 
-                            $idLineaCostos = $this->Planilla_model->crearLineaCostos($ctmActual, $ctmBudget, $idDivision, $idComplejo, $idPlanilla, $idKPI);
+                        $idLineaCostos = $this->Planilla_model->crearLineaCostos($ctmActual, $ctmBudget, $idDivision, $idComplejo, $idPlanilla, $idKPI);
                     }
                 }
             }
@@ -246,12 +252,17 @@ class Planilla extends My_Controller{
 
             //Cargamos la librería de subida y le pasamos la configuración 
             $this->load->library('upload', $planilla);
-            $this->upload->do_upload();
+            $carga = $this->upload->do_upload();
+
+            if(!$carga){
+                echo '<script >alert("No ha seleccionado una planilla para cargar, vuelva a intentarlo.");</script>';
+                redirect('/planilla/Planilla','refresh');
+            }
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
 
             //Crear Planilla
-            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP);
+            $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP, $sesion);
             $pestanias = $objExcel->getSheetCount()-1;
 
 
@@ -465,14 +476,19 @@ class Planilla extends My_Controller{
 
         	//Cargamos la librería de subida y le pasamos la configuración 
 			$this->load->library('upload', $planilla);
-			$this->upload->do_upload();
+			$carga = $this->upload->do_upload();
+
+            if(!$carga){
+                echo '<script >alert("No ha seleccionado una planilla para cargar, vuelva a intentarlo.");</script>';
+                redirect('/planilla/Planilla','refresh');
+            }
 
         	$objExcel = PHPExcel_IOFactory::load($archivo);
         	$objExcel->setActiveSheetIndex(0);
         	$nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
         	//Crear Planilla
-        	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP);
+        	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP, $sesion);
 
             for ($i = 4; $i <= $nroFilas; $i++) {
                 $columna = "A";
@@ -497,24 +513,9 @@ class Planilla extends My_Controller{
             }
         }
 
-		if(!$this->upload->do_upload()){
-
-			/*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
-			$error=array('error' => $this->upload->display_errors());
-			$data="";
-			$nombreVista="backend/planilla/upload_view";
-			$this->cargarVista($nombreVista,$data);
-
-		}else{
-
-			//Datos del fichero subido
-			//$datos["xls"]=$this->upload->data();
-			// Podemos acceder a todas las propiedades del fichero subido 
-			// $datos["img"]["file_name"]);
-			//Agregar que muestre un msj de exito antes de refrescar
-            echo '<script >alert("Planilla cargada con éxito!");</script>';
-			redirect('/planilla/Planilla','refresh');
-	
+		if($carga){
+			echo '<script >alert("Planilla cargada con éxito!");</script>';
+            redirect('/planilla/Planilla','refresh');
 		}
 	}
 

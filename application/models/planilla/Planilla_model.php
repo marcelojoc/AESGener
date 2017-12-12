@@ -7,17 +7,15 @@ class Planilla_model extends CI_Model {
 		$this->load->database();
 	}
 
-	function crearPlanilla($ruta, $fecha, $anio, $mes, $tipoP){
-		//Asignar idEmpleado Real
-		//Asignar idEmpleado Real
-		//Asignar idEmpleado Real
-		//Asignar idEmpleado Real
+	function crearPlanilla($ruta, $fecha, $anio, $mes, $tipoP, $sesion){
+		$idEmpleado = $sesion['idEmpleado'];
+
 		$this->db->insert('planilla', 
 			array('url'=>$ruta, 
 					'dia'=>$fecha['mday'], 
 					'mes'=>$mes, 
 					'anio'=>$anio,
-					'idEmpleado'=>2,
+					'idEmpleado'=>$idEmpleado,
 					'idTipoPlanilla'=> $tipoP));
 		$idPlanilla = $this->db->insert_id();
 		return $idPlanilla;
@@ -208,35 +206,6 @@ class Planilla_model extends CI_Model {
 		
 }
 
-
-	// function crearValor($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, $hsf, $mtbf, $mtbfTarget, 
-	// 					$ctmActual, $ctmBudget, $idUnidadGen, $idDivision, $idComplejo ,$idKPIPlanilla, $idPlanta){
-	// 	$this->db->insert('valores', 
-	// 		array('actualMes'=>$actualMes,
-	// 				'targetMes'=>$targetMes,
-	// 				'ytdActual'=>$ytdActual,
-	// 				'ytdTarget'=>$ytdTarget,
-	// 				'fyf'=>$fyf,
-	// 				'fyBudget'=>$fyBudget,
-	// 				'hedp'=>$hedp,
-	// 				'hedf'=>$hedf,
-	// 				'hsf'=>$hsf,
-	// 				'mtbf'=>$mtbf, 
-	// 				'mtbfTarget'=>$mtbfTarget, 
-	// 				'ctmActual'=>$ctmActual, 
-	// 				'ctmBudget'=>$ctmBudget,
-	// 				'idUnidadGen'=>$idUnidadGen,
-	// 				'idDivision'=>$idDivision,
-	// 				'idComplejo'=>$idComplejo,
-	// 				'idKPIPlanilla'=> $idKPIPlanilla,
-	// 				'idPlanta'=>$idPlanta));
-	// 	$idValores = $this->db->insert_id();
-	// 	return $idValores;
-	// }
-
-
-
-
 	// function crearKPIPlanilla($idPlan, $idKPI){
 	// 	$this->db->insert('kpi_planilla', 
 	// 		array('idPlanilla'=>$idPlan, 
@@ -244,18 +213,6 @@ class Planilla_model extends CI_Model {
 	// 				'idUbicacion'=>$idKPI)); //Cambia aca que ponga una ubicacion real
 	// 	$idKPIPlanilla = $this->db->insert_id();
 	// 	return $idKPIPlanilla;
-	// }
-
-	// function guardarDatos($data){
-	// 	//Crear en orden de mas grande a menor, Complejo, Division y Maquina
-	// 	$this->db->insert('maquina', 
-	// 		array('nombreMaquina'=>$data['nombreMaquina'], 
-	// 				'actualMes'=>$data['mesActual'], 
-	// 				'targetMes'=>$data['mesActual'], 
-	// 				'ytdActual'=>$data['ytdActual'],
-	// 				'ytdTarget'=>$data['ytdTarget']));
-	// 	$idMaquina = $this->db->insert_id();
-	// 	return $idMaquina;
 	// }
 
 ?>

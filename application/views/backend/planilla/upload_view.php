@@ -18,7 +18,7 @@
 							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Año</label>
 								<div class="col-sm-5">
 									<div>
-										<select class="form-control" name="anio" placeholder="Seleccione Tipo Planilla"><!-- Codigo de Combo con datos de la BD -->
+										<select class="form-control" name="anio" placeholder="Seleccione Tipo Planilla" required><!-- Codigo de Combo con datos de la BD -->
 											<option value="">--- Seleccione Año ---</option>
 											<?php 
                    								$year = date("Y");
@@ -35,7 +35,7 @@
 							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Mes</label>
 								<div class="col-sm-5">
 									<div>
-										<select class="form-control" name="mes" placeholder="Seleccione Tipo Planilla"><!-- Codigo de Combo con datos de la BD -->
+										<select class="form-control" name="mes" placeholder="Seleccione Tipo Planilla" required><!-- Codigo de Combo con datos de la BD -->
 											<option value="">--- Seleccione Mes ---</option>
 											<?php 
                    								foreach ($meses->result() as $mes) {
@@ -53,7 +53,7 @@
 							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Tipo de Planilla</label>
 								<div class="col-sm-5">
 									<div>
-										<select class="form-control" name="tipoPlanilla" id="tipoPlanilla" name="tipoPlanilla" OnChange="tipoPOnChange(this)"><!-- Codigo de Combo con datos de la BD -->
+										<select class="form-control" name="tipoPlanilla" id="tipoPlanilla" name="tipoPlanilla" OnChange="tipoPOnChange(this)" required><!-- Codigo de Combo con datos de la BD -->
 											<option value="">--- Seleccione Tipo Planilla ---</option>
 											<?php 
                    								foreach ($tipoPlanilla->result() as $tipoP) {
@@ -71,7 +71,7 @@
 							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> División</label>
 								<div class="col-sm-5">
 									<div>
-										<select class="form-control" name="divisionSAP" placeholder="Seleccione Tipo Planilla"><!-- Codigo de Combo con datos de la BD -->
+										<select class="form-control" name="divisionSAP" placeholder="Seleccione Tipo Planilla" required><!-- Codigo de Combo con datos de la BD -->
 											<option value="">--- Seleccione División ---</option>
 											<?php 
                    								foreach ($divisionesSAP->result() as $divSAP) {

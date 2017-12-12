@@ -9,7 +9,7 @@
 			</div>
 
 
-			<form class="form-horizontal" role="form" method="post" action="<?php echo base_url()?>planilla/Planilla/subir" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" method="post" action="<?php echo base_url()?>parametros/Parametros/datosMensuales" enctype="multipart/form-data">
 				<h4 class="row header smaller lighter blue" style="font-size:19px;">
         			<span class="col-xs-12"> Parámetros Mensuales </span><!-- /.col -->
     			</h4>
@@ -18,7 +18,7 @@
 					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Mes</label>
 						<div class="col-sm-4">
 							<div>
-								<select class="form-control" name="mes" placeholder="Seleccione Tipo Planilla"><!-- Codigo de Combo con datos de la BD -->
+								<select class="form-control" name="mes" placeholder="Seleccione Tipo Planilla" required><!-- Codigo de Combo con datos de la BD -->
 									<option value="">--- Seleccione Mes ---</option>
 									<?php 
            								foreach ($meses->result() as $mes) {
@@ -36,7 +36,7 @@
 					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> División</label>
 						<div class="col-sm-4">
 							<div>
-								<select aria-controls="dynamic-table" class="form-control input-sm" id="tipoEmpleado" name="tipoEmpleado" OnChange="tipoEOnChange(this)">
+								<select aria-controls="dynamic-table" class="form-control input-sm" id="divisionSAP" name="divisionSAP" required>
 									<option value="">--- Seleccione División ---</option>
 									<?php 
                    						foreach ($divisionesSAP->result() as $divSAP) {
@@ -53,14 +53,14 @@
 				<div class="form-group"> <!-- Empieza una linea del formulario -->
 					<label class="col-sm-3 control-label no-padding-right" for="apellidoE"> Horas Disponibles por Semana</label>
 					<div class="col-sm-4">
-						<input class="form-control" id="apellidoE" name="apellidoE" placeholder=""  type="text">
+						<input class="form-control" id="hsSemana" name="hsSemana" placeholder=""  type="text" required>
 	                </div> 
 				</div>
 
 				<div class="center" style="width:50%; margin-right:auto; margin-left:auto;">
 					<div class="hr hr-12 dotted"></div>
 
-					<button class="btn btn-success" type="submit" >
+					<button class="btn btn-success" type="submit" name="GuardarEnDB">
 						<i class="ace-icon fa fa-check bigger-110"></i>
 							Guardar
 					</button>
@@ -78,7 +78,7 @@
 		</br>
 		
 
-			<form class="form-horizontal" role="form" method="post" action="<?php echo base_url()?>planilla/Planilla/subir" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" method="post" action="<?php echo base_url()?>parametros/Parametros/datosAnuales" enctype="multipart/form-data">
 				<h4 class="row header smaller lighter blue" style="font-size:19px;">
         			<span class="col-xs-12"> Parámetros Anuales </span><!-- /.col -->
     			</h4>
