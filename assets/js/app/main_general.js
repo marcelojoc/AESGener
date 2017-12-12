@@ -81,7 +81,7 @@ var app = new Vue({
 
         this.createEst();
 
-
+        this.createTAC();
 
 
 
@@ -97,19 +97,19 @@ var app = new Vue({
     },
 
     watch: {
-        trigerOp: function () {
+        //trigerOp: function () {
 
-            alert('hello');
-            for (var i in this.op.divlista) {
+        //     alert('hello');
+        //     for (var i in this.op.divlista) {
 
-                if(this.op.divlista[i].id == this.op.divselectOP){
+        //         if(this.op.divlista[i].id == this.op.divselectOP){
 
-                    this.op.idPlanilla= this.op.divlista[i].idPlanilla
-                }
+        //             this.op.idPlanilla= this.op.divlista[i].idPlanilla
+        //         }
             
-             }
+        //      }
 
-        }
+        // }
     },
 
 
@@ -133,7 +133,18 @@ var app = new Vue({
         
         
                 getdatosOp: function(){
+
+
+                    for (var i in this.op.divlista) {
+                        
+                        if(this.op.divlista[i].id == this.op.divselectOP){
         
+                            this.op.idPlanilla= this.op.divlista[i].idPlanilla
+                        }
+                
+                    }
+
+
                     this.$http.get(url+'vrdivsapdatos',{ params: { idlist: this.op.divselectOP ,
                                                                    idPlanilla: this.op.idPlanilla 
                                                                 } 
@@ -214,7 +225,67 @@ var app = new Vue({
 
             },
 
+            // fin metodos tablero estrategico
 
+
+            //metodos tablero tactivo
+
+            createTAC: function(){
+
+                this.$http.get(url+'vrcheckpanel', { params: { tab: "tac" } } ).then( function (resp){
+                    
+                                    var datos =JSON.parse(resp.data);
+                                    this.tac.idPlanillaAes= datos[0].idPlanilla;
+                                    this.tac.idPlanillaMtbf= datos[1].idPlanilla;
+                    
+                                }, function(err){
+                                    //si sale mal
+                                    console.log(err);
+                                    alert ('Error de conexion');
+                                });
+
+            },
+
+
+
+
+                getkpiTAC: function(){
+
+                        this.$http.post(url+'vrtactic', { dato: this.est.idList,
+                                                            idplanillaAes: this.tac.idPlanillaAes,
+                                                            idPlanillaMtbf: this.tac.idPlanillaMtbf
+                                                        } )
+                        
+                        .then( function (resp,status, request){
+
+                            this.kpi=JSON.parse(resp.data);
+
+                        }, function(err){
+                            //si sale mal
+                            console.log(err);
+                            alert ('Error de conexion');
+                        });
+
+
+                    },
+                getugenTAC: function(){
+        
+                    this.$http.post(url+'vrPrueba' ).then( function (resp){
+        
+                        this.ugen = JSON.parse(resp.data);
+        
+                    }, function(err){
+                        //si sale mal
+                        console.log(err);
+                        alert ('Error de conexion');
+                    });
+        
+        
+                },
+
+
+
+            // fin metodos tablero tactico
 
 
 
