@@ -113,12 +113,12 @@
                     
                                                 <div class="soc-content">
                                                     <div class="col-xs-6 b-r b-b">
-                                                        <h5 class="font-medium" >{{this.kpi.mtbf | sindec}}</h5>
+                                                        <h5 class="font-medium" >{{this.kpi.mtbf | onlytrunc }}</h5>
                                                         <h6 class="text-muted">Actual Mon</h6>
                                                     </div>
                                                 
                                                     <div class="col-xs-6 b-b ">
-                                                        <h5 class="font-medium">{{this.kpi.mtbfTarget}}</h5>
+                                                        <h5 class="font-medium">{{this.kpi.mtbfTarget | onlytrunc }}</h5>
                                                         <h6 class="text-muted">Target Mon</h6>
                     
                                                     </div>
