@@ -222,10 +222,9 @@ var app = new Vue({
 
                 }else{
 
-                    this.tac.kpi="";
-                }
+                    this.tac.kpi= {"0":{"nombre":"HEDP","valor":"--"},"1":{"nombre":"HSF","valor":"--"},"2":{"nombre":"HEDF","valor":"--"}};
                 
-
+                }
 
             },
 

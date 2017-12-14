@@ -190,7 +190,7 @@
 
                                     <div class="col-xs-12 ">
 
-                                            <vm-semaforizado  v-bind:esperado= 'item.preventivoBudget' v-bind:real= 'item.hsTRPreventivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                            <vm-semaforizado  v-bind:esperado= 'item.preventivoBudget' v-bind:real= 'item.hsTRPreventivo'  lbl=""  tipo= "true"></vm-semaforizado>
                                             
                                     </div>
 
@@ -413,7 +413,7 @@
 
                                     <div class="col-xs-12 ">
 
-                                            <vm-semaforizado  v-bind:esperado= 'item.trabajoPlaneado' v-bind:real= 'item.hsTRPlanificadas'  lbl=""  tipo= "false"></vm-semaforizado>
+                                            <vm-semaforizado  v-bind:esperado= 'item.trabajoPlaneado' v-bind:real= 'item.hsTRPlanificadas'  lbl=""  tipo= "true"></vm-semaforizado>
                                             
                                     </div>
 
@@ -525,7 +525,7 @@
 
                                     <div class="col-xs-12 ">
 
-                                            <vm-semaforizado  v-bind:esperado= 'item.proactivoBudget' v-bind:real= 'item.trabajoProactivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                            <vm-semaforizado  v-bind:esperado= 'item.proactivoBudget' v-bind:real= 'item.trabajoProactivo'  lbl=""  tipo= "true"></vm-semaforizado>
                                             
                                     </div>
 

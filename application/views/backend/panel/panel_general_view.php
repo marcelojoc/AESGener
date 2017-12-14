@@ -354,12 +354,12 @@
                                 
                             <div class="soc-content " v-for=" item in tac.kpi" >
                                     <div class="col-xs-6 b-r b-t" >
-                                        <h3 class="font-medium" >{{item.nombre}} </h3>
+                                        <h4 class="font-medium" >{{item.nombre}} </h4>
                                         
                                     </div>
                                 
                                     <div class="col-xs-6 b-t " >
-                                        <h3 class="font-medium">{{item.valor}} </h3>
+                                        <h4 class="font-medium">{{item.valor}} </h4>
                                         
                 
                                     </div>
@@ -551,7 +551,7 @@
                             
                                                                 <div class="col-xs-12 ">
                             
-                                                                        <vm-semaforizado  v-bind:esperado= 'item.preventivoBudget' v-bind:real= 'item.hsTRPreventivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        <vm-semaforizado  v-bind:esperado= 'item.preventivoBudget' v-bind:real= 'item.hsTRPreventivo'  lbl=""  tipo= "true"></vm-semaforizado>
                                                                         
                                                                 </div>
                             
@@ -646,7 +646,7 @@
                             
                                                                 <div class="col-xs-12 ">
                             
-                                                                        <vm-semaforizado  v-bind:esperado= 'item.trabajoPlaneado' v-bind:real= 'item.hsTRPlanificadas'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        <vm-semaforizado  v-bind:esperado= 'item.trabajoPlaneado' v-bind:real= 'item.hsTRPlanificadas'  lbl=""  tipo= "true"></vm-semaforizado>
                                                                         
                                                                 </div>
                             
@@ -693,7 +693,7 @@
                             
                                                                 <div class="col-xs-12 ">
                             
-                                                                        <vm-semaforizado  v-bind:esperado= 'item.proactivoBudget' v-bind:real= 'item.trabajoProactivo'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                                        <vm-semaforizado  v-bind:esperado= 'item.proactivoBudget' v-bind:real= 'item.trabajoProactivo'  lbl=""  tipo= "true"></vm-semaforizado>
                                                                         
                                                                 </div>
                             
