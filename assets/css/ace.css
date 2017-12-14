@@ -1557,7 +1557,7 @@ pre.prettyprint {
     display: block;
     float: none !important;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(65, 118, 172, 0.15);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-width: 1px 0 0;
     letter-spacing: -3px;
@@ -5683,6 +5683,19 @@ fieldset[disabled] .btn-success.active {
   background-color: #87b87f !important;
   border-color: #87b87f;
 }
+
+.btn-greenAES,
+.btn-greenAES:focus {
+  background-color: #A2BD32 !important;
+  border-color: #A2BD32;
+}
+.btn-greenAES:hover,
+.btn-greenAES:active,
+.open > .btn-greenAES.dropdown-toggle {
+  background-color: #b4ca5a !important;
+  border-color: #A2BD32;
+}
+
 .btn-warning,
 .btn-warning:focus {
   background-color: #ffb752 !important;
@@ -5733,6 +5746,7 @@ fieldset[disabled] .btn-warning.active {
   background-color: #d15b47 !important;
   border-color: #d15b47;
 }
+
 .btn-danger:hover,
 .btn-danger:active,
 .open > .btn-danger.dropdown-toggle {
@@ -5954,19 +5968,19 @@ fieldset[disabled] .btn-grey.active {
   border-color: #a0a0a0;
 }
 .btn-yellow {
-  color: #996633 !important;
+  color: #FFF !important;
   text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.4) !important;
 }
 .btn-yellow,
 .btn-yellow:focus {
-  background-color: #fee188 !important;
-  border-color: #fee188;
+  background-color: #A2BD32 !important;
+  border-color: #A2BD32;
 }
 .btn-yellow:hover,
 .btn-yellow:active,
 .open > .btn-yellow.dropdown-toggle {
-  background-color: #f7d05b !important;
-  border-color: #fee188;
+  background-color: #B4CA5A !important;
+  border-color: #B4CA5A;
 }
 .btn-yellow.no-border:hover,
 .btn-yellow.no-border:active {
@@ -8211,7 +8225,7 @@ fieldset[disabled] .btn-white.btn-grey.active {
 .dropdown-yellow > li > a:active,
 .dropdown-yellow > li.active > a,
 .dropdown-yellow > li.active:hover > a {
-  background: #fee188;
+  background: #d9e3ee;
   color: #444444;
 }
 .dropdown-yellow2 > li:hover > a,
@@ -14301,7 +14315,7 @@ ul.attachment-list > li {
 .dataTables_wrapper .row:first-child {
   padding-top: 12px;
   padding-bottom: 12px;
-  background-color: #EFF3F8;
+  background-color: #C6D5E6;
 }
 .dataTables_wrapper .row:first-child + .dataTable {
   border-top: 1px solid #dddddd;

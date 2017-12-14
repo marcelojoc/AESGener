@@ -86,7 +86,7 @@
 					<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="">
-								<a href="<?php echo base_url()?>abms/abmEmpleadosC">
+								<a href="<?php echo base_url()?>abms/AbmEmpleados">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Empleados
 								</a>
