@@ -14,7 +14,7 @@
 					
 			<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
 				<div class="row">
-
+					
 					<div class="col-xs-6">
 						<div class="dataTables_length" id="tipoTabla">
 							<label>Mostrar Tipo Empleado
