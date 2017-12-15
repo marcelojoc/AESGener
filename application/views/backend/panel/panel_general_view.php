@@ -325,7 +325,7 @@
                         
                         
                         
-        </div>
+                </div>
 
 
 
@@ -344,7 +344,6 @@
                                 Táctico
                             </h1>
                         </div> 
-
 
                 <div class="col-sm-12 text-left" >
                     
@@ -366,10 +365,7 @@
                 
                             </div>  
                                                     
-   
-                                                    
                         </div>
-
 
 
                         <div class="row" v-if="this.tac.kpi.mtbf"> 
@@ -389,7 +385,7 @@
                                                     </div>
                                                 
                                                     <div class="col-xs-6 b-b ">
-                                                        <h5 class="font-medium">{{this.tac.kpi.mtbfTarget | sindec}} [hr.Oper]</h5>
+                                                        <h5 class="font-medium">{{this.tac.kpi.mtbfTarget }} [hr.Oper]</h5>
                                                         <h6 class="text-muted">Target Mon</h6>
                     
                                                     </div>
@@ -411,18 +407,6 @@
                 
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
                 </div>
 
@@ -491,14 +475,14 @@
                             
                                                             <div class="soc-content">
                                                                 <div class="col-xs-6 b-l b-r b-b">
-                                                                    <h5 class="font-medium">{{item.correctivoBudget}}</h5>
-                                                                    <h6 class="text-muted">Bud Mon</h6>
+                                                                    <h5 class="font-medium">{{item.hsTRCorrectivo | onlytrunc }} %</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.hsTRCorrectivo | onlytrunc }} %</h5>
-                                                                    <h6 class="text-muted">Real Mon</h6>
-                            
+
+                                                                    <h5 class="font-medium">{{item.correctivoBudget}} %</h5>
+                                                                    <h6 class="text-muted">Bud Mon</h6>
                                                                 </div>
                             
                                                             </div> 
@@ -535,13 +519,14 @@
                             
                                                             <div class="soc-content">
                                                                 <div class="col-xs-6 b-l b-r b-b">
-                                                                    <h5 class="font-medium">{{item.preventivoBudget}} %</h5>
-                                                                    <h6 class="text-muted">Bud Mon</h6>
+
+                                                                    <h5 class="font-medium">{{item.hsTRPreventivo | onlytrunc}} %</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.hsTRPreventivo | onlytrunc}} %</h5>
-                                                                    <h6 class="text-muted">Real Mon</h6>
+                                                                    <h5 class="font-medium">{{item.preventivoBudget}} %</h5>
+                                                                    <h6 class="text-muted">Bud Mon</h6>
                             
                                                                 </div>
                             
@@ -580,14 +565,13 @@
                             
                                                             <div class="soc-content">
                                                                 <div class="col-xs-6 b-l b-r b-b">
-                                                                    <h5 class="font-medium">{{item.backlogBudget}}</h5>
-                                                                    <h6 class="text-muted">Bud Mon</h6>
+                                                                    <h5 class="font-medium">{{item.backlogReal | onlytrunc}}</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.backlogReal | onlytrunc}}</h5>
-                                                                    <h6 class="text-muted">Real Mon</h6>
-                            
+                                                                    <h5 class="font-medium">{{item.backlogBudget}}</h5>
+                                                                    <h6 class="text-muted">Bud Mon</h6>
                                                                 </div>
                             
                                                             </div> 
@@ -600,8 +584,6 @@
                                                                         
                                                                 </div>
                             
-                            
-                            
                                                             </div>
                             
                                                     </div>
@@ -612,14 +594,7 @@
                             
                                             </div> <!-- fin div contenerdor -->
                             
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
+
                                             <div v-if="item.nombreKPI == 'Planned Work(%)'">             
                                                 <div class="col-sm-12 " >
                                                 
@@ -630,14 +605,15 @@
                             
                                                             <div class="soc-content">
                                                                 <div class="col-xs-6 b-l b-r b-b">
-                                                                    <h5 class="font-medium">{{item.trabajoPlaneado}} %</h5>
-                                                                    <h6 class="text-muted">Bud Mon</h6>
+
+                                                                    <h5 class="font-medium">{{item.hsTRPlanificadas | onlytrunc}} %</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.hsTRPlanificadas | onlytrunc}}</h5>
-                                                                    <h6 class="text-muted">Real Mon</h6>
-                            
+                                                                        <h5 class="font-medium">{{item.trabajoPlaneado}} %</h5>
+                                                                        <h6 class="text-muted">Bud Mon</h6>
+
                                                                 </div>
                             
                                                             </div> 
@@ -661,11 +637,7 @@
                             
                                             </div> <!-- fin div contenerdor -->
                             
-                            
-                            
-                            
-                            
-                            
+
                             
                                  <div v-if="item.nombreKPI == 'Proactive Work(%)'">             
                                                 <div class="col-sm-12 " >
@@ -677,14 +649,17 @@
                             
                                                             <div class="soc-content">
                                                                 <div class="col-xs-6 b-l b-r b-b">
-                                                                    <h5 class="font-medium">{{item.proactivoBudget}}</h5>
-                                                                    <h6 class="text-muted">Bud Mon</h6>
+
+                                                                    <h5 class="font-medium">{{item.trabajoProactivo | onlytrunc}} %</h5>
+                                                                    <h6 class="text-muted">Real Mon</h6>
+
                                                                 </div>
                                                             
                                                                 <div class="col-xs-6 b-b b-r">
-                                                                    <h5 class="font-medium">{{item.trabajoProactivo | onlytrunc}} %</h5>
-                                                                    <h6 class="text-muted">Real Mon</h6>
-                            
+
+                                                                        <h5 class="font-medium">{{item.proactivoBudget}} %</h5>
+                                                                        <h6 class="text-muted">Bud Mon</h6>
+
                                                                 </div>
                             
                                                             </div> 
@@ -713,15 +688,6 @@
 
 
             </div>
-
-
-
-
-
-
-
-
-
 
 
 </div>

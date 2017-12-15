@@ -65,13 +65,16 @@
 
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-l b-r b-b">
-                                        <h5 class="font-medium">{{item.correctivoBudget}} %</h5>
-                                        <h6 class="text-muted">Bud Mon</h6>
+
+                                        <h5 class="font-medium">{{item.hsTRCorrectivo | onlytrunc}} %</h5>
+                                        <h6 class="text-muted">Real Mon</h6>  
+
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.hsTRCorrectivo | onlytrunc}} %</h5>
-                                        <h6 class="text-muted">Real Mon</h6>
+
+                                        <h5 class="font-medium">{{item.correctivoBudget}} %</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
 
                                     </div>
 
@@ -174,13 +177,16 @@
 
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-l b-r b-b">
-                                        <h5 class="font-medium">{{item.preventivoBudget}} %</h5>
-                                        <h6 class="text-muted">Bud Mon</h6>
+
+                                        <h5 class="font-medium">{{item.hsTRPreventivo | onlytrunc}} %</h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.hsTRPreventivo | onlytrunc}} %</h5>
-                                        <h6 class="text-muted">Real Mon</h6>
+
+                                        <h5 class="font-medium">{{item.preventivoBudget}} %</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
 
                                     </div>
 
@@ -283,13 +289,16 @@
 
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-l b-r b-b">
-                                        <h5 class="font-medium">{{item.backlogBudget}} </h5>
-                                        <h6 class="text-muted">Bud Mon</h6>
+
+                                        <h5 class="font-medium">{{item.backlogReal | onlytrunc}} </h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.backlogReal | onlytrunc}} </h5>
-                                        <h6 class="text-muted">Real Mon</h6>
+
+                                        <h5 class="font-medium">{{item.backlogBudget}} </h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
 
                                     </div>
 
@@ -397,13 +406,16 @@
 
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-l b-r b-b">
-                                        <h5 class="font-medium">{{item.trabajoPlaneado}} %</h5>
-                                        <h6 class="text-muted">Bud Mon</h6>
+
+                                        <h5 class="font-medium">{{item.hsTRPlanificadas | onlytrunc}} %</h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.hsTRPlanificadas | onlytrunc}} %</h5>
-                                        <h6 class="text-muted">Real Mon</h6>
+
+                                        <h5 class="font-medium">{{item.trabajoPlaneado}} %</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
 
                                     </div>
 
@@ -509,13 +521,16 @@
 
                                 <div class="soc-content">
                                     <div class="col-xs-6 b-l b-r b-b">
-                                        <h5 class="font-medium">{{item.proactivoBudget}} %</h5>
-                                        <h6 class="text-muted">Bud Mon</h6>
+
+                                        <h5 class="font-medium">{{item.trabajoProactivo | onlytrunc}} %</h5>
+                                        <h6 class="text-muted">Real Mon</h6>
+
                                     </div>
                                 
                                     <div class="col-xs-6 b-b b-r">
-                                        <h5 class="font-medium">{{item.trabajoProactivo | onlytrunc}} %</h5>
-                                        <h6 class="text-muted">Real Mon</h6>
+
+                                        <h5 class="font-medium">{{item.proactivoBudget}} %</h5>
+                                        <h6 class="text-muted">Bud Mon</h6>
 
                                     </div>
 

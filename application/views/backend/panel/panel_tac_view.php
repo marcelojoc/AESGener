@@ -118,7 +118,7 @@
                                                     </div>
                                                 
                                                     <div class="col-xs-6 b-b ">
-                                                        <h5 class="font-medium">{{this.kpi.mtbfTarget | onlytrunc }}</h5>
+                                                        <h5 class="font-medium">{{this.kpi.mtbfTarget }}</h5>
                                                         <h6 class="text-muted">Target Mon</h6>
                     
                                                     </div>
