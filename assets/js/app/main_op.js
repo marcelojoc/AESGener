@@ -1,3 +1,11 @@
+$(function() {
+    
+    //polifill para funcion trunc
+    Math.trunc = Math.trunc || function(x) {
+        return x - x % 1;
+    }   
+});
+
 var url= $("#siteurl").val()+"ajax/";
 
 var app = new Vue({

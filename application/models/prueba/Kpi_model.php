@@ -579,7 +579,7 @@ class Kpi_model extends CI_Model {
 		// traigo los paramentros para la division generadora
 		//unificando con la tabla kpi
 		//y la tabla linea_sap
-				$this->db->limit(7);
+				$this->db->where ('parametro.activo', 1 );
 				$this->db->order_by('parametro.idDivSap', 'asc');
 				$this->db->where ('linea_sap.idPlanilla',$idPlanilla );
 				$this->db->where ('linea_sap.idDivSAP',$idDiv );
