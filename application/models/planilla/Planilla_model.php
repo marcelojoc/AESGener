@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Planilla_model extends CI_Model {
 	function __construct(){
@@ -205,7 +204,6 @@ class Planilla_model extends CI_Model {
 	}
 		
 }
-
 	// function crearKPIPlanilla($idPlan, $idKPI){
 	// 	$this->db->insert('kpi_planilla', 
 	// 		array('idPlanilla'=>$idPlan, 
@@ -214,7 +212,6 @@ class Planilla_model extends CI_Model {
 	// 	$idKPIPlanilla = $this->db->insert_id();
 	// 	return $idKPIPlanilla;
 	// }
-
 ?>
 
 
