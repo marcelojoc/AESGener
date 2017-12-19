@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Planilla extends My_Controller{
@@ -528,4 +531,7 @@ class Planilla extends My_Controller{
 	}
 
 }  
+?>
+<?php
+ob_end_flush();
 ?>
