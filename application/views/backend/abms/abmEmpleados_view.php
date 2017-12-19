@@ -14,7 +14,7 @@
 					
 			<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
 				<div class="row">
-					
+
 					<div class="col-xs-6">
 						<div class="dataTables_length" id="tipoTabla">
 							<label>Mostrar Tipo Empleado
@@ -50,10 +50,9 @@
 								<tr>
 									<th>Apellido y Nombre</th>
 									<th>N° Legajo</th>
-									<th>Nº Documento</th>
+									<th>RUT</th>
 									<th>Teléfono</th>
 									<th>E-Mail</th>
-									<th>Convenio</th>
 									<th>Tipo Empleado</th>
 									<th>
 										<div class="hidden-sm hidden-xs action-buttons text-center">
@@ -85,7 +84,6 @@
 								<td><?= $tabla->dni;?></td>
 								<td><?= $tabla->telefono;?></td>
 								<td><?= $tabla->email;?></td>
-								<td><?= $tabla->convenio;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
 								
 								<td>

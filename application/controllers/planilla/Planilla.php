@@ -1,12 +1,9 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Planilla extends My_Controller{
 
     function __construct(){
-      	parent::__construct(); //Ejecuta el controlador del padre
-		$this->load->model('Bienvenida_model');	
-        $this->load->model('parametros/Parametros_model'); 					
+      	parent::__construct(); //Ejecuta el controlador del padre					
 		$this->load->library('/Excel/PHPExcel');
 		$this->load->library('/Excel/PHPExcel/IOFactory');		
   	}
@@ -525,12 +522,10 @@ class Planilla extends My_Controller{
         }
 
 		if($carga){
-			echo '<script >alert("Planilla cargada con éxito!");</script>';
+			echo "<script>alert('Planilla cargada con éxito!');</script>";
             redirect('/planilla/Planilla','refresh');
 		}
 	}
 
 }  
-
-
 ?>

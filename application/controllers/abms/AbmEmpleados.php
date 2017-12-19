@@ -5,9 +5,7 @@ class AbmEmpleados extends My_Controller{
 		parent::__construct();
 
 		$this->load->helper('form');
-		$this->load->helper('url');
-		$this->load->model('abms/AbmEmpleados_model'); 
-		$this->load->model('Bienvenida_model'); 
+		$this->load->helper('url'); 
 		$this->load->library('form_validation'); 
 	}
 
