@@ -45,7 +45,7 @@ var app = new Vue({
 
             this.$http.get(url+'vrdivsap').then(function (resp) {
 
-                var data= JSON.parse(resp.data);
+                var data= parseData(resp.data);
                 this.divlista = data;
 
             }, function (err) {
@@ -64,7 +64,7 @@ var app = new Vue({
                                                         } 
                 }).then(function (resp) {
 
-                this.valores = JSON.parse(resp.data);
+                this.valores = parseData(resp.data);
 
             }, function (err) {
             //si sale mal
