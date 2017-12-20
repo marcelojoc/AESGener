@@ -58,7 +58,7 @@ class AbmEmpleados extends My_Controller{
        	$this->form_validation->set_message('required','Debe completar este campo');  
  
         if ($this->form_validation->run() == FALSE) {
-       		 echo '<script >alert("Debe completar todos los campos con *");</script>';
+       		 echo '<script>alert("Debe completar todos los campos con *");</script>';
        		 redirect('/abms/abmEmpleadosC/cargarNuevoEmpleado','refresh');
 
         } else {
@@ -103,7 +103,7 @@ class AbmEmpleados extends My_Controller{
        	$this->form_validation->set_message('required','Debe completar este campo');  
  
         if ($this->form_validation->run() == FALSE) {
-       		echo '<script >alert("Debe completar todos los campos con *");</script>';
+       		echo '<script>alert("Debe completar todos los campos con *");</script>';
        		redirect('/abms/abmEmpleadosC/editarEmpleado/'.$data['codE'],'refresh');
 
         } else {

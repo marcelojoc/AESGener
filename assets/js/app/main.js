@@ -20,7 +20,7 @@ var app = new Vue({
 
         busqueda:[
             { id : "1", nombre : 'Unidad Generadora' },
-            { id : "2", nombre : 'Division' },
+            { id : "2", nombre : 'División' },
             { id : "3", nombre : 'Complejo' },
 
         ],
