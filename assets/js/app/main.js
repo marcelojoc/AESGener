@@ -54,8 +54,8 @@ var app = new Vue({
 
                 this.$http.get(url+'vrcheckpanel', { params: { tab: "est" } } ).then( function (resp){
 
-                    var datos =JSON.parse(resp.data);
-
+                    var datos= parseData(resp.data);
+                
                     this.idPlanillaAes= datos[0].idPlanilla;
                     this.idPlanillaCos= datos[1].idPlanilla;
 
@@ -74,7 +74,7 @@ var app = new Vue({
 
                 this.$http.get(url+'vrPrueba', { params: { page: this.idSelect } } ).then( function (resp){
 
-                    this.seleccion=JSON.parse(resp.data);
+                    this.seleccion= parseData(resp.data);
 
                 }, function(err){
                     //si sale mal
@@ -93,7 +93,7 @@ var app = new Vue({
                 
                                                         } }).then(function (resp) {
 
-                    this.kpi = JSON.parse(resp.data );
+                    this.kpi = parseData(resp.data);
 
                 }, function (err) {
                     //si sale mal
@@ -113,7 +113,7 @@ var app = new Vue({
 
                                                         } }).then(function (resp) {
 
-                    this.cakpi = JSON.parse(resp.data);
+                    this.cakpi = parseData(resp.data);
 
 
                 }, function (err) {

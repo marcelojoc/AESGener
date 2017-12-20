@@ -179,3 +179,20 @@ Vue.component('vm-semaforizado',{
 
 //endregion Component
 
+
+
+function parseData(dato){
+
+    var retorno = null;
+
+    if(typeof(dato) == "string"){
+
+        retorno = JSON.parse(dato);
+
+    }else{
+        retorno= dato;
+    }
+
+    return retorno
+
+}

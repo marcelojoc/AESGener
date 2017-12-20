@@ -81,33 +81,6 @@ var app = new Vue({
 
         this.createTAC();
 
-
-
-
-
-
-
-
-
-
-
-
-    },
-
-    watch: {
-        //trigerOp: function () {
-
-        //     alert('hello');
-        //     for (var i in this.op.divlista) {
-
-        //         if(this.op.divlista[i].id == this.op.divselectOP){
-
-        //             this.op.idPlanilla= this.op.divlista[i].idPlanilla
-        //         }
-            
-        //      }
-
-        // }
     },
 
 
@@ -118,7 +91,7 @@ var app = new Vue({
         
                     this.$http.get(url+'vrdivsap').then(function (resp) {
         
-                        var data= JSON.parse(resp.data);
+                        var data= parseData(resp.data);
                         this.op.divlista = data;
         
                     }, function (err) {
@@ -148,7 +121,7 @@ var app = new Vue({
                                                                 } 
                         }).then(function (resp) {
         
-                        this.op.valores = JSON.parse(resp.data);
+                        this.op.valores = parseData(resp.data);
         
                     }, function (err) {
                     //si sale mal
@@ -163,9 +136,6 @@ var app = new Vue({
 
 
 
-
-
-
             //metodos tablero estrategico
 
 
@@ -173,7 +143,7 @@ var app = new Vue({
 
                     this.$http.get(url+'vrcheckpanel', { params: { tab: "est" } } ).then( function (resp){
                         
-                                var datos =JSON.parse(resp.data);
+                                var datos =parseData(resp.data);
 
                                 this.est.idPlanillaAes= datos[0].idPlanilla;
                                 this.est.idPlanillaCos= datos[1].idPlanilla;
@@ -192,7 +162,7 @@ var app = new Vue({
                 
                     this.$http.get(url+'vrPrueba', { params: { page: this.est.idSelect } } ).then( function (resp){
     
-                        this.est.seleccion=JSON.parse(resp.data);
+                        this.est.seleccion=parseData(resp.data);
     
                     }, function(err){
                         //si sale mal
@@ -211,7 +181,7 @@ var app = new Vue({
                 
                                                         } }).then(function (resp) {
 
-                    this.est.kpi = JSON.parse(resp.data );
+                    this.est.kpi = parseData(resp.data);
 
                 }, function (err) {
                     //si sale mal
@@ -245,7 +215,7 @@ var app = new Vue({
 
                 this.$http.get(url+'vrcheckpanel', { params: { tab: "tac" } } ).then( function (resp){
                     
-                                    var datos =JSON.parse(resp.data);
+                                    var datos =parseData(resp.data);
                                     this.tac.idPlanillaAes= datos[0].idPlanilla;
                                     this.tac.idPlanillaMtbf= datos[1].idPlanilla;
                     
@@ -269,7 +239,7 @@ var app = new Vue({
                         
                         .then( function (resp,status, request){
 
-                            this.tac.kpi=JSON.parse(resp.data);
+                            this.tac.kpi=parseData(resp.data);
 
                         }, function(err){
                             //si sale mal
@@ -283,7 +253,7 @@ var app = new Vue({
         
                 //     this.$http.post(url+'vrPrueba' ).then( function (resp){
         
-                //         this.ugen = JSON.parse(resp.data);
+                //         this.ugen = parseData(resp.data);
         
                 //     }, function(err){
                 //         //si sale mal
@@ -297,17 +267,6 @@ var app = new Vue({
 
 
             // fin metodos tablero tactico
-
-
-
-
-
-
-
-
-
-
-
 
 
         }
