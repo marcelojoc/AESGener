@@ -523,7 +523,7 @@ class Planilla extends My_Controller{
         }
 
 		if($carga){
-			echo '<script>alert("Planilla cargada con éxito!"");</script>';
+			echo '<script>alert("Planilla cargada con éxito!");</script>';
             redirect('/planilla/Planilla','refresh');
 		}
 	}

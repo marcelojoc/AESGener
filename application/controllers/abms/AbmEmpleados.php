@@ -11,9 +11,9 @@ class AbmEmpleados extends My_Controller{
 
 	function index(){
 		if (!isset($_POST['CargarTabla'])){
-			$data['nroLegajo'] = '';
+			$data['rut'] = '';
 			$data['limiteTabla'] = "1000";
-			$data['tablaEmpleados'] = $this->AbmEmpleados_model->obtenerEmpleados($data['nroLegajo']);	
+			$data['tablaEmpleados'] = $this->AbmEmpleados_model->obtenerEmpleados($data['rut']);	
 		}
 
 		$nombreVista="backend/abms/abmEmpleados_view";
@@ -21,17 +21,17 @@ class AbmEmpleados extends My_Controller{
 	}
 
 	function mostrarTablaEmpleados(){
-		$data['nroLegajo'] = $this->input->post('nroLegajo');	
+		$data['rut'] = $this->input->post('rut');	
 		$data['limiteTabla'] = "10000";
-		$data['tablaEmpleados'] = $this->AbmEmpleados_model->obtenerEmpleados($data['nroLegajo']);	
+		$data['tablaEmpleados'] = $this->AbmEmpleados_model->obtenerEmpleados($data['rut']);	
 
-      	$nombreVista="backend/abms/abmEmpleados";
+      	$nombreVista="backend/abms/AbmEmpleados_view";
 		$this->cargarVista($nombreVista, $data);
 	}
 
 	function cargarNuevoEmpleado(){	
 		$data['tipoEmpleado'] = $this->AbmEmpleados_model->getTipoEmpleado();
-		$nombreVista="backend/abms/abmEmpleadosAlta";
+		$nombreVista="backend/abms/abmEmpleadosAlta_view";
 		$this->cargarVista($nombreVista, $data);
 	}
 
@@ -41,32 +41,27 @@ class AbmEmpleados extends My_Controller{
 		'apellidoE' => $this->input->post('apellidoE'),
 		'telefono' => $this->input->post('telefono'),
 		'direccion' => $this->input->post('direccion'),
-		'dni' => $this->input->post('dni'),
+		'rut' => $this->input->post('rut'),
 		'tipoEmpleado' => $this->input->post('tipoEmpleado'),
-		'nroLegajo' => $this->input->post('nroLegajo'),
-		'email' => $this->input->post('email'),
-		'idDptos' => $this->input->post('dptos'),
-		'idReferente' => $this->input->post('referente'),
-		'convenio' => $this->input->post('convenio'));
+		'email' => $this->input->post('email'));
 
         $this->form_validation->set_rules('nombreE','Nombre Empleado','trim|required');
         $this->form_validation->set_rules('apellidoE','Apellido Empleado','trim|required');
-        $this->form_validation->set_rules('dni','Nº Documento','trim|required');
+        $this->form_validation->set_rules('rut','Nº RUT','trim|required');
         $this->form_validation->set_rules('tipoEmpleado','Tipo Responsable','trim|required');
-        $this->form_validation->set_rules('nroLegajo','Nº Legajo','trim|required');
 
-       	$this->form_validation->set_message('required','Debe completar este campo');  
- 
+       	$this->form_validation->set_message('required','Debe completar este campo'); 
+
         if ($this->form_validation->run() == FALSE) {
        		 echo '<script>alert("Debe completar todos los campos con *");</script>';
-       		 redirect('/abms/abmEmpleadosC/cargarNuevoEmpleado','refresh');
+       		 redirect('/abms/AbmEmpleados/cargarNuevoEmpleado','refresh');
 
         } else {
             if (isset($_POST['GuardarEnDB'])){
 				$this->AbmEmpleados_model->crearEmpleado($data);
 			}
-	
-			redirect('/abms/abmEmpleadosC','refresh');
+
+			redirect('/abms/AbmEmpleados','refresh');
         }	
 	}
 
@@ -75,7 +70,7 @@ class AbmEmpleados extends My_Controller{
 		$data['empleado'] = $this->AbmEmpleados_model->obtenerEmpleado($data['codE']);
 		$data['tipoEmpleado'] = $this->AbmEmpleados_model->getTipoEmpleado();
 		
-		$nombreVista="backend/abms/abmEmpleadosModificar";
+		$nombreVista="backend/abms/abmEmpleadosModificar_view";
 		$this->cargarVista($nombreVista, $data);
 	}
 
@@ -86,32 +81,27 @@ class AbmEmpleados extends My_Controller{
 					'apellidoE' => $this->input->post('apellidoE'),
 					'telefono' => $this->input->post('telefono'),
 					'direccion' => $this->input->post('direccion'),
-					'dni' => $this->input->post('dni'),
+					'rut' => $this->input->post('rut'),
 					'idTipoEmpleado' => $this->input->post('idTipoEmpleado'),
-					'nroLegajo' => $this->input->post('nroLegajo'),
-					'email' => $this->input->post('email'),
-					'idDptos' => $this->input->post('dptos'),
-					'idReferente' => $this->input->post('referente'),
-					'convenio' => $this->input->post('convenio'));
+					'email' => $this->input->post('email'));
  
         $this->form_validation->set_rules('nombreE','Nombre Empleado','trim|required');
         $this->form_validation->set_rules('apellidoE','Apellido Empleado','trim|required');
-        $this->form_validation->set_rules('dni','Nº Documento','trim|required');
+        $this->form_validation->set_rules('rut','Nº Documento','trim|required');
         $this->form_validation->set_rules('idTipoEmpleado','Tipo Responsable','trim|required');
-        $this->form_validation->set_rules('nroLegajo','Nº Legajo','trim|required');
 
        	$this->form_validation->set_message('required','Debe completar este campo');  
  
         if ($this->form_validation->run() == FALSE) {
        		echo '<script>alert("Debe completar todos los campos con *");</script>';
-       		redirect('/abms/abmEmpleadosC/editarEmpleado/'.$data['codE'],'refresh');
+       		redirect('/abms/AbmEmpleados/editarEmpleado/'.$data['codE'],'refresh');
 
         } else {
            	if (isset($_POST['ActualizarEnDB'])){
 				$this->AbmEmpleados_model->actualizarEmpleado($this->uri->segment(4),$datos);
 			}
 
-			redirect('/abms/abmEmpleadosC','refresh');
+			redirect('/abms/AbmEmpleados','refresh');
         }	
 	}
 
@@ -119,13 +109,6 @@ class AbmEmpleados extends My_Controller{
 		$codE = $this->uri->segment(4);
 		$this->AbmEmpleados_model->eliminarEmpleado($codE);
 
-		redirect('/abms/abmEmpleadosC','refresh');		
-	}
-
-	function cargarCombos(){
-		$data['tipoE'] = $this->input->post('tipoE');
-		$data['datosCombo'] = $this->AbmEmpleados_model->getDatosCombo($data['tipoE']);
-
-		echo json_encode($data['datosCombo']);
+		redirect('/abms/AbmEmpleados','refresh');		
 	}
 }

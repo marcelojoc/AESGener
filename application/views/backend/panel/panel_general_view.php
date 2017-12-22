@@ -10,7 +10,7 @@
                 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
                 <div class="page-header col-sm-12 text-center blueAES b-r">
                     <h1 class="blueAES">
-                        Tablero General
+                        <strong>Tablero General</strong>                       
                     </h1>
                 </div>  
 
@@ -23,8 +23,8 @@
 
             <div class="col-sm-4 b-r">
 
-                <div class="page-header col-sm-12 text-center  ">
-                    <h1 class="blueAES">
+                <div class="page-header col-sm-12 text-center">
+                    <h1 class="greenAES">
                         Estratégico
                     </h1>
                 </div> 
@@ -71,7 +71,7 @@
 
                         <div class="col-xs-2">
 
-                            <button v-on:click.prevent="getDataEST" class="btn btn-xs btn-success " >
+                            <button v-on:click.prevent="getDataEST" class="btn btn-xs btn-blueAES" >
                                     <span class="bigger-110">Ir</span>
 
                                     <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
@@ -337,10 +337,10 @@
 
 
 
-            <div class="col-sm-4">
+            <div class="col-sm-4 b-r">
 
                     <div class="page-header col-sm-12 text-center  ">
-                            <h1 class="blueAES">
+                            <h1 class="greenAES">
                                 Táctico
                             </h1>
                         </div> 
@@ -419,7 +419,7 @@
             <div class="col-sm-4">
 
                     <div class="page-header col-sm-12 text-center  ">
-                            <h1 class="blueAES">
+                            <h1 class="greenAES">
                                 Operativo
                             </h1>
                         </div> 
@@ -449,7 +449,7 @@
         
                                 <div class="col-xs-6">
         
-                                    <button v-on:click.prevent="getdatosOp" class="btn btn-xs btn-success " >
+                                    <button v-on:click.prevent="getdatosOp" class="btn btn-xs btn-blueAES" >
                                             <span class="bigger-110">Ir</span>
         
                                             <i class="ace-icon fa fa-arrow-right icon-on-right"></i>

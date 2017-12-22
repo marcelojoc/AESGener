@@ -14,13 +14,12 @@
 					
 			<div id="dynamic-table_wrapper" class="dataTables_wrapper form-inline no-footer">
 				<div class="row">
-
 					<div class="col-xs-6">
 						<div class="dataTables_length" id="tipoTabla">
 							<label>Mostrar Tipo Empleado
-							<select aria-controls="dynamic-table" class="form-control input-sm" name="tipoTabla" OnChange= "tipoROnChange(this)">
+							<select aria-controls="dynamic-table" class="form-control input-sm" name="tipoTabla" OnChange= "tipoEOnChange(this)">
 								<option value="1">Todos</option>
-								<option value="2">Administrador Sistema</option> -->
+								<option value="2">Administrador Sistema</option>
 								<option value="3">Administrador Usuarios</option>
 								<option value="4">Visualizador</option>						
 							</select> 
@@ -31,8 +30,8 @@
 					<div class="col-xs-6">
 						<div id="dynamic-table_filter" class="dataTables_filter">
 
-							<label>Nº Legajo:
-								<input type="search" class="form-control input-sm" placeholder="" name="nroLegajo" aria-controls="dynamic-table">
+							<label>Nº RUT:
+								<input type="search" class="form-control input-sm" placeholder="" name="rut" aria-controls="dynamic-table">
 							</label>
 
 							<button class="btn btn-greenAES btn-xs" type="submit" nombre="CargarTabla">
@@ -49,7 +48,6 @@
 						<thead>
 								<tr>
 									<th>Apellido y Nombre</th>
-									<th>N° Legajo</th>
 									<th>RUT</th>
 									<th>Teléfono</th>
 									<th>E-Mail</th>
@@ -80,8 +78,7 @@
 										<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 									</label>
 								</td>
-								<td><?= $tabla->nroLegajo;?></td>
-								<td><?= $tabla->dni;?></td>
+								<td><?= $tabla->rut;?></td>
 								<td><?= $tabla->telefono;?></td>
 								<td><?= $tabla->email;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
@@ -105,8 +102,7 @@
 													<i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
 												</button>
 
-												<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-														
+												<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">														
 													<li>
 														<a href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-success" data-rel="tooltip" title="Edit">
 															<span class="purple">
@@ -142,16 +138,14 @@
 						<thead>
 								<tr>
 									<th>Apellido y Nombre</th>
-									<th>N° Legajo</th>
-									<th>Nº Documento</th>
+									<th>RUT</th>
 									<th>Teléfono</th>
 									<th>E-Mail</th>
-									<th>Convenio</th>
 									<th>Tipo Empleado</th>
 									<th>
 										<div class="hidden-sm hidden-xs action-buttons text-center">
-											<a class="orange" href="<?php echo base_url() ?>abms/AbmEmpleados/cargarNuevoEmpleado">
-												<i class="ui-icon ace-icon fa fa-plus-circle orange bigger-130"></i>Agregar Empleado
+											<a class="greenAES" href="<?php echo base_url() ?>abms/AbmEmpleados/cargarNuevoEmpleado">
+												<i class="ui-icon ace-icon fa fa-plus-circle greenAES bigger-130"></i>Agregar Empleado
 											</a>
 										</div>
 									</th>
@@ -166,7 +160,7 @@
 										
 									foreach($tablaEmpleados->result() as $tabla){
 										if( $contador == $limiteTabla )    break;
-											if($tabla->nombreTipoE == "Administrador"){
+											if($tabla->nombreTipoE == "Administrador Sistema"){
 							?>
 
 							<tr>
@@ -175,21 +169,19 @@
 										<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 									</label>
 								</td>
-								<td><?= $tabla->nroLegajo;?></td>
-								<td><?= $tabla->dni;?></td>
+								<td><?= $tabla->rut;?></td>
 								<td><?= $tabla->telefono;?></td>
 								<td><?= $tabla->email;?></td>
-								<td><?= $tabla->convenio;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
 								
 								<td>
 									<div class="hidden-sm hidden-xs action-buttons text-center">
 											
-											<a class="green" href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>">
+											<a class="purple" href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>">
 												<i class="ace-icon fa fa-pencil bigger-130"></i>	
 											</a>
 
-											<a class="red" href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>">
+											<a class="grey" href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>">
 												<i class="ace-icon fa fa-trash-o bigger-130"></i>
 											</a>
 									</div>
@@ -205,7 +197,7 @@
 														
 													<li>
 														<a href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-success" data-rel="tooltip" title="Edit">
-															<span class="green">
+															<span class="purple">
 																<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 															</span>
 														</a>
@@ -213,7 +205,7 @@
 
 													<li>
 														<a href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-															<span class="red">
+															<span class="grey">
 																<i class="ace-icon fa fa-trash-o bigger-120"></i>
 															</span>
 														</a>
@@ -239,16 +231,14 @@
 						<thead>
 								<tr>
 									<th>Apellido y Nombre</th>
-									<th>N° Legajo</th>
-									<th>Nº Documento</th>
+									<th>RUT</th>
 									<th>Teléfono</th>
 									<th>E-Mail</th>
-									<th>Convenio</th>
 									<th>Tipo Empleado</th>
 									<th>
 										<div class="hidden-sm hidden-xs action-buttons text-center">
-											<a class="orange" href="<?php echo base_url() ?>abms/AbmEmpleados/cargarNuevoEmpleado">
-												<i class="ui-icon ace-icon fa fa-plus-circle orange bigger-130"></i>Agregar Empleado
+											<a class="greenAES" href="<?php echo base_url() ?>abms/AbmEmpleados/cargarNuevoEmpleado">
+												<i class="ui-icon ace-icon fa fa-plus-circle greenAES bigger-130"></i>Agregar Empleado
 											</a>
 										</div>
 									</th>
@@ -263,7 +253,7 @@
 										
 									foreach($tablaEmpleados->result() as $tabla){
 										if( $contador == $limiteTabla )    break;
-											if($tabla->nombreTipoE == "Administrador de Usuarios"){
+											if($tabla->nombreTipoE == "Administrador Usuarios"){
 							?>
 
 							<tr>
@@ -272,21 +262,19 @@
 										<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 									</label>
 								</td>
-								<td><?= $tabla->nroLegajo;?></td>
-								<td><?= $tabla->dni;?></td>
+								<td><?= $tabla->rut;?></td>
 								<td><?= $tabla->telefono;?></td>
 								<td><?= $tabla->email;?></td>
-								<td><?= $tabla->convenio;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
 								
 								<td>
 									<div class="hidden-sm hidden-xs action-buttons text-center">
 											
-											<a class="green" href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>">
+											<a class="purple" href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>">
 												<i class="ace-icon fa fa-pencil bigger-130"></i>	
 											</a>
 
-											<a class="red" href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>">
+											<a class="grey" href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>">
 												<i class="ace-icon fa fa-trash-o bigger-130"></i>
 											</a>
 									</div>
@@ -302,7 +290,7 @@
 														
 													<li>
 														<a href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-success" data-rel="tooltip" title="Edit">
-															<span class="green">
+															<span class="purple">
 																<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 															</span>
 														</a>
@@ -310,7 +298,7 @@
 
 													<li>
 														<a href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-															<span class="red">
+															<span class="grey">
 																<i class="ace-icon fa fa-trash-o bigger-120"></i>
 															</span>
 														</a>
@@ -334,16 +322,14 @@
 						<thead>
 								<tr>
 									<th>Apellido y Nombre</th>
-									<th>N° Legajo</th>
-									<th>Nº Documento</th>
+									<th>RUT</th>
 									<th>Teléfono</th>
 									<th>E-Mail</th>
-									<th>Convenio</th>
 									<th>Tipo Empleado</th>
 									<th>
 										<div class="hidden-sm hidden-xs action-buttons text-center">
-											<a class="orange" href="<?php echo base_url() ?>abms/AbmEmpleados/cargarNuevoEmpleado">
-												<i class="ui-icon ace-icon fa fa-plus-circle orange bigger-130"></i>Agregar Empleado
+											<a class="greenAES" href="<?php echo base_url() ?>abms/AbmEmpleados/cargarNuevoEmpleado">
+												<i class="ui-icon ace-icon fa fa-plus-circle greenAES bigger-130"></i>Agregar Empleado
 											</a>
 										</div>
 									</th>
@@ -358,7 +344,7 @@
 										
 									foreach($tablaEmpleados->result() as $tabla){
 										if( $contador == $limiteTabla )    break;
-											if($tabla->nombreTipoE == "Facilitador"){
+											if($tabla->nombreTipoE == "Visualizador"){
 							?>
 
 							<tr>
@@ -367,21 +353,19 @@
 										<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 									</label>
 								</td>
-								<td><?= $tabla->nroLegajo;?></td>
-								<td><?= $tabla->dni;?></td>
+								<td><?= $tabla->rut;?></td>
 								<td><?= $tabla->telefono;?></td>
 								<td><?= $tabla->email;?></td>
-								<td><?= $tabla->convenio;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
 								
 								<td>
 									<div class="hidden-sm hidden-xs action-buttons text-center">
 											
-											<a class="green" href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>">
+											<a class="purple" href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>">
 												<i class="ace-icon fa fa-pencil bigger-130"></i>	
 											</a>
 
-											<a class="red" href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>">
+											<a class="grey" href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>">
 												<i class="ace-icon fa fa-trash-o bigger-130"></i>
 											</a>
 									</div>
@@ -397,7 +381,7 @@
 														
 													<li>
 														<a href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-success" data-rel="tooltip" title="Edit">
-															<span class="green">
+															<span class="purple">
 																<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 															</span>
 														</a>
@@ -405,7 +389,7 @@
 
 													<li>
 														<a href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-error" data-rel="tooltip" title="Delete">
-															<span class="red">
+															<span class="grey">
 																<i class="ace-icon fa fa-trash-o bigger-120"></i>
 															</span>
 														</a>
@@ -437,7 +421,7 @@
 
 <!-- Script para cuadro dinamico segun tipo de Empleado -->
 	<script>
-	function tipoROnChange(sel) {
+	function tipoEOnChange(sel) {
 	    if (sel.value=="1"){
 	        	divT = document.getElementById("todos");
 	      		divT.style.display = "";

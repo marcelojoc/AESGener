@@ -29,9 +29,9 @@ var app = new Vue({
             { id : "2", nombre : 'ESSA' },
             { id : "3", nombre : 'Empresa Eléctrica Guacolda S.A' },
             { id : "4", nombre : 'Eléctrica Ventanas S.A' },
-            { id : "5", nombre : 'Empresa Electrica Angamos S.A' },
-            { id : "6", nombre : 'Empresa Electrica Campiche S.A' },
-            { id : "7", nombre : 'Empresa Electrica Cochrane S.A' },
+            { id : "5", nombre : 'Empresa Eléctrica Angamos S.A' },
+            { id : "6", nombre : 'Empresa Eléctrica Campiche S.A' },
+            { id : "7", nombre : 'Empresa Eléctrica Cochrane S.A' },
 
         ],
 

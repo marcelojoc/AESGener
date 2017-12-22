@@ -5692,8 +5692,20 @@ fieldset[disabled] .btn-success.active {
 .btn-greenAES:hover,
 .btn-greenAES:active,
 .open > .btn-greenAES.dropdown-toggle {
-  background-color: #b4ca5a !important;
+  background-color: #B4CA5A !important;
   border-color: #A2BD32;
+}
+
+.btn-blueAES,
+.btn-blueAES:focus {
+  background-color: #4176AC !important;
+  border-color: #4176AC;
+}
+.btn-blueAES:hover,
+.btn-blueAES:active,
+.open > .btn-blueAES.dropdown-toggle {
+  background-color: #6691BC !important;
+  border-color: #4176AC;
 }
 
 .btn-warning,

@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-xs-6">
 
-                                <button v-on:click.prevent="getdatos" class="btn btn-xs btn-success " >
+                                <button v-on:click.prevent="getdatos" class="btn btn-xs btn-greenAES" >
                                         <span class="bigger-110">Ir</span>
 
                                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>

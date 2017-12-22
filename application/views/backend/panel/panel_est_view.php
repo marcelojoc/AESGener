@@ -56,7 +56,7 @@
 
                                 <div class="col-md-4">
                                         
-                                        <button v-on:click.prevent="getData" class="btn text-center btn-xs btn-success " >
+                                        <button v-on:click.prevent="getData" class="btn text-center btn-xs btn-greenAES" >
                                                 <span class="bigger-110">Ir</span>
         
                                                 <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
@@ -413,7 +413,7 @@
                             </div>
                             <div class="col-xs-6">
 
-                                <button v-on:click.prevent="getCa" class="btn btn-xs btn-success " >
+                                <button v-on:click.prevent="getCa" class="btn btn-xs btn-greenAES" >
                                         <span class="bigger-110">Ir</span>
 
                                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>

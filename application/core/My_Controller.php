@@ -9,7 +9,7 @@ class My_Controller extends Ci_Controller {
       //Cargar todos los model del sistema
     	$this->load->model('Bienvenida_model');
     	$this->load->model('planilla/Planilla_model');
-      $this->load->model('planilla/Planilla_model');
+      $this->load->model('parametros/Parametros_model');
       $this->load->model('abms/AbmEmpleados_model');
       $this->load->model('prueba/Kpi_model');
   	}

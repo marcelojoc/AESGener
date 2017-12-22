@@ -7,30 +7,26 @@
 							<span class="dark-blueAES bolder">AES Gener</span>
 							 &copy; 2017
 						</span>
-
 						&nbsp; &nbsp;
-
 					</div>
 					<!-- /section:basics/footer -->
 				</div>
 		</div>
 
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-			</a>
+		<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+			<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+		</a>
 </div><!-- /.main-container -->
 
-		<!-- basic scripts -->
+		
 
+<!-- basic scripts -->
 		<!--[if !IE]> -->
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='<?php echo base_url() ?>assets/js/jquery.js'>"+"<"+"/script>");
 		</script>
-
 		<!-- <![endif]-->
 
-<!-- 
-		<script src="<?php echo base_url() ?>/assets/js/bootbox.js"></script> -->
 		<script type="text/javascript">
 			jQuery(function($) {
 	
@@ -43,22 +39,15 @@
 		</script>
 
 		<script src="<?php echo base_url() ?>assets/js/bootstrap.js"></script>
+		<script src="<?php echo base_url() ?>/assets/js/bootbox.js"></script>
 		<script src="<?php echo base_url() ?>assets/js/ace/ace.js"></script>
 		<script src="<?php echo base_url() ?>assets/js/ace/ace.sidebar.js"></script>
-		<!-- <script src="<?php //echo base_url() ?>assets/js/ace/ace.sidebar-scroll-1.js"></script> -->
-		<!-- <script src="<?php //echo base_url() ?>assets/js/ace/ace.settings.js"></script> -->
-		<!-- <script src="<?php //echo base_url() ?>assets/js/date-time/bootstrap-datepicker.js"></script>
-		<script src="<?php //echo base_url() ?>assets/js/date-time/bootstrap-timepicker.js"></script> -->
-		
-		<!-- inline scripts related to this page -->
-		
-		<!-- the following scripts are used in demo only for onpage help and you don't need them -->
-		<!-- <link rel="stylesheet" href="<?php //echo base_url() ?>assets/css/ace.onpage-help.css" /> -->
-	<!--	<link rel="stylesheet" href="<?php //echo base_url() ?>assets/js/themes/sunburst.css" />-->
-
-		<!-- <script type="text/javascript"> ace.vars['base'] = '..'; </script> -->
-		<!-- <script src="<?php //echo base_url() ?>assets/js/ace/elements.onpage-help.js"></script> -->
-		<!-- <script src="<?php //echo base_url() ?>assets/js/ace/ace.onpage-help.js"></script> -->
+		<script src="<?php echo base_url() ?>assets/js/ace/ace.widget-box.js"></script>
+<!-- /basic scripts -->
 
 	</body>
 </html>
+
+
+
+
