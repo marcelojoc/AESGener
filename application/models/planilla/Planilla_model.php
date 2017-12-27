@@ -135,10 +135,11 @@ class Planilla_model extends CI_Model {
 		}
 	}
 
-	function crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla, $idKPI){
+	function crearLineaMTBF($mtbf, $mtbfTarget, $tsf, $idUnidadGen, $idPlanilla, $idKPI){
 		$this->db->insert('linea_mtbf', 
 			array('mtbf'=>$mtbf, 
 					'mtbfTarget'=>$mtbfTarget, 
+					'tsf'=>$tsf,
 					'idUnidadGen'=>$idUnidadGen,
 					'idPlanilla'=> $idPlanilla,
 					'idKPI'=> $idKPI));

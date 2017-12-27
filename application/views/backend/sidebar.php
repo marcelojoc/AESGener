@@ -51,8 +51,7 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador de Usuarios" || 
-      							$niv->descripNivel == "Administrador"){
+      						if ($niv->descripNivel == "Administrador Sistema"){
 				?>
 
 				<li class="">
@@ -72,8 +71,8 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador de Usuarios" || 
-      							$niv->descripNivel == "Administrador"){
+      						if ($niv->descripNivel == "Administrador Usuarios" || 
+      							$niv->descripNivel == "Administrador Sistema"){
 				?>
 
 				<li class="">
@@ -103,10 +102,7 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador de Usuarios" || 
-      							$niv->descripNivel == "Administrador" || 
-      							$niv->descripNivel == "Referente" || 
-      							$niv->descripNivel == "Coordinador"){
+      						if ($niv->descripNivel == "Administrador Sistema"){
 				?>
 
 				<li class="">
@@ -126,10 +122,7 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador de Usuarios" || 
-      							$niv->descripNivel == "Administrador" || 
-      							$niv->descripNivel == "Referente" || 
-      							$niv->descripNivel == "Coordinador"){
+      						if ($niv->descripNivel == "Administrador Sistema"){
 				?>
 
 				<li class="">
@@ -149,11 +142,9 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador de Usuarios" || 
-      							$niv->descripNivel == "Facilitador" || 
-      							$niv->descripNivel == "Administrador" || 
-      							$niv->descripNivel == "Referente" || 
-      							$niv->descripNivel == "Coordinador"){
+      						if ($niv->descripNivel == "Administrador Usuarios" || 
+      							$niv->descripNivel == "Administrador Sistema" || 
+      							$niv->descripNivel == "Visualizador"){
 				?>
 
 				<li class="">
@@ -207,7 +198,8 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador de Usuarios"){
+      						if ($niv->descripNivel == "Administrador Usuarios" || 
+      							$niv->descripNivel == "Administrador Sistema"){
 				?>
 				<li class="">
 					<a href="#" class="dropdown-toggle">
@@ -220,20 +212,20 @@
 						<ul class="submenu">
 
 							<li class="">
-								<a href="<?php echo base_url()?>seguridad/abmUsuariosC">
+								<a href="<?php echo base_url()?>seguridad/AbmUsuarios">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Gestionar Usuarios
 								</a>
 								<b class="arrow"></b>
 							</li>
 
-							<li class="">
+							<!-- <li class="">
 								<a href="<?php echo base_url()?>seguridad/abmNivelesC">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Gestionar Niveles de Seguridad
 								</a>
 								<b class="arrow"></b>
-							</li>
+							</li> -->
 						</ul>
 				</li>
 

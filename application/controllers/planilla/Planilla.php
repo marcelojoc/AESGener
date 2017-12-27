@@ -507,6 +507,7 @@ class Planilla extends My_Controller{
 
                         $idUnidadGen = $ubi->idUnidadGen;
                         $mtbf = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+                        $tsf = $objExcel->getActiveSheet()->getCell('D'.$i)->getCalculatedValue();
 
                         //Traigo el MTBF de cualquier Division porque en todas es el mismo valor
                         $idDivSAP = 1;
@@ -516,7 +517,7 @@ class Planilla extends My_Controller{
                             $mtbfTarget = $mTarget->mtbfTarget;
                         }
 
-                        $idLineaMTBF = $this->Planilla_model->crearLineaMTBF($mtbf, $mtbfTarget, $idUnidadGen, $idPlanilla, $idKPI);
+                        $idLineaMTBF = $this->Planilla_model->crearLineaMTBF($mtbf, $mtbfTarget, $tsf, $idUnidadGen, $idPlanilla, $idKPI);
                     }
                 }
             }

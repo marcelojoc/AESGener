@@ -10,6 +10,8 @@ class My_Controller extends Ci_Controller {
     	$this->load->model('Bienvenida_model');
     	$this->load->model('planilla/Planilla_model');
       $this->load->model('parametros/Parametros_model');
+      $this->load->model('seguridad/AbmUsuarios_model');
+      $this->load->model('seguridad/AbmNiveles_model');
       $this->load->model('abms/AbmEmpleados_model');
       $this->load->model('prueba/Kpi_model');
   	}
