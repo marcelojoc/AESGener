@@ -78,17 +78,16 @@
 
 
 								<div class="form-group"> <!-- Empieza linea del form con desplegable -->
-									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipo Nivel </label>
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nivel de Usuario</label>
 
 										<div class="col-sm-4">
 											<div>
 												<select class="form-control" id="nivel" name="nivel"><!-- Codigo de Combo con datos de la BD -->
 
+													<option value="">--- Seleccione Nivel ---</option>
 													<?php foreach ($nivelU->result() as $niv){							
                         							?>
-
-													<option value="<?=$niv->idNivel?>"><?=$niv->descripNivel;?></option>
-																					
+													<option value="<?=$niv->idNivel?>"><?=$niv->descripNivel;?></option>																					
 													<?php
 														}
 													?>

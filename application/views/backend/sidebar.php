@@ -167,7 +167,7 @@
 							<li class="">
 								<a href="<?php echo base_url('gener/est')?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Estratégicos
+									Estratégico
 								</a>
 								<b class="arrow"></b>
 							</li>
@@ -175,7 +175,7 @@
 							<li class="">
 								<a href="<?php echo base_url('gener/tac')?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Tácticos
+									Táctico
 								</a>
 								<b class="arrow"></b>
 							</li>
@@ -183,7 +183,7 @@
 							<li class="">
 								<a href="<?php echo base_url('gener/ops')?>">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Operativos
+									Operativo
 								</a>
 								<b class="arrow"></b>
 							</li>

@@ -60,7 +60,7 @@
 				<div class="center" style="width:50%; margin-right:auto; margin-left:auto;">
 					<div class="hr hr-12 dotted"></div>
 
-					<button class="btn btn-success" type="submit" name="GuardarEnDB">
+					<button class="btn btn-greenAES" type="submit" name="GuardarEnDB">
 						<i class="ace-icon fa fa-check bigger-110"></i>
 							Guardar
 					</button>
@@ -145,7 +145,7 @@
 				<div class="center" style="width:50%; margin-right:auto; margin-left:auto;">
 					<div class="hr hr-12 dotted"></div>
 
-					<button class="btn btn-success" type="submit" name="GuardarEnDB">
+					<button class="btn btn-greenAES" type="submit" name="GuardarEnDB">
 						<i class="ace-icon fa fa-check bigger-110"></i>
 							Guardar
 					</button>

@@ -49,18 +49,15 @@
 								</div>
 
 								<div class="form-group"> <!-- Empieza linea del form con desplegable -->
-									<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nivel</label>
+									<label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nivel de Usuario</label>
 
 									<div class="col-sm-4">
 										<div>
 											<select class="form-control" aria-controls="dynamic-table" id="idNivel" name="idNivel" value="<?= $us->descripNivel;?>">
 
-												<?php foreach ($nivelU->result() as $niv){
-														
+												<?php foreach ($nivelU->result() as $niv){														
 												?>
-
 												<option value="<?=$niv->idNivel?>" <?php if($niv->idNivel == $us->idNivel){?> selected <?php }?>><?=$niv->descripNivel;?></option>
-
 												<?php
 													}
 												?>

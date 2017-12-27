@@ -203,6 +203,10 @@ class Planilla_model extends CI_Model {
 		$idLineaSAP = $this->db->insert_id();
 		return $idLineaSAP;
 	}
+
+	function borrarPlanilla($idPlanilla){
+		$this->db->delete('planilla',array('idPlanilla'=>$idPlanilla));
+	}
 		
 }
 	// function crearKPIPlanilla($idPlan, $idKPI){

@@ -9783,7 +9783,7 @@ input.ace + .lbl.padding-0::before {
   line-height: 64px;
   width: auto;
   font-size: 64px;
-  color: #D5D5D5;
+  color: #4176AC; /*Cambio color: #D5D5D5;*/
   margin: 4px 0;
   background-color: transparent;
 }

@@ -34,7 +34,7 @@
 								<input type="search" class="form-control input-sm" placeholder="" name="rut" aria-controls="dynamic-table">
 							</label>
 
-							<button class="btn btn-greenAES btn-xs" type="submit" nombre="CargarTabla">
+							<button class="btn btn-greenAES btn-xs" type="submit" nombre="CargarTabla" title="Buscar">
 								<i class="ace-icon fa fa-search  bigger-110 icon-only"></i>
 							</button>
 
@@ -104,7 +104,7 @@
 
 												<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">														
 													<li>
-														<a href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-success" data-rel="tooltip" title="Edit">
+														<a href="<?php echo base_url()?>abms/AbmEmpleados/editarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-success" data-rel="tooltip" title="Editar Empleado">
 															<span class="purple">
 																<i class="ace-icon fa fa-pencil bigger-120"></i>
 															</span>
@@ -112,7 +112,7 @@
 													</li>
 
 													<li>
-														<a href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-error" data-rel="tooltip" title="Delete">
+														<a href="<?php echo base_url()?>abms/AbmEmpleados/borrarEmpleado/<?= $tabla->idEmpleado;?>" class="tooltip-error" data-rel="tooltip" title="Eliminar Empleado">
 															<span class="grey">
 																<i class="ace-icon fa fa-trash-o bigger-120"></i>
 															</span>

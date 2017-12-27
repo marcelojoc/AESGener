@@ -100,7 +100,7 @@
 
 						<div class="hr hr-12 dotted"></div>
 
-						<button class="btn btn-success" type="submit" >
+						<button class="btn btn-greenAES" type="submit" >
 							<i class="ace-icon fa fa-check bigger-110"></i>
 								Cargar
 						</button>
