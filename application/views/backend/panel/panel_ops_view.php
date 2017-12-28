@@ -7,7 +7,7 @@
                 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
                 <div class="page-header col-sm-4 text-center blueAES b-r">
                     <h1 class="blueAES">
-                        Tablero Operativo 
+                         <strong>Tablero Operativo</strong>
                     </h1>
                 </div>  
                 <div class=" col-sm-8 form-inline ">

@@ -7,8 +7,8 @@
                     <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
                     <div class="page-header col-sm-4 text-center blueAES b-r">
                         <h1 class="blueAES">
-                            Tablero Estratégico 
-
+                            
+                            <strong>Tablero Estratégico </strong>
                         </h1>
                     </div>  
                     <div class=" col-sm-8 blueAES form-inline ">
@@ -385,7 +385,7 @@
 
                 <div class="page-header col-sm-4 text-center blueAES b-r">
                     <h1 class="blueAES">
-                        Tablero CA 
+                        <strong>Tablero CA </strong>  
                     </h1>
                 </div>  
                 <div class=" col-sm-8 form-inline ">

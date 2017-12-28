@@ -93,7 +93,7 @@
                         
                                             <div class="col-sm-12 col-xs-12" >
                                                 
-                                                 <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                 <div class="social-widget col-sm-12 ">
                                                          <div class="soc-header box-corporativo" >
                                                              <i><h4>{{item.nombreKPI}} (%) </h4></i>
                                                          </div>
@@ -153,7 +153,7 @@
                         
                                             <div class="col-sm-12 " >
                                                 
-                                                 <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                 <div class="social-widget col-sm-12 ">
                                                          <div class="soc-header box-corporativo" >
                                                              <i><h4>{{item.nombreKPI}} (%) </h4></i>
                                                          </div>
@@ -215,7 +215,7 @@
                         
                                             <div class="col-sm-12 " >
                                                 
-                                                 <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                 <div class="social-widget col-sm-12 ">
                                                          <div class="soc-header box-corporativo" >
                                                              <i><h4>{{item.nombreKPI}} </h4></i>
                                                          </div>
@@ -277,7 +277,7 @@
                         
                                             <div class="col-sm-12 ">
                                                 
-                                                 <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                 <div class="social-widget col-sm-12 ">
                                                          <div class="soc-header box-twitter" >
                                                              <i><h4>{{item.nombreKPI}} </h4></i>
                                                          </div>
@@ -669,17 +669,14 @@
                                                                 </div>
                             
                             
-                            
                                                             </div>
                             
                                                     </div>
                             
                                                 </div>
 
-                            
-                            
-                                            </div> <!-- fin div contenerdor -->                                
-                                        </div>  <!-- fin contenedor V-for -->                     
+                                </div> <!-- fin div contenerdor -->                                
+                        </div>  <!-- fin contenedor V-for -->                     
 
 
 
