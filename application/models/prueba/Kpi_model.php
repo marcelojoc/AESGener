@@ -335,22 +335,6 @@ class Kpi_model extends CI_Model {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	// 	traigo los valores de Unidades generadoras
 	public function getValueUgfortac( $idUg, $idplanillaAes, $idPlanillaMtbf){
 
@@ -362,7 +346,8 @@ class Kpi_model extends CI_Model {
 		$this->db->where ('linea_aes.idKPI = 5' ); // busco los HEDP
 		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
 		$this->db->where ('linea_aes.idUnidadGen',$idUg );
-		$this->db->select('linea_aes.hedp,');
+		$this->db->select('linea_aes.hedp, kpi.nombreKPI');
+		$this->db->join('kpi','kpi.idKPI = linea_aes.idKPI','left');
 		$this->db->from('linea_aes');
 		$query = $this->db->get();
 		$hedp = $query->result();
@@ -370,7 +355,7 @@ class Kpi_model extends CI_Model {
 		foreach($hedp as $item){
 
 			
-			$resultado[]=["nombre"=>"HEDP", "valor"=>$item->hedp];
+			$resultado[]=["nombre"=>"HEDP", "valor"=>$item->hedp, "leyenda"=>$item->nombreKPI];
 
 		}
 
@@ -380,7 +365,8 @@ class Kpi_model extends CI_Model {
 		$this->db->where ('linea_aes.idKPI = 7' ); // busco los HSF
 		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
 		$this->db->where ('linea_aes.idUnidadGen',$idUg );
-		$this->db->select('linea_aes.hsf,');
+		$this->db->select('linea_aes.hsf, kpi.nombreKPI');
+		$this->db->join('kpi','kpi.idKPI = linea_aes.idKPI','left');
 		$this->db->from('linea_aes');
 		$query = $this->db->get();
 		$hsf = $query->result();
@@ -389,14 +375,15 @@ class Kpi_model extends CI_Model {
 		foreach($hsf as $item){
 
 			// $resultado['hsf']=$item->hsf;
-			$resultado[]=["nombre"=>"HSF", "valor"=>$item->hsf];
+			$resultado[]=["nombre"=>"HSF", "valor"=>$item->hsf, "leyenda"=>$item->nombreKPI];
 
 		}
 
 		$this->db->where ('linea_aes.idKPI = 6' ); // busco los Hedf
 		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
 		$this->db->where ('linea_aes.idUnidadGen',$idUg );
-		$this->db->select('linea_aes.hedf,');
+		$this->db->select('linea_aes.hedf, kpi.nombreKPI');
+		$this->db->join('kpi','kpi.idKPI = linea_aes.idKPI','left');
 		$this->db->from('linea_aes');
 		$query = $this->db->get();
 		$hedf = $query->result();
@@ -404,7 +391,7 @@ class Kpi_model extends CI_Model {
 		foreach($hedf as $item){
 
 			//$resultado['hedf']=$item->hedf;
-			$resultado[]=["nombre"=>"HEDF", "valor"=>$item->hedf];
+			$resultado[]=["nombre"=>"HEDF", "valor"=>$item->hedf ,"leyenda"=>$item->nombreKPI];
 
 		}
 
@@ -422,12 +409,14 @@ class Kpi_model extends CI_Model {
 				
 					$resultado['mtbf']=$item->mtbf;
 					$resultado['mtbfTarget']=$item->mtbfTarget;
+					$resultado['tsf']=$item->tsf;
 			}
 
 		}else{
 
 			$resultado['mtbf']=false;
 			$resultado['mtbfTarget']=false;
+			$resultado['tsf']=false;
 		}
 		return $resultado;
 
@@ -580,7 +569,7 @@ class Kpi_model extends CI_Model {
 		//unificando con la tabla kpi
 		//y la tabla linea_sap
 				$this->db->where ('parametro.activo', 1 );
-				$this->db->order_by('parametro.idDivSap', 'asc');
+				$this->db->order_by('kpi.orden', 'asc');
 				$this->db->where ('linea_sap.idPlanilla',$idPlanilla );
 				$this->db->where ('linea_sap.idDivSAP',$idDiv );
 

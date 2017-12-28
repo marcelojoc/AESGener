@@ -21,7 +21,7 @@
 
 <div class="row">   
 
-            <div class="col-sm-4 b-r">
+            <div class="col-sm-4 col-sx-12 b-r">
 
                 <div class="page-header col-sm-12 text-center">
                     <h1 class="greenAES">
@@ -83,7 +83,7 @@
 
 
 
-                <div class="row" v-for ="item in est.kpi">
+                <div class="row " v-for ="item in est.kpi">
                         
                                         <!-- <div class="col-xs-1 beige">aqui  va la tab</div> -->
                         
@@ -91,7 +91,7 @@
                                         <div v-if="item.nombreKPI == 'EAF'">
                         
                         
-                                            <div class="col-sm-12 " >
+                                            <div class="col-sm-12 col-xs-12" >
                                                 
                                                  <div class="social-widget col-sm-12 b-l b-r b-b">
                                                          <div class="soc-header box-corporativo" >
@@ -147,8 +147,6 @@
                         
                         
                                         </div>
-                        
-                        
                         
                         
                                         <div v-if="item.nombreKPI == 'EFOF'">
@@ -319,25 +317,15 @@
                              
                              
                                         </div>
-                             
-                        
-                        
-                        
-                        
-                        
+
                 </div>
-
-
 
 
             </div>
 
 
 
-
-
-
-            <div class="col-sm-4 b-r">
+            <div class="col-sm-4 col-sx-12 b-r">
 
                     <div class="page-header col-sm-12 text-center  ">
                             <h1 class="greenAES">
@@ -348,47 +336,55 @@
                 <div class="col-sm-12 text-left" >
                     
 
-                        <div class="col-xs-12 " >  
-                                
-                                
-                            <div class="soc-content " v-for=" item in tac.kpi" >
-                                    <div class="col-xs-6 b-r b-t" >
-                                        <h4 class="font-medium" >{{item.nombre}} </h4>
-                                        
-                                    </div>
-                                
-                                    <div class="col-xs-6 b-t " >
-                                        <h4 class="font-medium">{{item.valor}} </h4>
-                                        
-                
-                                    </div>
-                
-                            </div>  
-                                                    
-                        </div>
+                                <div  v-for=" item in tac.kpi" >
 
+                                        <div v-if="item.nombre">
+            
+                                            <div class="col-xs-12 ">
+            
+                                                <div class="col-xs-7 b-r b-t" >
+                                                    <h3 class="font-medium" >{{item.nombre}}</h3>
+                                                    <h6 class="text-muted"><small>{{item.leyenda}}</small></h6>
+                                                </div>
+                                            
+                                                <div class="col-xs-5 b-t " >
+                                                    <h3 class="font-medium">{{item.valor}}</h3>
+                                                </div>
+            
+                                            </div>
+            
+                                        </div>
+                        
+                                    </div> 
+                                                    
 
                         <div class="row" v-if="this.tac.kpi.mtbf"> 
                                 
                             <div class="col-xs-12 ">  
                                 
-                                    <div class="social-widget col-sm-12 b-l  b-b">
+                                    <div class="social-widget col-sm-12   b-b">
                                             <div class="soc-header box-twitter" >
                                                 <i><h4> MTBF </h4></i>
                                             </div>
                 
                 
                                             <div class="soc-content">
-                                                    <div class="col-xs-6 b-r b-b">
+                                                    <div class="col-xs-4 b-r b-b">
                                                         <h5 class="font-medium" >{{this.tac.kpi.mtbf | sindec}} [hr.Oper]</h5>
                                                         <h6 class="text-muted">Actual Mon</h6>
                                                     </div>
                                                 
-                                                    <div class="col-xs-6 b-b ">
+                                                    <div class="col-xs-4 b-b b-r ">
                                                         <h5 class="font-medium">{{this.tac.kpi.mtbfTarget }} [hr.Oper]</h5>
                                                         <h6 class="text-muted">Target Mon</h6>
                     
                                                     </div>
+
+                                                    <div class="col-xs-4 b-b ">
+                                                        <h5 class="font-medium">{{this.tac.kpi.tsf | onlytrunc}} [HS]</h5>
+                                                        <h6 class="text-muted">TSF</h6>
+                    
+                                                    </div>                                                    
                     
                                                 </div> 
                     
@@ -416,7 +412,7 @@
 
 
 
-            <div class="col-sm-4">
+            <div class="col-sm-4 col-sx-12 b-r">
 
                     <div class="page-header col-sm-12 text-center  ">
                             <h1 class="greenAES">
@@ -468,7 +464,7 @@
                                             <div v-if="item.nombreKPI == 'Correctivo(%)'">             
                                                 <div class="col-sm-12 " >
                                                 
-                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                    <div class="social-widget col-sm-12  b-r ">
                                                             <div class="soc-header box-ca">
                                                                 <i><h4>{{item.nombreKPI}}</h4></i>
                                                             </div>
@@ -512,7 +508,7 @@
                                             <div v-if="item.nombreKPI == 'Cumplimiento Plan Preventivo(%)'">             
                                                 <div class="col-sm-12 " >
                                                 
-                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                    <div class="social-widget col-sm-12  b-r">
                                                             <div class="soc-header box-ca">
                                                                 <i><h4>{{item.nombreKPI}}</h4></i>
                                                             </div>
@@ -558,7 +554,7 @@
                                             <div v-if="item.nombreKPI == 'Backlog (semanas)'">             
                                                 <div class="col-sm-12 " >
                                                 
-                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                    <div class="social-widget col-sm-12 b-r ">
                                                             <div class="soc-header box-ca">
                                                                 <i><h4>{{item.nombreKPI}}</h4></i>
                                                             </div>
@@ -598,7 +594,7 @@
                                             <div v-if="item.nombreKPI == 'Planned Work(%)'">             
                                                 <div class="col-sm-12 " >
                                                 
-                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                    <div class="social-widget col-sm-12 b-r">
                                                             <div class="soc-header box-ca">
                                                                 <i><h4>{{item.nombreKPI}}</h4></i>
                                                             </div>
@@ -642,7 +638,7 @@
                                  <div v-if="item.nombreKPI == 'Proactive Work(%)'">             
                                                 <div class="col-sm-12 " >
                                                 
-                                                    <div class="social-widget col-sm-12 b-l b-r b-b">
+                                                    <div class="social-widget col-sm-12 b-r ">
                                                             <div class="soc-header box-ca">
                                                                 <i><h4>{{item.nombreKPI}}</h4></i>
                                                             </div>
