@@ -206,17 +206,7 @@ class Planilla_model extends CI_Model {
 
 	function borrarPlanilla($idPlanilla){
 		$this->db->delete('planilla',array('idPlanilla'=>$idPlanilla));
-	}
-		
+	}	
 }
-	// function crearKPIPlanilla($idPlan, $idKPI){
-	// 	$this->db->insert('kpi_planilla', 
-	// 		array('idPlanilla'=>$idPlan, 
-	// 				'idKPI'=>$idKPI,
-	// 				'idUbicacion'=>$idKPI)); //Cambia aca que ponga una ubicacion real
-	// 	$idKPIPlanilla = $this->db->insert_id();
-	// 	return $idKPIPlanilla;
-	// }
-?>
 
 
