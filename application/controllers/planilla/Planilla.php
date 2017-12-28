@@ -67,18 +67,10 @@ class Planilla extends My_Controller{
                 $nombreKPI = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
                 $data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
 
-                if(!$data['KPI']){ //Si cargue una planilla incorrecta muestro msj de aviso 
-                    echo '<script>alert("Planilla cargada incorrecta. Recuerde seleccionar correctamente el Tipo de Planilla correspondiente!");</script>';
-                    //Elimino planilla de la DB 
-                    $this->Planilla_model->borrarPlanilla($idPlanilla);
-                    //Elimino archivo Excel de la carpeta uploads
-                    unlink("uploads/".$planilla['file_name']);
-                    redirect('/planilla/Planilla','refresh');
-                }
-
-                if($nombreKPI != ""){
+                if($nombreKPI != "" && $data['KPI']!= FALSE){
                     foreach ($data['KPI'] as $kpi){
                         $idKPI = $kpi->idKPI;
+                        $nombreKPI = $kpi->nombreKPI;
                     }
                 }
                 
@@ -117,7 +109,6 @@ class Planilla extends My_Controller{
                     
                     $idLineaAES = $this->Planilla_model->crearLineaAES($actualMes, $targetMes, $ytdActual, $ytdTarget, $fyf, $fyBudget, $hedp, $hedf, 
                                                                         $hsf, $idUnidadGen, $idDivision, $idComplejo, $idPlanta, $idPlanilla, $idKPI);
-                   //$idKPILinea = $this->Planilla_model->crearKPILinea($idKPI, $idKPILinea)
                 }           
             }
 
@@ -186,11 +177,6 @@ class Planilla extends My_Controller{
             }
 
         }elseif($tipoP == "2"){//TIpo Planilla Costos
-            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
-            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
-            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
-            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
-            /*Revisar no lee tipo archivo xlsb y si lopaso a xls se excede el tiempo de ejecucion*/
 
             $nombreKPI = "CTM OPEX"; //Pensar si no habria que traerlo tbn de la db
             $data['KPI'] = $this->Planilla_model->getKPI($nombreKPI);
@@ -198,11 +184,6 @@ class Planilla extends My_Controller{
             foreach ($data['KPI'] as $kpi){
                 $idKPI = $kpi->idKPI;
             }
-
-
-
-
-
 
             $planilla['file_name'] = 'COSTOS_'.$anio.'-'.$mes.'-'.$dia.'_'.$hora.'-'.$min.'.xlsx';
             $archivo = './uploads/'.$planilla['file_name'];
@@ -220,6 +201,7 @@ class Planilla extends My_Controller{
             $objExcel->setActiveSheetIndex(0);
             $nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
 
+
             //Pasos para corroborar si la planilla cargada es de COSTOS
             $ubiKPI = $this->Planilla_model->buscarUbicacion(0, "", $idKPI);
 
@@ -232,7 +214,7 @@ class Planilla extends My_Controller{
 
                 $prueba = $objExcel->getActiveSheet()->getCell($letra.$nro)->getCalculatedValue();
 
-                if($prueba != "Complejos"){//Si cargue una planilla incorrecta muestro msj de aviso 
+                if($prueba != "Complejos"){ //Si cargue una planilla incorrecta muestro msj de aviso
                     echo '<script>alert("Planilla cargada incorrecta. Recuerde seleccionar correctamente el Tipo de Planilla correspondiente!");</script>';
                     //Elimino archivo Excel de la carpeta uploads
                     unlink("uploads/".$planilla['file_name']);
@@ -261,15 +243,6 @@ class Planilla extends My_Controller{
                         $idComplejo = $ubi->idComplejo;
                         $ctmActual = $objExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
                         $ctmBudget = $objExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
-
-                        // if($ctmActual=="" && $ctmBudget==""){//Si cargue una planilla incorrecta muestro msj de aviso 
-                        //     echo '<script>alert("Planilla cargada incorrecta. Recuerde seleccionar correctamente el Tipo de Planilla correspondiente!");</script>';
-                        //     //Elimino planilla de la DB 
-                        //     $this->Planilla_model->borrarPlanilla($idPlanilla);
-                        //     //Elimino archivo Excel de la carpeta uploads
-                        //     unlink("uploads/".$planilla['file_name']);
-                        //     redirect('/planilla/Planilla','refresh');
-                        // }
 
                         $idLineaCostos = $this->Planilla_model->crearLineaCostos($ctmActual, $ctmBudget, $idDivision, $idComplejo, $idPlanilla, $idKPI);
                     }
@@ -312,6 +285,9 @@ class Planilla extends My_Controller{
             $letraCol = $objExcel->setActiveSheetIndex(0)->getHighestColumn();
 
             //Guardo en que columna estan los valores de "Trabajo Real"
+            $colTR = FALSE;
+            $colCO = FALSE;
+
             foreach(range("A", $letraCol) as $columna) {
                 $nombreCol = $objExcel->getActiveSheet()->getCell($columna. 1)->getCalculatedValue();
 
@@ -323,6 +299,17 @@ class Planilla extends My_Controller{
                     $colCO = $columna;
                 } 
             }
+
+            //Si cargue una planilla incorrecta muestro msj de aviso
+            if(!$colTR && !$colCO){ 
+                echo '<script>alert("Planilla cargada incorrecta. Recuerde seleccionar correctamente el Tipo de Planilla correspondiente!");</script>';
+                //Elimino planilla de la DB 
+                $this->Planilla_model->borrarPlanilla($idPlanilla);
+                //Elimino archivo Excel de la carpeta uploads
+                unlink("uploads/".$planilla['file_name']);
+                redirect('/planilla/Planilla','refresh');
+            }
+
 
             $hsTrabRealTotal = 0;
             $contadorHsPM10 = 0;
@@ -532,6 +519,28 @@ class Planilla extends My_Controller{
         	$objExcel = PHPExcel_IOFactory::load($archivo);
         	$objExcel->setActiveSheetIndex(0);
         	$nroFilas = $objExcel->setActiveSheetIndex(0)->getHighestRow();
+
+
+            //Pasos para corroborar si la planilla cargada es de COSTOS
+            $ubiKPI = $this->Planilla_model->buscarUbicacion(0, "", $idKPI);
+
+            if($ubiKPI){
+                foreach ($ubiKPI as $ubi){
+                    $id = $ubi->idUbicacion;
+                    $letra = $ubi->inicioLetra;
+                    $nro = ($ubi->inicioNro);
+                }
+
+                $prueba = $objExcel->getActiveSheet()->getCell($letra.$nro)->getCalculatedValue();
+
+                if($prueba != "Unidad Generadora"){ //Si cargue una planilla incorrecta muestro msj de aviso
+                    echo '<script>alert("Planilla cargada incorrecta. Recuerde seleccionar correctamente el Tipo de Planilla correspondiente!");</script>';
+                    //Elimino archivo Excel de la carpeta uploads
+                    unlink("uploads/".$planilla['file_name']);
+                    redirect('/planilla/Planilla','refresh');
+                }
+            }//FIN pasos para corroborar si la planilla cargada es de COSTOS
+
 
         	//Crear Planilla
         	$idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP, $sesion);

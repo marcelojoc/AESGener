@@ -53,7 +53,7 @@
 							<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Tipo de Planilla</label>
 								<div class="col-sm-5">
 									<div>
-										<select class="form-control" name="tipoPlanilla" id="tipoPlanilla" name="tipoPlanilla" OnChange="tipoPOnChange(this)" required><!-- Codigo de Combo con datos de la BD -->
+										<select class="form-control" name="tipoPlanilla" id="tipoPlanilla" name="tipoPlanilla" OnChange="tipoPOnChange(this)" OnClick="tipoPOnChange(this)" required><!-- Codigo de Combo con datos de la BD -->
 											<option value="">--- Seleccione Tipo Planilla ---</option>
 											<?php 
                    								foreach ($tipoPlanilla->result() as $tipoP) {
