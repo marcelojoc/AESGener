@@ -468,16 +468,15 @@ class Planilla extends My_Controller{
                     $statusSistema = $objExcel->getActiveSheet()->getCell('K'.$i)->getCalculatedValue();
                     $notp = "NOTP";
                     $noti = "NOTI";
-                    //$cerr = "CERR";
+                    $cerr = "CERR";
                     $ctec = "CTEC";
 
                     $rdo1 = strpos($statusSistema, $notp);
                     $rdo2 = strpos($statusSistema, $noti);
-                    //$rdo3 = strpos($statusSistema, $cerr);
+                    $rdo3 = strpos($statusSistema, $cerr);
                     $rdo4 = strpos($statusSistema, $ctec);
 
-                    //if($rdo1!==FALSE || $rdo2!==FALSE || $rdo3!==FALSE || $rdo4!==FALSE){
-                    if($rdo1!==FALSE || $rdo2!==FALSE || $rdo4!==FALSE){
+                    if($rdo1!==FALSE || $rdo2!==FALSE || $rdo3!==FALSE || $rdo4!==FALSE){
                        $cantOTCompletas++; 
                     }
 
