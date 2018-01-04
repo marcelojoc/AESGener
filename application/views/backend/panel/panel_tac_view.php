@@ -1,8 +1,8 @@
 
 
 <div class="main-content ">
-<div class="main-content-inner">
-    <div class="page-content" id="app">
+    <div class="main-content-inner">
+        <div class="page-content" id="app">
         
         <div class="row">
                 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
@@ -52,7 +52,7 @@
         
         
 
-<!-- aqui va el contenido -->
+    <!-- aqui va el contenido -->
 
 
             <div class="row" >
@@ -143,7 +143,7 @@
                     
                                                     <div class="col-xs-12 ">
                     
-                                                        <vm-semaforizado  v-bind:esperado= 'this.kpi.mtbfTarget' v-bind:real= 'this.kpi.mtbf'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                        <vm-semaforizado  v-bind:esperado= 'this.kpi.mtbfTarget' v-bind:real= 'this.kpi.mtbf'  lbl=""  tipo= "true"></vm-semaforizado>
                                                         
                                                     </div>
                     
@@ -189,13 +189,9 @@
 
 
 
-        </div>  
-
-
-    </div> <!-- fin page-content -->
-
+    
+        </div> <!-- fin page-content -->
     </div> <!-- fin main-content-inner -->
-
 </div> <!-- fin main-content -->
 
 

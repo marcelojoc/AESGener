@@ -392,7 +392,7 @@
                     
                                                     <div class="col-xs-12 ">
                     
-                                                        <vm-semaforizado  v-bind:esperado= 'this.tac.kpi.mtbfTarget' v-bind:real= 'this.tac.kpi.mtbf'  lbl=""  tipo= "false"></vm-semaforizado>
+                                                        <vm-semaforizado  v-bind:esperado= 'this.tac.kpi.mtbfTarget' v-bind:real= 'this.tac.kpi.mtbf'  lbl=""  tipo= "true"></vm-semaforizado>
                                                         
                                                     </div>
                     

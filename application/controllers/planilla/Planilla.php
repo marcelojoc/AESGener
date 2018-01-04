@@ -60,6 +60,21 @@ class Planilla extends My_Controller{
             //Crear Planilla
             $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP, $sesion);
 
+
+            //Reviso si la columna A esta vacia como en todas las planillas AESGener, sino es una planilla equivocada
+            $error1 = $objExcel->getActiveSheet()->getCell('A2')->getCalculatedValue();
+            $error2 = $objExcel->getActiveSheet()->getCell('D2')->getCalculatedValue();
+
+            if($error1 != "" || $error2 == ""){
+                echo '<script>alert("Planilla cargada incorrecta. Recuerde seleccionar correctamente el Tipo de Planilla correspondiente!");</script>';
+                //Elimino planilla de la DB 
+                 $this->Planilla_model->borrarPlanilla($idPlanilla);
+                 //Elimino archivo Excel de la carpeta uploads
+                unlink("uploads/".$planilla['file_name']);
+                redirect('/planilla/Planilla','refresh');
+            }
+
+
             //Recorro toda la planilla y guardo los KPI: AEF, EFOF, ENPHR y CA
             for ($i = 2; $i <= $nroFilas; $i++) {
 
@@ -70,7 +85,6 @@ class Planilla extends My_Controller{
                 if($nombreKPI != "" && $data['KPI']!= FALSE){
                     foreach ($data['KPI'] as $kpi){
                         $idKPI = $kpi->idKPI;
-                        $nombreKPI = $kpi->nombreKPI;
                     }
                 }
                 
@@ -209,7 +223,7 @@ class Planilla extends My_Controller{
                 foreach ($ubiKPI as $ubi){
                     $id = $ubi->idUbicacion;
                     $letra = $ubi->inicioLetra;
-                    $nro = ($ubi->inicioNro)-1;
+                    $nro = ($ubi->inicioNro);
                 }
 
                 $prueba = $objExcel->getActiveSheet()->getCell($letra.$nro)->getCalculatedValue();
@@ -226,8 +240,8 @@ class Planilla extends My_Controller{
             //Crear Planilla
             $idPlanilla = $this->Planilla_model->crearPlanilla($archivo, $fecha, $anio, $mes, $tipoP, $sesion);
 
-            for ($i = 8; $i <= $nroFilas; $i++){
-                $columna = "D";
+            for ($i = 2; $i <= $nroFilas; $i++){
+                $columna = "A";
                 $fila = $i;
 
                 $ubicacion = $this->Planilla_model->buscarUbicacion($fila, $columna, $idKPI);
@@ -241,8 +255,8 @@ class Planilla extends My_Controller{
 
                         $idDivision = $ubi->idDivision;
                         $idComplejo = $ubi->idComplejo;
-                        $ctmActual = $objExcel->getActiveSheet()->getCell('E'.$i)->getCalculatedValue();
-                        $ctmBudget = $objExcel->getActiveSheet()->getCell('F'.$i)->getCalculatedValue();
+                        $ctmActual = $objExcel->getActiveSheet()->getCell('B'.$i)->getCalculatedValue();
+                        $ctmBudget = $objExcel->getActiveSheet()->getCell('C'.$i)->getCalculatedValue();
 
                         $idLineaCostos = $this->Planilla_model->crearLineaCostos($ctmActual, $ctmBudget, $idDivision, $idComplejo, $idPlanilla, $idKPI);
                     }
