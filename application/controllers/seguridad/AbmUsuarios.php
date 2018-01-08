@@ -15,8 +15,7 @@ class AbmUsuarios extends My_Controller{
 			$data['limiteTabla'] = "1000";
 			$data['tablaEmpleados'] = $this->AbmUsuarios_model->obtenerEmpleados($data['nroLegajo']);
 			$data['nombresNiveles']	="";
-			$data['niveles'] = $this->AbmNiveles_model->obtenerNiveles($data['nombresNiveles']);
-			 
+			$data['niveles'] = $this->AbmNiveles_model->obtenerNiveles($data['nombresNiveles']);		 
 		}
 
 		if (!isset($_POST['CargarTabla2'])){

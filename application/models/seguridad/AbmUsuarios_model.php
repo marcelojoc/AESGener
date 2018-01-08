@@ -57,8 +57,7 @@ class AbmUsuarios_model extends CI_Model {
 	function obtenerEmpleados($nroRUT){
 		if ($nroRUT == ''){
 			$this->db->select('empleado.idEmpleado,empleado.apellidoE,
-								empleado.nombreE,empleado.direccion,empleado.telefono,
-								empleado.rut,empleado.email,empleado.idTipoEmpleado,
+								empleado.nombreE,empleado.email,empleado.idTipoEmpleado,
 								tipo_empleado.nombreTipoE');
 			$this->db->where('activo', 1);
 			$this->db->from('empleado');
@@ -68,8 +67,7 @@ class AbmUsuarios_model extends CI_Model {
 
 		}else{
 			$this->db->select('empleado.idEmpleado,empleado.apellidoE,
-								empleado.nombreE,empleado.direccion,empleado.telefono,
-								empleado.rut,empleado.email,empleado.idTipoEmpleado');
+								empleado.nombreE,empleado.email,empleado.idTipoEmpleado');
 			$this->db->where('empleado.rut', $nroRUT);
 			$this->db->where('activo', 1);
 			$this->db->from('empleado');

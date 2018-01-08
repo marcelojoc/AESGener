@@ -51,17 +51,17 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador Sistema"){
+      						if ($niv->descripNivel == "Administrador"){
 				?>
 
-				<li class="">
+				<!-- <li class="">
 					<a href="<?php echo base_url()?>Bienvenida">
 						<i class="menu-icon fa fa-wrench"></i>
 						<span class="menu-text">Configuración</span>
 					</a>
 
 					<b class="arrow"></b>
-				</li>
+				</li> -->
 
 				<?php 		}
 						}	
@@ -71,8 +71,7 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador Usuarios" || 
-      							$niv->descripNivel == "Administrador Sistema"){
+      						if ($niv->descripNivel == "Administrador"){
 				?>
 
 				<li class="">
@@ -102,7 +101,7 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador Sistema"){
+      						if ($niv->descripNivel == "Administrador"){
 				?>
 
 				<li class="">
@@ -122,7 +121,7 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador Sistema"){
+      						if ($niv->descripNivel == "Administrador"){
 				?>
 
 				<li class="">
@@ -142,8 +141,7 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador Usuarios" || 
-      							$niv->descripNivel == "Administrador Sistema" || 
+      						if ($niv->descripNivel == "Administrador" || 
       							$niv->descripNivel == "Visualizador"){
 				?>
 
@@ -198,8 +196,7 @@
 				<?php 
 					if ($nivel){							
 						foreach($nivel->result() as $niv){
-      						if ($niv->descripNivel == "Administrador Usuarios" || 
-      							$niv->descripNivel == "Administrador Sistema"){
+      						if ($niv->descripNivel == "Administrador"){
 				?>
 				<li class="">
 					<a href="#" class="dropdown-toggle">
@@ -210,7 +207,6 @@
 
 					<b class="arrow"></b>
 						<ul class="submenu">
-
 							<li class="">
 								<a href="<?php echo base_url()?>seguridad/AbmUsuarios">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -218,14 +214,6 @@
 								</a>
 								<b class="arrow"></b>
 							</li>
-
-							<!-- <li class="">
-								<a href="<?php echo base_url()?>seguridad/abmNivelesC">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Gestionar Niveles de Seguridad
-								</a>
-								<b class="arrow"></b>
-							</li> -->
 						</ul>
 				</li>
 

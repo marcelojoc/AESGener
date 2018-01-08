@@ -39,15 +39,15 @@ class AbmEmpleados extends My_Controller{
 		$data = array(
 		'nombreE' => $this->input->post('nombreE'),
 		'apellidoE' => $this->input->post('apellidoE'),
-		'telefono' => $this->input->post('telefono'),
-		'direccion' => $this->input->post('direccion'),
-		'rut' => $this->input->post('rut'),
+		// 'telefono' => $this->input->post('telefono'),
+		// 'direccion' => $this->input->post('direccion'),
+		// 'rut' => $this->input->post('rut'),
 		'tipoEmpleado' => $this->input->post('tipoEmpleado'),
 		'email' => $this->input->post('email'));
 
         $this->form_validation->set_rules('nombreE','Nombre Empleado','trim|required');
         $this->form_validation->set_rules('apellidoE','Apellido Empleado','trim|required');
-        $this->form_validation->set_rules('rut','Nº RUT','trim|required');
+        //$this->form_validation->set_rules('rut','Nº RUT','trim|required');
         $this->form_validation->set_rules('tipoEmpleado','Tipo Responsable','trim|required');
 
        	$this->form_validation->set_message('required','Debe completar este campo'); 
@@ -79,15 +79,15 @@ class AbmEmpleados extends My_Controller{
 		$datos = array(
 					'nombreE' => $this->input->post('nombreE'),
 					'apellidoE' => $this->input->post('apellidoE'),
-					'telefono' => $this->input->post('telefono'),
-					'direccion' => $this->input->post('direccion'),
-					'rut' => $this->input->post('rut'),
+					// 'telefono' => $this->input->post('telefono'),
+					// 'direccion' => $this->input->post('direccion'),
+					// 'rut' => $this->input->post('rut'),
 					'idTipoEmpleado' => $this->input->post('idTipoEmpleado'),
 					'email' => $this->input->post('email'));
  
         $this->form_validation->set_rules('nombreE','Nombre Empleado','trim|required');
         $this->form_validation->set_rules('apellidoE','Apellido Empleado','trim|required');
-        $this->form_validation->set_rules('rut','Nº Documento','trim|required');
+        //$this->form_validation->set_rules('rut','Nº Documento','trim|required');
         $this->form_validation->set_rules('idTipoEmpleado','Tipo Responsable','trim|required');
 
        	$this->form_validation->set_message('required','Debe completar este campo');  

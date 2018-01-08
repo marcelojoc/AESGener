@@ -47,7 +47,7 @@
 											</div> <!-- Cambiar lo de date picker??? -->
 										</div>
 
-										<div class="form-group"> <!-- Empieza una linea del formulario -->
+										<!-- <div class="form-group"> 
 											<label class="col-sm-3 control-label no-padding-right" for="rut">Nº Documento(*) </label>
 											
 											<div class="col-sm-4">
@@ -55,26 +55,26 @@
 		                					</div> 
 										</div>
 
-										<div class="form-group"> <!-- Empieza una linea del formulario -->
+										<div class="form-group">
 											<label class="col-sm-3 control-label no-padding-right" for="telefono"> Teléfono </label>
 											<div class="col-sm-4">
 												<input class="form-control" id="telefono" name="telefono" placeholder="" value="<?= $emp->telefono;?>" type="tel">
 		                					</div> 
-										</div>
+										</div> -->
 
 										<div class="form-group"> <!-- Empieza una linea del formulario -->
-											<label class="col-sm-3 control-label no-padding-right" for="email"> E-Mail </label>
+											<label class="col-sm-3 control-label no-padding-right" for="email"> E-Mail(*) </label>
 											<div class="col-sm-4">
 												<input class="form-control" id="email" name="email" placeholder="" value="<?= $emp->email;?>" type="email">
 		                					</div> 
 										</div>
 
-										<div class="form-group"> <!-- Empieza una linea del formulario -->
+										<!-- <div class="form-group"> 
 											<label class="col-sm-3 control-label no-padding-right" for="direccion"> Dirección </label>
 											<div class="col-sm-4">
 												<input class="form-control" id="direccion" name="direccion" value="<?= $emp->direccion;?>" placeholder=""  type="text">
 		                					</div> 
-										</div>
+										</div> -->
 
 										<div class="form-group"> <!-- Empieza linea del form con desplegable -->
 											<label class="col-sm-3 control-label no-padding-right" for="tipoEmpleado"> Tipo Empleado(*)</label>
@@ -102,7 +102,7 @@
 										<div class="center" style="width:50%; margin-right:auto; margin-left:auto;"><!-- Empiezan botones de guardar y limpiar -->
 											<div class="hr hr-12 dotted"></div>
 
-											<button class="btn btn-purple" type="submit" name="GuardarEnDB">
+											<button class="btn btn-purple" type="submit" name="ActualizarEnDB">
 												<i class="ace-icon fa fa-check bigger-110"></i>
 													Modificar
 											</button>

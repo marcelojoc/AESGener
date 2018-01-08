@@ -38,33 +38,33 @@
 					                </div> 
 								</div>
 
-								<div class="form-group"> <!-- Empieza una linea del formulario -->
+								<!-- <div class="form-group"> 
 									<label class="col-sm-3 control-label no-padding-right" for="rut">Nº RUT(*) </label>
 									<div class="col-sm-4">
 										<input class="form-control" id="rut" name="rut" placeholder=""  type="number" min="1000000" max="70000000">
 					                </div> 
 								</div>
 
-								<div class="form-group"> <!-- Empieza una linea del formulario -->
+								<div class="form-group"> 
 									<label class="col-sm-3 control-label no-padding-right" for="telefono"> Teléfono </label>
 									<div class="col-sm-4">
 										<input class="form-control" id="telefono" name="telefono" placeholder=""  type="tel">
 					                </div> 
-								</div>
+								</div> -->
 
 								<div class="form-group"> <!-- Empieza una linea del formulario -->
-									<label class="col-sm-3 control-label no-padding-right" for="email"> E-Mail</label>
+									<label class="col-sm-3 control-label no-padding-right" for="email"> E-Mail(*)</label>
 									<div class="col-sm-4">
 										<input class="form-control" id="email" name="email" placeholder=""  type="email">
 					                </div> 
 								</div>
 
-								<div class="form-group"> <!-- Empieza una linea del formulario -->
+								<!-- <div class="form-group"> 
 									<label class="col-sm-3 control-label no-padding-right" for="direccion"> Dirección </label>
 									<div class="col-sm-4">
 										<input class="form-control" id="direccion" name="direccion" placeholder=""  type="text">
 					                </div> 
-								</div>
+								</div> -->
 
 								<div class="form-group"> 
 									<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Tipo Empleado(*) </label>

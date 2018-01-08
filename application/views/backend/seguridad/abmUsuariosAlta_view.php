@@ -43,12 +43,12 @@
 						                </div> 
 								</div>
 
-								<div class="form-group"> <!-- Empieza una linea del formulario -->
+								<!-- <div class="form-group"> 
 									<label class="col-sm-3 control-label no-padding-right" for="rut">Nº RUT</label>
 										<div class="col-sm-4">
 											<input class="form-control" id="rut" name="rut" placeholder="" value="<?=$emp->rut?>" readonly type="number" min="1000000" max="70000000">
 						                </div> 
-								</div>
+								</div> -->
 
 								<div class="form-group" hidden> <!-- Empieza una linea del formulario -->
 									<label class="col-sm-3 control-label no-padding-right" for="rut">Empleado</label>
@@ -116,7 +116,7 @@
 					</div>
 				</div>
 
-			</div><!--Fin Cuadro Registrar Nuevo Medicamento -->
+			</div><!--Fin Cuadro Registrar Usuario-->
 
 		</div><!-- /.page-content -->
 	</div><!-- /.main-content-inner -->

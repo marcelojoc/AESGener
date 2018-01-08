@@ -27,27 +27,27 @@
 						</div>
 					</div>
 
-					<div class="col-xs-6">
-							<div id="dynamic-table_filter" class="dataTables_filter">
+					<!-- <div class="col-xs-6">
+						<div id="dynamic-table_filter" class="dataTables_filter">
 
-								<label>Nº RUT:
-									<input type="search" class="form-control input-sm" placeholder="" name="rut" aria-controls="dynamic-table">
-								</label>
+							<label>Nº RUT:
+								<input type="search" class="form-control input-sm" placeholder="" name="rut" aria-controls="dynamic-table">
+							</label>
 
-								<button class="btn btn-greenAES btn-xs" type="submit" nombre="CargarTabla2" title="Buscar">
-									<i class="ace-icon fa fa-search  bigger-110 icon-only"></i>
-								</button>
+							<button class="btn btn-greenAES btn-xs" type="submit" nombre="CargarTabla2" title="Buscar">
+								<i class="ace-icon fa fa-search  bigger-110 icon-only"></i>
+							</button>
 
-							</div>
-					</div>
+						</div>
+					</div> -->
 				</div>
 
 				<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 					<thead>
 							<tr>
 								<th>Apellido y Nombre</th>
-								<th>RUT</th>
-								<th>Teléfono</th>
+								<!-- <th>RUT</th>
+								<th>Teléfono</th> -->
 								<th>E-Mail</th>
 								<th>Tipo Empleado</th>
 								<th></th>
@@ -71,8 +71,8 @@
 									<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 								</label>
 							</td>
-							<td><?= $tabla->rut;?></td>
-							<td><?= $tabla->telefono;?></td>	
+							<!-- <td><?= $tabla->rut;?></td>
+							<td><?= $tabla->telefono;?></td> -->	
 							<td><?= $tabla->email;?></td>	
 							<td><?= $tabla->nombreTipoE; ?></td>
 							
@@ -172,7 +172,7 @@
 					<thead>
 							<tr>
 								<th>Apellido y Nombre</th>
-								<th>RUT</th>
+								<!-- <th>RUT</th> -->
 								<th>Nivel de Usuario</th>
 								<th>Usuario</th>					
 								<th></th>
@@ -198,7 +198,7 @@
 									<?php echo $tabla->apellidoE;?> <?php echo $tabla->nombreE;?>
 								</label>
 							</td>
-							<td><?= $tabla->rut;?></td>
+							<!-- <td><?= $tabla->rut;?></td> -->
 							<?php //Traer todos los niveles para mostrar el de cada usuario
 								if ($niveles){						
 									foreach($niveles->result() as $niv){

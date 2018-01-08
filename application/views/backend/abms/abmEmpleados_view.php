@@ -27,7 +27,7 @@
 						</div>
 					</div>
 
-					<div class="col-xs-6">
+					<!-- <div class="col-xs-6">
 						<div id="dynamic-table_filter" class="dataTables_filter">
 
 							<label>Nº RUT:
@@ -39,7 +39,7 @@
 							</button>
 
 						</div>
-					</div>
+					</div> -->
 				</div>
 
 
@@ -48,8 +48,8 @@
 						<thead>
 								<tr>
 									<th>Apellido y Nombre</th>
-									<th>RUT</th>
-									<th>Teléfono</th>
+									<!-- <th>RUT</th>
+									<th>Teléfono</th> -->
 									<th>E-Mail</th>
 									<th>Tipo Empleado</th>
 									<th>
@@ -78,8 +78,8 @@
 										<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 									</label>
 								</td>
-								<td><?= $tabla->rut;?></td>
-								<td><?= $tabla->telefono;?></td>
+								<!-- <td><?= $tabla->rut;?></td>
+								<td><?= $tabla->telefono;?></td> -->
 								<td><?= $tabla->email;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
 								
@@ -138,8 +138,8 @@
 						<thead>
 								<tr>
 									<th>Apellido y Nombre</th>
-									<th>RUT</th>
-									<th>Teléfono</th>
+									<!-- <th>RUT</th>
+									<th>Teléfono</th> -->
 									<th>E-Mail</th>
 									<th>Tipo Empleado</th>
 									<th>
@@ -169,8 +169,8 @@
 										<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 									</label>
 								</td>
-								<td><?= $tabla->rut;?></td>
-								<td><?= $tabla->telefono;?></td>
+								<!-- <td><?= $tabla->rut;?></td>
+								<td><?= $tabla->telefono;?></td> -->
 								<td><?= $tabla->email;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
 								
@@ -231,8 +231,8 @@
 						<thead>
 								<tr>
 									<th>Apellido y Nombre</th>
-									<th>RUT</th>
-									<th>Teléfono</th>
+									<!-- <th>RUT</th>
+									<th>Teléfono</th> -->
 									<th>E-Mail</th>
 									<th>Tipo Empleado</th>
 									<th>
@@ -262,8 +262,8 @@
 										<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 									</label>
 								</td>
-								<td><?= $tabla->rut;?></td>
-								<td><?= $tabla->telefono;?></td>
+								<!-- <td><?= $tabla->rut;?></td>
+								<td><?= $tabla->telefono;?></td> -->
 								<td><?= $tabla->email;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
 								
@@ -322,8 +322,8 @@
 						<thead>
 								<tr>
 									<th>Apellido y Nombre</th>
-									<th>RUT</th>
-									<th>Teléfono</th>
+									<!-- <th>RUT</th>
+									<th>Teléfono</th> -->
 									<th>E-Mail</th>
 									<th>Tipo Empleado</th>
 									<th>
@@ -353,8 +353,8 @@
 										<?php echo $tabla->apellidoE; ?> <?php echo $tabla->nombreE; ?>
 									</label>
 								</td>
-								<td><?= $tabla->rut;?></td>
-								<td><?= $tabla->telefono;?></td>
+								<!-- <td><?= $tabla->rut;?></td>
+								<td><?= $tabla->telefono;?></td> -->
 								<td><?= $tabla->email;?></td>
 								<td><?= $tabla->nombreTipoE;?></td><!-- Nombre via de administracion no codigo -->
 								
