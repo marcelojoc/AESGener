@@ -66,22 +66,24 @@ class AbmUsuarios extends My_Controller{
        	$this->form_validation->set_message('required','Debe completar este campo');  
  		
        	//Verificar que no exista usuario con el nombreUsuario ingresado
-
        	if($this->AbmUsuarios_model->existeUsuario($this->input->post('usuario'))){
+
        		echo '<script >alert("El nombre de usuario ingresado ya se utiliza para otro empleado. Asignar un nuevo Usuario.");</script>';
-       		redirect('/seguridad/AbmUsuarios/cargarNuevoUsuario/'.$this->input->post('idEmpleado'),'refresh');
-       	}
+       		echo '<script>window.location="'.base_url().'seguridad/AbmUsuarios/cargarNuevoUsuario/'.$this->input->post('idEmpleado').'";</script>';
+       	
+       	//Verificar que se hayan ingresado todos los datos
+       	}elseif($this->form_validation->run() == FALSE) {
 
-        if ($this->form_validation->run() == FALSE) {
         	echo '<script >alert("Debe completar todos los campos con *");</script>';
-       		redirect('/seguridad/AbmUsuarios/cargarNuevoUsuario/'.$this->input->post('idEmpleado'),'refresh');
+        	echo '<script>window.location="'.base_url().'seguridad/AbmUsuarios/cargarNuevoUsuario/'.$this->input->post('idEmpleado').'";</script>';
 
-        } else {
+        //Guardar en DB
+        }else{
             if (isset($_POST['GuardarEnDB'])){
-			$this->AbmUsuarios_model->crearUsuario($data);
+				$this->AbmUsuarios_model->crearUsuario($data);
 			}
-	
-			redirect('/seguridad/AbmUsuarios','refresh');
+			
+			echo '<script>window.location="'.base_url().'seguridad/AbmUsuarios";</script>';
         }	
 	}
 
@@ -111,14 +113,14 @@ class AbmUsuarios extends My_Controller{
  
         if ($this->form_validation->run() == FALSE) {
         	echo '<script >alert("Debe completar todos los campos con *");</script>';
-       		 redirect('/seguridad/AbmUsuarios/editarUsuario/'.$data['codU'],'refresh');
+        	echo '<script>window.location="'.base_url().'seguridad/AbmUsuarios/editarUsuario/'.$data['codU'].'";</script>';
 
         } else {
            	if (isset($_POST['ActualizarEnDB'])){
-			$this->AbmUsuarios_model->actualizarUsuario($this->uri->segment(4),$datos);
+				$this->AbmUsuarios_model->actualizarUsuario($this->uri->segment(4),$datos);
 			}
 
-			redirect('/seguridad/AbmUsuarios','refresh');
+			echo '<script>window.location="'.base_url().'seguridad/AbmUsuarios";</script>';
         }	
 	}
 
@@ -126,7 +128,7 @@ class AbmUsuarios extends My_Controller{
 		$codU = $this->uri->segment(4);
 		$this->AbmUsuarios_model->eliminarUsuario($codU);
 
-		redirect('/seguridad/AbmUsuarios','refresh');		
+		echo '<script>window.location="'.base_url().'seguridad/AbmUsuarios";</script>';		
 	}
 }
 

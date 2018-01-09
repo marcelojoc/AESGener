@@ -48,8 +48,9 @@ class Planilla extends My_Controller{
             $carga = $this->upload->do_upload();
 
             if(!$carga){
+
                 echo '<script>alert("No ha seleccionado una planilla para cargar, vuelva a intentarlo.");</script>';
-                redirect('/planilla/Planilla','refresh');
+                echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
             }
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
@@ -71,7 +72,7 @@ class Planilla extends My_Controller{
                  $this->Planilla_model->borrarPlanilla($idPlanilla);
                  //Elimino archivo Excel de la carpeta uploads
                 unlink("uploads/".$planilla['file_name']);
-                redirect('/planilla/Planilla','refresh');
+                echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
             }
 
 
@@ -208,7 +209,7 @@ class Planilla extends My_Controller{
 
             if(!$carga){
                 echo '<script>alert("No ha seleccionado una planilla para cargar, vuelva a intentarlo.");</script>';
-                redirect('/planilla/Planilla','refresh');
+                echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
             }
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
@@ -232,7 +233,7 @@ class Planilla extends My_Controller{
                     echo '<script>alert("Planilla cargada incorrecta. Recuerde seleccionar correctamente el Tipo de Planilla correspondiente!");</script>';
                     //Elimino archivo Excel de la carpeta uploads
                     unlink("uploads/".$planilla['file_name']);
-                    redirect('/planilla/Planilla','refresh');
+                    echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
                 }
             }//FIN pasos para corroborar si la planilla cargada es de COSTOS
 
@@ -282,7 +283,7 @@ class Planilla extends My_Controller{
 
             if(!$carga){
                 echo '<script>alert("No ha seleccionado una planilla para cargar, vuelva a intentarlo.");</script>';
-                redirect('/planilla/Planilla','refresh');
+                echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
             }
 
             $objExcel = PHPExcel_IOFactory::load($archivo);
@@ -321,7 +322,7 @@ class Planilla extends My_Controller{
                 $this->Planilla_model->borrarPlanilla($idPlanilla);
                 //Elimino archivo Excel de la carpeta uploads
                 unlink("uploads/".$planilla['file_name']);
-                redirect('/planilla/Planilla','refresh');
+                echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
             }
 
 
@@ -527,7 +528,7 @@ class Planilla extends My_Controller{
 
             if(!$carga){
                 echo '<script>alert("No ha seleccionado una planilla para cargar, vuelva a intentarlo.");</script>';
-                redirect('/planilla/Planilla','refresh');
+                echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
             }
 
         	$objExcel = PHPExcel_IOFactory::load($archivo);
@@ -551,7 +552,7 @@ class Planilla extends My_Controller{
                     echo '<script>alert("Planilla cargada incorrecta. Recuerde seleccionar correctamente el Tipo de Planilla correspondiente!");</script>';
                     //Elimino archivo Excel de la carpeta uploads
                     unlink("uploads/".$planilla['file_name']);
-                    redirect('/planilla/Planilla','refresh');
+                    echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
                 }
             }//FIN pasos para corroborar si la planilla cargada es de COSTOS
 
@@ -592,7 +593,7 @@ class Planilla extends My_Controller{
 
 		if($carga){
 			echo '<script>alert("Planilla cargada con éxito!");</script>';
-            redirect('/planilla/Planilla','refresh');
+            echo '<script>window.location="'.base_url().'planilla/Planilla";</script>';
 		}
 	}
 }  

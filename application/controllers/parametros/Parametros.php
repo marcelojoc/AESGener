@@ -37,7 +37,7 @@ class Parametros extends My_Controller{
             $idParametro = $this->Parametros_model->guardarMensuales($sesion, $day, $mes, $data);
 
             echo '<script >alert("Parametros guardados con éxito!");</script>';
-            redirect('/parametros/Parametros','refresh');
+            echo '<script>window.location="'.base_url().'parametros/Parametros";</script>';
         }
     }
 
@@ -65,7 +65,7 @@ class Parametros extends My_Controller{
             $idParametro = $this->Parametros_model->guardarAnuales($sesion, $day, $anio, $data);
 
             echo '<script >alert("Parametros guardados con éxito!");</script>';
-            redirect('/parametros/Parametros','refresh');
+            echo '<script>window.location="'.base_url().'parametros/Parametros";</script>';
         }
     }
 }

@@ -54,14 +54,14 @@ class AbmEmpleados extends My_Controller{
 
         if ($this->form_validation->run() == FALSE) {
        		 echo '<script>alert("Debe completar todos los campos con *");</script>';
-       		 redirect('/abms/AbmEmpleados/cargarNuevoEmpleado','refresh');
+       		 echo '<script>window.location="'.base_url().'abms/AbmEmpleados/cargarNuevoEmpleado";</script>';
 
         } else {
             if (isset($_POST['GuardarEnDB'])){
 				$this->AbmEmpleados_model->crearEmpleado($data);
 			}
 
-			redirect('/abms/AbmEmpleados','refresh');
+			echo '<script>window.location="'.base_url().'abms/AbmEmpleados";</script>';
         }	
 	}
 
@@ -94,14 +94,14 @@ class AbmEmpleados extends My_Controller{
  
         if ($this->form_validation->run() == FALSE) {
        		echo '<script>alert("Debe completar todos los campos con *");</script>';
-       		redirect('/abms/AbmEmpleados/editarEmpleado/'.$data['codE'],'refresh');
+       		echo '<script>window.location="'.base_url().'abms/AbmEmpleados/editarEmpleado";</script>';
 
         } else {
            	if (isset($_POST['ActualizarEnDB'])){
 				$this->AbmEmpleados_model->actualizarEmpleado($this->uri->segment(4),$datos);
 			}
 
-			redirect('/abms/AbmEmpleados','refresh');
+			echo '<script>window.location="'.base_url().'abms/AbmEmpleados";</script>';
         }	
 	}
 
@@ -109,6 +109,6 @@ class AbmEmpleados extends My_Controller{
 		$codE = $this->uri->segment(4);
 		$this->AbmEmpleados_model->eliminarEmpleado($codE);
 
-		redirect('/abms/AbmEmpleados','refresh');		
+		echo '<script>window.location="'.base_url().'abms/AbmEmpleados";</script>';	
 	}
 }
