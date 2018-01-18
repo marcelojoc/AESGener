@@ -48,6 +48,14 @@ var app = new Vue({
         idPlanillaCos:0,
 
 
+        coments:{
+
+            activo: true,
+
+
+        }
+
+
     },
 
     created: function () { 
@@ -125,6 +133,12 @@ var app = new Vue({
 
                 })
 
+            },
+
+            activa: function(valor){
+
+                this.coments.activo= valor;
+                
             }
 
     }
