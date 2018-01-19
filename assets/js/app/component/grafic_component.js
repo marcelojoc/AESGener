@@ -204,53 +204,43 @@ Vue.component('vm-comment',{
             <a data-toggle="tab" href="#"  @click="activa(false)">
                 <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
                 Aañadir Comentario
-                <!-- <span class="badge badge-danger">Nuevo</span> -->
             </a>
         </li>
     </ul>
 
-    <div class="tab-content">  
+    <div class="tab-content ">  
         <template>
                             
-        <div  v-if="coments.activo == true">
+        <div  v-if="coments.activo == true" class=" table-responsive ">
 
-                <table class="table table-striped table-responsive table-hover table-bordered ">
+                <table class="table table-striped  table-responsive table-condensed table-hover table-bordered ">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Comentario</th>
                                 <th>Usuario</th>
-                                <th>Accion</th>
+                                <th><span class="glyphicon glyphicon-align-center"></span></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td>Balbsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssoa</td>
+                                <td>Balbsssssssssssssssssssssssss</td>
                                 <td>Balboa</td>
                                 <td>   
-                                        <span class="glyphicon glyphicon-align-left"></span>
+                                        <span class="glyphicon glyphicon-align-center"></span>
                                 </td>
                     
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>Jonddddddddddddddddddddddddddddddddddddddddddddes</td>
+                                <td>cambios en el periferico saliente <br>numero 2323</td>
                                 <td>Jones</td>
                                 <td>
-                                    <span class="glyphicon glyphicon-align-left"></span>
+                                    <span class="glyphicon glyphicon-align-center"></span>
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td>2</td>
-                                <td>Jonddddddddddddddddddddddddddddddddddddddddddddes</td>
-                                <td>Jones</td>
-                                <td>
-                                    <span class="glyphicon glyphicon-align-left"></span>
-                                    <span class="glyphicon glyphicon-align-left"></span>
-                                </td>
-                            </tr>                                        
+                                       
                         </tbody>
 
                 </table>

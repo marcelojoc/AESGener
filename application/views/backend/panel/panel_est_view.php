@@ -485,68 +485,9 @@
                     </div>
 
                     <div class="col-xs-5">
+                        <vm-comment></vm-comment>
 
-                            <div class="tabbable">
-                                    <ul class="nav nav-tabs" >
-                                        <li class="active">
-                                            <a data-toggle="tab" href="#home">
-                                                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
-                                                Comentarios
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a data-toggle="tab" href="#messages">
-                                                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                                                Aañadir Comentario
-                                                <!-- <span class="badge badge-danger">Nuevo</span> -->
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                    <div class="tab-content">
-                                        <div id="home" class="tab-pane fade in active">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                    <th>#</th>
-                                                    <th>Contenido</th>
-                                                    <th>Autor</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Cambios de prefiltros en compresor</td>
-                                                    <td>pepito h</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>7-jul. Curso forzoso por fuga vapor en domo ppal. Caldera</td>
-                                                    <td>Thornton</td>
-                                                    </tr>
-
-                                                </tbody>
-                                                </table>
-                                        </div>
-
-                                        <div id="messages" class="tab-pane fade">
-                                            
-                                            <form action="">
-
-                                                <div class="form-group">
-                                                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                </div>
-                                                <button type="submit" class="btn btn-purple">Guardar Comentario</button>
-
-                                            </form>
-
-                                        </div>
-                                    </div>
-                            </div><br>
-
+                        <br>
                     </div><br>
 
             </div>  <!-- fin contenedor V-for -->
@@ -655,27 +596,14 @@
                         </div>
 
                     </template>
-                    
 
-                    
-
-
-                    
                 </div>
 
 
 
 
 
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
+
 <vm-comment></vm-comment>
 <vm-comment></vm-comment>
 <vm-comment></vm-comment>
