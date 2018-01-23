@@ -5,6 +5,7 @@
         <div class="row">
 
                     <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
+                    <input type="hidden" name="idEmpleado" id="idEmpleado" value="<?php echo $_SESSION['logged_in']['idEmpleado']; ?>">
                     <div class="page-header col-sm-4 text-center blueAES b-r">
                         <h1 class="blueAES">
                             
@@ -468,13 +469,13 @@
 
                                     <div class="col-xs-6 b-r">
 
-                                            <vm-grafico  v-if= " item.targetMes != ''"   v-bind:esperado='item.targetMes |truncar'  v-bind:real='item.actualMes |truncar'  lble="valor esperado  " lblr="valor real"></vm-grafico>
+                                            <vm-grafico  v-if= " item.targetMes != ''"   v-bind:esperado= "item.targetMes |truncar " v-bind:real= "item.actualMes |truncar"  lble="valor esperado  " lblr="valor real"></vm-grafico>
 
                                     </div>
 
                                     <div class="col-xs-6">
 
-                                            <vm-grafico  v-if= " item.targetMes != ''"   v-bind:esperado='item.targetMes |truncar'  v-bind:real='item.actualMes |truncar'  lble="valor esperado" lblr="valor real"></vm-grafico>
+                                            <vm-grafico  v-if= " item.targetMes != ''"   v-bind:esperado="item.targetMes |truncar"  v-bind:real= "item.actualMes |truncar"  lble="valor esperado" lblr="valor real"></vm-grafico>
 
                                     </div>
 
@@ -485,7 +486,10 @@
                     </div>
 
                     <div class="col-xs-5">
-                        <vm-comment></vm-comment>
+                    <template>
+                        <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaAES" tipo="a" v-bind:lista="item.comentarios"></vm-comment>
+                        
+                    </template>
 
                         <br>
                     </div><br>
@@ -494,120 +498,14 @@
 
          
 
+<pre>
+{{$data}}
+</pre> 
 
 
 
 
-
-
-
-
-<dir class="row">
-
-
-        <div class="tabbable">
-                <ul class="nav nav-tabs" >
-                    <li class="active">
-                        <a data-toggle="tab"  @click="activa(true)">
-                            <i class="greenAES ace-icon fa fa-key bigger-120"></i>
-                            Comentarios
-                        </a>
-                    </li>
-
-                    <li>
-                        <a data-toggle="tab" href="#"  @click="activa(false)">
-                            <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                            Aañadir Comentario
-                            <!-- <span class="badge badge-danger">Nuevo</span> -->
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="tab-content">
-
-                    <template >
-                        
-                        <div  v-if="coments.activo == true">
-    
-                                <table class="table table-striped table-responsive table-hover table-bordered ">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Comentario</th>
-                                                <th>Usuario</th>
-                                                <th>Accion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Balbsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssoa</td>
-                                                <td>Balboa</td>
-                                                <td>   
-                                                        <span class="glyphicon glyphicon-align-left"></span>
-                                                      </td>
-                                    
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Jonddddddddddddddddddddddddddddddddddddddddddddes</td>
-                                                <td>Jones</td>
-                                                <td>
-                                                    <span class="glyphicon glyphicon-align-left"></span>
-                                                </td>
-                                            </tr>
-        
-                                            <tr>
-                                                    <td>2</td>
-                                                    <td>Jonddddddddddddddddddddddddddddddddddddddddddddes</td>
-                                                    <td>Jones</td>
-                                                    <td>
-                                                        <span class="glyphicon glyphicon-align-left"></span>
-                                                        <span class="glyphicon glyphicon-align-left"></span>
-                                                    </td>
-                                                </tr>                                        
-                                        </tbody>
-    
-    
-                                        
-                                    </table>
-                                    <ul class="pager">
-                                            <li class="previous"><a href="#">&larr; Anterior</a></li>
-                                            <li class="next"><a href="#">Siguiente &rarr;</a></li>
-                                    </ul>
-        
-        
-                        </div>
-
-
-
-                        <div v-if="coments.activo == false" >
-                        
-                              
-        
-                                    <div class="form-group">
-                                            <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-purple">Guardar Comentario</button>
-        
-                               
-        
-                        </div>
-
-                    </template>
-
-                </div>
-
-
-
-
-
-
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
-<vm-comment></vm-comment>
+<!-- <vm-comment idempleado="tu Viejazzzzzz" idlinea="1" tipo="a"></vm-comment> -->
 
 
             </div>
@@ -615,22 +513,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <pre>
-{{$data}}
-</pre>  -->
 <!-- fin bloque CA -->
 
 

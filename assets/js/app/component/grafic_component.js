@@ -191,104 +191,77 @@ Vue.component('vm-comment',{
     
     // plantilla html
     template: `
-    <div class="tabbable">
-    <ul class="nav nav-tabs" >
-        <li class="active">
-            <a data-toggle="tab"  @click="activa(true)">
-                <i class="greenAES ace-icon fa fa-key bigger-120"></i>
-                Comentarios
-            </a>
-        </li>
+            <div class="tabbable">
+                <ul class="nav nav-tabs" >
+                    <li class="active">
+                        <a data-toggle="tab"  @click="activa(true)">
+                            <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                            Comentarios
+                        </a>
+                    </li>
 
-        <li>
-            <a data-toggle="tab" href="#"  @click="activa(false)">
-                <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                Aañadir Comentario
-            </a>
-        </li>
-    </ul>
-
-    <div class="tab-content ">  
-        <template>
-                            
-        <div  v-if="coments.activo == true" class=" table-responsive ">
-
-                <table class="table table-striped  table-responsive table-condensed table-hover table-bordered ">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Comentario</th>
-                                <th>Usuario</th>
-                                <th><span class="glyphicon glyphicon-align-center"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Balbsssssssssssssssssssssssss</td>
-                                <td>Balboa</td>
-                                <td>   
-                                        <span class="glyphicon glyphicon-align-center"></span>
-                                </td>
-                    
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>cambios en el periferico saliente <br>numero 2323</td>
-                                <td>Jones</td>
-                                <td>
-                                    <span class="glyphicon glyphicon-align-center"></span>
-                                </td>
-                            </tr>
-                                       
-                        </tbody>
-
-                </table>
-                <ul class="pager">
-                        <li class="previous"><a href="#">&larr; Anterior</a></li>
-                        <li class="next"><a href="#">Siguiente &rarr;</a></li>
+                    <li>
+                        <a data-toggle="tab" href="#"  @click="activa(false)">
+                            <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
+                            Aañadir Comentario
+                        </a>
+                    </li>
                 </ul>
 
+                <div class="tab-content ">  
+                    <template>
+                                        
+                    <div  v-if="coments.activo == true" class=" table-responsive ">
 
-        </div>
+                            <table class="table table-striped  table-responsive table-condensed table-hover table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Comentario</th>
+                                            <th>Usuario</th>
+                                            <th><span class="glyphicon glyphicon-align-center"></span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="item in lista" >
+                                            <td>{{item.idComentario}}</td>
+                                            <td>{{item.comentario}}</td>
+                                            <td>{{item.idEmpleado}}</td>
+                                            <td>   
+                                                    <span class="glyphicon glyphicon-align-center"></span>
+                                            </td>
+                                
+                                        </tr>
+
+                                                    
+                                    </tbody>
+
+                            </table>
+                            <ul class="pager">
+                                    <li class="previous"><a href="#">&larr; Anterior</a></li>
+                                    <li class="next"><a href="#">Siguiente &rarr;</a></li>
+                            </ul>
+
+
+                    </div>
 
 
 
-            <div v-if="coments.activo == false" >
-            
-                <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <div v-if="coments.activo == false" >
+                        
+                            <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Deja tu comentario</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="textArea"></textarea>
+                            </div>
+                            <button type="button" class="btn btn-purple" @click="setComment">Guardar Comentario</button>
+
+                        </div>
+
+                    </template>
+
                 </div>
-                <button type="submit" class="btn btn-purple">Guardar Comentario</button>
-
             </div>
 
-        </template>
-    
-    </div>
-
-
-</div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     `,
 
     data: function () {
@@ -298,27 +271,34 @@ Vue.component('vm-comment',{
             coments:{  // para switchar el cambio de vistas entre comentarios y nuevo comentario
 
                 activo: true,  
-    
+                idlinea:"",     
+                tipo:""
             },
 
-            lista:[], // aqui esta la lista de comentarios 
-           
+            textArea:"" ,// aqui esta la lista de comentarios 
+ 
         }
     },
-
     
+    props: ['idempleado', 'idlinea', 'tipo', 'lista'],
 
 
+    // beforeUpdate: function () {
 
-    props: [],
- 
-    computed: {
-        
+    //         this.$http.get(url+'getComment', { params: { linea: this.idlinea, 
 
+    //                                                     tipo: this.tipo
+    //                                                     } } ).then( function (resp){
+    //             this.lista= parseData(resp.data);
 
+    //         }, function(err){
+    //         //si sale mal
+    //             console.log(err);
+    //             alert ('Error de conexion');
+    //         });
+    // },
+  
 
-
-    },
 
     methods:{
 
@@ -326,19 +306,58 @@ Vue.component('vm-comment',{
 
             this.coments.activo= valor;
             
+        },
+
+
+        setComment: function(){
+
+            //metodo para guardar en la base
+            // si sale todo bien lo guarda en el modelo de listas
+alert('El comentario se ha guardado ....');
+
+
+console.log(this.lista);
+
+            if(this.lista== false){
+
+                this.lista=
+    
+                    [{comentario: this.textArea,
+                    estado:"1",
+                    fecha:"2018-01-22",
+                    idEmpleado: this.idempleado,
+                    idLineaAES: this.tipo == 'a' ? this.idlinea : '0',
+                    idLineaCostos: this.tipo == 'c' ? this.idlinea : '0',
+                    idLineaMTBF: this.tipo == 'm' ? this.idlinea : '0',
+                    idLineaSAP: this.tipo == 's' ? this.idlinea : '0',}]
+    
+
+            }else{
+
+                this.lista.push(
+    
+                    {comentario: this.textArea,
+                    estado:"1",
+                    fecha:"2018-01-22",
+                    idEmpleado: this.idempleado,
+                    idLineaAES: this.tipo == 'a' ? this.idlinea : '0',
+                    idLineaCostos: this.tipo == 'c' ? this.idlinea : '0',
+                    idLineaMTBF: this.tipo == 'm' ? this.idlinea : '0',
+                    idLineaSAP: this.tipo == 's' ? this.idlinea : '0',}
+    
+                )
+            }
+
+            this.textArea="";
+           
         }
+
+
 
 
     }
 
 })
-
-
-
-
-
-
-
 
 
 

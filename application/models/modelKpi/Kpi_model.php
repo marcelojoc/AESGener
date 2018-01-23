@@ -4,7 +4,7 @@ class Kpi_model extends CI_Model {
 	public function __construct() {
 
 		parent::__construct();
-
+		$this->load->model('/modelKpi/Comment_model');
 	}
 
 	/**
@@ -180,6 +180,7 @@ class Kpi_model extends CI_Model {
 				$this->db->where ('idComplejo', $idComplejo);				
 				$this->db->where ('linea_aes.idPlanilla', $idplnillaAes);
 				$this->db->select('
+							linea_aes.idLineaAES, 
 							linea_aes.actualMes, 
 							linea_aes.targetMes, 
 							linea_aes.ytdActual, 
@@ -237,6 +238,7 @@ class Kpi_model extends CI_Model {
 				$this->db->where ('idComplejo= 0');				
 				$this->db->where ('linea_aes.idPlanilla', $idplnillaAes);
 				$this->db->select('
+							linea_aes.idLineaAES, 
 							linea_aes.actualMes, 
 							linea_aes.targetMes, 
 							linea_aes.ytdActual, 
@@ -301,6 +303,7 @@ class Kpi_model extends CI_Model {
 				$this->db->where ('idDivision= 0');
 				$this->db->where ('linea_aes.idPlanilla', $idPlanilla);
 				$this->db->select('
+							linea_aes.idLineaAES , 
 							linea_aes.actualMes , 
 							linea_aes.targetMes, 
 							linea_aes.ytdActual, 
@@ -444,6 +447,7 @@ class Kpi_model extends CI_Model {
 		//en este caso kpi planilla es 4, pero esto debe ser dinamico
 
 		$this->db->select('  
+							linea_aes.idLineaAES ,
 							linea_aes.actualMes,
 							linea_aes.targetMes,
 							linea_aes.ytdActual,
@@ -469,12 +473,47 @@ class Kpi_model extends CI_Model {
 
 		if ($query->num_rows() > 0) {
 			
-			return $query->result();
+			$valores= $query->result();  // traigo todos los valores pedidos de los indicadores
+
+			$resultado=[];
+
+			foreach($valores as $item){
+
+				$comentarios= $this->Comment_model->getComment( $item->idLineaAES, 'a');
+
+				// array_push($valores[$key],  ['comentarios'=>$comentarios]);
+
+				$resultado[]=[
+
+					'idLineaAES'=>$item->idLineaAES,
+					'actualMes'=>$item->actualMes,
+					'targetMes'=>$item->targetMes,
+					'ytdActual'=>$item->ytdActual,
+					'ytdTarget'=>$item->ytdTarget,
+					'nombrePlanta'=>$item->nombrePlanta,
+					'comentarios'=>$comentarios,
+
+					];
+			}
+
+
+
+
+
+
+
+return $resultado;
+			// return [$valores, 'comentarios'=>$comentarios];
+
+		
 
 		}else{
 
 			return false;
 		}
+
+
+		
 	}
 	
 

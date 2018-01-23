@@ -12,7 +12,7 @@ class Panel extends My_Controller{
 		
 		$this->load->helper('url');
 
-		$this->load->model('/prueba/Kpi_model');
+		$this->load->model('/modelKpi/Kpi_model');
 
 	}
 	

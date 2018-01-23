@@ -5,6 +5,9 @@
         Math.trunc = Math.trunc || function(x) {
             return x - x % 1;
         }   
+
+        //aqui tomo el id del empleado que esta ingresando y lo pongo en el poaramentro de data  usuario
+        app.idEmpleado=$('#idEmpleado').val();
     });
     
 
@@ -47,13 +50,7 @@ var app = new Vue({
 
         idPlanillaCos:0,
 
-
-        coments:{
-
-            activo: true,
-
-
-        }
+        idEmpleado:0,
 
 
     },

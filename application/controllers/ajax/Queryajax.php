@@ -15,12 +15,13 @@ class Queryajax extends My_Controller{
 		$this->load->model('Bienvenida_model');
 		$this->load->helper('url');
 
-		$this->load->model('/prueba/Kpi_model');
+		$this->load->model('/modelKpi/Kpi_model');
+		$this->load->model('/modelKpi/Comment_model');
 
 		
 	}
 
-
+	//area kpi
 		public function vrcheckpanel(){
 
 			// paso el tipo de tablero y devuelvo los id que se corresponden
@@ -29,8 +30,6 @@ class Queryajax extends My_Controller{
 			echo json_encode($lista);
 
 		}
-
-
 	
 
 		public function vrPrueba(){  // trae todos las unidades generadoras
@@ -51,8 +50,6 @@ class Queryajax extends My_Controller{
 			echo json_encode($lista);
 
 		}
-
-
 
 
 		public function vrdata(){  // trae los datos de cada unidad complejo o divicion
@@ -117,9 +114,6 @@ class Queryajax extends My_Controller{
 		}
 
 
-
-
-
 		// metodos parte tactica
 
 
@@ -159,7 +153,6 @@ class Queryajax extends My_Controller{
 		}
 
 
-
 		function vrdivsap(){
 
 			//trae todos las diviciones segun la tabla sap
@@ -188,6 +181,55 @@ class Queryajax extends My_Controller{
 
 
 		}
+
+
+	// end area  kpi
+
+
+		// metodos de commentarios
+
+
+		public function getComment(){  // trae la lista de comentarios del indicador
+
+			$linea = $_GET['linea'];
+			$tipo = $_GET['tipo'];
+			$lista=  $this->Comment_model->getComment($linea, $tipo);
+			echo json_encode($lista);
+
+
+
+	
+		}
+	
+	
+	
+	
+		public function setComment(){  // guarda un comentario bajo un indicador
+	
+	
+	
+		}
+	
+	
+	
+	
+		public function closeComment (){  // no elimina sino cambia el estado de un comentario bajo un indicador
+	 
+	
+	
+	
+		}
+	
+	
+		public function editComment(){   // Editar un comentario  pero eso es para despues
+	
+	
+	
+		}
+
+
+
+
 
 
 
