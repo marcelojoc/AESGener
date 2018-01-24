@@ -197,16 +197,45 @@ class Queryajax extends My_Controller{
 			echo json_encode($lista);
 
 
-
-	
 		}
 	
 	
 	
 	
-		public function setComment(){  // guarda un comentario bajo un indicador
+		public function saveComment(){  // guarda un comentario bajo un indicador
 	
+			
+			$comentario = $_GET['comment'];
+			$empleado = $_GET['empleado'];
+			$aes = $_GET['aes'];
+			$sap = $_GET['sap'];
+			$mtbf = $_GET['mtbf'];
+			$cost = $_GET['cost'];
+			$hoy = date("Y-m-d");  
+
+			$data = array(
+				'comentario' => $comentario ,
+				'fecha' => $hoy ,
+				'idEmpleado' => $empleado ,
+				'idLineaAES' => $aes ,
+				'idLineaSAP' => $sap ,
+				'idLineaMTBF' => $mtbf ,
+				'idLineaCostos' => $cost ,
+				'estado' => '1'
+			 );
+			 
+			 $consulta= $this->db->insert('comentario', $data); 
 	
+			 if( $consulta ){
+
+				 $last_id = $this->db->insert_id();
+				 echo $last_id;
+
+			 }else{
+
+				echo false;
+			 }
+
 	
 		}
 	
@@ -215,7 +244,14 @@ class Queryajax extends My_Controller{
 	
 		public function closeComment (){  // no elimina sino cambia el estado de un comentario bajo un indicador
 	 
-	
+			$id= $_GET['idComment'];
+
+			$data = array(
+				'estado' => '0'
+			);
+
+			$this->db->where('id', $id);
+			$this->db->update('comentario', $data); 
 	
 	
 		}
@@ -223,7 +259,28 @@ class Queryajax extends My_Controller{
 	
 		public function editComment(){   // Editar un comentario  pero eso es para despues
 	
-	
+			$id= $_GET['idComment'];
+			$comentario = $_GET['comment'];
+			$empleado = $_GET['empleado'];
+			$aes = $_GET['aes'];
+			$sap = $_GET['sap'];
+			$mtbf = $_GET['mtbf'];
+			$cost = $_GET['cost'];
+			$hoy = date("Y-m-d"); 
+
+			$data = array(
+				'comentario' => $comentario ,
+				'fecha' => $hoy ,
+				'idEmpleado' => $empleado ,
+				'idLineaAES' => $aes ,
+				'idLineaSAP' => $sap ,
+				'idLineaMTBF' => $mtbf ,
+				'idLineaCostos' => $cost ,
+				'estado' => '1'
+			);
+
+			$this->db->where('id', $id);
+			$this->db->update('comentario', $data); 
 	
 		}
 

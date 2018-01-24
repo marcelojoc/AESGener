@@ -6,6 +6,7 @@
 
                     <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
                     <input type="hidden" name="idEmpleado" id="idEmpleado" value="<?php echo $_SESSION['logged_in']['idEmpleado']; ?>">
+                    <input type="hidden" name="nombreE" id="nombreE" value="<?php echo $_SESSION['logged_in']['nombreE']; ?>">
                     <div class="page-header col-sm-4 text-center blueAES b-r">
                         <h1 class="blueAES">
                             
@@ -498,9 +499,9 @@
 
          
 
-<pre>
+<!-- <pre>
 {{$data}}
-</pre> 
+</pre>  -->
 
 
 

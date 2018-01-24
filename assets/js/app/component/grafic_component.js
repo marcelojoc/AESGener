@@ -226,7 +226,7 @@ Vue.component('vm-comment',{
                                         <tr v-for="item in lista" >
                                             <td>{{item.idComentario}}</td>
                                             <td>{{item.comentario}}</td>
-                                            <td>{{item.idEmpleado}}</td>
+                                            <td>{{item.nombreE}}</td>
                                             <td>   
                                                     <span class="glyphicon glyphicon-align-center"></span>
                                             </td>
@@ -237,10 +237,10 @@ Vue.component('vm-comment',{
                                     </tbody>
 
                             </table>
-                            <ul class="pager">
+                            <!--                        <ul class="pager">
                                     <li class="previous"><a href="#">&larr; Anterior</a></li>
                                     <li class="next"><a href="#">Siguiente &rarr;</a></li>
-                            </ul>
+                            </ul>  -->
 
 
                     </div>
@@ -253,7 +253,7 @@ Vue.component('vm-comment',{
                                     <label for="exampleFormControlTextarea1">Deja tu comentario</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" v-model="textArea"></textarea>
                             </div>
-                            <button type="button" class="btn btn-purple" @click="setComment">Guardar Comentario</button>
+                            <button type="button" class="btn btn-purple" @click="saveComment">Guardar Comentario</button>
 
                         </div>
 
@@ -282,24 +282,6 @@ Vue.component('vm-comment',{
     
     props: ['idempleado', 'idlinea', 'tipo', 'lista'],
 
-
-    // beforeUpdate: function () {
-
-    //         this.$http.get(url+'getComment', { params: { linea: this.idlinea, 
-
-    //                                                     tipo: this.tipo
-    //                                                     } } ).then( function (resp){
-    //             this.lista= parseData(resp.data);
-
-    //         }, function(err){
-    //         //si sale mal
-    //             console.log(err);
-    //             alert ('Error de conexion');
-    //         });
-    // },
-  
-
-
     methods:{
 
         activa: function(valor){
@@ -309,52 +291,59 @@ Vue.component('vm-comment',{
         },
 
 
-        setComment: function(){
-
-            //metodo para guardar en la base
-            // si sale todo bien lo guarda en el modelo de listas
-alert('El comentario se ha guardado ....');
+        saveComment: function(){  // guarda el comentario en la base y devuelve el ultimo id guardado
 
 
-console.log(this.lista);
+            this.$http.get(url+'saveComment', { params: {   comment: this.textArea,
+                                                            empleado: this.idempleado, 
+                                                            aes: this.tipo == 'a' ? this.idlinea : '0',
+                                                            sap: this.tipo == 's' ? this.idlinea : '0', 
+                                                            mtbf: this.tipo == 'm' ? this.idlinea : '0', 
+                                                            cost: this.tipo == 'c' ? this.idlinea : '0',
 
-            if(this.lista== false){
+                                                        } } ).then( function (resp){
+                                
+                                console.log(this.lista);
+                
+                                if(this.lista== false){
+                    
+                                    this.lista=
+                        
+                                        [{comentario: this.textArea,
+                                        estado:"1",
+                                        idComentario: resp.data,
+                                        idEmpleado: this.idempleado,
+                                        idLineaAES: this.tipo == 'a' ? this.idlinea : '0',
+                                        idLineaCostos: this.tipo == 'c' ? this.idlinea : '0',
+                                        idLineaMTBF: this.tipo == 'm' ? this.idlinea : '0',
+                                        idLineaSAP: this.tipo == 's' ? this.idlinea : '0',}]
+                    
+                                }else{
+                    
+                                    this.lista.push(
+                        
+                                        {comentario: this.textArea,
+                                        estado:"1",
+                                        idComentario: resp.data,
+                                        idEmpleado: this.idempleado,
+                                        idLineaAES: this.tipo == 'a' ? this.idlinea : '0',
+                                        idLineaCostos: this.tipo == 'c' ? this.idlinea : '0',
+                                        idLineaMTBF: this.tipo == 'm' ? this.idlinea : '0',
+                                        idLineaSAP: this.tipo == 's' ? this.idlinea : '0',}
+                        
+                                    )
+                                }
+                    
+                                this.textArea="";
+                                alert('El comentario se ha guardado ....');
 
-                this.lista=
-    
-                    [{comentario: this.textArea,
-                    estado:"1",
-                    fecha:"2018-01-22",
-                    idEmpleado: this.idempleado,
-                    idLineaAES: this.tipo == 'a' ? this.idlinea : '0',
-                    idLineaCostos: this.tipo == 'c' ? this.idlinea : '0',
-                    idLineaMTBF: this.tipo == 'm' ? this.idlinea : '0',
-                    idLineaSAP: this.tipo == 's' ? this.idlinea : '0',}]
-    
-
-            }else{
-
-                this.lista.push(
-    
-                    {comentario: this.textArea,
-                    estado:"1",
-                    fecha:"2018-01-22",
-                    idEmpleado: this.idempleado,
-                    idLineaAES: this.tipo == 'a' ? this.idlinea : '0',
-                    idLineaCostos: this.tipo == 'c' ? this.idlinea : '0',
-                    idLineaMTBF: this.tipo == 'm' ? this.idlinea : '0',
-                    idLineaSAP: this.tipo == 's' ? this.idlinea : '0',}
-    
-                )
-            }
-
-            this.textArea="";
-           
+            }, function(err){
+            //si sale mal
+                console.log(err);
+                alert ('Error de conexion');
+            });
+            
         }
-
-
-
-
     }
 
 })

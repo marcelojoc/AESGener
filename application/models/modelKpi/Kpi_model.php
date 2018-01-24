@@ -496,16 +496,8 @@ class Kpi_model extends CI_Model {
 					];
 			}
 
-
-
-
-
-
-
-return $resultado;
-			// return [$valores, 'comentarios'=>$comentarios];
-
-		
+			return $resultado;
+						// return [$valores, 'comentarios'=>$comentarios];
 
 		}else{
 

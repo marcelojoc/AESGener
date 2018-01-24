@@ -8,6 +8,7 @@
 
         //aqui tomo el id del empleado que esta ingresando y lo pongo en el poaramentro de data  usuario
         app.idEmpleado=$('#idEmpleado').val();
+        app.nombreE=$('#nombreE').val();
     });
     
 
@@ -46,11 +47,13 @@ var app = new Vue({
         idcaSelect:"",  //el id de seleccion del area de Ca
         cakpi:[] ,     // kpi de comertial A..
 
-        idPlanillaAes:0,
+        idPlanillaAes:0,  //valores seteados a estandar depende del tipo de panel que selecciona
 
         idPlanillaCos:0,
 
-        idEmpleado:0,
+        idEmpleado:0,   // id empleado que esta logueado
+
+        nombreE:"",   // nombre empleado loqueado
 
 
     },
