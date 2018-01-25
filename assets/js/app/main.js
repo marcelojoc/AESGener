@@ -6,9 +6,6 @@
             return x - x % 1;
         }   
 
-        //aqui tomo el id del empleado que esta ingresando y lo pongo en el poaramentro de data  usuario
-        app.idEmpleado=$('#idEmpleado').val();
-        app.nombreE=$('#nombreE').val();
     });
     
 
@@ -55,17 +52,40 @@ var app = new Vue({
 
         nombreE:"",   // nombre empleado loqueado
 
+        anio:"",   // año seleccionado
+
+        mes:"",   // mes seleccionado
 
     },
 
     created: function () { 
 
-                this.$http.get(url+'vrcheckpanel', { params: { tab: "est" } } ).then( function (resp){
-
-                    var datos= parseData(resp.data);
+                //aqui tomo el id del empleado que esta ingresando y lo pongo en el poaramentro de data  usuario
+                this.idEmpleado=$('#idEmpleado').val();
+                this.nombreE=$('#nombreE').val();  // tomo el nombre del usuario para despues mostrarlo en los comentarios si es que añade uno
+                this.anio=$('#anio').val();  // tomo el año
+                this.mes=$('#mes').val();  // tomo el mes si viene en la url
                 
-                    this.idPlanillaAes= datos[0].idPlanilla;
-                    this.idPlanillaCos= datos[1].idPlanilla;
+                this.$http.get(url+'vrcheckpanel', { params: { tab: "est",
+                                                                anio: this.anio,
+                                                                mes: this.mes
+                                                                } } ).then( function (resp){
+
+                var datos = parseData(resp.data);
+                if(datos){
+
+                            this.idPlanillaAes= datos[0].idPlanilla;
+
+                            
+
+                            this.idPlanillaMtbf= datos[1].idPlanilla;
+
+
+                }else{
+
+                    alert('Sin datos para el mes '+this.mes+ ' del año '+ this.anio);
+
+                }
 
 
                 }, function(err){
@@ -73,6 +93,10 @@ var app = new Vue({
                     console.log(err);
                     alert ('Error de conexion');
                 });
+
+
+
+
     },
 
     methods:{

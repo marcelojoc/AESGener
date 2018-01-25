@@ -58,51 +58,128 @@ class Kpi_model extends CI_Model {
 	
 	
 
-	public function checkplanill($tablero){
+	public function checkplanill($tablero, $anio=null, $mes=null){
+
+
 
 		if($tablero == "est"){
 
-			// busco la planilla de tipo 1  mas reciente
-			$this->db->where (' idTipoPlanilla= 1');
-			$this->db->from('planilla');
-			$this->db->select_max('idPlanilla');
-			$query = $this->db->get();
-			$idplnillaAes= $query->result();
+			if($anio !="0" && $mes !="0" ){ // si es distinto de 0  entonces estoy buscando un mes especifico
+
+				$this->db->limit(1);
+				$this->db->order_by("idPlanilla", "desc"); 
+				$this->db->where ('mes', $mes );
+				$this->db->where ('anio', $anio );
+				$this->db->where (' idTipoPlanilla= 1');
+				$this->db->from('planilla');
+				$this->db->select('idPlanilla');
+				$query = $this->db->get();
+				$idplnillaAes= $query->result();
+
 			
 
-			//pido las de planilla 2
+				//pido las de planilla 2
+				$this->db->limit(1);
+				$this->db->order_by("idPlanilla", "desc"); 
+				$this->db->where ('mes', $mes );
+				$this->db->where ('anio', $anio );
+				$this->db->where ('idTipoPlanilla= 2');
+				$this->db->from('planilla');
+				$this->db->select('idPlanilla');
+				$query = $this->db->get();
+				$idplnillaMtbf= $query->result();
 
-			$this->db->where (' idTipoPlanilla= 2');
-			$this->db->from('planilla');
-			$this->db->select_max('idPlanilla');
-			$query = $this->db->get();
-			$idplnillaMtbf= $query->result();
+				//aqui verifico que si la segunda planilla no esta cargada la suplanto por null para que al menos 
+				// muestre los datos de la primera tabla
+			
 
-			$resultado = array_merge($idplnillaAes , $idplnillaMtbf);  // unifico los arreglos para devolver los resultados
+					if(empty($idplnillaMtbf)){
+
+						$idplnillaMtbf[]=['idPlanilla' =>null];
+						
+					}
+				
+
+
+			}else{  // si es 0 el mes o el año voy por defecto a la ultima cargada
+
+				// busco la planilla de tipo 1  mas reciente
+				$this->db->where ('idTipoPlanilla= 1');
+				$this->db->from('planilla');
+				$this->db->select_max('idPlanilla');
+				$query = $this->db->get();
+				$idplnillaAes= $query->result();
+				
+				//pido las de planilla 2
+	
+				$this->db->where ('idTipoPlanilla= 2');
+				$this->db->from('planilla');
+				$this->db->select_max('idPlanilla');
+				$query = $this->db->get();
+				$idplnillaMtbf= $query->result();
+
+			}
+
+
+			$resultado = array_merge($idplnillaAes, $idplnillaMtbf);  // unifico los arreglos para devolver los resultados
+			
 
 
 
+			//  var_dump($resultado);
 
 		}else{
 
 
 			if($tablero == "tac"){
 
-				// si es panel estrategico  es el tipo de tabla 1 y 2
-				$this->db->where (' idTipoPlanilla= 1');
-				$this->db->from('planilla');
-				$this->db->select_max('idPlanilla');
-				$query = $this->db->get();
-				$idplnillaAes= $query->result();
 
-				//pido las de planilla 4
+				if($anio !="0" && $mes !="0" ){
 
-				$this->db->where (' idTipoPlanilla= 4');
-				$this->db->from('planilla');
-				$this->db->select_max('idPlanilla');
+					// si es panel tac  es el tipo de tabla 1 y 4
+					$this->db->limit(1);
+					$this->db->order_by("idPlanilla", "desc"); 
+					$this->db->where ('mes', $mes );
+					$this->db->where ('anio', $anio );
+					$this->db->where (' idTipoPlanilla= 1');
+					$this->db->from('planilla');
+					$this->db->select('idPlanilla');
+					$query = $this->db->get();
+					$idplnillaAes= $query->result();
 
-				$query = $this->db->get();
-				$idplnillaMtbf= $query->result();
+
+					//pido las de planilla 4 mes y año
+					$this->db->limit(1);
+					$this->db->order_by("idPlanilla", "desc"); 
+					$this->db->where ('mes', $mes );
+					$this->db->where ('anio', $anio );
+					$this->db->where (' idTipoPlanilla= 4');
+					$this->db->from('planilla');
+					$this->db->select('idPlanilla');
+					$query = $this->db->get();
+					$idplnillaMtbf= $query->result();
+
+
+				}else{  // por defecto busco la ultima
+
+					// si es panel estrategico  es el tipo de tabla 1 y 2
+					$this->db->where (' idTipoPlanilla= 1');
+					$this->db->from('planilla');
+					$this->db->select_max('idPlanilla');
+					$query = $this->db->get();
+					$idplnillaAes= $query->result();
+
+					//pido las de planilla 4
+
+					$this->db->where (' idTipoPlanilla= 4');
+					$this->db->from('planilla');
+					$this->db->select_max('idPlanilla');
+					$query = $this->db->get();
+					$idplnillaMtbf= $query->result();
+
+
+				}
+
 
 				$resultado = array_merge($idplnillaAes , $idplnillaMtbf);  // unifico los arreglos para devolver los resultados
 
@@ -117,30 +194,82 @@ class Kpi_model extends CI_Model {
 				$query = $this->db->get();
 				$division_sap= $query->result(); // todas las diviciones de sap
 
-				foreach($division_sap as $item){  
+				if($anio !="0" && $mes !="0" ){ // si es distinto de 0  entonces estoy buscando un mes especifico
+
+					foreach($division_sap as $item){  
 					
-					// recorro cada una de las diviciones
-					// buscando en las ultimas planillas  y traigo los id
-
-					// si es panel op  es el tipo de tabla 3
-					$this->db->like('url', $item->nombreDivSAP); 
-					$this->db->where (' idTipoPlanilla= 3');
-					$this->db->from('planilla');
-					$this->db->select('*');
-					$query = $this->db->get();
-
-						if ($query->num_rows() > 0) {
-							$dato= $query->result();
-						
-							$resultado[]=["id"=>$item->idDivSAP,
-										  "nombreDivSAP"=>$item->nombreDivSAP,
-										  "idPlanilla"=>$dato[0]->idPlanilla
-						];
+						// recorro cada una de las diviciones
+						// buscando en las ultimas planillas  y traigo los id
+	
+						// si es panel op  es el tipo de tabla 3
+						$this->db->limit(1);
+						$this->db->order_by("idPlanilla", "desc"); 
+						$this->db->where ('mes', $mes );
+						$this->db->where ('anio', $anio );
+						$this->db->like('url', $item->nombreDivSAP); 
+						$this->db->where (' idTipoPlanilla= 3');
+						$this->db->from('planilla');
+						$this->db->select('*');
+	
+						$query = $this->db->get();
+	
+							if ($query->num_rows() > 0) {
+								$dato= $query->result();
 							
-						}
+								$resultado[]=["id"=>$item->idDivSAP,
+											  "nombreDivSAP"=>$item->nombreDivSAP,
+											  "idPlanilla"=>$dato[0]->idPlanilla
+							];
+								
+							}
+	
+					}
+
+				}else{ // en este caso solo busco el ultimo cargado
+
+
+					foreach($division_sap as $item){  
+					
+						// recorro cada una de las diviciones
+						// buscando en las ultimas planillas  y traigo los id
+
+						$month= date("m");  
+						$year= date("Y");  
+	// var_dump($month);
+	// var_dump($year);
+
+						// exit;
+						// si es panel op  es el tipo de tabla 3
+						$this->db->limit(1);
+						$this->db->order_by("idPlanilla", "desc"); 
+						$this->db->where ('mes', $mes );
+						$this->db->where ('anio', $anio );
+						$this->db->like('url', $item->nombreDivSAP); 
+						$this->db->where (' idTipoPlanilla= 3');
+						$this->db->from('planilla');
+						$this->db->select('*');
+	
+	
+						$query = $this->db->get();
+	
+							if ($query->num_rows() > 0) {
+								$dato= $query->result();
+							
+								$resultado[]=["id"=>$item->idDivSAP,
+											  "nombreDivSAP"=>$item->nombreDivSAP,
+											  "idPlanilla"=>$dato[0]->idPlanilla
+							];
+								
+							}
+	
+	
+					}
 
 
 				}
+
+
+
 
 				return $resultado;
 
@@ -151,9 +280,11 @@ class Kpi_model extends CI_Model {
 
 		}
 
-		
+		// aqui compruebo si el array de resultado esta vacio
+		// en caso de que este vacio devuelve falso disparando el alert de no hay datos
+		//si hay al menos un dato  lo devuelve 
 
-		if ($query->num_rows() > 0) {
+		if (count($resultado) > 1) {
 
 			return $resultado;
 
@@ -331,19 +462,12 @@ class Kpi_model extends CI_Model {
 	}
 	
 
-
-
-
-
-
-
-
 	// 	traigo los valores de Unidades generadoras
 	public function getValueUgfortac( $idUg, $idplanillaAes, $idPlanillaMtbf){
 
 		//var_dump($idplanillaAes);
 		$resultado=[];
-		// $idplanillaAes=21;
+		$idLineaAES="";  // variable para almacenar el id de referencia al cual hacer los comentarios
 		// $idPlanillaMtbf=25;
 
 		$this->db->where ('linea_aes.idKPI = 5' ); // busco los HEDP
@@ -356,19 +480,15 @@ class Kpi_model extends CI_Model {
 		$hedp = $query->result();
 
 		foreach($hedp as $item){
-
 			
 			$resultado[]=["nombre"=>"HEDP", "valor"=>$item->hedp, "leyenda"=>$item->nombreKPI];
 
 		}
 
-		
-
-
 		$this->db->where ('linea_aes.idKPI = 7' ); // busco los HSF
 		$this->db->where ('linea_aes.idPlanilla',$idplanillaAes );
 		$this->db->where ('linea_aes.idUnidadGen',$idUg );
-		$this->db->select('linea_aes.hsf, kpi.nombreKPI');
+		$this->db->select('linea_aes.hsf, kpi.nombreKPI, linea_aes.idLineaAES');
 		$this->db->join('kpi','kpi.idKPI = linea_aes.idKPI','left');
 		$this->db->from('linea_aes');
 		$query = $this->db->get();
@@ -378,7 +498,8 @@ class Kpi_model extends CI_Model {
 		foreach($hsf as $item){
 
 			// $resultado['hsf']=$item->hsf;
-			$resultado[]=["nombre"=>"HSF", "valor"=>$item->hsf, "leyenda"=>$item->nombreKPI];
+			$resultado[]=[ "idLineaAES"=> $item->idLineaAES ,"nombre"=>"HSF", "valor"=>$item->hsf, "leyenda"=>$item->nombreKPI];
+			$idLineaAES=$item->idLineaAES;
 
 		}
 
@@ -398,6 +519,23 @@ class Kpi_model extends CI_Model {
 
 		}
 
+
+		$comentarios= $this->Comment_model->getComment( $idLineaAES, 'a'); // busco los comentarios de los hsf hedf y el otro
+
+		
+
+			//$resultado['hedf']=$item->hedf;
+			$resultado[]=["comentarios"=>$comentarios];
+
+		
+
+
+
+
+
+
+
+
 		$this->db->where ('linea_mtbf.idKPI = 8' ); // busco los MTBF
 		$this->db->where ('linea_mtbf.idPlanilla',$idPlanillaMtbf );
 		$this->db->where ('linea_mtbf.idUnidadGen',$idUg );
@@ -406,6 +544,9 @@ class Kpi_model extends CI_Model {
 		$query = $this->db->get();
 		$mtbf = $query->result();
 
+
+
+
 		if ($query->num_rows() > 0) {
 			
 			foreach($mtbf as $item){
@@ -413,6 +554,8 @@ class Kpi_model extends CI_Model {
 					$resultado['mtbf']=$item->mtbf;
 					$resultado['mtbfTarget']=$item->mtbfTarget;
 					$resultado['tsf']=$item->tsf;
+					$resultado['mtbfComments']=$item->tsf; // aqui  mandar los comentarios de MTBF
+
 			}
 
 		}else{
@@ -422,20 +565,6 @@ class Kpi_model extends CI_Model {
 			$resultado['tsf']=false;
 		}
 		return $resultado;
-
-		// if ($query->num_rows() > 0) {
-
-		// 	return $query->result();
-		// }else{
-		// 	return false;
-		// }
-
-
-
-
-
-
-
 
 
 

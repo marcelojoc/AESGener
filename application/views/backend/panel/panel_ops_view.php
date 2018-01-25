@@ -2,9 +2,13 @@
     <div class="main-content-inner">
         <div class="page-content" id="app">
 
-<div class="row">
-                    
+    <div class="row">
                 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
+                <input type="hidden" name="idEmpleado" id="idEmpleado" value="<?php echo $_SESSION['logged_in']['idEmpleado']; ?>">
+                <input type="hidden" name="nombreE" id="nombreE" value="<?php echo $_SESSION['logged_in']['nombreE']; ?>">
+                <input type="hidden" name="anio" id="anio" value="<?php echo $anio; ?>">
+                <input type="hidden" name="mes" id="mes" value="<?php echo $mes; ?>">
+                
                 <div class="page-header col-sm-4 text-center blueAES b-r">
                     <h1 class="blueAES">
                          <strong>Tablero Operativo</strong>

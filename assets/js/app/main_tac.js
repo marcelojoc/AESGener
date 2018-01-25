@@ -4,7 +4,9 @@ $(function() {
     Math.trunc = Math.trunc || function(x) {
         return x - x % 1;
     }   
+
 });
+
 
 var url= $("#siteurl").val()+"ajax/";
 
@@ -28,17 +30,43 @@ var app = new Vue({
 
         idPlanillaMtbf:0,
 
+        idEmpleado:0,   // id empleado que esta logueado
+
+        nombreE:"",   // nombre empleado loqueado
+
+        anio:"",   // año seleccionado
+
+        mes:"",   // mes seleccionado
+
     },
 
 
     created: function () { 
         
+            //aqui tomo el id del empleado que esta ingresando y lo pongo en el poaramentro de data  usuario
+            this.idEmpleado=$('#idEmpleado').val();
+            this.nombreE=$('#nombreE').val();  // tomo el nombre del usuario para despues mostrarlo en los comentarios si es que añade uno
+            this.anio=$('#anio').val();  // tomo el año
+            this.mes=$('#mes').val();  // tomo el mes si viene en la url
+
             this.getugen()
-            this.$http.get(url+'vrcheckpanel', { params: { tab: "tac" } } ).then( function (resp){
+            this.$http.get(url+'vrcheckpanel', { params: { tab: "tac",
+                                                           anio: this.anio,
+                                                           mes: this.mes
+                                                         } } ).then( function (resp){
 
                 var datos = parseData(resp.data);
-                this.idPlanillaAes= datos[0].idPlanilla;
-                this.idPlanillaMtbf= datos[1].idPlanilla;
+                if(datos){
+                    
+
+                    this.idPlanillaAes= datos[0].idPlanilla;
+                    this.idPlanillaMtbf= datos[1].idPlanilla;
+
+                }else{
+
+                    alert('Sin datos para el mes '+this.mes+ ' del año '+ this.anio);
+
+                }
 
             }, function(err){
                 //si sale mal
@@ -63,9 +91,11 @@ var app = new Vue({
 
         getkpi: function(){
 
-            this.$http.post(url+'vrtactic', { dato: this.idSelect,
+            this.$http.post(url+'vrtactic', {   dato: this.idSelect,
                                                 idplanillaAes: this.idPlanillaAes,
-                                                idPlanillaMtbf: this.idPlanillaMtbf
+                                                idPlanillaMtbf: this.idPlanillaMtbf,
+                                                anio:this.anio,
+                                                mes: this.mes
                                             } )
             
             .then( function (resp,status, request){
@@ -80,7 +110,7 @@ var app = new Vue({
 
 
         },
-        getugen: function(){
+        getugen: function(){    // trae las unidades generadoras
 
             this.$http.post(url+'vrPrueba' ).then( function (resp){
 
@@ -99,7 +129,6 @@ var app = new Vue({
     }
 
 
-
-
-
 })
+
+

@@ -22,9 +22,8 @@ class Panel extends My_Controller{
 		function index(){
 
 
-			
-			
-			$data="";
+			$data['anio'] = $this->uri->segment(4, 0);
+			$data['mes'] = $this->uri->segment(3, 0);
 			
 			$js['javascript']= ["vendor/vue-resource.js","app/component/grafic_component.js", "app/main_general.js"];
 
@@ -37,19 +36,26 @@ class Panel extends My_Controller{
 
 		public function est(){
 
-				$data="";
+			$data['anio'] = $this->uri->segment(4, 0);
+			$data['mes'] = $this->uri->segment(3, 0);
 
-				$js['javascript']= ["vendor/vue-resource.js","app/component/grafic_component.js", "app/main.js"];
+			$js['javascript']= ["vendor/vue-resource.js","app/component/grafic_component.js", "app/main.js"];
 
-				$nombreVista="backend/panel/panel_est_view";
+			$nombreVista="backend/panel/panel_est_view";
+			$this->cargarVista($nombreVista,$data,$js);
 
-				$this->cargarVista($nombreVista,$data,$js);
 		}
 			
 
 		public function tac(){
 
-            $data="";
+
+			$data['anio'] = $this->uri->segment(4, 0);
+			$data['mes'] = $this->uri->segment(3, 0);
+			// var_dump($data);
+			// exit;
+
+            // $data="";
 
             $js['javascript']= ["vendor/vue-resource.js", "app/component/grafic_component.js", "app/main_tac.js"];
 
@@ -65,8 +71,8 @@ class Panel extends My_Controller{
 		
         public function ops(){
 			
-			$data="";
-	
+			$data['anio'] = $this->uri->segment(4, 0);
+			$data['mes'] = $this->uri->segment(3, 0);
 			$js['javascript']= ["vendor/vue-resource.js", "app/component/grafic_component.js", "app/main_op.js"];
 	
 			$nombreVista="backend/panel/panel_ops_view";

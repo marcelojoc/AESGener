@@ -42,8 +42,16 @@ var app = new Vue({
     methods:{
 
         divSap: function(){
-
-            this.$http.get(url+'vrdivsap').then(function (resp) {
+            
+            //aqui tomo el id del empleado que esta ingresando y lo pongo en el poaramentro de data  usuario
+            this.idEmpleado=$('#idEmpleado').val();
+            this.nombreE=$('#nombreE').val();  // tomo el nombre del usuario para despues mostrarlo en los comentarios si es que añade uno
+            this.anio=$('#anio').val();  // tomo el año
+            this.mes=$('#mes').val();  // tomo el mes si viene en la url
+            this.$http.get(url+'vrdivsap', { params: { tab: "ops",
+                                                        anio: this.anio,
+                                                        mes: this.mes
+                                                        } } ).then(function (resp) {
 
                 var data= parseData(resp.data);
                 this.divlista = data;

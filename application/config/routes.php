@@ -55,7 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['gener'] = 'gener/panel';
 $route['gener/(:any)'] = 'gener/panel/$1';
 
-
+$route['gener/(:any)/(:num)/(:num)'] = 'gener/panel/$1/$2/$3';
 /**
  * Esta area resuelve las rutas para peticiones ajax desde los componentes 
  * 

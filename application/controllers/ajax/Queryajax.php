@@ -26,7 +26,11 @@ class Queryajax extends My_Controller{
 
 			// paso el tipo de tablero y devuelvo los id que se corresponden
 			$tab = $_GET['tab'];
-			$lista=  $this->Kpi_model->checkplanill($tab);
+			$anio = $_GET['anio'];
+			$mes = $_GET['mes'];
+
+			$lista=  $this->Kpi_model->checkplanill($tab, $anio, $mes);
+
 			echo json_encode($lista);
 
 		}
@@ -131,6 +135,8 @@ class Queryajax extends My_Controller{
 					$id_ugen= $request->dato;
 					$idplanillaAes =$request->idplanillaAes;
 					$idPlanillaMtbf = $request->idPlanillaMtbf;
+					$anio= $request->anio;
+					$mes= $request->mes;
 
 				}else{
 
@@ -156,8 +162,11 @@ class Queryajax extends My_Controller{
 		function vrdivsap(){
 
 			//trae todos las diviciones segun la tabla sap
-			$datos=[];
-			$datos=$this->Kpi_model->checkplanill('ops');
+			$tab = $_GET['tab'];
+			$anio = $_GET['anio'];
+			$mes = $_GET['mes'];
+			
+			$datos=$this->Kpi_model->checkplanill($tab, $anio, $mes);
 			echo json_encode($datos);
 
 
