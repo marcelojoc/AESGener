@@ -66,7 +66,11 @@ var app = new Vue({
 
         },
 
+        nombreE:"",   // nombre empleado loqueado
 
+        anio:"",   // año seleccionado
+
+        mes:"",   // mes seleccionado
 
 
     },
@@ -75,6 +79,13 @@ var app = new Vue({
 
     created: function() {
         // cuando se crea la instancia actualizo los datos de listas de planillas y unidades generadoras
+
+        //aqui tomo el id del empleado que esta ingresando y lo pongo en el poaramentro de data  usuario
+        this.idEmpleado=$('#idEmpleado').val();
+        this.nombreE=$('#nombreE').val();  // tomo el nombre del usuario para despues mostrarlo en los comentarios si es que añade uno
+        this.anio=$('#anio').val();  // tomo el año
+        this.mes=$('#mes').val();  // tomo el mes si viene en la url
+
         this.divSapOp();
 
         this.createEst();
@@ -89,17 +100,31 @@ var app = new Vue({
         //Metodos para el tablero Oerativo
                 divSapOp: function(){
         
-                    this.$http.get(url+'vrdivsap').then(function (resp) {
+                    // this.$http.get(url+'vrdivsap').then(function (resp) {
         
-                        var data= parseData(resp.data);
-                        this.op.divlista = data;
+                    //     var data= parseData(resp.data);
+                    //     this.op.divlista = data;
         
+                    // }, function (err) {
+                    //     //si sale mal
+        
+                    //     console.log(err);
+                    //     alert('Error de conexion');
+                    // })
+
+                    this.$http.get(url+'vrdivsap', { params: { tab: "ops",
+                                                                anio: this.anio,
+                                                                mes: this.mes
+                                                            } } ).then(function (resp) {
+                    var data= parseData(resp.data);
+                    this.op.divlista = data;
+
                     }, function (err) {
-                        //si sale mal
-        
+                    //si sale mal
                         console.log(err);
                         alert('Error de conexion');
                     })
+
                 },
         
         
@@ -141,18 +166,60 @@ var app = new Vue({
 
             createEst: function(){
 
-                    this.$http.get(url+'vrcheckpanel', { params: { tab: "est" } } ).then( function (resp){
+                    // this.$http.get(url+'vrcheckpanel', { params: { tab: "est" } } ).then( function (resp){
                         
-                                var datos =parseData(resp.data);
+                    //             var datos =parseData(resp.data);
 
-                                this.est.idPlanillaAes= datos[0].idPlanilla;
-                                this.est.idPlanillaCos= datos[1].idPlanilla;
+                    //             this.est.idPlanillaAes= datos[0].idPlanilla;
+                    //             this.est.idPlanillaCos= datos[1].idPlanilla;
+
+                    //         }, function(err){
+                    //             //si sale mal
+                    //             console.log(err);
+                    //             alert ('Error de conexion');
+                    //         })
+
+
+                            // hago la peticion de datos pasando como parametro en tipo de tablero, año y mes
+                            this.$http.get(url+'vrcheckpanel', { params: { tab: "est",
+                                                                            anio: this.anio,
+                                                                            mes: this.mes
+                                                                        } 
+                                                                } 
+                            ).then( function (resp){ // si ests ok devuelve de acuerdo al mes y año enviado id planilla de costo y de AES
+
+                                var datos = parseData(resp.data);
+                                if(datos){
+
+                                    this.est.idPlanillaAes= datos[0].idPlanilla;
+                                    this.est.idPlanillaCos= datos[1].idPlanilla;
+
+                                }else{
+
+                                    alert('Sin datos para el mes '+this.mes+ ' del año '+ this.anio + " -Tablero estrategico-");
+
+                                }
 
                             }, function(err){
                                 //si sale mal
                                 console.log(err);
                                 alert ('Error de conexion');
-                            })
+                            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
            },
 
@@ -213,56 +280,80 @@ var app = new Vue({
 
             createTAC: function(){
 
-                this.$http.get(url+'vrcheckpanel', { params: { tab: "tac" } } ).then( function (resp){
+                // this.$http.get(url+'vrcheckpanel', { params: { tab: "tac" } } ).then( function (resp){
                     
-                                    var datos =parseData(resp.data);
+                //                     var datos =parseData(resp.data);
+                //                     this.tac.idPlanillaAes= datos[0].idPlanilla;
+                //                     this.tac.idPlanillaMtbf= datos[1].idPlanilla;
+                    
+                //                 }, function(err){
+                //                     //si sale mal
+                //                     console.log(err);
+                //                     alert ('Error de conexion');
+                //                 });
+
+
+                                this.$http.get(url+'vrcheckpanel', { params: { tab: "tac",
+                                                                                anio: this.anio,
+                                                                                mes: this.mes
+                                                                            } 
+                                                                    } 
+                                ).then( function (resp){
+
+                                var datos = parseData(resp.data);
+                                if(datos){
+
                                     this.tac.idPlanillaAes= datos[0].idPlanilla;
                                     this.tac.idPlanillaMtbf= datos[1].idPlanilla;
-                    
-                                }, function(err){
-                                    //si sale mal
-                                    console.log(err);
-                                    alert ('Error de conexion');
-                                });
+
+                                }else{
+
+                                    alert('Sin datos para el mes '+this.mes+ ' del año '+ this.anio+ " - Panel Tactico -");
+
+                                }
+
+                            }, function(err){
+                                //si sale mal
+                                console.log(err);
+                                alert ('Error de conexion');
+                            });
+
+
+
 
             },
 
 
 
 
-                getkpiTAC: function(){
+            getkpiTAC: function(){
 
-                        this.$http.post(url+'vrtactic', { dato: this.est.idList,
-                                                            idplanillaAes: this.tac.idPlanillaAes,
-                                                            idPlanillaMtbf: this.tac.idPlanillaMtbf
-                                                        } )
-                        
-                        .then( function (resp,status, request){
+                    this.$http.post(url+'vrtactic', { dato: this.est.idList,
+                        idplanillaAes: this.tac.idPlanillaAes,
+                        idPlanillaMtbf: this.tac.idPlanillaMtbf,
+                        anio:this.anio,
+                        mes: this.mes
+                                                    } )
+                    
+                    .then( function (resp,status, request){
 
-                            this.tac.kpi=parseData(resp.data);
+                        this.tac.kpi=parseData(resp.data);
 
-                        }, function(err){
-                            //si sale mal
-                            console.log(err);
-                            alert ('Error de conexion');
-                        });
+                    }, function(err){
+                        //si sale mal
+                        console.log(err);
+                        alert ('Error de conexion');
+                    });
 
 
-                    },
-                // getugenTAC: function(){
+                },
+
+
+
+
+
+
         
-                //     this.$http.post(url+'vrPrueba' ).then( function (resp){
-        
-                //         this.ugen = parseData(resp.data);
-        
-                //     }, function(err){
-                //         //si sale mal
-                //         console.log(err);
-                //         alert ('Error de conexion');
-                //     });
-        
-        
-                // },
 
 
 

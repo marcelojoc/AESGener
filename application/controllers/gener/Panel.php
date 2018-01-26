@@ -19,7 +19,7 @@ class Panel extends My_Controller{
 	
 	//#	endregion constructor de controlador test
 	
-		function index(){
+		function general(){
 
 
 			$data['anio'] = $this->uri->segment(4, 0);
@@ -65,8 +65,6 @@ class Panel extends My_Controller{
 			
 		}
 		
-        
-        
 		
 		
         public function ops(){
@@ -83,7 +81,21 @@ class Panel extends My_Controller{
 
         }
 
-                
+
+		
+        public function history(){
+			
+			$data['anio'] = $this->uri->segment(4, 0);
+			$data['mes'] = $this->uri->segment(3, 0);
+			$js['javascript']= [];
+	
+			$nombreVista="backend/panel/panel_hist_view";
+	
+			$this->cargarVista($nombreVista,$data,$js);
+			
+			
+
+        }		
 
 
     }

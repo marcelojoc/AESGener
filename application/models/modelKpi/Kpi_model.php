@@ -64,8 +64,14 @@ class Kpi_model extends CI_Model {
 
 		if($tablero == "est"){
 
-			if($anio !="0" && $mes !="0" ){ // si es distinto de 0  entonces estoy buscando un mes especifico
+			if($anio=="0" && $mes=="0" ){
 
+				$fecha= $this->lastDay(1);
+				
+				$anio= $fecha['anio'];
+				$mes = $fecha['mes'];
+			}
+			
 				$this->db->limit(1);
 				$this->db->order_by("idPlanilla", "desc"); 
 				$this->db->where ('mes', $mes );
@@ -76,7 +82,6 @@ class Kpi_model extends CI_Model {
 				$query = $this->db->get();
 				$idplnillaAes= $query->result();
 
-			
 
 				//pido las de planilla 2
 				$this->db->limit(1);
@@ -92,41 +97,14 @@ class Kpi_model extends CI_Model {
 				//aqui verifico que si la segunda planilla no esta cargada la suplanto por null para que al menos 
 				// muestre los datos de la primera tabla
 			
-
 					if(empty($idplnillaMtbf)){
 
 						$idplnillaMtbf[]=['idPlanilla' =>null];
 						
 					}
 				
-
-
-			}else{  // si es 0 el mes o el año voy por defecto a la ultima cargada
-
-				// busco la planilla de tipo 1  mas reciente
-				$this->db->where ('idTipoPlanilla= 1');
-				$this->db->from('planilla');
-				$this->db->select_max('idPlanilla');
-				$query = $this->db->get();
-				$idplnillaAes= $query->result();
-				
-				//pido las de planilla 2
-	
-				$this->db->where ('idTipoPlanilla= 2');
-				$this->db->from('planilla');
-				$this->db->select_max('idPlanilla');
-				$query = $this->db->get();
-				$idplnillaMtbf= $query->result();
-
-			}
-
-
 			$resultado = array_merge($idplnillaAes, $idplnillaMtbf);  // unifico los arreglos para devolver los resultados
 			
-
-
-
-			//  var_dump($resultado);
 
 		}else{
 
@@ -134,7 +112,13 @@ class Kpi_model extends CI_Model {
 			if($tablero == "tac"){
 
 
-				if($anio !="0" && $mes !="0" ){
+				if($anio =="0" && $mes =="0" ){
+
+					$fecha= $this->lastDay(1);
+					$anio= $fecha['anio'];
+					$mes = $fecha['mes'];
+
+				}
 
 					// si es panel tac  es el tipo de tabla 1 y 4
 					$this->db->limit(1);
@@ -158,27 +142,6 @@ class Kpi_model extends CI_Model {
 					$this->db->select('idPlanilla');
 					$query = $this->db->get();
 					$idplnillaMtbf= $query->result();
-
-
-				}else{  // por defecto busco la ultima
-
-					// si es panel estrategico  es el tipo de tabla 1 y 2
-					$this->db->where (' idTipoPlanilla= 1');
-					$this->db->from('planilla');
-					$this->db->select_max('idPlanilla');
-					$query = $this->db->get();
-					$idplnillaAes= $query->result();
-
-					//pido las de planilla 4
-
-					$this->db->where (' idTipoPlanilla= 4');
-					$this->db->from('planilla');
-					$this->db->select_max('idPlanilla');
-					$query = $this->db->get();
-					$idplnillaMtbf= $query->result();
-
-
-				}
 
 
 				$resultado = array_merge($idplnillaAes , $idplnillaMtbf);  // unifico los arreglos para devolver los resultados
@@ -228,22 +191,17 @@ class Kpi_model extends CI_Model {
 				}else{ // en este caso solo busco el ultimo cargado
 
 
+					$fecha= $this->lastDay(3); // busco ultimo mes y año de carga de el tipo de planilla 3  sap
+
 					foreach($division_sap as $item){  
 					
 						// recorro cada una de las diviciones
 						// buscando en las ultimas planillas  y traigo los id
-
-						$month= date("m");  
-						$year= date("Y");  
-	// var_dump($month);
-	// var_dump($year);
-
-						// exit;
 						// si es panel op  es el tipo de tabla 3
 						$this->db->limit(1);
 						$this->db->order_by("idPlanilla", "desc"); 
-						$this->db->where ('mes', $mes );
-						$this->db->where ('anio', $anio );
+						$this->db->where ('mes', $fecha['mes'] );
+						$this->db->where ('anio', $fecha['anio'] );
 						$this->db->like('url', $item->nombreDivSAP); 
 						$this->db->where (' idTipoPlanilla= 3');
 						$this->db->from('planilla');
@@ -262,22 +220,14 @@ class Kpi_model extends CI_Model {
 								
 							}
 	
-	
 					}
-
 
 				}
 
-
-
-
 				return $resultado;
 
-
-
 			}
-
-
+		
 		}
 
 		// aqui compruebo si el array de resultado esta vacio
@@ -769,7 +719,42 @@ class Kpi_model extends CI_Model {
 					return false;
 				}
 		
-			}
+	}
+
+
+
+	public function lastDay($tipo){
+
+		//en base a ese año  saco el mes mas alto
+		
+		$this->db->where ('idTipoPlanilla', $tipo);
+		$this->db->select_max('anio');
+		$this->db->from('planilla');
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+
+			$anio= $query->result()[0]->anio; // guardo el año mayor para el tipo de planilla seleccionado
+
+		}else{
+
+			return false; // si no hay años cargados probablemente no hay fichas cargadas para ese tipo de planilla
+		}
+
+		$this->db->where ('anio', $anio);
+		$this->db->where ('idTipoPlanilla', $tipo);
+		$this->db->select_max('mes');
+		$this->db->from('planilla');
+		$query = $this->db->get();
+		if ($query->num_rows() > 0) {
+
+			$mes= $query->result()[0]->mes; // guardo el año mayor para el tipo de planilla seleccionado
+
+		}
+
+
+		return ['anio'=>$anio , 'mes'=>$mes ];
+
+	}
 
 
 

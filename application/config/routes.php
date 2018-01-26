@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['gener'] = 'gener/panel';
+$route['gener'] = 'gener/panel/history';
 $route['gener/(:any)'] = 'gener/panel/$1';
 
 $route['gener/(:any)/(:num)/(:num)'] = 'gener/panel/$1/$2/$3';

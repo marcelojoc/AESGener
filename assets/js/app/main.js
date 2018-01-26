@@ -72,30 +72,23 @@ var app = new Vue({
                                                                 } } ).then( function (resp){
 
                 var datos = parseData(resp.data);
-                if(datos){
+                    if(datos){
 
-                            this.idPlanillaAes= datos[0].idPlanilla;
-
-                            
-
-                            this.idPlanillaMtbf= datos[1].idPlanilla;
+                                this.idPlanillaAes= datos[0].idPlanilla;
+                                this.idPlanillaMtbf= datos[1].idPlanilla;
 
 
-                }else{
+                    }else{
 
-                    alert('Sin datos para el mes '+this.mes+ ' del año '+ this.anio);
+                        alert('Sin datos para el mes '+this.mes+ ' del año '+ this.anio);
 
-                }
-
+                    }
 
                 }, function(err){
                     //si sale mal
                     console.log(err);
                     alert ('Error de conexion');
                 });
-
-
-
 
     },
 
