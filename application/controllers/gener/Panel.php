@@ -13,6 +13,7 @@ class Panel extends My_Controller{
 		$this->load->helper('url');
 
 		$this->load->model('/modelKpi/Kpi_model');
+		$this->load->model('/modelKpi/History_model');
 
 	}
 	
@@ -85,8 +86,10 @@ class Panel extends My_Controller{
 		
         public function history(){
 			
-			$data['anio'] = $this->uri->segment(4, 0);
-			$data['mes'] = $this->uri->segment(3, 0);
+			// $data['meses'] = $this->History_model->getMonth();
+			// $data['anios'] = $this->History_model->getYears();
+			$data['panels'] = $this->History_model->getPanles(); 
+
 			$js['javascript']= [];
 	
 			$nombreVista="backend/panel/panel_hist_view";
