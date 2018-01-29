@@ -16,7 +16,10 @@
                 <input type="hidden" name="siteurl" id="siteurl" value="<?php echo base_url(); ?>">
                 <div class="page-header col-sm-12 text-center blueAES b-r">
                     <h1 class="blueAES">
-                        <strong>Tablero General</strong>                       
+                        <strong v-if=" anio== 0 && mes== 0">Tablero General </strong>
+
+
+                        <strong v-else="">Tablero General - {{mes}}/{{anio}}</strong>                     
                     </h1>
                 </div>  
 

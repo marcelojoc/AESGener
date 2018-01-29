@@ -11,7 +11,11 @@
                 
                 <div class="page-header col-sm-4 text-center blueAES b-r">
                     <h1 class="blueAES">
-                         <strong>Tablero Operativo</strong>
+
+                        <strong v-if=" anio== 0 && mes== 0">Tablero Operativo </strong>
+
+
+                        <strong v-else="">Tablero Operativo - {{mes}}/{{anio}}</strong>
                     </h1>
                 </div>  
                 <div class=" col-sm-8 form-inline ">

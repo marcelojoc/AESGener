@@ -280,18 +280,6 @@ var app = new Vue({
 
             createTAC: function(){
 
-                // this.$http.get(url+'vrcheckpanel', { params: { tab: "tac" } } ).then( function (resp){
-                    
-                //                     var datos =parseData(resp.data);
-                //                     this.tac.idPlanillaAes= datos[0].idPlanilla;
-                //                     this.tac.idPlanillaMtbf= datos[1].idPlanilla;
-                    
-                //                 }, function(err){
-                //                     //si sale mal
-                //                     console.log(err);
-                //                     alert ('Error de conexion');
-                //                 });
-
 
                                 this.$http.get(url+'vrcheckpanel', { params: { tab: "tac",
                                                                                 anio: this.anio,
@@ -325,7 +313,6 @@ var app = new Vue({
 
 
 
-
             getkpiTAC: function(){
 
                     this.$http.post(url+'vrtactic', { dato: this.est.idList,
@@ -343,6 +330,7 @@ var app = new Vue({
                         //si sale mal
                         console.log(err);
                         alert ('Error de conexion');
+                        
                     });
 
 

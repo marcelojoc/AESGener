@@ -12,7 +12,11 @@
                     <div class="page-header col-sm-4 text-center blueAES b-r">
                         <h1 class="blueAES">
                             
-                            <strong>Tablero Estratégico </strong>
+                            <strong v-if=" anio== 0 && mes== 0">Tablero Estratégico </strong>
+
+
+                            <strong v-else="">Tablero Estratégico - {{mes}}/{{anio}}</strong>
+
                         </h1>
                     </div>  
                     <div class=" col-sm-8 blueAES form-inline ">

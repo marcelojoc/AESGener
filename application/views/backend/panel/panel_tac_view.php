@@ -12,7 +12,10 @@
                 <input type="hidden" name="nombreE" id="nombreE" value="<?php echo $_SESSION['logged_in']['nombreE']; ?>">
             <div class="page-header col-sm-4 text-center blueAES b-r">
                 <h1 class="blueAES">
-                <strong>Tablero Táctico</strong>
+                    <strong v-if=" anio== 0 && mes== 0">Tablero Táctico </strong>
+
+
+                    <strong v-else="">Tablero Táctico - {{mes}}/{{anio}}</strong>
                 </h1>
             </div>  
             <div class=" col-sm-8 form-inline ">

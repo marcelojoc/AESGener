@@ -181,3 +181,24 @@
       -webkit-transform: scaleY(1.0);
     }
   }
+
+
+
+  /* ESTILO PARA TABLAS DE HISTORIAL */
+
+
+  .style-anio{
+
+    font-style:italic;
+    font-weight:bold;
+    font-size:2em;
+
+   vertical-align:middle;
+
+  }
+
+  .link-tab td a{
+
+    margin-left: 1.9em;
+
+  }
