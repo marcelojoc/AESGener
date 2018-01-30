@@ -75,7 +75,7 @@ var app = new Vue({
                     if(datos){
 
                                 this.idPlanillaAes= datos[0].idPlanilla;
-                                this.idPlanillaMtbf= datos[1].idPlanilla;
+                                this.idPlanillaCos= datos[1].idPlanilla;
 
 
                     }else{

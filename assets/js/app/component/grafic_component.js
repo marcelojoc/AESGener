@@ -271,8 +271,7 @@ Vue.component('vm-comment',{
             coments:{  // para switchar el cambio de vistas entre comentarios y nuevo comentario
 
                 activo: true,  
-                idlinea:"",     
-                tipo:""
+
             },
 
             textArea:"" ,// aqui esta la lista de comentarios 
@@ -306,7 +305,7 @@ Vue.component('vm-comment',{
                                 console.log(this.lista);
                 
                                 if(this.lista== false){
-                    
+                                    
                                     this.lista=
                         
                                         [{comentario: this.textArea,

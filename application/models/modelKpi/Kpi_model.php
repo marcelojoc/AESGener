@@ -92,20 +92,22 @@ class Kpi_model extends CI_Model {
 				$this->db->from('planilla');
 				$this->db->select('idPlanilla');
 				$query = $this->db->get();
-				$idplnillaMtbf= $query->result();
+				$idplanillaCosto= $query->result();
 
 				//aqui verifico que si la segunda planilla no esta cargada la suplanto por null para que al menos 
 				// muestre los datos de la primera tabla
 			
-					if(empty($idplnillaMtbf)){
+					if(empty($idplanillaCosto)){
 
-						$idplnillaMtbf[]=['idPlanilla' =>null];
+						$idplanillaCosto[]=['idPlanilla' =>null];
 						
 					}
 				
-			$resultado = array_merge($idplnillaAes, $idplnillaMtbf);  // unifico los arreglos para devolver los resultados
+			$resultado = array_merge($idplnillaAes, $idplanillaCosto);  // unifico los arreglos para devolver los resultados
 			
 
+
+			
 		}else{
 
 
@@ -280,6 +282,7 @@ class Kpi_model extends CI_Model {
 					$this->db->where ('idDivision =0' );
 					$this->db->where ('idComplejo', $idComplejo);
 					$this->db->select('
+								linea_costos.idLineaCostos,
 								linea_costos.ctmActual,
 								linea_costos.ctmBudget,
 								kpi.abreviaturaKPI AS nombreKPI');
@@ -291,14 +294,42 @@ class Kpi_model extends CI_Model {
 						$array2= $query2->result(); // vuelco el resultado en array2
 						
 				
-					$resultado = array_merge($array1 , $array2);  // unifico los arreglos para devolver los resultados
+					$arraytmp = array_merge($array1 , $array2);  // unifico los arreglos para devolver los resultados
 					// compruebo que el array no este vacio
 	
-					if(count($resultado)==0) { 
+					if(count($arraytmp)==0) { 
 	
 						return false;
 	
 					}else{ 
+
+
+						foreach($arraytmp as $item){
+
+							if($item->nombreKPI == 'CTM OPEX'){
+	
+								$resultado[]=["idLineaCostos"=>$item->idLineaCostos, 
+	
+												"ctmActual"=>$item->ctmActual,
+												"ctmBudget"=>$item->ctmBudget,
+												"nombreKPI"=>$item->nombreKPI,
+												"comentarios"=>$this->Comment_model->getComment( $item->idLineaCostos, 'c')
+											];
+	
+							}else{
+	
+								$resultado[]=["idLineaAES"=>$item->idLineaAES, 
+												"actualMes"=>$item->actualMes, 
+												"targetMes"=>$item->targetMes, 
+												"ytdActual"=>$item->ytdActual, 
+												"ytdTarget"=>$item->ytdTarget, 
+												"nombreKPI"=>$item->nombreKPI,
+												"comentarios"=>$this->Comment_model->getComment( $item->idLineaAES, 'a')
+											
+											];
+							}
+	
+						}
 	
 						return $resultado; 
 					}  
@@ -339,29 +370,58 @@ class Kpi_model extends CI_Model {
 				$this->db->where ('idDivision',$idDivision );
 				$this->db->where ('idComplejo= 0');
 				$this->db->select('
+							linea_costos.idLineaCostos,
 							linea_costos.ctmActual,
 							linea_costos.ctmBudget,
 							kpi.abreviaturaKPI AS nombreKPI');
 		 		$this->db->from('linea_costos');
 		 		$this->db->join('kpi','kpi.idKPI = linea_costos.idKPI','left');
 
-				 $query2 = $this->db->get();
-				 
-				
-					
-					$array2= $query2->result(); 
-					
-				
+				$query2 = $this->db->get();
 
-				$resultado = array_merge($array1 , $array2);
+				$array2= $query2->result(); 
+
+				$arraytmp = array_merge($array1 , $array2);
+
+
 				// compruebo que el array no este vacio
 
-				if(count($resultado)==0) { 
+
+				if(count($arraytmp)==0) { 
 
 					return false;
 
 				}else{ 
 
+					foreach($arraytmp as $item){
+
+						if($item->nombreKPI == 'CTM OPEX'){
+
+							$resultado[]=["idLineaCostos"=>$item->idLineaCostos, 
+
+											"ctmActual"=>$item->ctmActual,
+											"ctmBudget"=>$item->ctmBudget,
+											"nombreKPI"=>$item->nombreKPI,
+											"comentarios"=>$this->Comment_model->getComment( $item->idLineaCostos, 'c')
+										];
+
+						}else{
+
+							$resultado[]=["idLineaAES"=>$item->idLineaAES, 
+											"actualMes"=>$item->actualMes, 
+											"targetMes"=>$item->targetMes, 
+											"ytdActual"=>$item->ytdActual, 
+											"ytdTarget"=>$item->ytdTarget, 
+											"nombreKPI"=>$item->nombreKPI,
+											"comentarios"=>$this->Comment_model->getComment( $item->idLineaAES, 'a')
+										
+										];
+						}
+
+					}
+
+
+					// var_dump($resultado); exit;
 					return $resultado; 
 				}  
 
@@ -378,7 +438,9 @@ class Kpi_model extends CI_Model {
 		 * recibo el id de la unidad generadora y el id de la planilla del mes seleccionado
 		 */
 
-		
+		$resultado=[];
+		$idLineaAES="";  // variable para almacenar el id de referencia al cual hacer los comentarios
+
 				$this->db->where ('idUnidadGen',$idUg );
 				$this->db->where ('idComplejo= 0');
 				$this->db->where ('idDivision= 0');
@@ -397,9 +459,27 @@ class Kpi_model extends CI_Model {
 
 				$query = $this->db->get();
 
+
+
 				if ($query->num_rows() > 0) {
 
-					return $query->result();
+
+
+					foreach($query->result() as $item){
+
+						$resultado[]=["idLineaAES"=>$item->idLineaAES, 
+										"actualMes"=>$item->actualMes, 
+										"targetMes"=>$item->targetMes, 
+										"ytdActual"=>$item->ytdActual, 
+										"ytdTarget"=>$item->ytdTarget, 
+										"nombreKPI"=>$item->nombreKPI,
+										"comentarios"=>$this->Comment_model->getComment( $item->idLineaAES, 'a')
+									
+									];
+
+					}
+
+					return $resultado;
 
 				}
 				
@@ -470,21 +550,13 @@ class Kpi_model extends CI_Model {
 		}
 
 
-		$comentarios= $this->Comment_model->getComment( $idLineaAES, 'a'); // busco los comentarios de los hsf hedf y el otro
-
-		
-
+			$comentarios= $this->Comment_model->getComment( $idLineaAES, 'm'); // busco los comentarios de los hsf hedf y el otro
+	
 			//$resultado['hedf']=$item->hedf;
-			$resultado[]=["comentarios"=>$comentarios];
+			// $resultado[]=["comentarios"=>$comentarios];
+			$resultado['comments']=["comentarios"=>$comentarios, "idLineaAES"=>$idLineaAES ];
 
 		
-
-
-
-
-
-
-
 
 		$this->db->where ('linea_mtbf.idKPI = 8' ); // busco los MTBF
 		$this->db->where ('linea_mtbf.idPlanilla',$idPlanillaMtbf );
@@ -501,10 +573,11 @@ class Kpi_model extends CI_Model {
 			
 			foreach($mtbf as $item){
 				
+					$resultado['idLineaMTBF']=$item->idLineaMTBF;
 					$resultado['mtbf']=$item->mtbf;
 					$resultado['mtbfTarget']=$item->mtbfTarget;
 					$resultado['tsf']=$item->tsf;
-					$resultado['mtbfComments']=$item->tsf; // aqui  mandar los comentarios de MTBF
+					$resultado['mtbfComments']=$this->Comment_model->getComment( $item->idLineaMTBF, 'm'); // aqui  mandar los comentarios de MTBF
 
 			}
 
@@ -674,7 +747,7 @@ class Kpi_model extends CI_Model {
 
 	public function getDataDivSap($idDiv, $idPlanilla=null){
 
-
+		$resultado=[];
 		// traigo los paramentros para la division generadora
 		//unificando con la tabla kpi
 		//y la tabla linea_sap
@@ -684,6 +757,7 @@ class Kpi_model extends CI_Model {
 				$this->db->where ('linea_sap.idDivSAP',$idDiv );
 
 				$this->db->select('
+					linea_sap.idLineaSAP,
 					linea_sap.hsPlanificadasBL,
 					linea_sap.hsEjecutadasBL,
 					linea_sap.hsPendientesBL,
@@ -710,9 +784,40 @@ class Kpi_model extends CI_Model {
 				$this->db->join('parametro','parametro.idDivSAP = linea_sap.idDivSAP','left');
 				 
 				$query = $this->db->get();
+
 				if ($query->num_rows() > 0) {
-		
-					return $query->result();
+
+					foreach($query->result() as $item){
+
+						$resultado[]=[  "idLineaSAP"=>$item->idLineaSAP, 
+										"hsPlanificadasBL"=>$item->hsPlanificadasBL, 
+										"hsEjecutadasBL"=>$item->hsEjecutadasBL, 
+										"hsPendientesBL"=>$item->hsPendientesBL, 
+										"backlogReal"=>$item->backlogReal, 
+										"hsTrabRealTotal"=>$item->hsTrabRealTotal,
+										"hsTRCorrectivo"=>$item->hsTRCorrectivo,
+										"hsTRPreventivo"=>$item->hsTRPreventivo,
+										"hsDispMensual"=>$item->hsDispMensual,
+										"hsTRPlanificadas"=>$item->hsTRPlanificadas,
+										"cantOTCompletas"=>$item->cantOTCompletas,
+										"cantOTs"=>$item->cantOTs,
+										"trabajoProactivo"=>$item->trabajoProactivo,
+										"proactivoBudget"=>$item->proactivoBudget,
+										"nombreKPI"=>$item->nombreKPI,
+										"backlogBudget"=>$item->backlogBudget,
+										"hsDispSemana"=>$item->hsDispSemana,
+										"correctivoBudget"=>$item->correctivoBudget,
+										"preventivoBudget"=>$item->preventivoBudget,
+										"comentarios"=>$this->Comment_model->getComment( $item->idLineaSAP, 's')
+									
+									];
+
+					}
+
+					return $resultado;
+
+
+
 				}
 				else{
 		

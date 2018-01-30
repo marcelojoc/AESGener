@@ -18,8 +18,14 @@ var app = new Vue({
         divselect:"",
         idPlanilla:"",
         valores: [],
+        cakpi:[],
+        idEmpleado:0,   // id empleado que esta logueado
 
-        cakpi:[]
+        nombreE:"",   // nombre empleado loqueado
+
+        anio:"",   // año seleccionado
+
+        mes:"",   // mes seleccionado        
 
     },
 

@@ -142,18 +142,15 @@
                      </div>
 
 
+                     <div class="col-xs-4 animated jackInTheBox">
 
+                            <template>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaAES" tipo="a" v-bind:lista="item.comentarios"></vm-comment>
+                                    
+                            </template>
 
-                     <div class="col-xs-4 animated jackInTheBox"><div class="tabbable"><ul class="nav nav-tabs" id="myTab"><li class="active"><a data-toggle="tab" href="#home">
-                        <i class="greenAES ace-icon fa fa-comments bigger-120"></i>Comentarios</a></li><li>
-                        <a data-toggle="tab" href="#messages"><i class="greenAES ace-icon fa fa-comment bigger-120"></i>Añadir Comentario</a>
-                        </li></ul><div class="tab-content "><div id="home" class="tab-pane fade in active"><table class="table">
-                        <thead><tr><th>#</th><th>Contenido</th><th>Autor</th></tr></thead>
-                        <tbody><tr><th scope="row">1</th><td>Cambios de prefiltros en compresor</td><td>pepito h</td></tr><tr><tr></tbody></table></div>
-                        <div id="messages" class="tab-pane fade"><form action="">
-                        <div class="form-group"><label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></div>
-                        <button type="submit" class="btn btn-purple">Guardar Comentario</button></form></div></div></div><br></div>   <br> 
+                    
+                    </div><br> 
 
 
                 </div>
@@ -219,21 +216,14 @@
                      </div>
 
 
+                     <div class="col-xs-4 animated jackInTheBox">
 
+                            <template>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaAES" tipo="a" v-bind:lista="item.comentarios"></vm-comment>
+                                    
+                            </template>
 
-                     <div class="col-xs-4 animated jackInTheBox"><div class="tabbable"><ul class="nav nav-tabs" id="myTab"><li class="active"><a data-toggle="tab" href="#home">
-                        <i class="greenAES ace-icon fa fa-comments bigger-120"></i>Comentarios</a></li><li>
-                        <a data-toggle="tab" href="#messages"><i class="greenAES ace-icon fa fa-comment bigger-120"></i>Añadir Comentario</a>
-                        </li></ul><div class="tab-content "><div id="home" class="tab-pane fade in active"><table class="table">
-                        <thead><tr><th>#</th><th>Contenido</th><th>Autor</th></tr></thead>
-                        <tbody><tr><th scope="row">1</th><td>Cambios de prefiltros en compresor</td><td>pepito h</td></tr><tr><tr></tbody></table></div>
-                        <div id="messages" class="tab-pane fade"><form action="">
-                        <div class="form-group"><label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></div>
-                        <button type="submit" class="btn btn-purple">Guardar Comentario</button></form></div></div></div><br></div>   <br>
-
-
-
+                    </div><br> 
 
                 </div>
 
@@ -296,20 +286,14 @@
                      </div>
 
 
+                     <div class="col-xs-4 animated jackInTheBox">
 
-                     <div class="col-xs-4 animated jackInTheBox"><div class="tabbable"><ul class="nav nav-tabs" id="myTab"><li class="active"><a data-toggle="tab" href="#home">
-                        <i class="greenAES ace-icon fa fa-comments bigger-120"></i>Comentarios</a></li><li>
-                        <a data-toggle="tab" href="#messages"><i class="greenAES ace-icon fa fa-comment bigger-120"></i>Añadir Comentario</a>
-                        </li></ul><div class="tab-content "><div id="home" class="tab-pane fade in active"><table class="table">
-                        <thead><tr><th>#</th><th>Contenido</th><th>Autor</th></tr></thead>
-                        <tbody><tr><th scope="row">1</th><td>Cambios de prefiltros en compresor</td><td>pepito h</td></tr><tr><tr></tbody></table></div>
-                        <div id="messages" class="tab-pane fade"><form action="">
-                        <div class="form-group"><label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></div>
-                        <button type="submit" class="btn btn-purple">Guardar Comentario</button></form></div></div></div><br>
-                    </div>   
-
-
+                            <template>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaAES" tipo="a" v-bind:lista="item.comentarios"></vm-comment>
+                                    
+                            </template>
+ 
+                    </div><br> 
 
                 </div>
 
@@ -353,20 +337,15 @@
      
                      </div>
      
+                     <div class="col-xs-4 animated jackInTheBox">
 
-                     <div class="col-xs-4 animated jackInTheBox"><div class="tabbable"><ul class="nav nav-tabs" id="myTab"><li class="active"><a data-toggle="tab" href="#home">
-                        <i class="greenAES ace-icon fa fa-comment bigger-120"></i>Comentarios</a></li><li>
-                        <a data-toggle="tab" href="#messages"><i class="greenAES ace-icon fa fa-comment bigger-120"></i>Añadir Comentario</a>
-                        </li></ul><div class="tab-content "><div id="home" class="tab-pane fade in active"><table class="table">
-                        <thead><tr><th>#</th><th>Contenido</th><th>Autor</th></tr></thead>
-                        <tbody><tr><th scope="row">1</th><td>Cambios de prefiltros en compresor</td><td>pepito h</td></tr><tr><tr></tbody></table></div>
-                        <div id="messages" class="tab-pane fade"><form action="">
-                        <div class="form-group"><label for="exampleFormControlTextarea1">Deja tu comentario</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea></div>
-                        <button type="submit" class="btn btn-purple">Guardar Comentario</button></form></div></div></div><br></div>  <br> 
+                            <template>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaCostos" tipo="c" v-bind:lista="item.comentarios"></vm-comment>
+                                    
+                            </template>
 
-     
-     
+                    
+                    </div><br> 
      
                 </div>
      
