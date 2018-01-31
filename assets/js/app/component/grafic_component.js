@@ -195,15 +195,15 @@ Vue.component('vm-comment',{
                 <ul class="nav nav-tabs" >
                     <li class="active">
                         <a data-toggle="tab"  @click="activa(true)">
-                            <i class="greenAES ace-icon fa fa-key bigger-120"></i>
+                            <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
                             Comentarios
                         </a>
                     </li>
 
                     <li>
                         <a data-toggle="tab" href="#"  @click="activa(false)">
-                            <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
-                            Aañadir Comentario
+                            <i class="greenAES ace-icon fa fa-comment bigger-120"></i>
+                            Añadir Comentario
                         </a>
                     </li>
                 </ul>
@@ -216,30 +216,30 @@ Vue.component('vm-comment',{
                             <table class="table table-striped  table-responsive table-condensed table-hover table-bordered ">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                        <!-- <th>#</th> -->
                                             <th>Comentario</th>
                                             <th>Usuario</th>
                                             <th><span class="glyphicon glyphicon-align-center"></span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="item in lista">
+                                        <tr v-for="item in lista" class="text-center">
 
 
+                                        
 
-
-                                            <td>{{item.idComentario}}</td>
-                                            <td v-if="item.estado == 0"><del>{{item.comentario}}</del></td>
-                                            <td v-else>{{item.comentario}}</td>
+                                        <!--   <td>{{item.idComentario}}</td>-->
+                                            <td v-if="item.estado == 0" class="danger"><del>{{item.comentario}}</del></td>
+                                            <td v-else >{{item.comentario}}</td>
                                             <td>{{item.nombreE}}</td>
 
-                                            <td v-if="item.estado == 0">   
-                                                    <span class="glyphicon glyphicon-ok"></span>
-                                                    <!--  glyphicon glyphicon-ok-->
+                                            <td v-if="item.estado == 0" class="success" >   
+                                                    
+                                                    <a @click="enabledComment(item.idComentario)"><span class="glyphicon glyphicon-ok"></span></a>
                                             </td>
 
-                                            <td v-else>   
-                                                    <span class="glyphicon glyphicon-remove"></span>
+                                            <td v-else class="danger" >   
+                                                   <a @click="closeComment(item.idComentario)"><span class="glyphicon glyphicon-remove"></span></a>     
                                                    
                                             </td>
 
@@ -306,6 +306,72 @@ Vue.component('vm-comment',{
             
         },
 
+        closeComment: function(idComment){ // hago la peticion al controlador con el id del comentario en este caso se desactiva
+
+            
+            this.$http.get(url+'closeComment',{ params: { idComment: idComment } 
+
+            }).then(function (resp) {
+
+                
+                if(resp.data){
+                    
+                    //chastrinada ON
+                    
+                    for (var item in this.lista) {
+
+                        if (this.lista[item].idComentario == idComment ) {
+                            
+                            this.lista[item].estado= 0;
+                            alert('Comentario seleccionado CERRADO ');
+                            
+                        }
+                    }
+
+                }
+
+            }, function (err) {
+            //si sale mal
+
+                console.log(err);
+                alert('Error de actualizacion de estado');
+
+            })
+
+        },
+
+        enabledComment: function (idComment){  // hago la peticion al controlador con el id del comentario en este caso se activa
+
+            this.$http.get(url+'activeComment',{ params: { idComment: idComment } 
+
+            }).then(function (resp) {
+
+                if(resp.data){
+                    //chastrinada ON
+                    
+                    for (var item in this.lista) {
+                        
+                        
+                        if (this.lista[item].idComentario == idComment ) {
+                            
+                            this.lista[item].estado= 1;
+                            
+                            alert('Comentario seleccionado ABIERTO ');
+                        }
+                    }
+
+                }
+
+            }, function (err) {
+            //si sale mal
+
+                console.log(err);
+                alert('Error de actualizacion de estado');
+
+            })
+
+
+        },
 
         saveComment: function(){  // guarda el comentario en la base y devuelve el ultimo id guardado
 

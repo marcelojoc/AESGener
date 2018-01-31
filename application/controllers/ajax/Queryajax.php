@@ -250,20 +250,27 @@ class Queryajax extends My_Controller{
 	
 	
 	
-	
 		public function closeComment (){  // no elimina sino cambia el estado de un comentario bajo un indicador
 	 
 			$id= $_GET['idComment'];
 
-			$data = array(
-				'estado' => '0'
-			);
+			$respuesta= $this->Comment_model->setComment(false, $id);
 
-			$this->db->where('id', $id);
-			$this->db->update('comentario', $data); 
-	
+			echo json_encode($respuesta);
 	
 		}
+
+		public function activeComment (){  // no elimina sino cambia el estado de un comentario bajo un indicador
+	 
+			$id= $_GET['idComment'];
+
+			$respuesta= $this->Comment_model->setComment(true, $id);
+
+			echo json_encode($respuesta);
+	
+		}
+
+
 	
 	
 		public function editComment(){   // Editar un comentario  pero eso es para despues

@@ -68,6 +68,38 @@ class Comment_model extends CI_Model {
     }
 
 
+    /**
+     * Este metodo cambia el estado de los comentarios
+     * la variable estado indica que operacion se debe realizar si es activar o desactivar
+     * idComment  es el id sobre el cual hay que actuar
+     * recuerda  el 1 es activo  el 0  es desactivado
+     */
+
+    public function setComment($action, $idComment){
+
+        //action true = 1, es activa el comentario,  false= 0 lo desactiva
+
+        if($action){
+
+            $data = array(
+                'estado' => 1
+            );
+        }else{
+            
+            $data = array(
+                'estado' => 0
+            );
+        }
+        
+        $this->db->where('idComentario', $idComment);
+        $result= $this->db->update('comentario', $data); 
+
+        return $result;
+        
+    }
+
+
+
 
 
 

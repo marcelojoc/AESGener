@@ -142,7 +142,7 @@
                      </div>
 
 
-                     <div class="col-xs-4 animated jackInTheBox">
+                     <div class="col-xs-5 animated jackInTheBox">
 
                             <template>
                                     <vm-comment v-bind:idempleado="idEmpleado"  v-bind:nombre="nombreE" v-bind:idlinea="item.idLineaAES" tipo="a" v-bind:lista="item.comentarios"></vm-comment>
@@ -216,7 +216,7 @@
                      </div>
 
 
-                     <div class="col-xs-4 animated jackInTheBox">
+                     <div class="col-xs-5 animated jackInTheBox">
 
                             <template>
                                     <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="item.idLineaAES" tipo="a" v-bind:lista="item.comentarios"></vm-comment>
@@ -286,7 +286,7 @@
                      </div>
 
 
-                     <div class="col-xs-4 animated jackInTheBox">
+                     <div class="col-xs-5 animated jackInTheBox">
 
                             <template>
                                     <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="item.idLineaAES" tipo="a" v-bind:lista="item.comentarios"></vm-comment>
@@ -337,7 +337,7 @@
      
                      </div>
      
-                     <div class="col-xs-4 animated jackInTheBox">
+                     <div class="col-xs-5 animated jackInTheBox">
 
                             <template>
                                     <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="item.idLineaCostos" tipo="c" v-bind:lista="item.comentarios"></vm-comment>
