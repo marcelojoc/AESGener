@@ -223,13 +223,30 @@ Vue.component('vm-comment',{
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="item in lista" >
+                                        <tr v-for="item in lista">
+
+
+
+
                                             <td>{{item.idComentario}}</td>
-                                            <td>{{item.comentario}}</td>
+                                            <td v-if="item.estado == 0"><del>{{item.comentario}}</del></td>
+                                            <td v-else>{{item.comentario}}</td>
                                             <td>{{item.nombreE}}</td>
-                                            <td>   
-                                                    <span class="glyphicon glyphicon-align-center"></span>
+
+                                            <td v-if="item.estado == 0">   
+                                                    <span class="glyphicon glyphicon-ok"></span>
+                                                    <!--  glyphicon glyphicon-ok-->
                                             </td>
+
+                                            <td v-else>   
+                                                    <span class="glyphicon glyphicon-remove"></span>
+                                                   
+                                            </td>
+
+
+
+
+
                                 
                                         </tr>
 
@@ -279,7 +296,7 @@ Vue.component('vm-comment',{
         }
     },
     
-    props: ['idempleado', 'idlinea', 'tipo', 'lista'],
+    props: ['idempleado', 'nombre','idlinea', 'tipo', 'lista'],
 
     methods:{
 
@@ -302,8 +319,7 @@ Vue.component('vm-comment',{
 
                                                         } } ).then( function (resp){
                                 
-                                console.log(this.lista);
-                
+                console.log(this.lista);
                                 if(this.lista== false){
                                     
                                     this.lista=
@@ -311,6 +327,7 @@ Vue.component('vm-comment',{
                                         [{comentario: this.textArea,
                                         estado:"1",
                                         idComentario: resp.data,
+                                        nombreE: this.nombre,    
                                         idEmpleado: this.idempleado,
                                         idLineaAES: this.tipo == 'a' ? this.idlinea : '0',
                                         idLineaCostos: this.tipo == 'c' ? this.idlinea : '0',
@@ -323,6 +340,7 @@ Vue.component('vm-comment',{
                         
                                         {comentario: this.textArea,
                                         estado:"1",
+                                        nombreE: this.nombre,  
                                         idComentario: resp.data,
                                         idEmpleado: this.idempleado,
                                         idLineaAES: this.tipo == 'a' ? this.idlinea : '0',
@@ -335,6 +353,7 @@ Vue.component('vm-comment',{
                     
                                 this.textArea="";
                                 alert('El comentario se ha guardado ....');
+                                this.coments.activo= false;
 
             }, function(err){
             //si sale mal

@@ -107,7 +107,7 @@ class Kpi_model extends CI_Model {
 			
 
 
-			
+
 		}else{
 
 
@@ -808,6 +808,7 @@ class Kpi_model extends CI_Model {
 										"hsDispSemana"=>$item->hsDispSemana,
 										"correctivoBudget"=>$item->correctivoBudget,
 										"preventivoBudget"=>$item->preventivoBudget,
+										"trabajoPlaneado"=>$item->trabajoPlaneado,
 										"comentarios"=>$this->Comment_model->getComment( $item->idLineaSAP, 's')
 									
 									];

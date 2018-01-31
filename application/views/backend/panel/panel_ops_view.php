@@ -105,7 +105,7 @@
                     <div class="col-xs-5">
 
                             <template>
-                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
                                     
                             </template>
 
@@ -163,7 +163,7 @@
                     <div class="col-xs-5">
 
                             <template>
-                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
                                     
                             </template>
 
@@ -219,7 +219,7 @@
                     <div class="col-xs-5">
 
                             <template>
-                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
                                     
                             </template>
 
@@ -275,12 +275,12 @@
 
                         </div>
 
-                    </div>
+                    </div> 
 
                     <div class="col-xs-5">
 
                             <template>
-                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
                                     
                             </template>
 
@@ -339,7 +339,7 @@
                     <div class="col-xs-5">
 
                             <template>
-                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
+                                    <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="item.idLineaSAP" tipo="s" v-bind:lista="item.comentarios"></vm-comment>
                                     
                             </template>
 

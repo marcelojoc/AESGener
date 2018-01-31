@@ -95,7 +95,7 @@
                 <div class="col-xs-6 b-r animated jackInTheBox" v-if="this.count > 3">  
 
                     <template>
-                            <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="kpi.comments.idLineaAES" tipo="a" v-bind:lista="kpi.comments.comentarios"></vm-comment>
+                            <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="kpi.comments.idLineaAES" tipo="a" v-bind:lista="kpi.comments.comentarios"></vm-comment>
                             
                     </template>
 
@@ -156,7 +156,7 @@
 
                 
                     <template>
-                            <vm-comment v-bind:idempleado="idEmpleado" v-bind:idlinea="kpi.idLineaMTBF" tipo="m" v-bind:lista="kpi.mtbfComments"></vm-comment>
+                            <vm-comment v-bind:idempleado="idEmpleado" v-bind:nombre="nombreE" v-bind:idlinea="kpi.idLineaMTBF" tipo="m" v-bind:lista="kpi.mtbfComments"></vm-comment>
                             
                     </template>
             </div>
