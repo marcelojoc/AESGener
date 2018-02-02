@@ -193,14 +193,14 @@ Vue.component('vm-comment',{
     template: `
             <div class="tabbable">
                 <ul class="nav nav-tabs" >
-                    <li class="active">
+                    <li v-bind:class="{ 'active': coments.activo == true }" >
                         <a data-toggle="tab"  @click="activa(true)">
                             <i class="greenAES ace-icon fa fa-comments bigger-120"></i>
                             Comentarios
                         </a>
                     </li>
 
-                    <li>
+                    <li v-bind:class="{ 'active': coments.activo == false}">
                         <a data-toggle="tab" href="#"  @click="activa(false)">
                             <i class="greenAES ace-icon fa fa-comment bigger-120"></i>
                             Añadir Comentario
@@ -419,7 +419,7 @@ Vue.component('vm-comment',{
                     
                                 this.textArea="";
                                 alert('El comentario se ha guardado ....');
-                                this.coments.activo= false;
+                                this.coments.activo= true;
 
             }, function(err){
             //si sale mal
